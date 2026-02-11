@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LessonLab — Genomgångsmanus</title>
+    <meta name="description" content="Lösenordsskyddad samling av genomgångsmanus för klassrummet.">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus
+                    autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- ===== MAIN APP ===== -->
+    <div class="app" id="mainApp">
+        <header class="app-header">
+            <div class="app-logo">🧪</div>
+            <h1 class="app-title">LessonLab</h1>
+            <p class="app-subtitle">Genomgångsmanus — organiserat per arbetsområde</p>
+        </header>
+
+        <div class="area-grid">
+            <!-- Biologins grunder -->
+            <div class="area-card">
+                <span class="area-icon">🧬</span>
+                <h2 class="area-title">Biologins grunder</h2>
+                <p class="area-description">Vad är liv → Ekologi · Åk 7</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <a href="biologins-grunder/cellritning.html" class="lesson-link">Cellritning på tavlan</a>
+                        <span class="lesson-badge badge-ready">Klar</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Placeholder: Kemi -->
+            <div class="area-card" style="opacity: 0.5;">
+                <span class="area-icon">⚗️</span>
+                <h2 class="area-title">Kemi</h2>
+                <p class="area-description">Kommande arbetsområden</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <span class="lesson-link" style="color: var(--text-muted);">Inga manus ännu</span>
+                        <span class="lesson-badge badge-planned">Planerat</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Placeholder: Fysik -->
+            <div class="area-card" style="opacity: 0.5;">
+                <span class="area-icon">⚡</span>
+                <h2 class="area-title">Fysik</h2>
+                <p class="area-description">Kommande arbetsområden</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <span class="lesson-link" style="color: var(--text-muted);">Inga manus ännu</span>
+                        <span class="lesson-badge badge-planned">Planerat</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            LessonLab v1.0 — Del av GAIA Klassrumsverktyg ·
+            <button class="logout-btn" onclick="doLogout()">Logga ut</button>
+        </footer>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Check auth on load
+        if (LESSON_LAB_AUTH.isAuthenticated()) {
+            showApp();
+        }
+
+        // Login handler
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+
+        // Enter key support
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+
+        function doLogout() {
+            LESSON_LAB_AUTH.logout();
+            document.getElementById('mainApp').classList.remove('visible');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordInput').focus();
+        }
+    </script>
+</body>
+
+</html>

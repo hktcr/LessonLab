@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cellritning på tavlan — LessonLab</title>
+    <meta name="description"
+        content="Genomgångsmanus för cellritning med tre celltyper: bakteriecell, djurcell och växtcell.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <!-- Login gate (same as index) -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus
+                    autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- Main lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🔬 Genomgångsmanus: Cellritning på tavlan</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~40 min (kan delas på två lektioner)</span>
+                <span>✏️ ⬛ Svart · 🔴 Röd · 🔵 Blå · 🟢 Grön</span>
+                <span>📖 Häftet "1a. Vad är biologi?" + VEP</span>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Innan du börjar ===== -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">🎬 Innan du börjar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Förberedelser:</strong></p>
+                    <ul class="checklist">
+                        <li>Tavlan ren</li>
+                        <li>Fyra pennor redo: svart, röd, blå, grön</li>
+                        <li>Häftet "1a. Vad är biologi?" tillgängligt (s. 3)</li>
+                        <li>Eleverna har färgpennor framme (blå, grön, röd)</li>
+                    </ul>
+
+                    <div class="say-block">
+                        "Idag ska vi rita tre olika sorters celler på tavlan — tillsammans. Ni kopierar i era häften
+                        medan jag ritar. Ta fram färgpennor: blå, grön och röd om ni har. Det behöver inte vara snyggt —
+                        bara tydligt. Tavlan står kvar hela lektionen, så ni kan rita klart i er egen takt."
+                    </div>
+
+                    <p><strong>Syfte med genomgången:</strong></p>
+                    <p>När vi är klara ska ni kunna:</p>
+                    <ol style="padding-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li><strong>Rita och namnge</strong> tre celltyper: bakteriecell, djurcell, växtcell</li>
+                        <li><strong>Förklara skillnaden</strong> mellan prokaryot och eukaryot</li>
+                        <li><strong>Använda jämförelsetabellen</strong> för att själva checka er förståelse</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Färgkodnyckel ===== -->
+        <div class="lesson-section open" id="sec-colors">
+            <div class="section-header" onclick="toggleSection('sec-colors')">
+                <span class="section-title">🎨 Del 1: Färgkodnyckel och etymologi <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (svart):</strong></p>
+                        <div class="whiteboard-preview">CELLER — 3 olika typer</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Innan vi börjar rita ska jag förklara färgerna jag kommer använda. Det är ett system — inte
+                        slumpmässigt."
+                    </div>
+
+                    <div class="write-block">
+                        <p><span class="pen-color pen-red">🔴 Skriv med RÖD penna — Färgkodnyckeln:</span></p>
+                        <div class="whiteboard-preview">FÄRGKODNYCKEL:
+                            🔵 Blå = cellmembran (alla celler)
+                            🔴 Röd = styrning + energi (cellkärna, mitokondrier)
+                            🟢 Grön = växt-unika delar (cellvägg, klorofyllkorn)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Blå använder jag för cellmembranet — det har ALLA celler. Röd för saker som styr cellen eller
+                        ger energi. Grön för saker som bara växter har. Detta hjälper er se mönster."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 10 sekunder — låt dem skriva av färgkodnyckeln.
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv under färgkodnyckeln (svart):</strong></p>
+                        <div class="whiteboard-preview">PROKARYOT = utan cellkärna → bakterier
+                            EUKARYOT = med cellkärna → djur, växter, svampar
+
+                            Karyot = kärna | Pro = före | Eu = äkta</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Nu ska jag lära er två ord som låter svåra men som egentligen är enkla.
+                        <strong>Prokaryot</strong> och <strong>eukaryot</strong>. Vi tar det på latin och
+                        grekiska:<br><br>
+                        • <strong>Karyon</strong> betyder kärna<br>
+                        • <strong>Pro</strong> betyder före<br>
+                        • <strong>Eu</strong> betyder äkta, riktig<br><br>
+                        Så <strong>prokaryot</strong> betyder 'före kärnan' — celler som saknar cellkärna. Det är
+                        bakterier.<br><br>
+                        <strong>Eukaryot</strong> betyder 'äkta kärna' — celler som HAR cellkärna. Det är djur, växter
+                        och svampar.<br><br>
+                        Ett minnesknep: <strong>Eu</strong>karyot låter som <strong>you</strong>. <strong>YOU</strong>
+                        har en cellkärna. Bakterier hade inte fått en."
+                    </div>
+
+                    <div class="pause-block">
+                        🗣 Fonologisk check: "Kan ni säga det högt med mig? PRO-KA-RY-OT. EU-KA-RY-OT. En gång till!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 20 sekunder — låt dem skriva av.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Bakteriecellen ===== -->
+        <div class="lesson-section open" id="sec-bacteria">
+            <div class="section-header" onclick="toggleSection('sec-bacteria')">
+                <span class="section-title">🦠 Del 2: Bakteriecellen <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <p><strong>Skriv rubrik (svart):</strong></p>
+                        <div class="whiteboard-preview">BAKTERIECELL (prokaryot)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Första cellen — <strong>bakteriecellen</strong>. Vi ska rita tre stycken, och det här är nummer
+                        ett. Bakteriecellen är liten — mycket mindre än de andra."
+                    </div>
+
+                    <!-- Cellvägg -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-green">🟢 Rita med GRÖN penna — cellväggen (DUBBEL linje ═):</p>
+                        <p>Gör en oval, ungefär 15 cm hög. Rita cellväggen med dubbla linjer (═══) för att göra den
+                            tjock.</p>
+                    </div>
+                    <div class="say-block">
+                        "Bakterier har en <strong>cellvägg</strong> — en hård yttervågg som ger stöd. Jag ritar den
+                        TJOCK med dubbla linjer. Kom ihåg det — cellväggen är tjock."
+                    </div>
+
+                    <!-- Cellmembran -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-blue">🔵 Rita med BLÅ penna — cellmembranet (ENKEL linje ─):</p>
+                        <p>Innanför cellväggen, rita cellmembranet med en enkel tunn linje.</p>
+                    </div>
+                    <div class="say-block">
+                        "Innanför cellväggen finns <strong>cellmembranet</strong> — en tunn hinna. Jag ritar den TUNN
+                        med en enkel linje. Cellmembranet är som plastfolie — det släpper in ämnen cellen behöver och
+                        släpper ut det cellen vill bli av med."
+                    </div>
+
+                    <!-- DNA -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — DNA (slingrande linje):</p>
+                        <p>Rita en slingrande linje mitt i cellen.</p>
+                    </div>
+                    <div class="say-block">
+                        "I mitten av bakteriecellen ligger <strong>DNA</strong> — arvsanlagen. Tänk på det som en
+                        <strong>instruktionsbok</strong> för allt cellen ska göra. Men här är det speciella: DNA:t
+                        ligger LÖST i cellplasman. Det finns ingen cellkärna — inget kontor där DNA:t sitter. Det är som
+                        om borgmästaren satt mitt ute på torget utan något hus. Lite kaotiskt, eller hur?"
+                    </div>
+
+                    <!-- Plasmider -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — Plasmider (små cirklar):</p>
+                        <p>Rita 1-2 små ringar bredvid det stora DNA-nystanet.</p>
+                    </div>
+                    <div class="say-block">
+                        "Bakterier har också <strong>plasmider</strong>. Det är små, extra ringar av DNA. De är som små
+                        'kom ihåg-lappar' med extra instruktioner, till exempel hur man överlever antibiotika. Väldigt
+                        viktiga för bakterier!"
+                    </div>
+
+                    <!-- Pili -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — Pili (små strån på utsidan):</p>
+                        <p>Rita små korta streck (hår) som sticker ut från cellväggen.</p>
+                    </div>
+                    <div class="say-block">
+                        "Och kolla här — jag ritar små hår på utsidan. De kallas <strong>pili</strong>. Med dem kan
+                        bakterien fästa vid saker, ungefär som kardborreband, eller prata med andra bakterier."
+                    </div>
+
+                    <!-- Ribosomer -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — ribosomer (små prickar):</p>
+                        <p>Rita 5-6 små prickar utspridda i cellen.</p>
+                    </div>
+                    <div class="say-block">
+                        "Här och där i cellen finns <strong>ribosomer</strong> — små fabriker som bygger proteiner. De
+                        är så små att man knappt kan se dem i vanligt mikroskop."
+                    </div>
+
+                    <!-- Cellplasma label -->
+                    <div class="write-block">
+                        <p><strong>Skriv "Cellplasma" inuti cellen.</strong></p>
+                    </div>
+                    <div class="say-block">
+                        "Allt detta flyter i <strong>cellplasma</strong> — en vätska inuti cellen. Cellplasma kallas
+                        också cytosol om ni ser det ordet när ni googlar hemma."
+                    </div>
+
+                    <!-- Beskrivningar -->
+                    <div class="write-block">
+                        <p><strong>Skriv beskrivningar bredvid cellen (svart) — dra pilar:</strong></p>
+                        <div class="whiteboard-preview">Cellvägg → hård yttervägg — ger stöd
+                            Cellmembran → tunn hinna (som plastfolie) — släpper in/ut ämnen
+                            DNA → arvsanlagen (= "instruktionsbok") — ligger löst!
+                            Plasmider → extra DNA-ringar — små "kom ihåg-lappar"
+                            Pili → små "hår" på utsidan — för att fästa vid saker
+                            Ribosomer → fabriker — bygger proteiner
+                            Cellplasma → vätska (kallas också cytosol)</div>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv längst ner under bakteriecellen:</strong></p>
+                        <div class="whiteboard-preview">Saknar: cellkärna, mitokondrier, klorofyllkorn
+                            Gör cellandning direkt i cellmembranet (därför inga mitokondrier!)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Bakteriecellen saknar tre saker: cellkärna, mitokondrier och klorofyllkorn. Men den GÖR
+                        cellandning — den andas! Den gör det direkt i cellmembranet istället för i mitokondrier."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ "Hinner alla med? Rita klart bakteriecellen innan vi går vidare. Ni har 30 sekunder."<br>
+                        <em>(Vänta 30 sekunder. Gå runt, kolla att alla hinner med.)</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Djurcellen ===== -->
+        <div class="lesson-section open" id="sec-animal">
+            <div class="section-header" onclick="toggleSection('sec-animal')">
+                <span class="section-title">🐾 Del 3: Djurcellen <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(12 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <p><strong>Skriv rubrik (svart):</strong></p>
+                        <div class="whiteboard-preview">DJURCELL (eukaryot)
+                            "De flesta djurceller är rundaktiga — ingen fast form"</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Andra cellen — <strong>djurcellen</strong>. Cell nummer två av tre. Djurceller är oftast
+                        rundaktiga, men de har ingen fast form. De är mjuka — som en vattenfylld ballong."
+                    </div>
+
+                    <!-- Cellmembran -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-blue">🔵 Rita med BLÅ penna — cellmembranet (ENKEL linje):</p>
+                        <p>Rita en rundad, oregelbunden form — INTE perfekt cirkulär. Gör den större än bakteriecellen
+                            (ca 25 cm hög).</p>
+                    </div>
+                    <div class="say-block">
+                        "Djurcellen har ett <strong>cellmembran</strong> — samma som bakterien. Tunn hinna, släpper in
+                        och ut ämnen. Men den har INGEN cellvägg — därför är den mjuk."
+                    </div>
+
+                    <!-- Cellkärna -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Rita med RÖD penna — cellkärnan:</p>
+                        <p>Rita en cirkel i mitten av cellen (ca 5 cm diameter).</p>
+                    </div>
+                    <div class="say-block">
+                        "I mitten finns <strong>cellkärnan</strong> — cellens kontrollcentrum. Det är som borgmästaren i
+                        staden. Cellkärnan styr allt som händer i cellen."
+                    </div>
+
+                    <!-- DNA -->
+                    <div class="write-block">
+                        <p><strong>Skriv "DNA" inuti cellkärnan.</strong></p>
+                    </div>
+                    <div class="say-block">
+                        "Inuti cellkärnan ligger <strong>DNA</strong> — arvsanlagen med alla gener. Generna bestämmer
+                        vilka proteiner cellen ska tillverka och hur cellen ska fungera. Här är skillnaden mot
+                        bakterien: DNA:t ligger INUTI en kärna — borgmästaren har ett kontor!"
+                    </div>
+
+                    <!-- Mitokondrier -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Rita med RÖD penna — mitokondrier (2-3 stycken):</p>
+                        <p>Rita 2-3 små böjda ovaler (≋) utspridda i cellen.</p>
+                    </div>
+                    <div class="say-block">
+                        "Här och där i cellen finns <strong>mitokondrier</strong> — cellens kraftverk. De tar socker och
+                        syre och gör energi. Det kallas cellandning — för att cellen andas in syre och andas ut
+                        koldioxid, precis som ni gör med lungorna! Formeln är: socker + syre → energi. Varje gång ni
+                        andas jobbar era mitokondrier — det här händer i er just nu! De kanske är lite trötta — ni har
+                        haft en lång dag."
+                    </div>
+
+                    <!-- Ribosomer -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — ribosomer (små prickar):</p>
+                        <p>Rita 5-6 små prickar utspridda.</p>
+                    </div>
+                    <div class="say-block">
+                        "Precis som i bakterien finns <strong>ribosomer</strong> — fabrikerna som bygger proteiner."
+                    </div>
+
+                    <!-- Lysosomer -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Rita med RÖD penna — Lysosomer (små bubblor):</p>
+                        <p>Rita 1-2 små cirklar (○), mindre än cellkärnan.</p>
+                    </div>
+                    <div class="say-block">
+                        "Djurcellen har också <strong>lysosomer</strong>. Det är cellens
+                        <strong>återvinningsstation</strong>. Om något går sönder eller om cellen får in skräp, så ser
+                        lysosomerna till att bryta ner det och städa upp. Väldigt praktiskt!"
+                    </div>
+
+                    <!-- Cellplasma label -->
+                    <div class="write-block">
+                        <p><strong>Skriv "Cellplasma" inuti cellen.</strong></p>
+                    </div>
+                    <div class="say-block">
+                        "Och allt flyter i <strong>cellplasma</strong> — vätskan inuti cellen."
+                    </div>
+
+                    <!-- Beskrivningar -->
+                    <div class="write-block">
+                        <p><strong>Skriv beskrivningar bredvid cellen (svart):</strong></p>
+                        <div class="whiteboard-preview">Cellmembran → tunn hinna — släpper in/ut ämnen
+                            Cellkärna → styr cellen — innehåller DNA med arvsanlagen
+                            Mitokondrier → kraftverk — socker + syre → energi (cellandning)
+                            Lysosomer → återvinningsstation — städar och bryter ner avfall
+                            Ribosomer → fabriker — bygger proteiner
+                            Cellplasma → vätska (kallas också cytosol)</div>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv längst ner:</strong></p>
+                        <div class="whiteboard-preview">Saknar: cellvägg, klorofyllkorn
+                            (Därför är djurcellen mjuk — ingen fast form!)</div>
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ "Hinner alla? Vi går vidare till sista cellen snart. Ni har 30 sekunder."<br>
+                        <em>(Vänta 30 sekunder.)</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Växtcellen ===== -->
+        <div class="lesson-section open" id="sec-plant">
+            <div class="section-header" onclick="toggleSection('sec-plant')">
+                <span class="section-title">🌿 Del 4: Växtcellen <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(13 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <p><strong>Skriv rubrik (svart):</strong></p>
+                        <div class="whiteboard-preview">VÄXTCELL (eukaryot)
+                            "Har allt som djurcellen + cellvägg + klorofyllkorn"</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Tredje och sista cellen — <strong>växtcellen</strong>. Cell nummer tre av tre. Växtcellen har
+                        allt som djurcellen har — PLUS två extra saker. Vilka tror ni?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ <em>(Vänta — elever kan gissa "cellvägg" och "klorofyll")</em><br>
+                        "Exakt! Cellvägg och klorofyll."
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Retorisk fråga (10 sek tänktid):</strong><br>
+                        "Men innan vi ritar — varför tror ni att växter har cellvägg men djur inte? Tänk 10
+                        sekunder..."<br><br>
+                        <em>(Vänta. Någon kanske säger "stöd" eller "för att stå upp")</em><br><br>
+                        "Precis — för stöd! Djur har skelett. Växter har cellvägg."
+                    </div>
+
+                    <!-- Cellvägg -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-green">🟢 Rita med GRÖN penna — cellväggen (DUBBEL linje ═):</p>
+                        <p>Rita en kantig rektangel (ca 30 cm hög) med dubbla linjer för cellväggen.</p>
+                    </div>
+                    <div class="say-block">
+                        "Växtcellen har en <strong>cellvägg</strong> — precis som bakterien. Hård yttervägg, tjock. Jag
+                        ritar den med dubbla linjer. Det är därför växter är styva — därför kan ett träd stå upprätt
+                        utan skelett! Tänk er ett träd med ben — konstigt, eller hur?"
+                    </div>
+
+                    <!-- Cellmembran -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-blue">🔵 Rita med BLÅ penna — cellmembranet (ENKEL linje):</p>
+                        <p>Innanför cellväggen, rita cellmembranet med enkel linje.</p>
+                    </div>
+                    <div class="say-block">
+                        "Innanför cellväggen finns <strong>cellmembranet</strong> — samma som i djurcellen och
+                        bakterien. Tunn hinna."
+                    </div>
+
+                    <!-- Cellkärna -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Rita med RÖD penna — cellkärnan:</p>
+                        <p>Rita en cirkel i mitten.</p>
+                    </div>
+                    <div class="say-block">
+                        "I mitten finns <strong>cellkärnan</strong> — samma som i djurcellen. Styr cellen, innehåller
+                        DNA."
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv "DNA" inuti cellkärnan.</strong></p>
+                    </div>
+
+                    <!-- Klorofyllkorn -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-green">🟢 Rita med GRÖN penna — klorofyllkorn (2-3 stycken):</p>
+                        <p>Rita 2-3 gröna ovaler (◉).</p>
+                    </div>
+                    <div class="say-block">
+                        "Nu kommer det speciella för växter — <strong>klorofyllkorn</strong>. De innehåller klorofyll —
+                        det gröna ämnet. Klorofyllkorn fångar solljus och använder det för att göra socker. Det kallas
+                        fotosyntes. Det är därför blad är gröna! Klorofyllkorn kallas också kloroplast — om ni ser det
+                        ordet på nationella provet är det samma sak."
+                    </div>
+
+                    <!-- Mitokondrier -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Rita med RÖD penna — mitokondrier (2 stycken):</p>
+                        <p>Rita 2 böjda ovaler.</p>
+                    </div>
+                    <div class="say-block">
+                        "Och här är något många tror är fel — växter har OCKSÅ <strong>mitokondrier</strong>! Växter gör
+                        cellandning precis som djur. De andas! De gör fotosyntes på dagen när solen lyser, men de gör
+                        cellandning hela tiden — även på natten."
+                    </div>
+
+                    <!-- Ribosomer -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — ribosomer:</p>
+                        <p>Rita små prickar.</p>
+                    </div>
+                    <div class="say-block">
+                        "Och ribosomer — fabrikerna — finns här också."
+                    </div>
+
+                    <!-- Vakuol -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-blue">🔵 Rita med BLÅ penna — Vakuol (stor bubbla):</p>
+                        <p>Rita en stor, nästan fyrkantig bubbla (☐) som tar upp mycket plats i cellen.</p>
+                    </div>
+                    <div class="say-block">
+                        "Och här är en jätteviktig del för växter: <strong>Vakuolen</strong>. Det är som en stor
+                        <strong>vattenreservoar</strong> eller lagerlokal. Den är fylld med vatten och trycker utåt mot
+                        cellväggarna. Det är vakuolen som gör att växten spänner sig. Om ni glömmer att vattna en blomma
+                        så sjunker vakuolen ihop — och då slokar blomman."
+                    </div>
+
+                    <!-- Cellplasma -->
+                    <div class="write-block">
+                        <p><strong>Skriv "Cellplasma" inuti cellen.</strong></p>
+                    </div>
+
+                    <!-- Beskrivningar -->
+                    <div class="write-block">
+                        <p><strong>Skriv beskrivningar bredvid cellen (svart):</strong></p>
+                        <div class="whiteboard-preview">Cellvägg → hård yttervägg (tjock!) — därför kan träd stå upprätt
+                            Cellmembran → tunn hinna — samma som djurcellen
+                            Cellkärna → styr cellen — DNA med arvsanlagen
+                            Klorofyllkorn → fångar solljus → fotosyntes (kallas också kloroplast)
+                            Vakuol → vattenreservoar — ger växten spänst (slokar utan vatten!)
+                            Mitokondrier → kraftverk — växter gör OCKSÅ cellandning!
+                            Ribosomer → fabriker
+                            Cellplasma → vätska (= cytosol)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Nu har vi ritat alla tre cellerna. Titta på tavlan — ser ni mönstret? Alla tre har cellmembran
+                        (blå). Alla tre har cellplasma. Men bara djurcellen och växtcellen har cellkärna. Bara
+                        växtcellen har klorofyllkorn."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== BREAK MARKER ===== -->
+        <div class="break-marker">
+            <h2>🔴 LEKTION 1 SLUTAR HÄR (ca 40 min)</h2>
+            <ul>
+                <li>Tre celltyper ritade och namngivna (bakterie, djur, växt)</li>
+                <li>Prokaryot vs eukaryot förstått (med etymologi)</li>
+                <li>Färgkodningssystem internaliserat</li>
+                <li>Organellernas funktioner kända</li>
+            </ul>
+            <div style="margin-top: 1rem;">
+                <div class="say-block">
+                    <strong>📸 Fotopaus:</strong> "Pennor ner — fotografera tavlan! Det här är ert provunderlag."
+                </div>
+                <div class="say-block">
+                    <strong>Exit ticket:</strong> "Vänd på pappret och rita en djurcell från minnet. Namnge tre delar.
+                    Ni har 60 sekunder."
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CONTINUE MARKER ===== -->
+        <div class="continue-marker">
+            <h2>🟢 LEKTION 2 BÖRJAR HÄR</h2>
+        </div>
+
+        <!-- ===== SECTION: Jämförelsetabell ===== -->
+        <div class="lesson-section open" id="sec-table">
+            <div class="section-header" onclick="toggleSection('sec-table')">
+                <span class="section-title">📊 Del 5: Jämförelsetabell <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(8 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu ska vi sammanfatta allt vi lärt oss i en tabell. Den här tabellen finns i ert häfte på sida
+                        4 — fråga 10. Den kan också komma på provet. Den har kommit på nationella provet i nian."
+                    </div>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Cellplasma</th>
+                                <th>Cellmembran</th>
+                                <th>Cellkärna</th>
+                                <th>Cellvägg</th>
+                                <th>Klorofyllkorn</th>
+                                <th>Vakuol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cell-name">🐾 Djurcell</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="cross">✗</span></td>
+                                <td><span class="cross">✗</span></td>
+                                <td><span class="cross">✗</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cell-name">🌿 Växtcell</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="cell-name">🍄 Svampcell</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="cross">✗</span></td>
+                                <td><span class="check">✓</span>*</td>
+                            </tr>
+                            <tr>
+                                <td class="cell-name">🦠 Bakteriecell</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="cross">✗</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="cross">✗</span></td>
+                                <td><span class="cross">✗</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">*Svampar har vakuol,
+                        men den är oftast mindre/annorlunda än växters.</p>
+
+                    <div class="say-block">
+                        "Nu kommer en cell vi inte ritat — <strong>svampcell</strong>. Svampar är intressanta. De har
+                        cellvägg som växter, cellkärna som djur — men INGEN klorofyll! Därför kan svampar inte göra
+                        fotosyntes. De måste äta, precis som djur. De har faktiskt också en vakuol, precis som
+                        växterna."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 30 sekunder — låt dem kopiera tabellen.
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv under tabellen:</strong></p>
+                        <div class="whiteboard-preview">Organell = cellens små organ (från ordet "organ")</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ett sista ord — <strong>organell</strong>. Det betyder cellens olika delar. Det kommer från
+                        ordet 'organ' — som hjärta, lungor. Organeller är cellens små organ. Cellkärnan är ett organell.
+                        Mitokondrier är organeller. Ribosomer är organeller."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Ordförklaringar ===== -->
+        <div class="lesson-section open" id="sec-vocab">
+            <div class="section-header" onclick="toggleSection('sec-vocab')">
+                <span class="section-title">📖 Del 6: Ordförklaringar <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="vocab-list">
+                        <div class="vocab-item">
+                            <span class="vocab-term">Hinna</span>
+                            <span class="vocab-def">= tunn vägg (som plastfolie)</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Arvsanlag</span>
+                            <span class="vocab-def">= instruktioner (cellens instruktionsbok)</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Organell</span>
+                            <span class="vocab-def">= cellens små organ</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Cellandning</span>
+                            <span class="vocab-def">= cellen andas (socker + syre → energi)</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Lysosom</span>
+                            <span class="vocab-def">= städpatrull / återvinning</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Vakuol</span>
+                            <span class="vocab-def">= vattenlager (ger växten spänst)</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Plasmid</span>
+                            <span class="vocab-def">= bakteriernas extra-DNA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Avslut ===== -->
+        <div class="lesson-section open" id="sec-end">
+            <div class="section-header" onclick="toggleSection('sec-end')">
+                <span class="section-title">🎓 Del 7: Avslut och reflektion <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(2 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        <strong>📸 Fotopaus:</strong> "Pennor ner — fotografera tavlan nu om ni inte redan gjort det!"
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Exit ticket:</strong> "Sista uppgiften — vänd på pappret och rita en djurcell från
+                        minnet. Namnge tre delar. Ni har 60 sekunder. Det här är för er själva — jag samlar inte in
+                        det."
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Metakognitiv reflektion:</strong> "Snabb fråga till er själva: vad hjälpte er mest idag
+                        — färgerna, beskrivningarna, eller tabellen? Fundera på det."
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Avslutning:</strong> "Idag har ni lärt er tre sorters celler — bakteriecell, djurcell,
+                        växtcell. Ni vet skillnaden mellan prokaryot och eukaryot. Ni kan jämförelsetabellen. Det här är
+                        grunden för allt vi kommer göra i biologi framöver."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Bonus ===== -->
+        <div class="lesson-section" id="sec-bonus">
+            <div class="section-header" onclick="toggleSection('sec-bonus')">
+                <span class="section-title">🟢 Valfritt: Endosymbiosteorin <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(för de som vill veta
+                        mer)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p style="color: var(--text-secondary); margin-bottom: 0.75rem;"><em>Om tid finns och några elever
+                            frågar om mitokondrier:</em></p>
+                    <div class="say-block">
+                        "Vill ni veta något coolt? Mitokondrier var en gång fria bakterier — för två miljarder år sedan.
+                        En större cell 'åt' en bakterie, men istället för att smälta den behöll cellen bakterien inuti
+                        sig. Bakterien hjälpte cellen göra energi, och cellen gav bakterien skydd. De blev bästa vänner
+                        — och stannade tillsammans i två miljarder år! Därför har mitokondrier fortfarande eget DNA.
+                        Samma sak med klorofyllkorn — de var cyanobakterier."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Checklista ===== -->
+        <div class="lesson-section" id="sec-checklist">
+            <div class="section-header" onclick="toggleSection('sec-checklist')">
+                <span class="section-title">✅ Checklista efter genomgången</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Färgkodnyckeln synlig högst upp</li>
+                        <li>Cellvägg ritad med dubbla linjer (═)</li>
+                        <li>Cellmembran ritad med enkla linjer (─)</li>
+                        <li>Alla tre celler ritade med beskrivningar</li>
+                        <li>Jämförelsetabellen komplett</li>
+                        <li>Ordförklaringar synliga</li>
+                        <li>Tavlan fotograferad av eleverna</li>
+                        <li>Exit ticket genomförd</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026-02-11
+        </footer>
+    </div>
+
+    <script src="../auth.js"></script>
+    <script>
+        // Auth gate
+        if (LESSON_LAB_AUTH.isAuthenticated()) {
+            showApp();
+        }
+
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+
+        // Toggle sections
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const percentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        });
+    </script>
+</body>
+
+</html>
