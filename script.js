@@ -99,8 +99,8 @@ const CONCEPTS = (() => {
             list.innerHTML = '<p style="color:var(--text-muted);text-align:center;">Inga begrepp hittades i denna lektion.</p>';
         } else {
             vocabItems.forEach(item => {
-                const term = item.querySelector('.vocab-term')?.innerText || '';
-                const def = item.querySelector('.vocab-def')?.innerText || '';
+                const term = item.querySelector('.vocab-term')?.textContent || '';
+                const def = item.querySelector('.vocab-def')?.textContent || '';
 
                 if (term) {
                     const el = document.createElement('div');
