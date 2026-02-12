@@ -81,37 +81,8 @@
     </div>
 
     <script src="auth.js"></script>
-    <script>
-        // Check auth on load
-        if (LESSON_LAB_AUTH.isAuthenticated()) {
-            showApp();
-        }
-
-        // Login handler
-        async function doLogin() {
-            const input = document.getElementById('passwordInput');
-            const error = document.getElementById('loginError');
-            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
-        }
-
-        // Enter key support
-        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') doLogin();
-        });
-
-        function showApp() {
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('mainApp').classList.add('visible');
-        }
-
-        function doLogout() {
-            LESSON_LAB_AUTH.logout();
-            document.getElementById('mainApp').classList.remove('visible');
-            document.getElementById('loginScreen').classList.remove('hidden');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordInput').focus();
-        }
-    </script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

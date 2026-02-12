@@ -43,7 +43,7 @@
         </div>
 
         <!-- ===== SECTION: Innan du börjar ===== -->
-        <div class="lesson-section open" id="sec-intro">
+        <div class="lesson-section" id="sec-intro">
             <div class="section-header" onclick="toggleSection('sec-intro')">
                 <span class="section-title">🎬 Innan du börjar</span>
                 <span class="section-chevron">▼</span>
@@ -76,7 +76,7 @@
         </div>
 
         <!-- ===== SECTION: Färgkodnyckel ===== -->
-        <div class="lesson-section open" id="sec-colors">
+        <div class="lesson-section" id="sec-colors">
             <div class="section-header" onclick="toggleSection('sec-colors')">
                 <span class="section-title">🎨 Del 1: Färgkodnyckel och etymologi <span
                         style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
@@ -146,7 +146,7 @@
         </div>
 
         <!-- ===== SECTION: Bakteriecellen ===== -->
-        <div class="lesson-section open" id="sec-bacteria">
+        <div class="lesson-section" id="sec-bacteria">
             <div class="section-header" onclick="toggleSection('sec-bacteria')">
                 <span class="section-title">🦠 Del 2: Bakteriecellen <span
                         style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
@@ -270,7 +270,7 @@
         </div>
 
         <!-- ===== SECTION: Djurcellen ===== -->
-        <div class="lesson-section open" id="sec-animal">
+        <div class="lesson-section" id="sec-animal">
             <div class="section-header" onclick="toggleSection('sec-animal')">
                 <span class="section-title">🐾 Del 3: Djurcellen <span
                         style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(12 min)</span></span>
@@ -387,7 +387,7 @@
         </div>
 
         <!-- ===== SECTION: Växtcellen ===== -->
-        <div class="lesson-section open" id="sec-plant">
+        <div class="lesson-section" id="sec-plant">
             <div class="section-header" onclick="toggleSection('sec-plant')">
                 <span class="section-title">🌿 Del 4: Växtcellen <span
                         style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(13 min)</span></span>
@@ -551,7 +551,7 @@
         </div>
 
         <!-- ===== SECTION: Jämförelsetabell ===== -->
-        <div class="lesson-section open" id="sec-table">
+        <div class="lesson-section" id="sec-table">
             <div class="section-header" onclick="toggleSection('sec-table')">
                 <span class="section-title">📊 Del 5: Jämförelsetabell <span
                         style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(8 min)</span></span>
@@ -644,7 +644,7 @@
         </div>
 
         <!-- ===== SECTION: Ordförklaringar ===== -->
-        <div class="lesson-section open" id="sec-vocab">
+        <div class="lesson-section" id="sec-vocab">
             <div class="section-header" onclick="toggleSection('sec-vocab')">
                 <span class="section-title">📖 Del 6: Ordförklaringar <span
                         style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
@@ -687,7 +687,7 @@
         </div>
 
         <!-- ===== SECTION: Avslut ===== -->
-        <div class="lesson-section open" id="sec-end">
+        <div class="lesson-section" id="sec-end">
             <div class="section-header" onclick="toggleSection('sec-end')">
                 <span class="section-title">🎓 Del 7: Avslut och reflektion <span
                         style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(2 min)</span></span>
@@ -770,40 +770,7 @@
     </div>
 
     <script src="../auth.js"></script>
-    <script>
-        // Auth gate
-        if (LESSON_LAB_AUTH.isAuthenticated()) {
-            showApp();
-        }
-
-        async function doLogin() {
-            const input = document.getElementById('passwordInput');
-            const error = document.getElementById('loginError');
-            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
-        }
-
-        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') doLogin();
-        });
-
-        function showApp() {
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('mainApp').classList.add('visible');
-        }
-
-        // Toggle sections
-        function toggleSection(id) {
-            document.getElementById(id).classList.toggle('open');
-        }
-
-        // Scroll progress bar
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const percentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            document.getElementById('progressBar').style.width = percentage + '%';
-        });
-    </script>
+    <script src="../script.js"></script>
 </body>
 
 </html>
