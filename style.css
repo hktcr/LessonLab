@@ -446,21 +446,26 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-glass);
     border-radius: var(--radius-lg);
-    margin-bottom: 0.5rem; /* Tighter spacing for outline */
+    margin-bottom: 0.5rem;
+    /* Tighter spacing for outline */
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .lesson-section:hover {
     border-color: var(--border-hover);
-    transform: translateX(4px); /* Hint at interactivity */
+    transform: translateX(4px);
+    /* Hint at interactivity */
     background: var(--bg-card-hover);
 }
 
 .lesson-section.open {
-    margin-bottom: 2rem; /* Restore spacing when open */
-    transform: none; /* No hover move when open */
-    background: var(--bg-card); /* Reset bg */
+    margin-bottom: 2rem;
+    /* Restore spacing when open */
+    transform: none;
+    /* No hover move when open */
+    background: var(--bg-card);
+    /* Reset bg */
     box-shadow: var(--shadow-md);
     border-color: var(--accent-blue-glow);
 }
@@ -480,17 +485,20 @@ body {
 }
 
 .lesson-section.open .section-header {
-    background: rgba(59, 130, 246, 0.05); /* Subtle highlight for active header */
+    background: rgba(59, 130, 246, 0.05);
+    /* Subtle highlight for active header */
     border-bottom: 1px solid var(--border-glass);
 }
 
 .section-title {
     font-size: 1.05rem;
-    font-weight: 600; /* Slightly lighter for outline */
+    font-weight: 600;
+    /* Slightly lighter for outline */
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: var(--text-secondary); /* Muted by default */
+    color: var(--text-secondary);
+    /* Muted by default */
     transition: color 0.2s;
 }
 
@@ -499,7 +507,8 @@ body {
 }
 
 .lesson-section.open .section-title {
-    color: var(--accent-blue); /* Active color */
+    color: var(--accent-blue);
+    /* Active color */
     font-weight: 700;
 }
 
@@ -523,17 +532,20 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0; /* Fade in content */
+    opacity: 0;
+    /* Fade in content */
 }
 
 .lesson-section.open .section-body {
-    max-height: 8000px; /* Allow for long content */
+    max-height: 8000px;
+    /* Allow for long content */
     opacity: 1;
     transition: max-height 0.5s ease-in, opacity 0.3s ease-in 0.1s;
 }
 
 .section-content {
-    padding: 1.5rem 1.25rem; /* More padding when open */
+    padding: 1.5rem 1.25rem;
+    /* More padding when open */
 }
 
 /* ── Teacher Speech Blocks ── */
@@ -864,4 +876,140 @@ body {
         border-left-color: #fbbf24;
         color: #92400e;
     }
+}
+
+/* ── Floating Action Button (FAB) ── */
+.fab-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--accent-blue);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 900;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.fab-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px var(--accent-blue-glow);
+    background: #2563eb;
+}
+
+.fab-btn:active {
+    transform: translateY(0);
+}
+
+/* ── Modal Overlay ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 23, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ── Concepts Modal ── */
+.concepts-modal {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    width: min(600px, 90vw);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.95) translateY(20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.open .concepts-modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--accent-red);
+}
+
+.modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Reuse vocab styles but simplified for modal */
+.modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modal-item {
+    background: var(--bg-glass);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--accent-blue);
+}
+
+.modal-term {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.modal-def {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }

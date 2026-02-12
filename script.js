@@ -39,6 +39,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+/* ── Concepts FAB Logic ── */
+const CONCEPTS = (() => {
+    let modalOverlay, modalBody;
+
+    function init() {
+        // Only run if we are in a lesson page (have lesson-sections)
+        if (!document.querySelector('.lesson-section')) return;
+
+        createFAB();
+        createModal();
+        harvestConcepts();
+    }
+
+    function createFAB() {
+        const fab = document.createElement('button');
+        fab.className = 'fab-btn';
+        fab.innerHTML = '<span>🔑</span> Begrepp';
+        fab.onclick = openModal;
+        document.body.appendChild(fab);
+    }
+
+    function createModal() {
+        // Overlay
+        modalOverlay = document.createElement('div');
+        modalOverlay.className = 'modal-overlay';
+        modalOverlay.onclick = (e) => {
+            if (e.target === modalOverlay) closeModal();
+        };
+
+        // Modal
+        const modal = document.createElement('div');
+        modal.className = 'concepts-modal';
+
+        // Header
+        const header = document.createElement('div');
+        header.className = 'modal-header';
+        header.innerHTML = `
+            <div class="modal-title"><span>🔑</span> Nyckelbegrepp</div>
+            <button class="modal-close" onclick="CONCEPTS.closeModal()">×</button>
+        `;
+
+        // Body
+        modalBody = document.createElement('div');
+        modalBody.className = 'modal-body';
+
+        modal.appendChild(header);
+        modal.appendChild(modalBody);
+        modalOverlay.appendChild(modal);
+        document.body.appendChild(modalOverlay);
+    }
+
+    function harvestConcepts() {
+        const vocabItems = document.querySelectorAll('.vocab-item');
+        const list = document.createElement('div');
+        list.className = 'modal-list';
+
+        if (vocabItems.length === 0) {
+            list.innerHTML = '<p style="color:var(--text-muted);text-align:center;">Inga begrepp hittades i denna lektion.</p>';
+        } else {
+            vocabItems.forEach(item => {
+                const term = item.querySelector('.vocab-term')?.innerText || '';
+                const def = item.querySelector('.vocab-def')?.innerText || '';
+
+                if (term) {
+                    const el = document.createElement('div');
+                    el.className = 'modal-item';
+                    el.innerHTML = `
+                        <span class="modal-term">${term}</span>
+                        <span class="modal-def">${def}</span>
+                    `;
+                    list.appendChild(el);
+                }
+            });
+        }
+
+        modalBody.innerHTML = '';
+        modalBody.appendChild(list);
+    }
+
+    function openModal() {
+        modalOverlay.classList.add('open');
+    }
+
+    function closeModal() {
+        modalOverlay.classList.remove('open');
+    }
+
+    return { init, openModal, closeModal };
+})();
+
 /* ── Auth Logic ── */
 async function doLogin() {
     const input = DOM.loginInput();
@@ -76,7 +166,10 @@ function initLessonView() {
     // 1. Initialize Progress Bar
     window.addEventListener('scroll', updateProgress);
 
-    // 2. Initialize Sections (Outline View)
+    // 2. Initialize Key Concepts FAB
+    if (typeof CONCEPTS !== 'undefined') CONCEPTS.init();
+
+    // 3. Initialize Sections (Outline View)
     // In outline view, everything should be collapsed by default unless manually opened
     // Note: We are moving away from having "open" class hardcoded in HTML
 
@@ -109,17 +202,12 @@ function updateProgress() {
 }
 
 function toggleSection(sectionElement) {
-    // Close other sections for a "focus mode" feel? 
-    // No, users might want to keep multiple open.
-    // Let's just toggle the current one.
-
     const wasOpen = sectionElement.classList.contains('open');
 
     if (wasOpen) {
         sectionElement.classList.remove('open');
     } else {
         sectionElement.classList.add('open');
-
         // Auto-scroll to title if it's way off screen?
         // sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
