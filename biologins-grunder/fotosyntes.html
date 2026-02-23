@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotosyntes — LessonLab</title>
+    <meta name="description"
+        content="Genomgångsmanus: Retrieval practice (cellritning ur minnet) + Fotosyntes — formel, klorofyll, klyvöppningar.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <!-- Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus
+                    autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- Main lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🌿 Genomgångsmanus: Retrieval + Fotosyntes</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~50 min</span>
+                <span>✏️ ⬛ Svart · 🟢 Grön</span>
+                <span>📖 Häfte 1a (redan utdelat) — inget nytt material</span>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Innan du börjar ===== -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">🎬 Innan du börjar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Förberedelser:</strong></p>
+                    <ul class="checklist">
+                        <li>Tavlan ren (hela tavlan behövs)</li>
+                        <li>Pennor: svart + grön (och eventuellt röd för betonande)</li>
+                        <li>Eleverna har häfte 1a framme ("Vad är biologi?")</li>
+                        <li>Inget nytt häfte delas ut — allt antecknas i häftet eller på löst papper</li>
+                    </ul>
+
+                    <p><strong>Syfte med lektionen:</strong></p>
+                    <p>När vi är klara ska eleverna kunna:</p>
+                    <ol style="padding-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li><strong>Rita en växtcell ur minnet</strong> och jämföra med kompis (retrieval)</li>
+                        <li><strong>Skriva fotosyntesens formel</strong> (CO₂ + H₂O + sol → C₆H₁₂O₆ + O₂)</li>
+                        <li><strong>Förklara var fotosyntesen sker</strong> (i kloroplasterna)</li>
+                        <li><strong>Svara på NP-frågan</strong> "Vad bildas vid fotosyntes?"</li>
+                    </ol>
+
+                    <p style="margin-top: 1rem;"><strong>NP-koppling:</strong> NP 2014–2018 Uppg 1 — mest testade frågan i biologi!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Retrieval Practice ===== -->
+        <div class="lesson-section open" id="sec-retrieval">
+            <div class="section-header" onclick="toggleSection('sec-retrieval')">
+                <span class="section-title">🧠 Del 1: Retrieval — Rita växtcell ur minnet <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(12 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Välkomna tillbaka från sportlovet! Innan vi börjar med nytt stoff vill jag kolla vad som fastnat.
+                        Ta fram ett tomt papper — eller vänd på ett gammalt. Ni har <strong>tre minuter</strong>."
+                    </div>
+
+                    <div class="say-block">
+                        "Uppgiften: <strong>Rita en växtcell ur minnet.</strong> Namnge så många delar ni kan. Inga böcker,
+                        inga foton, inga kompisar. <strong>Tyst och enskilt.</strong><br><br>
+                        Det behöver inte vara snyggt — det viktiga är att ni försöker komma ihåg. Redo? Börja!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Tyst arbete i 3 minuter.<br>
+                        <em>(Gå runt, observera men kommentera inte. Notera vilka delar eleverna oftast missar.)</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Pennor ner! Nu: <strong>vänd er mot kompisen bredvid</strong>. Jämför era bilder. Vad hade ni med
+                        som var lika? Vad missade ni? Ni har <strong>2 minuter</strong>."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Pardiskussion i 2 minuter.<br>
+                        <em>(Lyssna på diskussionerna — ger dig data om vad klassen minns/glömmer.)</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Bra! Nu visar jag den rätta versionen."<br><br>
+                        <em>(Rita snabbt en förenklad växtcell på tavlan ELLER peka på den befintliga tavlan om cellritningen
+                        finns kvar. Markera de delar många missade.)</em><br><br>
+                        "De vanligaste som folk glömmer är: <strong>vakuol</strong> (den stora vattenblåsan),
+                        <strong>kloroplaster</strong> (solfångarna), och <strong>cellvägg</strong> (den yttre tjocka väggen).
+                        Titta på er egen ritning — fick ni med dem?"
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Överbrygga till fotosyntes:</strong><br>
+                        "Ni skrev säkert kloroplaster på er ritning. Men vad GÖR kloroplasterna egentligen?
+                        Det är precis det vi ska lära oss nu — <strong>fotosyntesen</strong>."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Mars-brygga ===== -->
+        <div class="lesson-section open" id="sec-mars">
+            <div class="section-header" onclick="toggleSection('sec-mars')">
+                <span class="section-title">🔴 Del 2: Mars-brygga — Varför behöver vi fotosyntes? <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        <strong>Retorisk fråga (10 sek tänktid):</strong><br>
+                        "Minns ni The Martian? Mark Watney odlade potatis på Mars — inomhus.
+                        <strong>Varför kunde han inte plantera dem utomhus?</strong> Tänk 10 sekunder..."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Vänta 10 sekunder. <em>(Elever kan gissa: "ingen luft", "för kallt", "ingen atmosfär")</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Precis — ingen atmosfär, ingen koldioxid, inget vatten. Och framför allt: potatis behöver göra
+                        <strong>fotosyntes</strong> för att växa. Utan koldioxid fungerar det inte.<br><br>
+                        Idag ska vi lära oss exakt hur fotosyntesen fungerar — steg för steg."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Fotosyntes — Explicit undervisning ===== -->
+        <div class="lesson-section open" id="sec-photosynthesis">
+            <div class="section-header" onclick="toggleSection('sec-photosynthesis')">
+                <span class="section-title">🌿 Del 3: Fotosyntesen — Explicit undervisning <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(23 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <p><strong>Skriv rubrik (svart):</strong></p>
+                        <div class="whiteboard-preview">FOTOSYNTES</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ordet <strong>fotosyntes</strong> kommer från grekiskan.<br><br>
+                        • <strong>Foto</strong> = ljus (som i fotografi — att fånga ljus)<br>
+                        • <strong>Syntes</strong> = att sätta ihop<br><br>
+                        Fotosyntes betyder alltså 'att sätta ihop med hjälp av ljus'. Och det är precis vad växter gör
+                        — de sätter ihop socker med hjälp av solljus."
+                    </div>
+
+                    <div class="pause-block">
+                        🗣 Fonologisk check: "Säg det högt med mig: FO-TO-SYN-TES. En gång till!"
+                    </div>
+
+                    <!-- Steg 1: Rita trädet -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-green">🟢 Rita med GRÖN penna — ett träd (stort, mittkälla på tavlan):</p>
+                        <p>Rita ett enkelt träd med stam, krona (rund) och synliga rötter. Gör det stort — det blir
+                            centrum för hela taveldispositionen.</p>
+                    </div>
+
+                    <div class="say-block">
+                        "Jag ritar ett träd. Ni kopierar i ert häfte eller på löst papper. Det behöver inte vara snyggt
+                        — bara tydligt."
+                    </div>
+
+                    <!-- Steg 2: Solenergi ovanifrån -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — sol och pilar ovanifrån:</p>
+                        <p>Rita en sol (☀️) ovanför trädet. Rita pilar nedåt mot kronan.</p>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv ovanför trädet:</strong></p>
+                        <div class="whiteboard-preview">☀️ SOLENERGI
+↓ ↓ ↓</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Allt börjar med <strong>solen</strong>. Solljuset träffar bladen. I bladen finns
+                        <strong>kloroplaster</strong> — de gröna 'solfångarna' som vi ritade förra gången. Kloroplasterna
+                        innehåller ett grönt ämne som heter <strong>klorofyll</strong>.<br><br>
+                        <em>(Peka på kronan)</em> Det är klorofyllet som GÖR bladen gröna. Och det är klorofyllet som
+                        fångar solljuset."
+                    </div>
+
+                    <!-- Steg 3: CO₂ från luften -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita pilar från vänster mot bladen:</p>
+                        <p>Rita pilar som pekar IN mot kronan från vänster sida.</p>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv till vänster:</strong></p>
+                        <div class="whiteboard-preview">CO₂ (koldioxid)
+────────────► [BLAD]
+från luften</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Koldioxid — CO₂ — kommer in genom luften. Men hur? Bladen har små hål som kallas
+                        <strong>klyvöppningar</strong>. De är så små att man inte kan se dem med blotta ögat. Genom
+                        klyvöppningarna tar bladet in koldioxid och släpper ut syre."
+                    </div>
+
+                    <!-- Steg 4: H₂O från rötterna -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita pilar uppåt från rötterna:</p>
+                        <p>Rita pilar som pekar UPP genom stammen.</p>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv under rötterna:</strong></p>
+                        <div class="whiteboard-preview">H₂O (vatten)
+    ↑
+  rötterna suger upp</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Vatten — H₂O — sugs upp av rötterna och transporteras upp genom stammen till bladen. Precis
+                        som ett sugrör."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 20 sekunder — låt dem rita klart trädet med pilar.
+                    </div>
+
+                    <!-- Steg 5: Produkter -->
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita pilar UT från bladen (höger sida):</p>
+                        <p>Två pilar ut från kronan: en uppåt (O₂) och en nedåt (socker).</p>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv till höger:</strong></p>
+                        <div class="whiteboard-preview">[BLAD] ────────────► O₂ (syre)
+                            ut via klyvöppningar
+
+[BLAD] ────────────► C₆H₁₂O₆ (druvsocker)
+                            lagras som energi</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Och vad kommer UT? Två saker!<br><br>
+                        Nummer ett: <strong>syre</strong> — O₂. Det är det vi andas. Utan växter — inget syre.
+                        Utan syre — inga djur, inga människor.<br><br>
+                        Nummer två: <strong>druvsocker</strong> — C₆H₁₂O₆. Det är växtens energi. Sockret lagras i rötter,
+                        stam och frukt. Det är sockret i ett äpple. Det är sockret i en potatis.<br><br>
+                        <em>(Peka på The Martian-kopplingen)</em> Det är sockret som Watney ville åt — potatisen!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 30 sekunder — låt dem rita klart produkterna.
+                    </div>
+
+                    <!-- Steg 6: Formeln -->
+                    <div class="write-block">
+                        <p><strong>Skriv formeln under trädet (svart, STOR):</strong></p>
+                        <div class="whiteboard-preview">FORMEL:
+koldioxid + vatten + solenergi → druvsocker + syre
+CO₂ + H₂O + ☀️ → C₆H₁₂O₆ + O₂</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Här är formeln. Vi skriver den på två sätt — först med ord, sedan med kemiska formler.
+                        <strong>Den här formeln är den mest testade på nationella provet.</strong> Kan ni den har ni ett
+                        försprång."
+                    </div>
+
+                    <div class="pause-block">
+                        🗣 Fonologisk check: "Läs formeln högt med mig: koldioxid plus vatten plus solenergi ger
+                        druvsocker plus syre. En gång till!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 30 sekunder — låt dem skriva formeln.
+                    </div>
+
+                    <!-- Steg 7: Var och klyvöppningar -->
+                    <div class="write-block">
+                        <p><strong>Skriv under formeln:</strong></p>
+                        <div class="whiteboard-preview">VAR? → I KLOROPLASTERNA
+(de gröna "solfångarna" vi ritade förra gången!)
+
+KLYVÖPPNINGAR = små hål i bladen
+Släpper in CO₂ och ut O₂ (gasutbyte)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Var sker fotosyntesen? I <strong>kloroplasterna</strong> — de gröna organellerna vi ritade på
+                        växtcellen. Kloroplasterna innehåller <strong>klorofyll</strong> som fångar solljuset.<br><br>
+                        Och gaserna — koldioxid in, syre ut — passerar genom <strong>klyvöppningarna</strong>. Små,
+                        små hål på undersidan av bladen."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 20 sekunder — låt dem skriva klart.<br>
+                        <em>(Gå runt, kolla att alla hinner med.)</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: NP-träning ===== -->
+        <div class="lesson-section open" id="sec-np">
+            <div class="section-header" onclick="toggleSection('sec-np')">
+                <span class="section-title">🎯 Del 4: NP-träning <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu en riktig NP-fråga. Den här typen av fråga har kommit på nationella provet<br>
+                        varje år mellan 2014 och 2018.<br><br>
+                        <strong>'Vilka ämnen bildas vid fotosyntesen?'</strong><br><br>
+                        A) Koldioxid och vatten<br>
+                        B) Syre och koldioxid<br>
+                        C) Vatten och syre<br>
+                        D) Syre och druvsocker<br><br>
+                        Tyst — tänk enskilt i 20 sekunder."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Tyst tänktid 20 sekunder.
+                    </div>
+
+                    <div class="say-block">
+                        "Vänd er till kompisen — vilken tror ni? Ni har 30 sekunder."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Pardiskussion 30 sekunder.
+                    </div>
+
+                    <div class="say-block">
+                        "Rätt svar: <strong>D — syre och druvsocker</strong>.<br><br>
+                        Titta på tavlan — kolla formeln. Vad står på höger sida om pilen?
+                        C₆H₁₂O₆ + O₂. Druvsocker och syre. Det är det som <strong>bildas</strong>.<br><br>
+                        Koldioxid och vatten — det är råvarorna, det som <strong>går in</strong>. Många blandar ihop dem.
+                        Men om ni kan formeln, kan ni aldrig svara fel på den här frågan."
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Bonusfråga:</strong><br>
+                        "Om en växt står i mörker länge — vad händer? Varför? Diskutera med kompisen."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 30 sekunder pardiskussion.<br>
+                        <em>(Svaret: den kan inte göra fotosyntes utan solljus → inget socker → ingen energi → vissnar)</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Avslut ===== -->
+        <div class="lesson-section open" id="sec-end">
+            <div class="section-header" onclick="toggleSection('sec-end')">
+                <span class="section-title">🎓 Del 5: Avslut — Fotopaus och läxa <span
+                        style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        <strong>📸 Fotopaus:</strong> "Pennor ner — fotografera tavlan nu! Det här är ert provunderlag."
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Läxa:</strong><br>
+                        "Läxa till <strong>onsdag den 4 mars</strong>: Rita bakteriecell, djurcell och växtcell
+                        <strong>ur minnet</strong>. Namnge så många delar ni kan. Inga hjälpmedel!<br><br>
+                        Det här är ingen inlämningsuppgift — det är träning för att ni ska veta vad ni kan
+                        och vad ni behöver repetera inför provet."
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Exit-fråga:</strong><br>
+                        "Innan ni går: <strong>Vad bildas vid fotosyntes?</strong> Viska svaret till kompisen.
+                        Om ni sa 'syre och druvsocker' — bra. Om inte — titta på formeln en sista gång."
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Avslutning:</strong><br>
+                        "Nästa lektion: <strong>cellandning</strong> — motsatsen till det vi gjorde idag. Hint: det är
+                        <strong>exakt samma formel — fast baklänges</strong>."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Ordförklaringar ===== -->
+        <div class="lesson-section" id="sec-vocab">
+            <div class="section-header" onclick="toggleSection('sec-vocab')">
+                <span class="section-title">📖 Ordförklaringar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="vocab-list">
+                        <div class="vocab-item">
+                            <span class="vocab-term">Fotosyntes</span>
+                            <span class="vocab-def">= "sätta ihop med ljus" — växter bygger socker av solljus</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Klorofyll</span>
+                            <span class="vocab-def">= det gröna ämnet i bladen som fångar solljus</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Kloroplast</span>
+                            <span class="vocab-def">= organellen som innehåller klorofyll (= klorofyllkorn)</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Klyvöppning</span>
+                            <span class="vocab-def">= små hål i bladen för gasutbyte (CO₂ in, O₂ ut)</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Koldioxid (CO₂)</span>
+                            <span class="vocab-def">= gas som växter tar in — vi andas ut den</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Druvsocker (C₆H₁₂O₆)</span>
+                            <span class="vocab-def">= socker som växter tillverkar — deras energi</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Syre (O₂)</span>
+                            <span class="vocab-def">= gas som bildas vid fotosyntes — det vi andas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: Checklista ===== -->
+        <div class="lesson-section" id="sec-checklist">
+            <div class="section-header" onclick="toggleSection('sec-checklist')">
+                <span class="section-title">✅ Checklista — Har jag gjort allt?</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Retrieval: eleverna ritade växtcell ur minnet</li>
+                        <li>Pardiskussion genomförd (jämförelse av cellritningar)</li>
+                        <li>Etymologi: foto = ljus, syntes = sätta ihop</li>
+                        <li>Fonologisk check: FO-TO-SYN-TES</li>
+                        <li>Taveldisposition med träd, pilar och formel klar</li>
+                        <li>NP-fråga genomgången (svar D: syre + druvsocker)</li>
+                        <li>Fotopaus: eleverna har fotograferat tavlan</li>
+                        <li>Läxa given: rita 3 celler ur minnet → onsdag 4 mars</li>
+                        <li>D1-25 extra: repeterat formeln kort (de hade den i L5)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026-02-23
+        </footer>
+    </div>
+
+    <!-- Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+
+</html>
