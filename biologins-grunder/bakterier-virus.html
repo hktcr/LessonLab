@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakterier & Virus — LessonLab</title>
+    <meta name="description"
+        content="Genomgångsmanus: Repetitionsöppning (fotosyntes/cellandning) + Bakterier vs virus + Antibiotika.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <!-- Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus
+                    autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- Main lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🦠 Bakterier & Virus</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~50 min</span>
+                <span>✏️ ⬛ Svart · 🔵 Blå</span>
+                <span>📖 Häfte 1a (referens)</span>
+            </div>
+            <div class="lesson-meta">
+                <span>📅 Onsdag v.9 (25/2)</span>
+                <span>🏫 D1-25, E1-25</span>
+                <span>📋 L7 i Biologins grunder</span>
+            </div>
+        </div>
+
+        <div class="vep-principle">
+            <strong>VEP-princip:</strong> Repetitionsöppning korrigerar "baklänges"-formuleringen och befäster
+            fotosyntes/cellandning genom etymologi och parberättelse. Sedan: bakterier vs virus med antibiotika som
+            samhällsankare.
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 0: REPETITIONSÖPPNING (6-7 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-0">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 0</span>
+                    <h2>🔄 Repetitionsöppning: Fotosyntes & Cellandning</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <!-- Mars-brygga -->
+                    <div class="teacher-note">
+                        <strong>🎯 Syfte:</strong> Täcker tre moment som skippades igår pga tidsbrist + korrigerar
+                        "baklänges". Total tid: 6-7 min.
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Snabb start:</strong> Mark Watney odlade potatis inomhus på Mars.
+                        Varför kunde han inte plantera dem utomhus?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 10 sek tänktid. Samla 2-3 svar.
+                    </div>
+
+                    <div class="say-block">
+                        "Exakt: ingen koldioxid i atmosfären, inget flytande vatten, för kallt.
+                        Utan de sakerna kan fotosyntesen inte ske. Och utan fotosyntes: ingen mat, inget syre."
+                    </div>
+
+                    <!-- Fonologisk check + etymologi -->
+                    <div class="say-block">
+                        "Säg efter mig: <strong>FO-TO-SYN-TES!</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Klassen upprepar.
+                    </div>
+
+                    <div class="say-block">
+                        "Och det här är faktiskt två ord ihopsatta:
+                        <strong>FOTO</strong> betyder <strong>ljus</strong>. Som i fotografi: ljus-ritning.
+                        <strong>SYNTES</strong> betyder <strong>att sätta ihop</strong>.<br><br>
+                        Fotosyntesen = <strong>att sätta ihop med ljus</strong>. Ljus-ihopsättning!<br><br>
+                        Och den andra: <strong>CEL-LAND-NING!</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Klassen upprepar.
+                    </div>
+
+                    <div class="say-block">
+                        "Cell + andning = <strong>cellens andning</strong>. Och var sker cellandningen?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Alla ropar: "Mitokondrierna!"<br>
+                        "MI-TO-KOND-RI-ER-NA!" (klassen upprepar)
+                    </div>
+
+                    <!-- Korrigering -->
+                    <div class="say-block">
+                        "En grej jag sa igår som var lite slarvigt: jag sa att cellandningen är fotosyntesen
+                        <em>baklänges</em>.
+                        Det stämmer inte riktigt. <strong>Formlerna ser ut som spegelbilder av varandra</strong>, det är
+                        sant.
+                        Men det är helt olika processer, på helt olika ställen i cellen:
+                        fotosyntes i kloroplasterna, cellandning i mitokondrierna.
+                        Olika verktyg, olika syfte. Tänk: <strong>spegelvänd formel, men en helt annan
+                            process.</strong>"
+                    </div>
+
+                    <!-- Parberättelse -->
+                    <div class="say-block">
+                        "Nu: vänd er till kompisen. 60 sekunder var.
+                        <strong>Person A</strong>: berätta fotosyntesen som en berättelse. Börja med: 'Trädet tar
+                        in...'"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 60 sek.
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Byt!</strong> Person B: berätta cellandningen. Börja med: 'Kaninen äter...'"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 60 sek.
+                    </div>
+
+                    <div class="say-block">
+                        "Bra! Ni har koll. Nu: något helt nytt."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 1: BAKTERIER VS VIRUS — VAD VET NI? (5 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-1">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 1</span>
+                    <h2>🧠 Bakterier vs virus: vad vet ni redan?</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Vi ska prata om två grupper av jättesmå saker: <strong>bakterier</strong> och
+                        <strong>virus</strong>.
+                        Men först: vad vet ni redan? Vad tänker ni på?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Brainstorm 2 min. Samla svar på tavlan.
+                    </div>
+
+                    <div class="say-block">
+                        "Bra! Och ni minns kanske att vi pratade om virus i början.
+                        När vi testade vad som lever: är virus levande? Vad sa vi då?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Samla svar. (Önskat: "de lever inte på egen hand" / "de behöver en cell")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 2: BAKTERIEFORMER (10 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-2">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 2</span>
+                    <h2>🔬 Tre bakterieformer</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="teacher-note">
+                        Rita tre Former på vänster halva av tavlan. Eleverna kopierar.
+                    </div>
+
+                    <div class="say-block">
+                        "Bakterier finns i tre grundformer. Ni ska kunna namnen och formerna."
+                    </div>
+
+                    <div class="board-block">
+                        <strong>🔵 BAKTERIER — TRE FORMER</strong><br><br>
+                        ○ ○ ○ <strong>Kocker</strong> (runda)<br>
+                        ═ ═ ═ <strong>Baciller</strong> (stavar)<br>
+                        ~ ~ ~ <strong>Spiriller</strong> (spiralformade)
+                    </div>
+
+                    <div class="say-block">
+                        "KOCKER: runda som bollar. BACILLER: raka som stavar.
+                        SPIRILLER: snurriga som spiraler.<br><br>
+                        Och alla tre är CELLER. De har cellvägg, cellmembran, DNA.
+                        Kommer ni ihåg vilken typ? Prokaryoter: de saknar cellkärna."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Eleverna kopierar. 3-4 min.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 3: JÄMFÖRELSETABELL (10 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-3">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 3</span>
+                    <h2>⚖️ Bakterier vs virus: jämförelsetabell</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="teacher-note">
+                        Rita jämförelsetabell på höger halva av tavlan.
+                    </div>
+
+                    <div class="say-block">
+                        "Nu ska vi se hur bakterier och virus skiljer sig. Vi gör en tabell."
+                    </div>
+
+                    <div class="board-block">
+                        <strong>BAKTERIER vs VIRUS</strong><br><br>
+                        <table style="width:100%; border-collapse: collapse; margin: 0.5rem 0;">
+                            <tr style="border-bottom: 2px solid var(--border);">
+                                <td style="padding: 4px 8px;"></td>
+                                <td style="padding: 4px 8px;"><strong>BAKTERIER</strong></td>
+                                <td style="padding: 4px 8px;"><strong>VIRUS</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px 8px;">Levande?</td>
+                                <td style="padding: 4px 8px;">JA</td>
+                                <td style="padding: 4px 8px;">NEJ (inte på egen hand)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px 8px;">Egen cell?</td>
+                                <td style="padding: 4px 8px;">JA (prokaryot)</td>
+                                <td style="padding: 4px 8px;">NEJ (bara DNA i ett skal)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px 8px;">Förökar sig?</td>
+                                <td style="padding: 4px 8px;">JA (delning)</td>
+                                <td style="padding: 4px 8px;">Bara inne i en annan cell</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px 8px;">Storlek?</td>
+                                <td style="padding: 4px 8px;">Större (syns i mikroskop)</td>
+                                <td style="padding: 4px 8px;">Mycket mindre</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px 8px;">Sjukdomar?</td>
+                                <td style="padding: 4px 8px;">Halsfluss, urinvägsinf.</td>
+                                <td style="padding: 4px 8px;">Förkylning, influensa, covid</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="say-block">
+                        "Den stora skillnaden: bakterier är LEVANDE. De är celler.
+                        Virus är INTE levande. De är bara en bit DNA i ett proteinskal.
+                        Men de kan kapa andras celler och tvinga dem att göra fler kopior."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Eleverna kopierar tabellen. 4-5 min.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 4: ANTIBIOTIKA (13 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-4">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 4</span>
+                    <h2>💊 Antibiotika: varför funkar det inte mot förkylning?</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu den viktigaste frågan:
+                        <strong>Varför ger inte läkaren antibiotika när ni är förkylda?</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 15 sek. Samla svar.
+                    </div>
+
+                    <div class="say-block">
+                        "Exakt: <strong>Antibiotika dödar bakterier, INTE virus.</strong>
+                        Förkylning orsakas av virus. Antibiotika mot förkylning gör ingenting.
+                        Det är som att använda en skiftnyckel på en mjukvara: fel verktyg."
+                    </div>
+
+                    <div class="board-block">
+                        <strong>⚠️ ANTIBIOTIKA</strong><br><br>
+                        ✅ Dödar BAKTERIER (t.ex. halsfluss)<br>
+                        ❌ Funkar INTE mot VIRUS (t.ex. förkylning)<br><br>
+                        ⚠️ RESISTENS: om vi överanvänder antibiotika<br>
+                        → bakterier lär sig överleva<br>
+                        → antibiotikan slutar fungera<br>
+                        → allvarligt samhällsproblem!
+                    </div>
+
+                    <div class="say-block">
+                        "Och här finns ett stort problem: <strong>antibiotikaresistens</strong>.
+                        Om vi använder antibiotika i onödan, t.ex. mot förkylning,
+                        så tränar vi bakterierna att klara sig. De som överlever förökar sig.
+                        Och till slut fungerar inte antibiotikan längre.<br><br>
+                        Det är evolution i realtid: de starkaste bakterierna överlever och sprider sig."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Eleverna antecknar. 3-4 min.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 5: HATSUMON — PARDISKUSSION (7 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-5">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 5</span>
+                    <h2>💬 Hatsumon: varför är resistens ett problem?</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "<strong>Diskutera med kompisen:</strong><br>
+                        1. Varför hjälper inte antibiotika mot förkylning?<br>
+                        2. Vad händer om vi överanvänder antibiotika?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Pardiskussion 3 min. Cirkulera och lyssna.
+                    </div>
+
+                    <div class="say-block">
+                        "Bra. Sammanfattning: antibiotika funkar inte mot virus. Punkt.
+                        Och om vi överanvänder den mot bakterier, så slutar den fungera.
+                        Det är ett av de största hoten mot modern sjukvård."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 6: AVSLUT (5 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-6">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 6</span>
+                    <h2>📋 Avslut</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "<strong>Imorgon: laboration!</strong> Ni ska SE bakterierna i mikroskopet.
+                        Kocker, baciller, spiriller: kan ni hitta alla tre formerna?<br><br>
+                        Och kom ihåg läxan: rita tre celler ur minnet till onsdag 4 mars."
+                    </div>
+
+                    <div class="teacher-note">
+                        <strong>📋 Checklista:</strong>
+                        <ul>
+                            <li>Repetitionsöppning: Mars-brygga ✓</li>
+                            <li>Fonologisk check + etymologi (foto=ljus, syntes=ihopsättning) ✓</li>
+                            <li>Korrigering "baklänges" → "spegelvänd formel" ✓</li>
+                            <li>Parberättelse (60 sek var) ✓</li>
+                            <li>Tre bakterieformer: kocker, baciller, spiriller ✓</li>
+                            <li>Jämförelsetabell bakterier vs virus ✓</li>
+                            <li>Antibiotika: dödar bakterier, INTE virus ✓</li>
+                            <li>Antibiotikaresistens ✓</li>
+                            <li>Avslut: labb imorgon + läxa ✓</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
