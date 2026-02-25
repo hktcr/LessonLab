@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakterier & Virus v2 — LessonLab</title>
+    <meta name="description"
+        content="Genomgångsmanus: Häftedriven tabelljämförelse bakterier vs virus + ritade exempel.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <!-- Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus
+                    autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- Main lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🦠 Bakterier & Virus — v2 (Tabelljämförelse)</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~50 min</span>
+                <span>✏️ ⬛ Svart · 🟢 Grön</span>
+                <span>📖 Häftet s. 62–63 (Alger, lavar & bakterier)</span>
+            </div>
+            <div class="lesson-meta">
+                <span>📅 Onsdag v.9 (25/2) — D1-25, E1-25</span>
+                <span>📋 L7 i Biologins grunder (L4 i lektionsplanen)</span>
+            </div>
+        </div>
+
+        <div class="vep-principle">
+            <strong>Designprincip:</strong> Häftedriven tabelljämförelse. Eleverna har häftet (s. 62–63) framför sig
+            och letar upp svaren rad för rad. Tabellen byggs gemensamt på tavlan. Ritade bakterie- och virusexempel
+            adderas vid sidan. Antibiotikaresistens <em>sparas till Evolution</em> — här introduceras bara att
+            antibiotika dödar bakterier men inte virus.
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 0: REPETITIONSÖPPNING (5 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-0">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 0</span>
+                    <h2>🔄 Repetitionsöppning</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="teacher-note">
+                        <strong>🎯 Syfte:</strong> Snabb retrieval — koppla till förra lektionens fotosyntes/cellandning
+                        och aktivera förkunskaper om bakterier (cellritningen, prokaryot).
+                    </div>
+
+                    <div class="say-block">
+                        "Snabb start: vilka <strong>tre celltyper</strong> ritade vi förra veckan?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 10 sek tänktid. Samla svar: djurcell, växtcell, bakteriecell.
+                    </div>
+
+                    <div class="say-block">
+                        "Bra. Och vad var det speciella med bakteriecellen?
+                        Rätt: den saknar <strong>cellkärna</strong>.
+                        Idag dyker vi djupare: vad ÄR bakterier egentligen, och hur skiljer de sig från virus?"
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Ta fram häftet, slå upp sida 62.</strong>"
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 1: TABELLBYGGE — RAD FÖR RAD (30 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-1">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 1</span>
+                    <h2>📊 Tabelljämförelse: Bakterier vs Virus</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="teacher-note">
+                        <strong>Metod:</strong> Rita tabellen på tavlan en rad i taget. För varje rad:
+                        <ol>
+                            <li>Skriv radens fråga (vänster kolumn)</li>
+                            <li>"Kan ni hitta svaret i häftet?" — eleverna letar</li>
+                            <li>Samla svar, fyll i gemensamt</li>
+                            <li>Eleverna kopierar</li>
+                        </ol>
+                        Rader med ⭐ kräver komplettering utöver häftet (du lägger till muntligt).<br>
+                        Tidsmässigt: ~3–4 min per rad.
+                    </div>
+
+                    <div class="board-block">
+                        <strong>BAKTERIER vs VIRUS — Jämförelsetabell</strong><br><br>
+                        <table style="width:100%; border-collapse: collapse; margin: 0.5rem 0;">
+                            <tr style="border-bottom: 2px solid var(--border);">
+                                <td style="padding: 6px 8px; width: 25%;"></td>
+                                <td style="padding: 6px 8px; width: 37%;"><strong>BAKTERIER</strong></td>
+                                <td style="padding: 6px 8px; width: 38%;"><strong>VIRUS</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Vad är det?</td>
+                                <td style="padding: 6px 8px;">Levande organismer</td>
+                                <td style="padding: 6px 8px;">Räknas vanligtvis inte som levande</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Uppbyggnad</td>
+                                <td style="padding: 6px 8px;">En cell (prokaryot) — cellvägg, cellmembran, DNA</td>
+                                <td style="padding: 6px 8px;">Arvsmassa (DNA) i ett skal (kapsid)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Storlek ⭐</td>
+                                <td style="padding: 6px 8px;">Syns i ljusmikroskop</td>
+                                <td style="padding: 6px 8px;">Mycket mindre — kräver elektronmikroskop</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Förökning</td>
+                                <td style="padding: 6px 8px;">Celldelning (en → två)</td>
+                                <td style="padding: 6px 8px;">Kapar en värdcell — kan inte själv</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Ämnesomsättning ⭐</td>
+                                <td style="padding: 6px 8px;">Ja</td>
+                                <td style="padding: 6px 8px;">Nej</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Former</td>
+                                <td style="padding: 6px 8px;">Kocker, baciller, spiriller</td>
+                                <td style="padding: 6px 8px;">Många olika utseenden</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Sjukdomar</td>
+                                <td style="padding: 6px 8px;">Halsfluss, kikhosta, borrelia</td>
+                                <td style="padding: 6px 8px;">Förkylning, influensa, covid-19</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px 8px;">Behandling</td>
+                                <td style="padding: 6px 8px;">Antibiotika</td>
+                                <td style="padding: 6px 8px;">Antibiotika hjälper INTE</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Rad 1: Vad är det? -->
+                    <h3 style="margin-top: 1.5rem; color: var(--accent);">Rad 1: "Vad är det?"</h3>
+
+                    <div class="say-block">
+                        "Första raden i vår tabell: Vad ÄR en bakterie? Och vad ÄR ett virus?
+                        <strong>Läs sida 62 — vad säger häftet?</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 30 sek letande. Samla svar.
+                    </div>
+
+                    <div class="say-block">
+                        "Häftet säger att bakterier är 'levande organismer som består av en enda cell'.
+                        Och virus? — 'Virus kan inte föröka sig utan hjälp. Därför är virus inte levande.'<br><br>
+                        Här kan man diskutera: <strong>håller alla forskare med?</strong>
+                        De flesta säger att virus räknas inte som levande — men det beror på hur man definierar liv.
+                        Virus har t.ex. DNA och kan förändras över tid.
+                        Vi skriver: <strong>'Räknas vanligtvis inte som levande.'</strong>"
+                    </div>
+
+                    <div class="teacher-note">
+                        <strong>Koppling bakåt:</strong> "Minns ni de sex egenskaperna för liv ni skrev upp?
+                        Vilka uppfyller virus?" — Eleverna kan peka på att virus saknar egen ämnesomsättning,
+                        egen cell, och eget sätt att föröka sig.
+                    </div>
+
+                    <!-- Rad 2: Uppbyggnad -->
+                    <h3 style="margin-top: 1.5rem; color: var(--accent);">Rad 2: "Uppbyggnad"</h3>
+
+                    <div class="say-block">
+                        "Nästa rad: hur är de uppbyggda? <strong>Sök i häftet!</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 30 sek. Samla svar.
+                    </div>
+
+                    <div class="say-block">
+                        "Bakterier: 'en enda cell' — och ni vet från L2 att de saknar cellkärna, alltså
+                        <strong>prokaryoter</strong>.
+                        De har cellvägg, cellmembran, och DNA fritt i cellen.<br><br>
+                        Virus: 'ett skal som innehåller arvsanlag'. Ingen cell, ingen cellkärna — bara DNA inuti ett
+                        proteinskal."
+                    </div>
+
+                    <!-- Rad 3: Storlek -->
+                    <h3 style="margin-top: 1.5rem; color: var(--accent);">Rad 3: "Storlek" ⭐</h3>
+
+                    <div class="say-block">
+                        "Här står det inte så mycket i häftet, men det här är viktigt:
+                        <strong>Bakterier kan ni SE i mikroskop</strong> — det gör ni faktiskt imorgon!
+                        Men virus är <strong>mycket, mycket mindre</strong>.
+                        Man behöver ett elektronmikroskop som kostar miljoner kronor."
+                    </div>
+
+                    <div class="teacher-note">
+                        <strong>⭐ Komplettering:</strong> Denna information står inte i häftet.
+                        Lägg till muntligt. Bra koppling till morgondagens labb.
+                    </div>
+
+                    <!-- Rad 4: Förökning -->
+                    <h3 style="margin-top: 1.5rem; color: var(--accent);">Rad 4: "Förökning"</h3>
+
+                    <div class="say-block">
+                        "Hur förökar sig bakterier? Och virus? <strong>Häftet!</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 30 sek. Samla svar.
+                    </div>
+
+                    <div class="say-block">
+                        "Bakterier: '<strong>delning</strong>' — en bakterie blir två, två blir fyra.
+                        Under rätta förhållanden kan de fördubblas var tjugonde minut!<br><br>
+                        Virus kan INTE föröka sig själv. Häftet: 'Arvsanlaget överförs till celler hos bakterier,
+                        växter eller djur.' Viruset <strong>kapar</strong> en värdcell och tvingar den att göra kopior.
+                        Tusentals nya virus kan bildas inne i EN enda cell."
+                    </div>
+
+                    <!-- Rad 5: Ämnesomsättning -->
+                    <h3 style="margin-top: 1.5rem; color: var(--accent);">Rad 5: "Ämnesomsättning" ⭐</h3>
+
+                    <div class="say-block">
+                        "Ämnesomsättning — det betyder att man tar upp ämnen, bryter ner dem och får energi.
+                        Bakterier gör det — många är ju <strong>nedbrytare</strong>, det står i häftet.
+                        Men virus? <strong>Nej.</strong> De har ingen egen ämnesomsättning.
+                        En anledning till att de inte räknas som levande."
+                    </div>
+
+                    <div class="teacher-note">
+                        <strong>⭐ Komplettering:</strong> Begreppet ämnesomsättning står inte i häftet
+                        men ingår i begreppslistan. Eleverna har mött det via de sex livsegenskaperna
+                        ("tar upp ämnen", "ger ifrån sig ämnen").
+                    </div>
+
+                    <!-- Rad 6: Former -->
+                    <h3 style="margin-top: 1.5rem; color: var(--accent);">Rad 6: "Former" — nu ritar vi! 🎨</h3>
+
+                    <div class="say-block">
+                        "Vilka former kan bakterier ha? <strong>Sök i häftet!</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 20 sek. Eleverna hittar: kocker, baciller, spiriller.
+                    </div>
+
+                    <div class="say-block">
+                        "Tre stycken!
+                        <strong>Kocker</strong> — runda som bollar.
+                        <strong>Baciller</strong> — raka som stavar.
+                        <strong>Spiriller</strong> — snurriga som spiraler.<br><br>
+                        Nu ritar vi dem! Titta på tavlan."
+                    </div>
+
+                    <div class="board-block">
+                        <strong>🎨 RITA vid sidan av tabellen:</strong><br><br>
+                        <strong>BAKTERIEFORMER</strong><br>
+                        ○ ○ ○ <strong>Kocker</strong> (runda) → halsfluss, lunginflammation<br>
+                        ═ ═ ═ <strong>Baciller</strong> (stavar) → kikhosta, stelkramp<br>
+                        ~ ~ ~ <strong>Spiriller</strong> (spiraler) → borrelia (fästingsjuka), magsår
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Eleverna ritar och kopierar. 3–4 min.
+                    </div>
+
+                    <div class="say-block">
+                        "Virus kan också se ut på många sätt. Jag ritar tre stycken:"
+                    </div>
+
+                    <div class="board-block">
+                        <strong>🎨 VIRUSEXEMPEL</strong><br><br>
+                        🔴 SARS-CoV-2 (coronaviruset) — runt med "krontaggar"<br>
+                        🔵 Bakteriofag — ser ut som ett litet rymdskepp (infekterar bakterier!)<br>
+                        🟠 Rabiesvirus — ser ut som en pistolkula
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Eleverna ritar. 2–3 min.
+                    </div>
+
+                    <!-- Rad 7–8: Sjukdomar & Behandling -->
+                    <h3 style="margin-top: 1.5rem; color: var(--accent);">Rad 7–8: "Sjukdomar" & "Behandling"</h3>
+
+                    <div class="say-block">
+                        "Sista raderna! Vilka sjukdomar orsakas av bakterier? Och vilka av virus?
+                        <strong>Häftet!</strong>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 30 sek. Samla svar.
+                    </div>
+
+                    <div class="say-block">
+                        "Bakterier: halsfluss, kikhosta, lunginflammation, borrelia, blodförgiftning.
+                        Virus: förkylning, influensa, mässling, påssjuka, covid-19.<br><br>
+                        Och den <strong>viktigaste raden</strong>: Hur botar man en bakterieinfektion?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Eleverna svarar: antibiotika.
+                    </div>
+
+                    <div class="say-block">
+                        "Exakt: <strong>antibiotika</strong>! Häftet: 'Om man får antibiotika, till exempel penicillin,
+                        dödas bakterierna och man blir frisk.'<br><br>
+                        Men vad säger häftet om virus? Längst ner på sida 62..."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Eleverna letar: "På virus biter inte antibiotika."
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Antibiotika fungerar INTE mot virus.</strong>
+                        Därför ger inte läkaren antibiotika när ni är förkylda.
+                        Förkylning orsakas av virus — antibiotika gör ingenting.<br><br>
+                        Det är som att använda en skiftnyckel på en mjukvara: <strong>fel verktyg.</strong>"
+                    </div>
+
+                    <div class="teacher-note">
+                        <strong>OBS — Antibiotikaresistens:</strong> Nämn INTE resistens här.
+                        Det hanteras under Evolution (naturligt urval). Se
+                        <code>Evolution/INKOMMANDE_TRÅDAR.md</code> för bryggan.
+                        Här räcker det att eleverna förstår: antibiotika dödar bakterier, inte virus.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 2: HATSUMON — REFLEKTERANDE FRÅGOR (8 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-2">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 2</span>
+                    <h2>💬 Reflektionsfrågor</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="teacher-note">
+                        <strong>Syfte:</strong> Tvinga eleverna att tänka med tabellen de just skapat.
+                        Dessa frågor prövar förståelse, inte minne.
+                    </div>
+
+                    <div class="say-block">
+                        "Nu ska vi testa om tabellen funkar! Vänd er till kompisen. Diskutera en minut:<br><br>
+                        <strong>Fråga 1:</strong> Titta på tabellen — vilka rader gör att virus inte räknas som
+                        levande?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 60 sek pardiskussion. Samla 2–3 svar i helklass.<br>
+                        Förväntade svar: ingen egen cell, ingen ämnesomsättning, kan inte föröka sig själv.
+                    </div>
+
+                    <div class="say-block">
+                        "Exakt: virus saknar egen cell, de har ingen ämnesomsättning, och de kan inte föröka sig
+                        utan att kapa en annan cell. Tre av våra sex livsegenskaper — missade.<br><br>
+                        <strong>Fråga 2:</strong> Ni har feber och snuva. Ska ni gå till doktorn och be om antibiotika?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 30 sek. Samla svar.
+                    </div>
+
+                    <div class="say-block">
+                        "Nej! Feber och snuva är oftast förkylning — och det orsakas av <strong>virus</strong>.
+                        Antibiotika hjälper inte. Kroppen får kämpa själv, med lite vila och vatten."
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Bonusfråga</strong> för den som vill tänka extra:
+                        'Bakteriofagen — det viruset vi ritade som ser ut som ett rymdskepp.
+                        Vad tror ni att den attackerar?'"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Ledtråd i namnet: bakterio + fag (ätare). Svar: den attackerar bakterier!
+                    </div>
+
+                    <div class="say-block">
+                        "Bakterio-fag = <strong>bakterieätare</strong>! Ett virus som infekterar bakterier.
+                        Det finns alltså virus som inte alls gör oss sjuka — de attackerar bakterier istället."
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 3: AVSLUT (5 min) -->
+        <!-- ============================================================ -->
+
+        <div class="lesson-section" id="section-3">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 3</span>
+                    <h2>📋 Avslut</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "<strong>Imorgon: laboration!</strong> Ni ska SE bakterierna i mikroskopet.
+                        Kocker, baciller, spiriller — kan ni hitta alla tre formerna?<br><br>
+                        Och kom ihåg läxan: <strong>rita tre celler ur minnet</strong> till onsdag 4 mars."
+                    </div>
+
+                    <div class="say-block">
+                        "Sista sak: <strong>stäng häftet, vänd på det.</strong>
+                        Kan ni säga de tre bakterieformerna utan att titta?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Exit ticket: eleverna säger kocker, baciller, spiriller.
+                    </div>
+
+                    <div class="teacher-note">
+                        <strong>📋 Checklista:</strong>
+                        <ul>
+                            <li>Repetitionsöppning: tre celltyper ✓</li>
+                            <li>Häftet framtaget ✓</li>
+                            <li>8 tabellrader genomgångna (rad för rad med häftekoppling) ✓</li>
+                            <li>Ritade bakterieformer: kocker, baciller, spiriller ✓</li>
+                            <li>Ritade virusexempel: SARS-CoV-2, bakteriofag, rabies ✓</li>
+                            <li>Antibiotika vs virus förklarat ✓</li>
+                            <li>Reflektionsfrågor (livsegenskaper, antibiotika, bakteriofag) ✓</li>
+                            <li>Exit ticket: tre former ur minnet ✓</li>
+                            <li>Labb imorgon + läxa påmind ✓</li>
+                        </ul>
+                        <br>
+                        <strong>⚠️ INTE med i denna lektion (medvetet):</strong>
+                        <ul>
+                            <li>Antibiotikaresistens → sparas till Evolution (naturligt urval)</li>
+                            <li>NP-frågor om resistens → kan återkopplas i Evolution</li>
+                            <li>Arkéer → nämns kort om elever frågar, men hör till L5</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(el) {
+            el.closest('.lesson-section').classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+
+</html>
