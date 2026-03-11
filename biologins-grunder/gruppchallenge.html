@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gruppchallenge: Biologins Grunder — LessonLab</title>
+    <meta name="description" content="Repetitionslektion inför provet: Skriv-Diskutera-Lotta-Redovisa i 8 rundor.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🏆 Gruppchallenge: Biologins Grunder</h1>
+            <div class="lesson-meta">
+                <span>⏱️ 50 min</span>
+                <span>✏️ Glasspinnar/elevväljare, tomt papper</span>
+                <span>📖 Repetition inför prov — Del 1</span>
+            </div>
+        </div>
+
+        <!-- ===== INTRO ===== -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">📋 Uppstart & regler <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Idag har vi sista chansen att repetera innan provet imorgon. Vi kör en <strong>gruppchallenge</strong>.<br><br>
+                        Jag ger er en uppgift. Ni har några minuter. <strong>Alla</strong> i gruppen ska skriva eller rita sitt eget svar på sitt eget papper. Ni <strong>får</strong> prata med varandra och hjälpa varandra — men alla ska ha sitt eget svar.<br><br>
+                        Sedan lottar jag <strong>en person</strong> som ska visa sitt svar på tavlan. Om hen kan — poäng till gruppen."
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv reglerna på tavlan:</strong></p>
+                        <div class="whiteboard-preview">GRUPPCHALLENGE — REGLER
+1. ALLA skriver/ritar
+2. Hjälp varandra — ert jobb att alla förstår
+3. Lottad = du representerar gruppen
+4. Häften/anteckningar FÅR användas!</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ni <strong>FÅR</strong> använda era häften och anteckningar. Det här är inte ett prov — det är <strong>träning</strong>. Poängen är att ni övar på att hitta i era anteckningar och förklara för varandra."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Dela in i grupper om 3 (helst) eller 4.<br>
+                        <em>(Undvik grupper om 4 om möjligt — i trean kan ingen gömma sig.)</em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 1 ===== -->
+        <div class="lesson-section open" id="sec-r1">
+            <div class="section-header" onclick="toggleSection('sec-r1')">
+                <span class="section-title">1️⃣ Runda 1: Sex livskriterier <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Runda 1! <strong>Skriv alla SEX kriterier för att något ska räknas som levande.</strong><br>
+                        Ni har 2 minuter. Alla skriver. Sedan lottar jag."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 2 minuter — gå runt, lyssna på gruppernas diskussion.
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em> "Okej, du — berätta för oss!"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rätt svar (skriv på tavlan efteråt om det behövs):</strong></p>
+                        <div class="whiteboard-preview">SEX KRITERIER FÖR LIV:
+1. Behöver energi
+2. Består av celler
+3. Tar upp ämnen från omgivningen
+4. Ger ifrån sig ämnen
+5. Reagerar på omgivningen
+6. Kan föröka sig</div>
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Bonus:</strong> "Snabbfråga — är ett <strong>virus</strong> levande? Varför kan man svara både ja och nej?"<br>
+                        <em>(Kort — max 30 sek diskussion. Virus uppfyller kriterierna bara inuti en cell.)</em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 2 ===== -->
+        <div class="lesson-section open" id="sec-r2">
+            <div class="section-header" onclick="toggleSection('sec-r2')">
+                <span class="section-title">2️⃣ Runda 2: Rita en växtcell <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Runda 2! <strong>Rita en växtcell med alla organeller vi gått igenom. Skriv namn på varje del.</strong><br>
+                        3 minuter. Rita och skriv — hjälp varandra i gruppen."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 3 minuter — gå runt, kolla att alla ritar.<br>
+                        <em>(Elever med skrivsvårigheter: det är OK att fokusera på namnen, inte detaljritningen.)</em>
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em> "Rita din växtcell på tavlan och berätta vad varje del heter och gör!"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Alla delar som ska finnas:</strong></p>
+                        <div class="whiteboard-preview">VÄXTCELL:
+• Cellvägg — hård yttervägg, ger stöd
+• Cellmembran — hinna som styr vad som går in/ut
+• Cellkärna — innehåller DNA, styr cellen
+• Kloroplaster — fotosyntes (fångar solljus)
+• Vakuol — vattenlager + nedbrytning, ger stadga
+• Mitokondrier — cellandning (cellens kraftverk)
+• Ribosomer — proteinfabriker
+• Cytoplasma/cytosol — vätskan i cellen</div>
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Snabbfråga:</strong> "Vilka av dessa saknas i en <strong>djurcell</strong>?"<br>
+                        <em>(Svar: Cellvägg, kloroplaster, vakuol)</em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 3 ===== -->
+        <div class="lesson-section open" id="sec-r3">
+            <div class="section-header" onclick="toggleSection('sec-r3')">
+                <span class="section-title">3️⃣ Runda 3: Prokaryot vs Eukaryot <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Runda 3! <strong>Skriv TRE skillnader mellan en prokaryot cell och en eukaryot cell.</strong><br>
+                        2 minuter!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 2 minuter.
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em> "Ge oss tre skillnader!"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rätt svar:</strong></p>
+                        <div class="whiteboard-preview">PROKARYOT              EUKARYOT
+• Ingen cellkärna      • Har cellkärna
+• Bakterier            • Djur, växter, svampar
+• DNA ligger löst      • DNA i cellkärnan</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Minnesknep: <strong>EUkaryot</strong> låter som <strong>YOU</strong> — <em>du</em> har cellkärna!"
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 4 ===== -->
+        <div class="lesson-section open" id="sec-r4">
+            <div class="section-header" onclick="toggleSection('sec-r4')">
+                <span class="section-title">4️⃣ Runda 4: Fotosyntesen <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(4 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Runda 4! <strong>Skriv reaktionsformeln för fotosyntesen — BÅDE som ordformel OCH med kemiska beteckningar.</strong><br>
+                        2 minuter!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 2 minuter.
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em> "Skriv formeln på tavlan!"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rätt svar:</strong></p>
+                        <div class="whiteboard-preview">FOTOSYNTES:
+koldioxid + vatten + solenergi → druvsocker + syre
+CO₂ + H₂O + ☀️ → C₆H₁₂O₆ + O₂
+
+Sker i: KLOROPLASTERNA</div>
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Snabbfråga:</strong> "Var i cellen sker fotosyntesen?"<br>
+                        <em>(Svar: I kloroplasterna — de gröna "solfångarna".)</em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 5 ===== -->
+        <div class="lesson-section open" id="sec-r5">
+            <div class="section-header" onclick="toggleSection('sec-r5')">
+                <span class="section-title">5️⃣ Runda 5: Cellandningen <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(4 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Runda 5! <strong>Skriv reaktionsformeln för cellandningen som ordformel. Och: var i cellen sker den?</strong><br>
+                        2 minuter!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 2 minuter.
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em> "Formeln och platsen — kör!"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rätt svar:</strong></p>
+                        <div class="whiteboard-preview">CELLANDNING:
+druvsocker + syre → koldioxid + vatten + ENERGI
+
+Sker i: MITOKONDRIERNA ("cellens kraftverk")</div>
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Viktigt!</strong> "Gör växter cellandning?"<br>
+                        <em>(Svar: JA! Växter gör BÅDE fotosyntes OCH cellandning. Djur gör BARA cellandning.)</em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 6 ===== -->
+        <div class="lesson-section open" id="sec-r6">
+            <div class="section-header" onclick="toggleSection('sec-r6')">
+                <span class="section-title">6️⃣ Runda 6: Bakterier vs Virus <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Runda 6! <strong>Skriv TRE skillnader mellan bakterier och virus.</strong><br>
+                        2 minuter!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 2 minuter.
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rätt svar:</strong></p>
+                        <div class="whiteboard-preview">BAKTERIER               VIRUS
+• Levande (egen cell)    • Icke-levande
+• Förökar sig själva     • Måste kapa en värdcell
+• Dödas av antibiotika   • Antibiotika hjälper INTE</div>
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Bonusfråga:</strong> "Varför hjälper inte antibiotika mot förkylning?"<br>
+                        <em>(Svar: Förkylning orsakas av virus, inte bakterier.)</em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 7 ===== -->
+        <div class="lesson-section open" id="sec-r7">
+            <div class="section-header" onclick="toggleSection('sec-r7')">
+                <span class="section-title">7️⃣ Runda 7: Taxonomi <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Runda 7! Tre delar: <strong>Vem skapade systemet vi använder för att namnge arter? Vad kallas det att varje art har ett tvådelat latinskt namn? Ge ETT exempel.</strong><br>
+                        2 minuter!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 2 minuter.
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rätt svar:</strong></p>
+                        <div class="whiteboard-preview">TAXONOMI:
+• Carl von Linné
+• Vetenskapligt namn (tvådelat latinskt namn)
+• Talgoxe = Parus major
+• Blåmes = Cyanistes caeruleus
+
+TRE DOMÄNER: Bakterier, Arkéer, Eukaryoter</div>
+                    </div>
+
+                    <div class="say-block">
+                        <strong>Snabbfråga:</strong> "Vilka tre domäner finns?"<br>
+                        <em>(Bakterier, arkéer, eukaryoter. "Varför är bakterier en egen domän?" → Saknar cellkärna!)</em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RUNDA 8 ===== -->
+        <div class="lesson-section open" id="sec-r8">
+            <div class="section-header" onclick="toggleSection('sec-r8')">
+                <span class="section-title">8️⃣ Runda 8: Kemiska beteckningar <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Sista rundan! <strong>Skriv vad dessa beteckningar står för: CO₂, H₂O, O₂, C₆H₁₂O₆</strong><br>
+                        1 minut — det här ska sitta!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ 1 minut.
+                    </div>
+
+                    <div class="say-block">
+                        <em>(Lotta en elev.)</em>
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rätt svar:</strong></p>
+                        <div class="whiteboard-preview">CO₂ = koldioxid
+H₂O = vatten
+O₂ = syrgas
+C₆H₁₂O₆ = glukos / druvsocker</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== AVSLUTNING ===== -->
+        <div class="lesson-section open" id="sec-avslutning">
+            <div class="section-header" onclick="toggleSection('sec-avslutning')">
+                <span class="section-title">🏁 Avslutning & provinfo <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="say-block">
+                        "Bra jobbat! Frågestund — vad vill ni gå igenom en gång till?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Öppna frågor — låt eleverna styra 2–3 minuter.
+                    </div>
+
+                    <div class="say-block">
+                        "Tre saker att kolla i era häften ikväll:<br><br>
+                        <strong>1.</strong> Kan ni rita alla tre celltyper ur minnet?<br>
+                        <strong>2.</strong> Kan ni formlerna för fotosyntes och cellandning?<br>
+                        <strong>3.</strong> Vet ni skillnaden mellan bakterier och virus?"
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Provinformation:</strong><br>
+                        • Tid: 50 minuter<br>
+                        • Häften och anteckningar får <strong>EJ</strong> användas under provet<br>
+                        • Alla begrepp vi gått igenom KAN komma<br>
+                        • Ni har era anteckningar — det är ert bästa studiematerial<br><br>
+                        Lycka till imorgon!"
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ANPASSNINGAR ===== -->
+        <div class="lesson-section" id="sec-anpassningar">
+            <div class="section-header" onclick="toggleSection('sec-anpassningar')">
+                <span class="section-title">♿ Anpassningar <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(referens)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+
+                    <div class="vocab-list">
+                        <div class="vocab-item">
+                            <span class="vocab-term">Elever med NPF/ASD</span>
+                            <span class="vocab-def">= Om lottad — ge 5 sekunders extra tänketid. "Du kan berätta från din plats, jag skriver."</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Elever med ELL/nyanlända</span>
+                            <span class="vocab-def">= Uppmuntra pilar och bilder som komplement vid tavelpresentation. "Visa oss hur du tänker!"</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Elever med låg motivation</span>
+                            <span class="vocab-def">= Gruppformatet och lottningen skapar positiv press. Att alla MÅSTE skriva = ingen kan passiviseras.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CHECKLISTA ===== -->
+        <div class="lesson-section" id="sec-checklista">
+            <div class="section-header" onclick="toggleSection('sec-checklista')">
+                <span class="section-title">✅ Checklista <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(före lektionen)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Glasspinnar / elevväljare redo</li>
+                        <li>Tavelpenna + tavla tillgänglig</li>
+                        <li>Regler skrivna på tavlan före lektionsstart</li>
+                        <li>Gruppindelning klar (grupper om 3)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026-03-11
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
