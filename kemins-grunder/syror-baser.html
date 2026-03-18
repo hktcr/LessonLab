@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syror, baser & pH — LessonLab</title>
+    <meta name="description" content="Genomgång av syror och baser med 'Vatten till vin'-demo och Kunskap är Makt-perspektiv.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>⚗️ Genomgångsmanus: Syror, baser & pH</h1>
+            <div class="lesson-meta">
+                <span>⏱️ 45 min</span>
+                <span>✏️ Bägare, fenolftalein, NaOH, HCl + Häften</span>
+                <span>📖 Enkel Kemi 6a, 6b & §Kunskap är Makt</span>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-1">
+            <div class="section-header" onclick="toggleSection('sec-1')">
+                <span class="section-title">🎩 Del 1: Vatten till vin <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Idag ska vi prata om något som styr nästan allt omkring oss: syror och baser. Men vi börjar med ett litet experiment."
+                    </div>
+                    
+                    <div class="draw-block">
+                        <p class="pen-color pen-blue">💧 Gör demonstrationen — "Vatten till vin och tillbaka":</p>
+                        <ul>
+                            <li>Visa bägaren med fenolftalein (färglöst).</li>
+                            <li>Häll i NaOH-lösning (blir rödviolett "vin").</li>
+                            <li>Häll i HCl-lösning (blir färglöst igen).</li>
+                        </ul>
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Vänta — låt eleverna reagera och gissa "[Magi!]" eller "[Kemi!]")
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Retorisk fråga:</strong> Om vi stod på ett torg för 500 år sedan och jag gjorde det här – vad hade ni trott om mig då?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 10 sekunder — låt dem svara (trolleri, häxeri).
+                    </div>
+
+                    <div class="say-block">
+                        "Ni hade antagligen trott att jag hade övernaturliga krafter. Och vad hade jag kunnat få er att göra? Kanske betala mig pengar för att hela er, eller lyda mina order. Den som kan magin, har makten över de som inte förstår den."<br><br>
+                        "Idag vet vi att detta var en <strong>indikator</strong> kallad fenolftalein. Men lurade är vi fortfarande. Osynliga krafter lurar er varje dag. Kan ni komma på något som styr er idag, där ni inte förstår hur magin bakom fungerar?"
+                    </div>
+                    
+                    <div class="pause-block">
+                        ⏸ Paus 15 sekunder — styr in på (TikTok-algoritmer, riktad reklam, deepfakes).
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv stort på tavlan (svart):</strong></p>
+                        <div class="whiteboard-preview">KUNSKAP ÄR MAKT</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Det är därför vi är här! Ni lär er inte kemi för att bli magiker. <strong>Ni lär er det för att ingen ska kunna utföra magi på ER.</strong> Det handlar om demokratiskt självförsvar."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-2">
+            <div class="section-header" onclick="toggleSection('sec-2')">
+                <span class="section-title">🧪 Del 2: Vad är en Syra och Bas? <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Rita en pH-skala på tavlan (Röd -> Grön -> Blå):</p>
+                        <p>Dra en horisontell linje. Skriv 0 längst till vänster (rött), 7 i mitten (grönt), 14 längst till höger (blått).</p>
+                    </div>
+
+                    <div class="say-block">
+                        "Ett ämne är antingen surt, basiskt eller neutralt. Vi mäter det på en <strong>pH-skala</strong>. 7 är helt neutralt, som rent vatten."
+                    </div>
+                    
+                    <div class="vocab-list">
+                        <div class="vocab-item">
+                            <span class="vocab-term">Syror</span>
+                            <span class="vocab-def">= Sura. Lågt pH (under 7). Vanligt i mat (citron).</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Baser</span>
+                            <span class="vocab-def">= Motsatsen till syror. Högt pH (över 7). Vanligt i rengöringsmedel.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Indikator</span>
+                            <span class="vocab-def">= Ett ämne som byter färg beroende på om det är surt eller basiskt. (Som 'magin' förut!)</span>
+                        </div>
+                    </div>
+
+                    <div class="pause-block">
+                        🗣 Fonologisk check: "Alla tillsammans: in-di-ka-tor. Igen: Indikator."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-3">
+            <div class="section-header" onclick="toggleSection('sec-3')">
+                <span class="section-title">📝 Del 3: Arbete med provuppgifter <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(20 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu ska vi knyta ihop säcken inför provet nästa torsdag. Ni ska nu få provuppgifterna i handen. <strong>Ja, ni hörde rätt.</strong> Ni får själva provet i förväg."<br><br>
+                        "Provet är som ett större läxförhör. Svaren står i häftet 'Enkel kemi 6a och 6b'. Ni har facit, ni har bedömningsanvisningarna, ni har alla verktyg. Resten är upp till er. Den som pluggar in detta har kontroll – <strong>kunskap är makt</strong>."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 2 minuter — dela ut provuppgifter, bedömningsanvisningar och häften (Enkel Kemi 6a, 6b).
+                    </div>
+
+                    <div class="say-block">
+                        "Vi läser de tre första frågorna tillsammans. De sista 20 minuterna jobbar ni enskilt."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section" id="sec-4">
+            <div class="section-header" onclick="toggleSection('sec-4')">
+                <span class="section-title">🚪 Del 4: Avslut & Checklista <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "<strong>Exit ticket:</strong> Innan ni får gå vill jag att ni visar makten ni fått idag. Vem kan förklara varför min vätska blev lila? Räck upp handen."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Lyssna efter svaret 'indikator' och bas/syra-namnet)
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>📸 Fotopaus:</strong> Alla plockar fram iPaden – ta ett foto på instruktionerna till läxan inför torsdagens prov."
+                    </div>
+                    
+                    <ul class="checklist">
+                        <li>Har alla fått häften och provfrågor?</li>
+                        <li>Har de förstått att frågorna kommer vara exakt desamma på provet?</li>
+                        <li>Är bägarna med kemikalier undanplockade?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026-03-18
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
