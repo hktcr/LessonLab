@@ -375,23 +375,23 @@
 
     <script>
         const SUBSTANCES = [
-            { name: "Bilbatteri (svavelsyra)", ph: 0.8, context: "Svavelsyra (H₂SO₄) i blyackumulatorer. Stark tvåprotonig syra — ger ifrån sig båda sina vätejoner nästan fullständigt. Extremt frätande." },
-            { name: "Magsyra", ph: 1.5, context: "Saltsyra (HCl) som era magsäcksceller producerar. Bryter ner proteiner i maten. Magslemhinnan skyddar er — utan den skulle magen smälta sig själv." },
-            { name: "Citronsaft", ph: 2.4, context: "Citronsyra (C₆H₈O₇) — en svag organisk syra. Finns i citrusfrukter, salladdressing, och som konserveringsmedel (E330) i livsmedel." },
-            { name: "Cola", ph: 2.5, context: "Fosforsyra (H₃PO₄) + kolsyra. Ungefär lika surt som citronsaft. En tand som läggs i cola över natten börjar lösas upp." },
-            { name: "Vinäger", ph: 2.5, context: "Ättiksyra (CH₃COOH), ca 5–12 %. Svag syra — bara en liten del av molekylerna ger ifrån sig sin vätejon. Används i matlagning och som rengöringsmedel." },
-            { name: "Apelsinjuice", ph: 3.5, context: "Citronsyra + askorbinsyra (C-vitamin). Frukostjuice, fruktjuice ur kartong. Svagare syra än citron pga lägre koncentration." },
-            { name: "Kaffe", ph: 5.0, context: "Innehåller klorogensyra och andra svaga organiska syror. Svagt surt — det är därför kaffe kan ge halsbränna om magsäcken redan är irriterad." },
-            { name: "Mjölk", ph: 6.5, context: "Nästan neutralt. Mjölksyrabakterier producerar mjölksyra, vilket gör att gammal mjölk blir surare. Filmjölk har pH ~4.5." },
-            { name: "Rent vatten", ph: 7.0, context: "Destillerat eller avjoniserat vatten — utan lösta salter. Exakt i balans: lika många H⁺ som OH⁻. Kranvatten har ofta pH 7.5–8.5 pga lösta mineraler." },
-            { name: "Blod", ph: 7.4, context: "Alltid 7.35–7.45. Kroppen har buffertsystem som håller pH stabilt. Om blodet når pH 7.0 eller 7.8 är det livshotande." },
-            { name: "Äggvita", ph: 8.0, context: "Rå äggvita. Svagt basisk. Blir mer basisk ju äldre ägget är (CO₂ diffunderar ut genom skalet)." },
-            { name: "Bikarbonat", ph: 8.3, context: "Natriumvätekarbonat (NaHCO₃). Används i bakning, mot halsbränna (neutraliserar magsyra), och som milt rengöringsmedel." },
-            { name: "Tvål", ph: 10.0, context: "Traditionell tvål tillverkas genom att reagera fett med natriumhydroxid. Basisk — det är därför den löser upp fett och smuts från huden." },
-            { name: "Ammoniak (hushåll)", ph: 11.5, context: "Ammoniak (NH₃) löst i vatten. Finns i fönsterputs och golvtvätt. Stickande lukt — ammoniakmolekylerna avdunstar lätt. Ventilera alltid!" },
-            { name: "Klorin", ph: 12.5, context: "Natriumhypoklorit (NaClO) i vatten. Blekmedel, desinficerar pooler och dricksvatten. Stark oxidationsmedel — förstör organiskt material." },
-            { name: "Ugnsrengöring", ph: 13.5, context: "Innehåller natriumhydroxid (NaOH). Löser upp inbränt fett genom förtvålning. Använd alltid handskar — fräter hud vid kontakt." },
-            { name: "Avloppsrens", ph: 14.0, context: "Koncentrerad natriumhydroxid (NaOH). Stark bas — dissocierar fullständigt i vatten. Löser upp fett, hår och organiskt material. Bland det farligaste hemma." }
+            { name: "Bilbatteri (svavelsyra)", ph: 0.8, context: "Svavelsyra (H₂SO₄) i blyackumulatorer. En stark tvåprotonig syra som ger ifrån sig båda sina vätejoner nästan fullständigt. Extremt frätande." },
+            { name: "Magsyra", ph: 1.5, context: "Saltsyra (HCl) som era magsäcksceller producerar. Bryter ner proteiner i maten. Magslemhinnan skyddar er, för utan den skulle magen smälta sig själv." },
+            { name: "Citronsaft", ph: 2.4, context: "Citronsyra (C₆H₈O₇), en svag organisk syra. Finns i citrusfrukter, salladdressing och som konserveringsmedel (E330) i livsmedel." },
+            { name: "Cola", ph: 2.5, context: "Fosforsyra (H₃PO₄) och kolsyra. Ungefär lika surt som citronsaft. En tand som läggs i cola över natten börjar lösas upp." },
+            { name: "Vinäger", ph: 2.5, context: "Ättiksyra (CH₃COOH), ca 5–12 %. En svag syra: bara en liten del av molekylerna ger ifrån sig sin vätejon. Används i matlagning och som rengöringsmedel." },
+            { name: "Apelsinjuice", ph: 3.5, context: "Citronsyra och askorbinsyra (C-vitamin). Frukostjuice, fruktjuice ur kartong. Svagare syra än citron på grund av lägre koncentration." },
+            { name: "Kaffe", ph: 5.0, context: "Innehåller klorogensyra och andra svaga organiska syror. Svagt surt. Det är därför kaffe kan ge halsbränna om magsäcken redan är irriterad." },
+            { name: "Mjölk", ph: 6.5, context: "Nästan neutralt. Mjölksyrabakterier producerar mjölksyra, vilket gör att gammal mjölk blir surare. Filmjölk har pH runt 4,5." },
+            { name: "Rent vatten", ph: 7.0, context: "Destillerat eller avjoniserat vatten, helt utan lösta salter. Exakt i balans: lika många H⁺ som OH⁻. Kranvatten har ofta pH 7,5–8,5 på grund av lösta mineraler." },
+            { name: "Blod", ph: 7.4, context: "Alltid 7,35–7,45. Kroppen har buffertsystem som håller pH stabilt. Om blodet når pH 7,0 eller 7,8 är det livshotande." },
+            { name: "Äggvita", ph: 8.0, context: "Rå äggvita. Svagt basisk. Blir mer basisk ju äldre ägget är, eftersom CO₂ diffunderar ut genom skalet." },
+            { name: "Bikarbonat", ph: 8.3, context: "Natriumvätekarbonat (NaHCO₃). Används i bakning, mot halsbränna (neutraliserar magsyra) och som milt rengöringsmedel." },
+            { name: "Tvål", ph: 10.0, context: "Traditionell tvål tillverkas genom att reagera fett med natriumhydroxid. Basisk, och det är därför den löser upp fett och smuts från huden." },
+            { name: "Ammoniak (hushåll)", ph: 11.5, context: "Ammoniak (NH₃) löst i vatten. Finns i fönsterputs och golvtvätt. Stickande lukt eftersom ammoniakmolekylerna avdunstar lätt. Ventilera alltid." },
+            { name: "Klorin", ph: 12.5, context: "Natriumhypoklorit (NaClO) i vatten. Blekmedel som desinficerar pooler och dricksvatten. Starkt oxidationsmedel som förstör organiskt material." },
+            { name: "Ugnsrengöring", ph: 13.5, context: "Innehåller natriumhydroxid (NaOH). Löser upp inbränt fett genom förtvålning. Använd alltid handskar, den fräter hud vid kontakt." },
+            { name: "Avloppsrens", ph: 14.0, context: "Koncentrerad natriumhydroxid (NaOH). Stark bas som dissocierar fullständigt i vatten. Löser upp fett, hår och organiskt material. Bland det farligaste ni har hemma." }
         ];
 
         const placedPositions = [];
