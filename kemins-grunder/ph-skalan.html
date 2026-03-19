@@ -53,7 +53,6 @@
             margin-bottom: 2.5rem;
         }
 
-        /* Placed items area above gradient */
         .placed-area {
             position: relative;
             width: 100%;
@@ -84,9 +83,15 @@
         }
 
         .ph-numbers {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0.2rem 0;
+            position: relative;
+            width: 100%;
+            height: 1.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .ph-numbers span {
+            position: absolute;
+            transform: translateX(-50%);
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-muted);
@@ -130,9 +135,6 @@
             font-size: 0.7rem;
             font-weight: 600;
             white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             transition: border-color 0.2s ease;
         }
@@ -140,10 +142,6 @@
         .placed-item:hover .placed-tag,
         .placed-item.active .placed-tag {
             border-color: var(--accent);
-        }
-
-        .placed-item .placed-tag .tag-emoji {
-            font-size: 0.85rem;
         }
 
         .placed-item .placed-line {
@@ -167,7 +165,6 @@
             100% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* Staggered heights to avoid overlap */
         .placed-item[data-row="0"] { bottom: 0; }
         .placed-item[data-row="1"] { bottom: 36px; }
         .placed-item[data-row="2"] { bottom: 72px; }
@@ -192,11 +189,6 @@
 
         .info-panel.visible {
             transform: translateY(0);
-        }
-
-        .info-panel .info-emoji {
-            font-size: 3rem;
-            flex-shrink: 0;
         }
 
         .info-panel .info-body {
@@ -266,7 +258,6 @@
         .chip {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
             padding: 0.6rem 1.1rem;
             background: var(--surface);
             border: 1px solid var(--border);
@@ -288,10 +279,6 @@
 
         .chip:active {
             transform: translateY(0);
-        }
-
-        .chip .chip-emoji {
-            font-size: 1.15rem;
         }
 
         .chip.placed {
@@ -341,7 +328,6 @@
             color: var(--text-muted);
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 700px) {
             body { padding: 1rem; }
             h1 { font-size: 1.4rem; }
@@ -351,7 +337,7 @@
     </style>
 </head>
 <body>
-    <h1>⚗️ pH-skalan</h1>
+    <h1>pH-skalan</h1>
     <p class="subtitle">Klicka på ett ämne för att placera det på skalan</p>
 
     <div class="scale-wrapper">
@@ -359,25 +345,24 @@
         <div class="ph-gradient" id="phGradient"></div>
         <div class="ph-numbers" id="phNumbers"></div>
         <div class="ph-labels">
-            <span class="ph-label acid">← SURT</span>
+            <span class="ph-label acid">SURT</span>
             <span class="ph-label neutral">NEUTRALT</span>
-            <span class="ph-label base">BASISKT →</span>
+            <span class="ph-label base">BASISKT</span>
         </div>
     </div>
 
     <div class="chips-area">
-        <h2>🧪 Ämnen att placera:</h2>
+        <h2>Ämnen att placera:</h2>
         <div class="chips-grid" id="chipsGrid"></div>
     </div>
 
     <div class="controls">
-        <button class="ctrl-btn" onclick="resetAll()">🔄 Börja om</button>
+        <button class="ctrl-btn" onclick="resetAll()">Börja om</button>
         <button class="ctrl-btn primary" onclick="placeAll()">Visa alla</button>
     </div>
 
     <!-- Info panel -->
     <div class="info-panel" id="infoPanel">
-        <div class="info-emoji" id="infoEmoji"></div>
         <div class="info-body">
             <div class="info-name" id="infoName"></div>
             <div class="info-ph" id="infoPh"></div>
@@ -386,30 +371,29 @@
         <button class="info-close" onclick="closeInfo()">✕</button>
     </div>
 
-    <footer>LessonLab v1.0 — gAIa 🌲</footer>
+    <footer>LessonLab — gAIa</footer>
 
     <script>
         const SUBSTANCES = [
-            { name: "Bilbatteri", emoji: "🔋", ph: 0.5, context: "Svavelsyra i blyackumulatorer. Extremt frätande, pH ~0.5." },
-            { name: "Magsyra", emoji: "🫃", ph: 1.5, context: "Saltsyra (HCl) i er mage just nu! Bryter ner maten ni åt. pH 1–2." },
-            { name: "Citronsaft", emoji: "🍋", ph: 2.5, context: "Pressad citron i vattnet, i salladdressing, i bakning." },
-            { name: "Cola", emoji: "🥤", ph: 2.5, context: "Coca-Cola, Pepsi. Fosforsyra + kolsyra. Lika surt som citron!" },
-            { name: "Vinäger", emoji: "🫗", ph: 2.8, context: "Ättikssprit till matlagning, inläggningar, ekologiskt rengöringsmedel." },
-            { name: "Apelsinjuice", emoji: "🍊", ph: 3.5, context: "Frukostjuice, fruktjuice ur kartong. Citronsyra + askorbinsyra." },
-            { name: "Kaffe", emoji: "☕", ph: 5.0, context: "Morgonkaffet. Svagt surt — det är därför det kan ge halsbränna." },
-            { name: "Mjölk", emoji: "🥛", ph: 6.5, context: "Mjölken i kylskåpet. Nästan neutralt, lite surt på grund av mjölksyra." },
-            { name: "Rent vatten", emoji: "💧", ph: 7.0, context: "Destillerat vatten. Exakt i balans: lika många H⁺ som OH⁻." },
-            { name: "Blod", emoji: "🩸", ph: 7.4, context: "Ert blod, alltid 7.35–7.45. Kroppen dör om det ändras mer än ±0.4." },
-            { name: "Äggvita", emoji: "🥚", ph: 8.0, context: "Rå äggvita. Svagt basisk — skyddar embryot inuti ägget." },
-            { name: "Bikarbonat", emoji: "🧁", ph: 8.5, context: "Bakpulver i bakning, mot halsbränna (neutraliserar magsyra!)." },
-            { name: "Tvål", emoji: "🧼", ph: 10.0, context: "Handtvål, duschtvål. Basisk — det är därför den löser upp fett och smuts." },
-            { name: "Ammoniak", emoji: "⚠️", ph: 11.5, context: "Fönsterputs, golvtvätt, industrirengöring. Stickande lukt — ventilera!" },
-            { name: "Klorin", emoji: "🧴", ph: 12.5, context: "Blekmedel för tvätt, desinficerar pooler och dricksvatten. Natriumhypoklorit." },
-            { name: "Ugnsrengöring", emoji: "🔥", ph: 13.5, context: "Spreja in ugnen, stäng, vänta. Löser upp inbränt fett — och hud om ni inte är försiktiga." },
-            { name: "Avloppsrens", emoji: "🚰", ph: 14.0, context: "Propplösare. Natriumhydroxid (NaOH). Bland det farligaste ni har hemma." }
+            { name: "Bilbatteri (svavelsyra)", ph: 0.8, context: "Svavelsyra (H₂SO₄) i blyackumulatorer. Stark tvåprotonig syra — ger ifrån sig båda sina vätejoner nästan fullständigt. Extremt frätande." },
+            { name: "Magsyra", ph: 1.5, context: "Saltsyra (HCl) som era magsäcksceller producerar. Bryter ner proteiner i maten. Magslemhinnan skyddar er — utan den skulle magen smälta sig själv." },
+            { name: "Citronsaft", ph: 2.4, context: "Citronsyra (C₆H₈O₇) — en svag organisk syra. Finns i citrusfrukter, salladdressing, och som konserveringsmedel (E330) i livsmedel." },
+            { name: "Cola", ph: 2.5, context: "Fosforsyra (H₃PO₄) + kolsyra. Ungefär lika surt som citronsaft. En tand som läggs i cola över natten börjar lösas upp." },
+            { name: "Vinäger", ph: 2.5, context: "Ättiksyra (CH₃COOH), ca 5–12 %. Svag syra — bara en liten del av molekylerna ger ifrån sig sin vätejon. Används i matlagning och som rengöringsmedel." },
+            { name: "Apelsinjuice", ph: 3.5, context: "Citronsyra + askorbinsyra (C-vitamin). Frukostjuice, fruktjuice ur kartong. Svagare syra än citron pga lägre koncentration." },
+            { name: "Kaffe", ph: 5.0, context: "Innehåller klorogensyra och andra svaga organiska syror. Svagt surt — det är därför kaffe kan ge halsbränna om magsäcken redan är irriterad." },
+            { name: "Mjölk", ph: 6.5, context: "Nästan neutralt. Mjölksyrabakterier producerar mjölksyra, vilket gör att gammal mjölk blir surare. Filmjölk har pH ~4.5." },
+            { name: "Rent vatten", ph: 7.0, context: "Destillerat eller avjoniserat vatten — utan lösta salter. Exakt i balans: lika många H⁺ som OH⁻. Kranvatten har ofta pH 7.5–8.5 pga lösta mineraler." },
+            { name: "Blod", ph: 7.4, context: "Alltid 7.35–7.45. Kroppen har buffertsystem som håller pH stabilt. Om blodet når pH 7.0 eller 7.8 är det livshotande." },
+            { name: "Äggvita", ph: 8.0, context: "Rå äggvita. Svagt basisk. Blir mer basisk ju äldre ägget är (CO₂ diffunderar ut genom skalet)." },
+            { name: "Bikarbonat", ph: 8.3, context: "Natriumvätekarbonat (NaHCO₃). Används i bakning, mot halsbränna (neutraliserar magsyra), och som milt rengöringsmedel." },
+            { name: "Tvål", ph: 10.0, context: "Traditionell tvål tillverkas genom att reagera fett med natriumhydroxid. Basisk — det är därför den löser upp fett och smuts från huden." },
+            { name: "Ammoniak (hushåll)", ph: 11.5, context: "Ammoniak (NH₃) löst i vatten. Finns i fönsterputs och golvtvätt. Stickande lukt — ammoniakmolekylerna avdunstar lätt. Ventilera alltid!" },
+            { name: "Klorin", ph: 12.5, context: "Natriumhypoklorit (NaClO) i vatten. Blekmedel, desinficerar pooler och dricksvatten. Stark oxidationsmedel — förstör organiskt material." },
+            { name: "Ugnsrengöring", ph: 13.5, context: "Innehåller natriumhydroxid (NaOH). Löser upp inbränt fett genom förtvålning. Använd alltid handskar — fräter hud vid kontakt." },
+            { name: "Avloppsrens", ph: 14.0, context: "Koncentrerad natriumhydroxid (NaOH). Stark bas — dissocierar fullständigt i vatten. Löser upp fett, hår och organiskt material. Bland det farligaste hemma." }
         ];
 
-        // Track placed items and their positions for stacking
         const placedPositions = [];
 
         function init() {
@@ -417,6 +401,7 @@
             for (let i = 0; i <= 14; i++) {
                 const span = document.createElement('span');
                 span.textContent = i;
+                span.style.left = `${(i / 14) * 100}%`;
                 numbersEl.appendChild(span);
             }
             renderChips();
@@ -429,17 +414,15 @@
                 const chip = document.createElement('button');
                 chip.className = 'chip';
                 chip.id = `chip-${i}`;
-                chip.innerHTML = `<span class="chip-emoji">${sub.emoji}</span> ${sub.name}`;
+                chip.textContent = sub.name;
                 chip.onclick = () => placeOne(i);
                 grid.appendChild(chip);
             });
         }
 
         function getRow(pct) {
-            // Check how close this is to already-placed items
-            // and assign a different row if overlapping
             let row = 0;
-            const threshold = 7; // percent distance considered "overlapping"
+            const threshold = 7;
             for (const placed of placedPositions) {
                 if (Math.abs(placed.pct - pct) < threshold && placed.row === row) {
                     row++;
@@ -462,8 +445,6 @@
             placedPositions.push({ pct, row });
 
             const area = document.getElementById('placedArea');
-
-            // Expand area height if needed
             const neededHeight = 36 * (row + 1) + 10;
             if (parseInt(area.style.minHeight || '80') < neededHeight) {
                 area.style.minHeight = neededHeight + 'px';
@@ -474,14 +455,19 @@
             item.style.left = `${pct}%`;
             item.setAttribute('data-row', row);
 
-            item.innerHTML = `
-                <div class="placed-tag">
-                    <span class="tag-emoji">${sub.emoji}</span>
-                    ${sub.name}
-                </div>
-                <div class="placed-line"></div>
-                <div class="placed-dot"></div>
-            `;
+            const tag = document.createElement('div');
+            tag.className = 'placed-tag';
+            tag.textContent = sub.name;
+
+            const line = document.createElement('div');
+            line.className = 'placed-line';
+
+            const dot = document.createElement('div');
+            dot.className = 'placed-dot';
+
+            item.appendChild(tag);
+            item.appendChild(line);
+            item.appendChild(dot);
 
             item.onclick = () => showInfo(index);
             area.appendChild(item);
@@ -489,13 +475,10 @@
 
         function showInfo(index) {
             const sub = SUBSTANCES[index];
-            document.getElementById('infoEmoji').textContent = sub.emoji;
             document.getElementById('infoName').textContent = sub.name;
             document.getElementById('infoPh').textContent = `pH ${sub.ph}`;
             document.getElementById('infoContext').textContent = sub.context;
             document.getElementById('infoPanel').classList.add('visible');
-            // Highlight active
-            document.querySelectorAll('.placed-item').forEach(el => el.classList.remove('active'));
         }
 
         function closeInfo() {
@@ -516,7 +499,6 @@
             renderChips();
         }
 
-        // Close info on Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeInfo();
         });
