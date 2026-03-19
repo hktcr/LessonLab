@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pH-fördjupning & Eget arbete — LessonLab</title>
+    <meta name="description" content="Dag 2: Konkretisera pH med vardagsexempel och vattenmolekylens splittring, sedan eget arbete.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>⚗️ Dag 2: pH — från magen till tvålen</h1>
+            <div class="lesson-meta">
+                <span>⏱️ 15 min genomgång + eget arbete</span>
+                <span>✏️ Tavla, kritor</span>
+                <span>📖 Enkel Kemi 6a–6b & provhäftet</span>
+            </div>
+        </div>
+
+        <!-- ====== DEL 1: KONKRETISERA ====== -->
+        <div class="lesson-section open" id="sec-1">
+            <div class="section-header" onclick="toggleSection('sec-1')">
+                <span class="section-title">🍋 Del 1: Sortera surhet & basicitet <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Igår byggde ni pH-skalan. Idag ska vi fylla den med saker ni faktiskt känner igen."<br><br>
+                        "Tänk efter: kan ni ge mig något som är <strong>lite surt</strong>?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Förvänta: äpple, apelsin, yoghurt, läsk)<br>
+                        <em>Skriv deras förslag på tavlan under pH-skalan allteftersom.</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Bra. Kan ni ge mig något som är <strong>mer surt</strong>?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Förvänta: citron, vinäger, cola)<br>
+                        <em>Placera till vänster om det förra.</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Och vad är <strong>riktigt surt</strong>? Nästan farligt surt?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Förvänta: magsyra, bilbatteri, saltsyra)<br>
+                        <em>Placera långt till vänster.</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Nu andra hållet. Kan ni ge mig något <strong>basiskt</strong>?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Förvänta: tvål, bakpulver... sedan tystnad)<br>
+                        <em>Skriv det de säger till höger om 7.</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Svårare, eller hur? <strong>Varför</strong> är det svårare att komma på basiska saker? Jo, för att vi äter surt hela tiden — citroner, vinäger, frukt. Men hur ofta äter ni tvål?"<br><br>
+                        "Basiska ämnen finns i saker vi <strong>gör rent med</strong>: tvål, diskmedel, avloppsrens, ugnsrengöring. Ju starkare bas — desto farligare. Avloppsrens har pH runt 14. Den löser upp fett... och hud."
+                    </div>
+
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Tavlan bör nu se ut ungefär så här:</p>
+                        <p>
+                        0 ———— 7 ———— 14<br>
+                        Bilbatteri · Magsyra · Citron · Äpple · <strong>Vatten</strong> · Tvål · Ammoniak · Avloppsrens
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== DEL 2: VAD ÄR pH EGENTLIGEN? ====== -->
+        <div class="lesson-section open" id="sec-2">
+            <div class="section-header" onclick="toggleSection('sec-2')">
+                <span class="section-title">💧 Del 2: Vattenmolekylen splittras <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(7 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu ska vi gå ett steg djupare. Det här behöver ni inte kunna utantill till provet, men om ni vill <em>förstå</em> varför skalan ser ut som den gör — lyssna nu."
+                    </div>
+
+                    <div class="draw-block">
+                        <p class="pen-color pen-blue">🔵 Rita en vattenmolekyl på tavlan:</p>
+                        <p>Rita ett stort O (syre) i mitten. Dra två streck snett uppåt, ett till varje H (väte). Skriv H₂O bredvid.</p>
+                    </div>
+
+                    <div class="say-block">
+                        "Det här är vatten. Två väteatomer och en syreatom. Men vatten gör något konstigt: ibland <strong>delar det på sig</strong>. Helt av sig själv."
+                    </div>
+
+                    <div class="draw-block">
+                        <p class="pen-color pen-red">🔴 Rita splittringen:</p>
+                        <p>
+                        Rita en pil från H₂O → H⁺ + OH⁻<br>
+                        Märk H⁺ som "(vätjon — positiv)" och OH⁻ som "(hydroxidjon — negativ)"
+                        </p>
+                    </div>
+
+                    <div class="say-block">
+                        "Det ena vätet lossnar och flyter iväg som en <strong>vätjon</strong> — bara en proton, en liten plus-laddning. Kvar blir en <strong>hydroxidjon</strong> med en minus-laddning."<br><br>
+                        "I rent vatten händer detta i perfekt balans: lika många H⁺ som OH⁻. Det ger pH 7. Neutralt."
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan:</strong></p>
+                        <div class="whiteboard-preview">Rent vatten: H⁺ = OH⁻ → pH 7 (neutralt)
+
+Tillsätt syra → fler H⁺ → pH sjunker (surt)
+Tillsätt bas → fler OH⁻ → pH stiger (basiskt)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Häller vi i en syra — som citronsyra — så <strong>tillför vi fler H⁺</strong>. Balansen tippar. Fler plus-laddningar = lägre pH = surare."<br><br>
+                        "Häller vi i en bas — som tvål — så tillför vi OH⁻ som <strong>fångar upp H⁺</strong>. Färre H⁺ kvar = högre pH = basiskt."<br><br>
+                        "Så pH-skalan mäter egentligen bara en sak: <strong>hur många fria vätjoner finns det?</strong> Många = surt. Få = basiskt."
+                    </div>
+
+                    <div class="say-block">
+                        "<em>(Peka på tavlan)</em> Det lilla p:et i pH? Det betyder 'potensen av'. H betyder väte. pH = hur <strong>koncentrerat</strong> vätejonerna är. Precis som vi pratade om igår med saften."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 10 sekunder — låt det sjunka in.<br>
+                        <em>"Frågor på det här innan vi går vidare?"</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== DEL 3: EGET ARBETE ====== -->
+        <div class="lesson-section open" id="sec-3">
+            <div class="section-header" onclick="toggleSection('sec-3')">
+                <span class="section-title">📝 Del 3: Eget arbete — tydliga ramar <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(resten)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu är genomgången klar. Resten av lektionen jobbar ni själva med provuppgifterna i häftet. Men vi sätter upp tydliga spelregler:"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan:</strong></p>
+                        <div class="whiteboard-preview">EGET ARBETE — REGLER
+1. Provhäftet uppe på bänken
+2. Jobba tyst — fråga mig, inte kompisen
+3. MÅL: Klara fråga 1–5 innan lektionen slutar</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ni har provfrågorna. Ni har svaren. Det enda som krävs är att ni faktiskt <strong>sitter ner och läser</strong>. Jag går runt och hjälper. Om ni har en fråga — räck upp handen. Prata inte med kompisen om annat."<br><br>
+                        "Mitt mål för er idag: att ni har jobbat igenom <strong>minst fråga 1 till 5</strong> innan lektionen är slut. Gör ni det, har ni redan hälften av provet i fickan."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ <strong>Under eget arbete:</strong><br>
+                        — Gå runt aktivt. Stanna vid varje bänk.<br>
+                        — Ställ frågor: "Vilken fråga är du på?", "Förstår du svaret, eller bara memorerar du det?"<br>
+                        — Flagga elever som inte har tagit fram häftet efter 2 minuter.<br>
+                        — Positiv förstärkning: "Bra, du är redan på fråga 4."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== DEL 4: AVSLUT ====== -->
+        <div class="lesson-section" id="sec-4">
+            <div class="section-header" onclick="toggleSection('sec-4')">
+                <span class="section-title">🚪 Del 4: Avslut <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(3 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Stopp! Penna ner. Snabb fråga till er: räck upp handen om ni kom till fråga 5 eller längre."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Räkna händerna. Notera andelen.)
+                    </div>
+
+                    <div class="say-block">
+                        "Bra. De som inte hann — ni vet vad ni ska göra hemma. Provet är på torsdag. Ni har alla verktyg. Frågor?"
+                    </div>
+
+                    <ul class="checklist">
+                        <li>Har alla jobbat med provhäftet?</li>
+                        <li>Har eleverna ett tydligt mål att jobba mot till nästa lektion?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026-03-19
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
