@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTB-labb: Kolsyra och pH — LessonLab</title>
+    <meta name="description" content="Kort halvklasslabb om BTB och kolsyra">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate (KOPIERA EXAKT) -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🧪 Genomgångsmanus: BTB-labb med kolsyra</h1>
+            <div class="lesson-meta">
+                <span>⏱️ 40 min</span>
+                <span>✏️ Bägare, vatten, bikarbonat, BTB, sugrör</span>
+                <span>📖 Syror & Baser</span>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-syfte">
+            <div class="section-header" onclick="toggleSection('sec-syfte')">
+                <span class="section-title">🎯 Del 1: Syfte och Mål <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Idag ska vi göra vår egen magi. Målet med lektionen är tre saker:<br><br>
+                        1. Lära oss vad en <strong>indikator</strong> är.<br>
+                        2. Se vilken färg vätskan BTB får i surt, neutralt och basiskt.<br>
+                        3. Förstå hur <strong>koldioxid</strong> påverkar havet (och din kropp) genom att styra vad som händer i er bägare med er egen andedräkt."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-etymologi">
+            <div class="section-header" onclick="toggleSection('sec-etymologi')">
+                <span class="section-title">📖 Del 2: Begrepp och Etymologi <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (svart):</strong></p>
+                        <div class="whiteboard-preview">Indikator
+BTB = Bromtymolblått</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ordet <strong>indikator</strong> kommer från latinets <em>indicare</em>, som betyder att visa eller peka ut. Det är precis vad det är – ett ämne som pekar ut om något är surt eller basiskt genom att byta färg.<br><br>
+                        BTB är en förkortning. Den vi ska använda idag heter egentligen <strong>Bromtymolblått</strong>."
+                    </div>
+
+                    <div class="pause-block">
+                        🗣 Fonologisk check: "Alla säger ordet med mig: Brom-tymol-blått." (Vänta på responskör)
+                    </div>
+                    
+                    <div class="say-block">
+                        "<strong>Retorisk fråga:</strong> Varför tror ni att det slutar på 'blått', men just nu när ni tittar på den lilla flaskan framför er ser det kanske... grönt eller rött ut?"
+                    </div>
+                    
+                    <div class="pause-block">
+                        ⏸ (Tänktid 10 sek. Låt dem titta på burken.)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-labben">
+            <div class="section-header" onclick="toggleSection('sec-labben')">
+                <span class="section-title">🔬 Del 3: Genomförande av labben <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(15 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu ska ni göra tre enkla steg i par. <br><br>
+                        <strong>Steg 1:</strong> Häll lite vanligt kranvatten i bägaren. Droppa i ca 3 droppar BTB. Vilken färg får det? Det blir <strong>grönt</strong>. Det betyder att kranvatten är nästan neutralt."
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Steg 2:</strong> Ta en <em>liten nyans</em> av bikarbonat. Rör om. Nu blir vätskan <strong>blå</strong>. Bikarbonat är nämligen basiskt.
+                        <br><br>
+                        <strong>Steg 3:</strong> Sätt i sugröret. Nu ska ni få göra cellandning. Blås bubblor. Koldioxiden i er utandning blandas med vattnet. Fortsätt till färgen ändras. Blås inte jättehårt så ni stänker ner varandra!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 10 minuter — låt eleverna utföra stegen och observera övergången Blå → Grön → Gul.<br>
+                        <em>(Gå runt och stäm av. Om nån elev blåser utan att det händer nåt, be dem ta djupa andetag fyllda av koldioxid och blåsa)</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-teorin">
+            <div class="section-header" onclick="toggleSection('sec-teorin')">
+                <span class="section-title">🧠 Del 4: Knyta ihop säcken (Kolsyra) <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Vad hände? Från blått, till grönt, och slutligen till gult. Men vad tillsatte ni egentligen när ni blåste?<br><br>
+                        Ni andas ut <strong>koldioxid</strong> från er cellandning. När koldioxid blandas med vatten bildas en syra."
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv (svart och grönt):</strong></p>
+                        <div class="whiteboard-preview">Koldioxid + Vatten ➔ Kolsyra (sänker pH, gör BTB gul)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Analogi (Havsförsurning):</strong> Det som just hände i er lilla bägare är precis vad som händer med hela vår planet. Haven absorberar koldioxid från atmosfären (precis som ni blåste koldioxid i vattnet), och det bildar kolsyra. Det gör havet surare. Detta kallas havsförsurning, och det är dåligt för koraller och skaldjur.<br><br>Genom att blåsa i bägaren skapade ni er egen lilla klimatförändring."
+                    </div>
+                    
+                    <div class="say-block">
+                        "<strong>📸 Fotopaus:</strong> Dokumentera det vi ritat på tavlan, eller memorera det till provet. Glöm inte vad färgerna blått, grönt och gult betyder för BTB!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section" id="sec-exit">
+            <div class="section-header" onclick="toggleSection('sec-exit')">
+                <span class="section-title">🚪 Del 5: Avslutning och Exit Ticket <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "<strong>Exit ticket:</strong> Innan ni får gå ut behöver ni svara på en fråga av mig när ni passerar dörren. Jag kommer att säga en färg på BTB: Mörkblått, Ljusgrönt eller Gult. Ni ska svara snabbt om det betyder Surt, Neutralt eller Basiskt. Rensa bänkskivorna!"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Låt eleverna städa, ställ dig i dörröppningen. Peppra dem med en färg per elev).
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lesson-section" id="sec-vocab">
+            <div class="section-header" onclick="toggleSection('sec-vocab')">
+                <span class="section-title">🔤 Ordförklaringar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="vocab-list">
+                        <div class="vocab-item">
+                            <span class="vocab-term">Indikator</span>
+                            <span class="vocab-def">= Ett ämne som byter färg för att visa om det är surt eller basiskt i lösningen</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">BTB</span>
+                            <span class="vocab-def">= Bromtymolblått. Gul i surt, grön i neutralt, blå i basiskt.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Kolsyra</span>
+                            <span class="vocab-def">= Koldioxid som har löst sig i vatten. En svag syra.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section" id="sec-check">
+            <div class="section-header" onclick="toggleSection('sec-check')">
+                <span class="section-title">✅ Checklista för läraren</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Gått igenom syfte: BTB som indikator (fråga 7-10 på provet).</li>
+                        <li>Etymologi: Indikator (att peka ut).</li>
+                        <li>Genomfört "blåsprovet" och sett hela spektrumet (Blå→Grön→Gul).</li>
+                        <li>Kopplat ihop cellandning (Koldioxid) med kolsyra.</li>
+                        <li>Kopplat kolsyran i bägaren till Havsförsurning (ekologibrygga).</li>
+                        <li>Genomfört Exit ticket på färgerna vid dörren.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026-03-23
+        </footer>
+    </div>
+
+    <!-- 4. Script (KOPIERA EXAKT) -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>

@@ -26,3 +26,16 @@
 ---
 
 *Senast uppdaterad: 2026-02-11 kl 14:10 av gAIa 🌲*
+### 2026-03-19 — e97eb08e
+
+**Ursprung:** pH-skalan demonstrationsverktyg + lektionsuppdatering
+**Typ:** Framsteg
+
+> Skapade interaktivt pH-demonstrationsverktyg (utan emojis, med vetenskaplig notation och korrekta värden för t.ex. bilbatteri = 0.8 och rent vatten = 7.0). Uppdaterade dag 2-manuset med "Begreppsletning i provhäftet" som eget arbete.
+
+**Relaterade filer:**
+- `kemins-grunder/ph-skalan.html`
+- `kemins-grunder/ph-fordjupning.html`
+- `index.html`
+
+---
