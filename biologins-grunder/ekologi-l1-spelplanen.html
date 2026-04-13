@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekologi L1: Spelplanen — LessonLab</title>
+    <meta name="description" content="Genomgångsmanus för Ekologi Lektion 1: Ekosystem, Population, Samhälle, Biotop, Biologisk mångfald">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🌿 Genomgångsmanus: Ekologi L1 — Spelplanen</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~50 min</span>
+                <span>✏️ Häftet (Enkel NO sida 1–2), tavla</span>
+                <span>📖 Biologins grunder Del 2</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 0: INTRO & FÖRBEREDELSE            -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">📋 Del 0: Förberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(före lektion)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Syfte och lärandemål:</strong></p>
+                    <ol>
+                        <li>Eleven kan förklara vad ekologi och ekosystem betyder.</li>
+                        <li>Eleven kan sortera begreppen individ, population, samhälle, ekosystem och biosfär i rätt ordning.</li>
+                        <li>Eleven kan ge exempel på biotiska och abiotiska faktorer.</li>
+                    </ol>
+
+                    <ul class="checklist">
+                        <li>Häften utskrivna (Ekologi_Hafte_KOMPLETT.pdf)</li>
+                        <li>KM-provet uppladdat på Google Classroom</li>
+                        <li>Ren tavla, minst två pennor (svart + blå)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 1: HÄFTET UT + KONTRAKT            -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-utdelning">
+            <div class="section-header" onclick="toggleSection('sec-utdelning')">
+                <span class="section-title">📚 Del 1: Dela ut häftet <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p>Dela ut häftet. Låt dem bläddra i 30 sekunder.</p>
+
+                    <div class="say-block">
+                        "Det här häftet är ert viktigaste verktyg i ekologin. Texten i häftet är grunden för allt vi gör.<br><br>
+                        På Google Classroom hittar ni också provet för grundläggande nivå. Frågorna på provet är <strong>exakt</strong> samma frågor ni kommer att få på riktigt. Ordningen blandas om, men frågorna och svarsalternativen är identiska.<br><br>
+                        Kan ni svara på dem, är ni säkrade."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 10 sekunder. Låt det sjunka in. Inga fler instruktioner om bedömning nu.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 2: EKOLOGI & EKOSYSTEM (sida 1)    -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-ekologi">
+            <div class="section-header" onclick="toggleSection('sec-ekologi')">
+                <span class="section-title">🌍 Del 2: Ekologi och Ekosystem <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(8 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Häftet säger (sida 1):</strong> <em>"Ekologi är läran om hur allt i naturen lever tillsammans. Om man studerar ett avgränsat område av naturen kallar vi det för ett ekosystem."</em></p>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (svart penna):</strong></p>
+                        <div class="whiteboard-preview">EKOLOGI = Samspelet mellan allt levande och deras miljö
+
+EKOSYSTEM = Ett avgränsat område där vi studerar detta samspel</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ekologi handlar inte bara om djur och växter var för sig. Det handlar om <strong>samspelet</strong>. Hur solen påverkar växten, hur växten påverkar musen, hur musen påverkar ugglan. Allt hänger ihop. Det är det vi kallar ekologi."
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Retorisk fråga:</strong> Kan en björk överleva utan solen? Utan maskar? Utan regn? Vad händer om vi tar bort en av de sakerna?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Vänta 10 sekunder. Låt dem tänka. Ta 2–3 svar.
+                    </div>
+
+                    <p><strong>Häftet säger:</strong> <em>"Man kan ibland slå ihop flera ekosystem till ett större ekosystem. Ett sådant stort ekosystem kallas för ett biom."</em></p>
+
+                    <div class="write-block">
+                        <p><strong>Skriv under (svart penna):</strong></p>
+                        <div class="whiteboard-preview">BIOM = Jordens stora livsmiljöer
+  Exempel: regnskog, öken, tajga, tundra, savann, stäpp</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ett biom är gigantiskt. Hela Amazonas regnskog är ett biom. Hela Sibiriens barrskogar, tajgan, är ett annat. Biomerna styrs av klimatet."
+                    </div>
+
+                    <p><strong>Häftet säger:</strong> <em>"Den sammanlagda mängden liv i ett ekosystem, brukar kallas för biomassa."</em></p>
+
+                    <div class="say-block">
+                        "Biomassa är helt enkelt vikten av allt levande i ett område. I en skog väger alla träden, maskarna och rådjuren tillsammans enormt mycket. Det mesta av biomassan är alltid växterna. Kom ihåg det, det blir viktigt senare."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 3: INDIVID, POPULATION, SAMHÄLLE   -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-population">
+            <div class="section-header" onclick="toggleSection('sec-population')">
+                <span class="section-title">👥 Del 3: Individ, Population, Samhälle <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Häftet säger (sida 1):</strong> <em>"Alla individer, som hör till samma art inom ett ekosystem, brukar kallas en population."</em></p>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (svart penna):</strong></p>
+                        <div class="whiteboard-preview">INDIVID = En enskild varelse (en rödräv, en ek)
+POPULATION = Alla individer av SAMMA ART i ett område</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Population betyder 'befolkning'. Men i biologi är vi väldigt noga: det <strong>måste</strong> vara samma art.<br><br>
+                        Alla rödrävar i Söderåsens skog = en population.<br>
+                        Alla ekar + alla rödrävar = <strong>inte</strong> en population. Det är något annat, det kallas ett samhälle."
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Retorisk fråga:</strong> Hur stor är populationen av elever i det här klassrummet? Är det en population i biologisk mening?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Vänta. Ja! Samma art (Homo sapiens), samma område, samma tidpunkt. Ta emot svar, bekräfta.
+                    </div>
+
+                    <p><strong>Häftet säger (sida 2):</strong> <em>"Tillsammans kallas alla populationer inom ett ekosystem för ett samhälle."</em></p>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (blå penna):</strong></p>
+                        <div class="whiteboard-preview">SAMHÄLLE = Alla populationer (av olika arter) tillsammans
+   → växtsamhället = alla växtarter
+   → djursamhället = alla djurarter
+
+BIOSFÄR = Alla ekosystem på hela jorden</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Samhälle i biologi är inte samma sak som samhälle i SO. Här menar vi: alla levande arter som delar samma plats. Man pratar ofta om <strong>växtsamhället</strong> och <strong>djursamhället</strong>."
+                    </div>
+
+                    <p><strong>Rita nu trappan:</strong></p>
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med SVART penna — trappan (horisontell pil):</p>
+                        <p>INDIVID → POPULATION → SAMHÄLLE → EKOSYSTEM → BIOSFÄR<br>
+                        Under varje steg: (en ek) → (alla ekar) → (alla arter) → (+ miljön) → (hela jorden)</p>
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 30 sekunder. Låt dem skriva av trappan i sina anteckningsblock.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 4: BIOTOP & BIOLOGISK MÅNGFALD     -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-biotop">
+            <div class="section-header" onclick="toggleSection('sec-biotop')">
+                <span class="section-title">🌳 Del 4: Biotop och Biologisk mångfald <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Häftet säger (sida 2):</strong> <em>"Den typ av ekosystem, som vissa växter eller djur trivs i, kallas växternas eller djurens biotop."</em></p>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan:</strong></p>
+                        <div class="whiteboard-preview">BIOTOP = En naturtyp (lövskog, sjö, äng, stubbe)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Biotop och <strong>habitat</strong> är inte samma sak, även om många blandar ihop dem.<br><br>
+                        <strong>Biotop</strong> = naturtypen. Lövskogen.<br>
+                        <strong>Habitat</strong> = den exakta platsen där en viss art bor.<br><br>
+                        Gärdsmygen lever i biotopen lövskog, men dess habitat är tät undervegetation nära marken, inte uppe i trädtopparna. Talgoxen lever i samma biotop men har ett annat habitat: de grövre grenarna."
+                    </div>
+
+                    <p><strong>Häftet säger:</strong> <em>"När vi pratar om biologisk mångfald, så menar vi att det ska finnas många olika arter."</em></p>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan:</strong></p>
+                        <div class="whiteboard-preview">BIOLOGISK MÅNGFALD = Många arter + Många naturtyper</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Häftet säger att 'det inte får bli konkurrens mellan arter'. Det stämmer inte riktigt. Konkurrens finns <strong>alltid</strong>. Men om mångfalden är hög klarar ekosystemet av det. Det är när mångfalden är <strong>låg</strong> som konkurrensen blir dödlig."
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Retorisk fråga:</strong> Har skolgården hög eller låg biologisk mångfald? Vad skulle behövas för att höja den?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Vänta 10 sekunder. Ta 2–3 svar. Skriv inte ner något, bara diskutera.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 5: BIOTISKA / ABIOTISKA            -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-faktorer">
+            <div class="section-header" onclick="toggleSection('sec-faktorer')">
+                <span class="section-title">⚡ Del 5: Biotiska och Abiotiska faktorer <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(7 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Det här står inte i ert häfte, men det är två viktiga ord som ni kommer att stöta på.<br><br>
+                        <strong>Biotisk</strong> = levande. <strong>Abiotisk</strong> = icke-levande.<br>
+                        Allt i ett ekosystem är antingen det ena eller det andra."
+                    </div>
+
+                    <div class="say-block">
+                        🗣 <strong>Fonologisk check:</strong> "Säg det högt med mig: <strong>a-bi-o-tisk</strong>. A som i 'inte'. Abiotisk. Icke levande."
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv tabell på tavlan:</strong></p>
+                        <div class="whiteboard-preview">BIOTISKA FAKTORER    │  ABIOTISKA FAKTORER
+(levande)            │  (icke-levande)
+─────────────────────│──────────────────────
+Djur                 │  Temperatur
+Växter               │  Vatten
+Svampar              │  Solljus
+Bakterier            │  Vind
+Konkurrens           │  Markens sammansättning</div>
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 30 sekunder. Låt dem skriva av tabellen.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 6: AVSLUT + GLOSOR                 -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-avslut">
+            <div class="section-header" onclick="toggleSection('sec-avslut')">
+                <span class="section-title">🏁 Del 6: Avslut och Glosläxa <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "<strong>📸 Fotopaus:</strong> Fotografera tavlan nu."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 15 sekunder. Vänta tills alla har fotat.
+                    </div>
+
+                    <div class="say-block">
+                        "<strong>Exit ticket:</strong> Skriv på en lapp, utan att titta: Vad är skillnaden mellan en population och ett samhälle? En mening räcker."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 60 sekunder. Samla in lapparna.
+                    </div>
+
+                    <div class="say-block">
+                        "Nästa lektion: Vem äter vem? Vi tittar på näringskedjor, producenter, konsumenter och vad som händer med energin.<br><br>
+                        <strong>Läxa till nästa lektion:</strong> Lär er de 8 orden som jag skriver upp nu. Vi kör glosförhör."
+                    </div>
+
+                    <div class="vocab-list">
+                        <div class="vocab-item">
+                            <span class="vocab-term">Ekologi</span>
+                            <span class="vocab-def">= Läran om samspelet mellan levande varelser och deras miljö</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Ekosystem</span>
+                            <span class="vocab-def">= Ett avgränsat område i naturen där allt levande samspelar med sin omgivning</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Biotop</span>
+                            <span class="vocab-def">= En naturtyp (t.ex. lövskog, sjö eller äng)</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Population</span>
+                            <span class="vocab-def">= Alla individer av samma art inom ett visst område</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Samhälle</span>
+                            <span class="vocab-def">= Alla populationer av olika arter som lever tillsammans i ett ekosystem</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Biotiska faktorer</span>
+                            <span class="vocab-def">= De levande delarna i ett ekosystem</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Abiotiska faktorer</span>
+                            <span class="vocab-def">= De icke-levande delarna i ett ekosystem</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="vocab-term">Biologisk mångfald</span>
+                            <span class="vocab-def">= Mångfalden av arter och livsmiljöer i ett område</span>
+                        </div>
+                    </div>
+
+                    <div class="say-block">
+                        "Glosförhöret funkar så här: jag ger er antingen <strong>ordet</strong> och ni skriver definitionen, eller så ger jag er <strong>definitionen</strong> och ni skriver ordet. Fyra frågor åt varje håll."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- CHECKLISTA                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section" id="sec-check">
+            <div class="section-header" onclick="toggleSection('sec-check')">
+                <span class="section-title">✅ Checklista</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Häftet utdelat</li>
+                        <li>KM-provet nämnt (Google Classroom)</li>
+                        <li>Trappan ritad (Individ → Biosfär)</li>
+                        <li>Biotiska/Abiotiska tabellen på tavlan</li>
+                        <li>Fotopaus genomförd</li>
+                        <li>Exit ticket insamlad</li>
+                        <li>8 glosor skrivna på tavlan som läxa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026-04-14
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
