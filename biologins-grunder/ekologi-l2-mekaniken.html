@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekologi L2: Mekaniken — LessonLab</title>
+    <meta name="description" content="Genomgångsmanus för Ekologi Lektion 2: Fotosyntes, Cellandning, Autotrofer och Heterotrofer">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🔋 Genomgångsmanus: Ekologi L2 — Mekaniken</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~50 min</span>
+                <span>✏️ Häftet (sida 4–5), Film</span>
+                <span>📖 Biologins grunder Del 2</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 0: INTRO & FÖRBEREDELSE            -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">📋 Del 0: Förberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(före lektion)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Syfte och lärandemål:</strong></p>
+                    <ol>
+                        <li>Eleven kan förklara fotosyntesens och cellandningens funktioner.</li>
+                        <li>Eleven känner till varför växter kallas producenter (autotrofer) och djur konsumenter (heterotrofer).</li>
+                        <li>Eleven kan redogöra för de begrepp vi lärde oss under L1.</li>
+                    </ol>
+
+                    <ul class="checklist">
+                        <li>Filmen "Individ, population, samhälle" laddad (2:53)</li>
+                        <li>Ren tavla med röd, svart och grön penna.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 1: RETRIEVAL PRACTICE              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-retrieval">
+            <div class="section-header" onclick="toggleSection('sec-retrieval')">
+                <span class="section-title">🧠 Del 1: Repetition & Film <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Vi ska börja med att koppla på hjärnorna där vi slutade igår. Igår skrev ni upp åtta viktiga begrepp.<br><br>
+                        Titta på era anteckningar i exakt en minut, och försök minnas vad 'population' och 'samhälle' betyder."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 60 sekunder. Låt dem läsa i tystnad.
+                    </div>
+
+                    <div class="say-block">
+                        "Bra. Nu ska ni få se en jättekort film på tre minuter som handlar om precis de begreppen. Lyssna efter skillnaden på population och samhälle, och lägg märke till ett exempel jag använder för begreppet samhälle."
+                    </div>
+
+                    <p>📺 <strong>Spela upp filmen:</strong> <code>Individ, population, samhälle.mp4</code></p>
+
+                    <div class="say-block">
+                        "<strong>Retorisk fråga:</strong> I filmen pratade jag om exempelvis 'fågelsamhället' eller 'rovdjurssamhället'. Vad är vinsten med att använda ordet <em>samhälle</em> på det sättet istället för att bara prata om djuren var för sig?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Låt dem tänka i 15 sekunder. Ta ett par svar. (Rätt svar: Man visar att arterna tillhör samma ekosystem och påverkar varandra).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 2: HÄFTET SIDA 4 (FOTOSYNTES)      -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-fotosyntes">
+            <div class="section-header" onclick="toggleSection('sec-fotosyntes')">
+                <span class="section-title">☀️ Del 2: Energins intåg (Sida 4) <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(15 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Okej, öppna era häften på Sida 4. Vi ska titta på hur energi överhuvudtaget kommer in i ett ekosystem. Läs i tystnad stycket som heter 'Fotosyntesen'."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Vänta ca 2 minuter. <em>(Gå runt och se att alla läser)</em>
+                    </div>
+
+                    <div class="say-block">
+                        "Texten pratar om att växter omvandlar solenergi till <strong>kemiskt bunden energi</strong>. Den kemiskt bundna energin är det vi kallar druvsocker, eller glukos.<br><br>
+                        Ni minns från innan sportlovet när vi ritade växtceller? Var händer det här? Svar: i kloroplasterna!"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (använd Grön penna till växten, Svart till resten):</strong></p>
+                        <div class="whiteboard-preview">PRODUCENT = Organism som tillverkar egen näring (t.ex. växt)
+  * Kallas också AUTOTROF
+  * Auto = Själv | Trof = Äta (Själv-ätare)
+  
+FOTOSYNTES (Sker i kloroplasterna)
+Koldioxid + Vatten + Solenergi ➔ Druvsocker (Glukos) + Syre</div>
+                    </div>
+                    
+                    <div class="say-block">
+                        🗣 <strong>Fonologisk check:</strong> Säg det högt med mig: Au-to-trof. Autotrof. Betyder att man tillverkar sin egen mat.
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus 2 minuter. Eleverna antecknar det som står på tavlan.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 3: HÄFTET SIDA 5 (CELLANDNING)     -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-cellandning">
+            <div class="section-header" onclick="toggleSection('sec-cellandning')">
+                <span class="section-title">🔥 Del 3: Förbränningen (Sida 5) <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Kolla på sida 5 i häftet, under 'Cellandning och förbränning'. Nu är äventyret igång. Växten har byggt socker. Djuren käkar växten, eller käkar varandra. Men vad gör djuren med sockret?"
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (under det förra, använd Röd/Svart penna):</strong></p>
+                        <div class="whiteboard-preview">KONSUMENT = Organism som måste äta för att få näring (djur)
+  * Kallas också HETEROTROF
+  * Hetero = Annan | Trof = Äta (Annan-ätare)
+
+CELLANDNING (Sker i Mitokondrierna)
+Druvsocker + Syre ➔ Energi + Koldioxid + Vatten</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Häftet säger 'Man brukar säga att de bildar ett kretslopp' längst ner på sida 5.<br><br>
+                        Titta på tavlan! Ser ni kretsloppet? Svaret på <strong>Cellandningen</strong> är exakt det som <strong>Fotosyntesen</strong> behöver. Djuren andas ut koldioxid och vatten, växterna suger upp det. Det är motorn bakom precis allt liv."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Låt dem skriva av. Vänta 2 min.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 4: AVSLUTNING & FOTOPAUS           -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-avslut2">
+            <div class="section-header" onclick="toggleSection('sec-avslut2')">
+                <span class="section-title">🏁 Del 4: Avslut <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Då vet vi var energin kommer ifrån (Solen → Producenter) och hur den bränns upp (Cellandning).<br><br>
+                        Lektion 3 kommer att handla om exakt VEM som äter VEM, och varför all energi tar slut till sist.<br><br>
+                        <strong>Exit ticket:</strong> Diskutera i bänkpar: Kan en Autotrof leva utan en Heterotrof? Men kan en Heterotrof leva utan en Autotrof?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Låt dem diskutera 2 minuter. Ta upp ett svar i helklass för att stänga lektionen. (Växter klarar sig fint utan djur, djur dör mycket snabbt utan växter).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — Lektion 2 Ekologi
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
