@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekologi L3: Pusslet — LessonLab</title>
+    <meta name="description" content="Genomgångsmanus för Ekologi Lektion 3: Näringsvävar, Kretslopp och Den stora cirkeln">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧩</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🧩 Genomgångsmanus: Ekologi L3 — Pusslet</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~50 min</span>
+                <span>✏️ Häftet (sida 7–9)</span>
+                <span>📖 Biologins grunder Del 2</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 0: INTRO & FÖRBEREDELSE            -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">📋 Del 0: Förberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(före lektion)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Syfte och lärandemål:</strong></p>
+                    <ol>
+                        <li>Eleven kan bygga och förklara en näringsväv.</li>
+                        <li>Eleven kan använda begreppen producent, konsument och nedbrytare korrekt.</li>
+                        <li>Eleven förstår hur kolets kretslopp hänger ihop med biokemin från L2.</li>
+                    </ol>
+
+                    <ul class="checklist">
+                        <li>Färgade pennor redo (Grön, Röd, Blå, Svart).</li>
+                        <li>Häftet s. 7–9.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 1: RETRIEVAL PRACTICE              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-retrieval">
+            <div class="section-header" onclick="toggleSection('sec-retrieval')">
+                <span class="section-title">🧠 Del 1: Glosor & Formler <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Vi börjar med en snabbkoll. Igår lärde vi oss om motorerna bakom allt. <br><br>
+                        Vad heter den organell (del i cellen) där fotosyntesen sker? Och vad händer med kolet i luften när växten bygger socker?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Snabbt svar i helklass (Kloroplaster / Kolet binds i socker).
+                    </div>
+
+                    <div class="say-block">
+                        "Idag ska vi se hur det där sockret pusslas ihop med alla andra varelser i naturen."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 2: DET LEVANDE PUSSLET (TAVLAN)     -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-pusslet">
+            <div class="section-header" onclick="toggleSection('sec-pusslet')">
+                <span class="section-title">🎨 Del 2: Näringsväven <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(20 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Öppna häftet på sida 8. Där finns en rak näringskedja. Men verkligheten är sällan en rak kedja. Det är ett pussel. I filmen såg vi vildhundar och gnuer på savannen.<br><br>
+                        Nu ritar vi upp savannens pussel gemensamt."
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Skriv på tavlan (Pussla fram kopplingarna med pilar):</strong></p>
+                        <div class="whiteboard-preview">NÄRINGSVÄV = Många näringskedjor ihopflätade
+                    
+    GRÄS (Producent) ➔ GNU (1:a konsument) ➔ LEJON (2:a kons./Topp)
+      │               ↗                     ↗
+      └──➔ ANTILOP ───┘           VILDHUND ┘
+
+   💡 Pilar = "Energi till..." (Vem som hamnar i vems mage)</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Titta på sida 9 nu. Där nämns <strong>trofinivåer</strong>. Det är ett fint ord för 'steg i kedjan'.<br><br>
+                        <strong>Diskussion:</strong> Vad händer om alla gnuer dör i en sjukdom? Vem jublar? Vem dör av hunger?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Kort diskussion i bänkpar. (Växterna jublar, rovdjuren svälter).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 3: DEN STORA CIRKELN (KRETSLOPP)    -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-cirkeln">
+            <div class="section-header" onclick="toggleSection('sec-cirkeln')">
+                <span class="section-title">♻️ Del 3: Kolets eviga väg <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(15 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Vi har pratat om vem som äter vem. Men vad händer när djuren dör? Om inget försvann skulle vi vada i döda gnuer.<br><br>
+                        Kolla på sida 7: <strong>Nedbrytare</strong>. De är ekosystemets städpatrull."
+                    </div>
+
+                    <div class="write-block">
+                        <p><strong>Rita Kolets Kretslopp (Cirkel):</strong></p>
+                        <div class="whiteboard-preview">KOLETS KRETSLOPP
+   1. CO₂ i Luften
+      │ (Fotosyntes)
+      ▼
+   2. Växtens Socker
+      │ (Djur äter)
+      ▼
+   3. Djurets kropp ➔ 4. Nedbrytare (Svampar/Maskar)
+      │ (Cellandning)      │ (Andas ut)
+      └───────────➔────────┘
+                  ▼
+              CO₂ i Luften</div>
+                    </div>
+
+                    <div class="say-block">
+                        "Ser ni? Atomen ni just andades ut kan ha suttit i gräset på savannen för tio år sedan. Materia försvinner aldrig, den bara byter form. Det är pusslet som aldrig tar slut."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 4: JENGA-EFFEKTEN (EXIT)           -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-avslut">
+            <div class="section-header" onclick="toggleSection('sec-avslut')">
+                <span class="section-title">🏁 Del 4: Jenga-effekten <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Tänk på näringsväven som ett Jenga-torn. Om vi drar ut en kloss som är viktig, vad händer med resten?<br><br>
+                        <strong>Exit ticket:</strong> Besvara på en post-it (eller i häftet s. 10):<br>
+                        <em>'Varför drabbas rovdjuren hårdare än växterna om kolets kretslopp störs?'</em>"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Samla in tankarna eller ta några svar.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — Lektion 3 Ekologi
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
