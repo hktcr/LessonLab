@@ -80,7 +80,7 @@
 
                     <div class="write-block">
                         <p><strong>Skriv osorterat på ena halvan av tavlan (Svart penna):</strong></p>
-                        <div class="whiteboard-preview">Ek, Bofink, Daggmask, Gräs, Rådjur, Räv, Hare, Varg...</div>
+                        <div class="whiteboard-preview">Ek, Gräs, Vete, Bladlus, Åkersork, Fälthare, Rådjur, Nyckelpiga, Talgoxe, Snok, Räv, Vildsvin, Röd glada, Duvhök, Människa, Daggmask...</div>
                     </div>
                 </div>
             </div>
@@ -111,22 +111,82 @@
                     </div>
 
                     <div class="draw-block">
-                        <p class="pen-color pen-blue">🔵 Dra pilar uppåt och bygg väven:</p>
+                        <p class="pen-color pen-blue">🔵 Dra pilar uppåt och bygg väven (se diagram nedan):</p>
                         <p>Dra pilar från Gräs → Hare, Ek → Rådjur. Skriv <strong>KONSUMENT</strong>. <br>
-                        Dra sedan pilar mellan många djur (Räv tar hare och bofink). </p>
+                        Dra in insektskedjan (Bladlus → Nyckelpiga → Talgoxe → Duvhök) och allätaren (Vildsvin). </p>
+                        
+                        <pre class="mermaid" style="background: white; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+graph BT
+    %% Producenter
+    Gräs[Gräs & Örter]:::producer
+    Vete[Vete/Raps]:::producer
+    Ek[Ek/Bok]:::producer
+
+    %% Förstahandskonsumenter
+    Insekt[Bladlus]:::primary
+    Sork[Åkersork]:::primary
+    Hare[Fälthare]:::primary
+    Rådjur[Rådjur]:::primary
+
+    %% Andra/Mellankonsumenter
+    Piga[Nyckelpiga]:::secondary
+    Fågel[Talgoxe]:::secondary
+    Snok[Snok]:::secondary
+    Räv[Räv]:::secondary
+    Vildsvin[Vildsvin]:::omnivore
+
+    %% Toppkonsumenter
+    Glada[Röd glada]:::apex
+    Duvhök[Duvhök]:::apex
+    Människa[Människa/Jägare]:::apex
+    
+    %% Nedbrytare
+    Nedbrytare[Nedbrytare: Mask, Svamp...]:::decomposer
+
+    Gräs --> Insekt
+    Gräs --> Sork
+    Gräs --> Hare
+    Gräs --> Rådjur
+    Vete --> Sork
+    Vete --> Hare
+    Vete --> Vildsvin
+    Ek --> Rådjur
+    Ek --> Vildsvin
+    Insekt --> Piga
+    Piga --> Fågel
+    Sork --> Snok
+    Sork --> Räv
+    Sork --> Glada
+    Hare --> Räv
+    Hare --> Duvhök
+    Snok --> Glada
+    Snok --> Duvhök
+    Fågel --> Duvhök
+    Räv --> Glada
+    Rådjur --> Människa
+    Vildsvin --> Människa
+    Nedbrytare -. "Daggmask" .-> Vildsvin
+
+    classDef producer fill:#d4edda,stroke:#28a745,stroke-width:2px;
+    classDef primary fill:#cce5ff,stroke:#007bff,stroke-width:2px;
+    classDef secondary fill:#fff3cd,stroke:#ffc107,stroke-width:2px;
+    classDef omnivore fill:#e8d1ff,stroke:#8a2be2,stroke-width:2px;
+    classDef apex fill:#f8d7da,stroke:#dc3545,stroke-width:2px;
+    classDef decomposer fill:#e2e3e5,stroke:#6c757d,stroke-width:2px,stroke-dasharray: 5 5;
+                        </pre>
                     </div>
 
                     <div class="say-block">
-                        "Den där raka linjen från Gräs till Hare kallas en <strong>Näringskedja</strong>. Men titta på trasslet vi precis ritat som korsar varandra. Det är naturens verklighet och kallas en <strong>Näringsväv</strong>."
+                        "Den där raka linjen från Gräs till Fälthare kallas en <strong>Näringskedja</strong>. Men titta på trasslet vi precis ritat som korsar varandra. Det är naturens verklighet och kallas en <strong>Näringsväv</strong>."
                     </div>
                     
                     <div class="draw-block">
                         <p class="pen-color pen-red">🔴 Högst upp på tavlan:</p>
-                        <p>Placera Vargen/Räven högst upp. Skriv <strong>TOPPKONSUMENT</strong>.</p>
+                        <p>Placera Röd glada, Duvhök och Människan högst upp. Skriv <strong>TOPPKONSUMENT</strong>.</p>
                     </div>
                     
                     <div class="say-block">
-                        "Ingen äter räven eller vargen. De sitter högst upp, därför kallas de <strong>Toppkonsumenter</strong>."
+                        "Ingen äter den röda gladan, duvhöken eller människan. De sitter högst upp, därför kallas de <strong>Toppkonsumenter</strong>."
                     </div>
                 </div>
             </div>
@@ -154,7 +214,12 @@
                     </div>
 
                     <div class="say-block">
-                        "Här är 10-procentsregeln: Varje gång någon blir uppäten går hela 90% av energin förlorad som värme och rörelse. Bara 10% blir faktiskt en ny kropp och går vidare! Kedjan kan alltså inte vara hur lång som helst, för energin tar helt enkelt slut uppe i toppen."
+                        "Här är 10-procentsregeln: Varje gång någon blir uppäten går hela 90% av energin förlorad som värme och rörelse. Bara 10% blir faktiskt en ny kropp och går vidare!"<br><br>
+                        "<strong>Retorisk fråga:</strong> Varför kan energistegen i pyramiden inte fortsätta i oändlighet? Vad skulle till exempel hända om något försökte leva på att <em>bara</em> äta duvhökar?"
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ (Vänta på svar. Låt dem inse att insektskedjan gör det extra tydligt — energin tar helt enkelt slut och strålar ut som värme för varje steg. Det skulle krävas orimligt stora ytor för att föda ett super-rovdjur).
                     </div>
                 </div>
             </div>
@@ -223,6 +288,8 @@
     </div>
 
     <!-- 4. Script -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="../auth.js"></script>
     <script>
         if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
