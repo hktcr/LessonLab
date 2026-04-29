@@ -1,118 +1,399 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samspel i Naturen</title>
     <style>
-        /* Modern dark theme slide CSS */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: -apple-system, system-ui, sans-serif; background: #0f172a; color: #f8fafc; overflow: hidden; }
-        .slides-container { display: flex; width: 100%; height: 100%; transition: transform 0.5s ease; }
-        .slide { min-width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box; }
-        
-        /* Typography */
-        h1 { font-size: 4rem; margin-bottom: 1rem; color: #38bdf8; text-align: center; }
-        h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #e2e8f0; }
-        p, li { font-size: 1.8rem; line-height: 1.5; max-width: 800px; color: #cbd5e1; text-align: center; }
-        ul { margin-top: 1rem; text-align: left; }
-        li { margin-bottom: 1rem; }
-        
-        /* Images */
-        .slide-img { max-height: 65vh; max-width: 90vw; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); margin-top: 2rem; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #000000;
+            --surface: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --accent: #34d399; /* Grönt för biologi */
+            --accent-blue: #38bdf8;
+            --accent-red: #ef4444;
+            --text: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 3rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .card.pos-pos { border-left: 4px solid var(--accent); }
+        .card.pos-neu { border-left: 4px solid var(--accent-blue); }
+        .card.pos-neg { border-left: 4px solid var(--accent-red); }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card.pos-pos h3 { color: var(--accent); }
+        .card.pos-neu h3 { color: var(--accent-blue); }
+        .card.pos-neg h3 { color: var(--accent-red); }
+
+        .card ul {
+            list-style: none;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .card ul li::before {
+            content: "•";
+            margin-right: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(56, 189, 248, 0.2));
+            border: 2px solid var(--accent);
+            border-radius: 1rem;
+            padding: 2rem 3rem;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.15);
+            border: 2px solid var(--accent-red);
+            border-radius: 1rem;
+            padding: 2rem 3rem;
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .warning-box .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .shapes-container {
+            display: flex;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .shape-item {
+            text-align: center;
+        }
+
+        .shape-item .shape {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .shape-item .label {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .shape-item .example {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .image-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+        }
+
+        .image-container img {
+            max-height: 60vh;
+            border-radius: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+        }
+
         /* Navigation */
-        .controls { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
-        button { background: #1e293b; color: white; border: 1px solid #334155; padding: 12px 24px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-        button:hover { background: #334155; }
-        button:disabled { opacity: 0.3; cursor: not-allowed; }
-        
-        /* Badge */
-        .badge { background: #0ea5e9; color: white; padding: 4px 12px; border-radius: 99px; font-size: 1.2rem; vertical-align: middle; margin-left: 10px; font-weight: bold; }
-        
-        /* Glossary Grid */
-        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; max-width: 1200px; margin-top: 2rem; }
-        .flashcard { perspective: 1000px; width: 100%; height: 150px; cursor: pointer; }
+        .nav-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-hint kbd {
+            background: var(--card-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        /* Flashcards */
+        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; width: 100%; max-width: 1200px; margin-top: 2rem; }
+        .flashcard { perspective: 1000px; width: 100%; height: 120px; cursor: pointer; }
         .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border-radius: 12px; }
         .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
         .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 12px; padding: 20px; box-sizing: border-box; }
-        .flashcard-front { background: #1e293b; border: 2px solid #334155; font-size: 2rem; font-weight: bold; color: #38bdf8; }
-        .flashcard-back { background: #38bdf8; color: #0f172a; transform: rotateY(180deg); font-size: 1.4rem; font-weight: 500; }
-        
-        /* Progress */
-        .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: #38bdf8; transition: width 0.3s; z-index: 100; }
+        .flashcard-front { background: var(--card-bg); border: 2px solid rgba(255, 255, 255, 0.1); font-size: 1.5rem; font-weight: bold; color: var(--accent-blue); }
+        .flashcard-back { background: var(--accent-blue); color: var(--bg); transform: rotateY(180deg); font-size: 1.2rem; font-weight: 500; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slide {
+                padding: 1.5rem;
+            }
+
+            .image-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-container img {
+                max-width: 90vw;
+                max-height: 40vh;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <div class="progress-bar" id="progress"></div>
-    
-    <div class="slides-container" id="slides">
-        
-        <!-- Slide 1 -->
-        <div class="slide">
+    <div class="presentation">
+        <div class="progress" id="progress"></div>
+        <div class="slide-counter" id="slideCounter">1 / 8</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active" data-slide="1">
             <h1>Samspel i Naturen 🌍</h1>
-            <p>Ekologi Del 2: Symbios, Konkurrens & Nischer</p>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="slide">
-            <h2>Vad är Symbios?</h2>
-            <ul>
-                <li>Betyder <strong>"sam-liv"</strong> (att leva tillsammans).</li>
-                <li>Ett samlingsnamn för tätt samspel mellan två olika arter.</li>
-                <li>Det finns tre huvudtyper av symbios, beroende på vem som vinner och vem som förlorar.</li>
-            </ul>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="slide">
-            <h2>1. Mutualism <span class="badge">+/+</span></h2>
-            <p><strong>Båda vinner!</strong> Ett samarbete där båda arterna drar nytta av varandra.</p>
-            <p style="font-size: 1.4rem; color: #94a3b8;">Exempel: Lavar (Svamp + Alg) eller Mykorrhiza (Träd + Svamp).</p>
-            <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" class="slide-img" alt="Mykorrhiza">
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="slide">
-            <h2>2. Kommensalism <span class="badge">+/0</span></h2>
-            <p><strong>En vinner, den andra bryr sig inte.</strong> Gratis snålskjuts!</p>
-            <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" class="slide-img" alt="Havstulpaner på val">
-        </div>
-
-        <!-- Slide 5 -->
-        <div class="slide">
-            <h2>3. Parasitism <span class="badge">+/-</span></h2>
-            <p><strong>En vinner, den andra förlorar.</strong> Tjuven stjäl energi, men vill inte döda sitt "matbord".</p>
-            <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" class="slide-img" alt="Fästing på hund">
-        </div>
-
-        <!-- Slide 6 -->
-        <div class="slide">
-            <h1 style="color: #fbbf24;">Konkurrens <span class="badge" style="background:#ef4444;">-/-</span></h1>
-            <p>Vad händer när två arter vill ha <strong>exakt samma sak</strong>?</p>
-            <ul>
-                <li>Det blir krig om resurserna (mat, plats, ljus).</li>
-                <li><strong>Det kostar energi för båda!</strong></li>
-                <li>Slutar antingen med att en art dör ut (utkonkurreras)...</li>
-                <li>...eller att de hittar sin egen <strong>Ekologiska Nisch</strong>.</li>
-            </ul>
-        </div>
-
-        <!-- Slide 7 -->
-        <div class="slide">
-            <h1 style="color: #34d399;">Ekologisk Nisch</h1>
-            <p>En arts <strong>"yrke"</strong> eller specialisering i ekosystemet.</p>
-            <div style="background: #1e293b; padding: 30px; border-radius: 12px; margin-top: 2rem; border-left: 6px solid #34d399; text-align: left;">
-                <h2 style="text-align: center;">Exemplet i skogen:</h2>
-                <p style="text-align: left;">🌳 <strong>Talgoxen:</strong> Letar tjocka insekter högst upp i trädtopparna.</p>
-                <p style="text-align: left;">🌿 <strong>Blåmesen:</strong> Letar småkryp längst ut på de tunnaste grenarna.</p>
-                <p style="color: #34d399; font-weight: bold; margin-top: 1rem; text-align: center;">Resultat: De bor i samma träd, men konkurrerar INTE!</p>
+            <p class="subtitle">Ekologi: Symbios, Konkurrens & Nischer</p>
+            <div class="shapes-container" style="margin-top: 3rem;">
+                <div style="font-size: 4rem;">🤝</div>
+                <div style="font-size: 4rem;">⚔️</div>
+                <div style="font-size: 4rem;">🌳</div>
             </div>
         </div>
 
-        <!-- Slide 8 -->
-        <div class="slide" style="align-items: flex-start; justify-content: flex-start; padding-top: 60px; overflow-y: auto;">
-            <h1 style="align-self: center; margin-bottom: 0;">Gloslista V.19</h1>
-            <p style="align-self: center; font-size: 1.4rem;">Klicka på korten för att vända på dem!</p>
-            
+        <!-- Slide 2: Vad är symbios -->
+        <div class="slide" data-slide="2">
+            <h2 style="color: var(--text);">Vad är <span style="color: var(--accent-blue);">Symbios</span>?</h2>
+            <p class="subtitle">"Sam-liv" (att leva tillsammans)</p>
+
+            <div class="highlight-box">
+                Ett samlingsnamn för tätt samspel mellan två olika arter.
+                Beroende på vem som vinner och förlorar pratar vi om tre olika typer!
+            </div>
+        </div>
+
+        <!-- Slide 3: Mutualism -->
+        <div class="slide" data-slide="3">
+            <h2 style="color: var(--accent);">1. Mutualism <span style="font-size: 2rem;">(+/+)</span></h2>
+            <p class="subtitle">Båda vinner! Ett samarbete där båda drar nytta.</p>
+
+            <div class="image-container">
+                <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" alt="Mykorrhiza">
+            </div>
+            <p class="subtitle" style="margin-top: 1rem; font-style: italic;">
+                Exempel: Mykorrhiza (Träd + Svamp) eller Lavar (Svamp + Alg)
+            </p>
+        </div>
+
+        <!-- Slide 4: Kommensalism -->
+        <div class="slide" data-slide="4">
+            <h2 style="color: var(--accent-blue);">2. Kommensalism <span style="font-size: 2rem;">(+/0)</span></h2>
+            <p class="subtitle">En drar nytta, den andra bryr sig inte. Gratis snålskjuts!</p>
+
+            <div class="image-container">
+                <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" alt="Havstulpaner på val">
+            </div>
+        </div>
+
+        <!-- Slide 5: Parasitism -->
+        <div class="slide" data-slide="5">
+            <h2 style="color: var(--accent-red);">3. Parasitism <span style="font-size: 2rem;">(+/-)</span></h2>
+            <p class="subtitle">En vinner, den andra förlorar. Tjuven stjäl energi!</p>
+
+            <div class="image-container">
+                <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" alt="Fästing på hund">
+            </div>
+        </div>
+
+        <!-- Slide 6: Konkurrens -->
+        <div class="slide" data-slide="6">
+            <h2 style="color: var(--accent-red);">Konkurrens <span style="font-size: 2rem;">(-/-)</span></h2>
+            <p class="subtitle">Vad händer när två arter vill ha exakt samma resurs?</p>
+
+            <div class="warning-box">
+                <div class="icon">⚔️</div>
+                Det blir krig! Och krig kostar energi för båda inblandade.
+            </div>
+
+            <div class="content-grid" style="margin-top: 2rem;">
+                <div class="card pos-neg">
+                    <h3>Utgång 1: Utslagning</h3>
+                    <ul>
+                        <li>En art utkonkurrerar den andra</li>
+                        <li>Den svagare arten dör ut (lokalt)</li>
+                    </ul>
+                </div>
+                <div class="card pos-pos">
+                    <h3>Utgång 2: Uppdelning</h3>
+                    <ul>
+                        <li>Arterna hittar varsin Nisch</li>
+                        <li>De slipper slåss!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Ekologisk Nisch -->
+        <div class="slide" data-slide="7">
+            <h2 style="color: var(--accent);">Ekologisk Nisch</h2>
+            <p class="subtitle">En arts specialisering eller "yrke" i ekosystemet.</p>
+
+            <div class="content-grid" style="margin: 2rem 0;">
+                <div class="card pos-pos">
+                    <h3>🌳 Talgoxen</h3>
+                    <ul>
+                        <li>Letar tjocka insekter</li>
+                        <li>Håller till högst upp i trädtopparna</li>
+                    </ul>
+                </div>
+                <div class="card pos-neu">
+                    <h3>🌿 Blåmesen</h3>
+                    <ul>
+                        <li>Letar småkryp</li>
+                        <li>Klättrar längst ut på tunna grenar</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="subtitle" style="margin-top: 2rem;">
+                🎯 Resultat: De bor i samma skog, men konkurrerar INTE!
+            </p>
+        </div>
+
+        <!-- Slide 8: Gloslista -->
+        <div class="slide" data-slide="8" style="justify-content: flex-start; overflow-y: auto;">
+            <h2 style="color: var(--text); margin-bottom: 0;">Gloslista V.19</h2>
+            <p class="subtitle" style="margin-bottom: 2rem;">Klicka på korten för att visa definitionen</p>
+
             <div class="glossary-grid">
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
@@ -176,50 +457,79 @@
                         <div class="flashcard-back">En arts specifika krav och roll i ekosystemet (dess "yrke").</div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-    </div>
-
-    <div class="controls">
-        <button id="prevBtn" onclick="moveSlide(-1)" disabled>Föregående</button>
-        <button id="nextBtn" onclick="moveSlide(1)">Nästa</button>
+        <div class="nav-hint">
+            <kbd>←</kbd> <kbd>→</kbd> eller klicka (Mellanslag) för att navigera
+        </div>
     </div>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        const container = document.getElementById('slides');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const progress = document.getElementById('progress');
+        let currentSlide = 1;
+        const totalSlides = 8;
 
-        function updateUI() {
-            container.style.transform = `translateX(-${currentSlide * 100}%)`;
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === totalSlides - 1;
-            progress.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+        function showSlide(n) {
+            if (n < 1) n = 1;
+            if (n > totalSlides) n = totalSlides;
+
+            currentSlide = n;
+
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            document.querySelector(`[data-slide="${n}"]`).classList.add('active');
+            document.getElementById('slideCounter').textContent = `${n} / ${totalSlides}`;
+            document.getElementById('progress').style.width = `${(n / totalSlides) * 100}%`;
         }
 
-        function moveSlide(dir) {
-            currentSlide += dir;
-            if(currentSlide < 0) currentSlide = 0;
-            if(currentSlide >= totalSlides) currentSlide = totalSlides - 1;
-            updateUI();
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
         }
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if(e.key === 'ArrowRight' || e.key === 'Space') {
-                if(currentSlide < totalSlides - 1) moveSlide(1);
-            } else if(e.key === 'ArrowLeft') {
-                if(currentSlide > 0) moveSlide(-1);
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
             }
         });
 
-        updateUI();
+        // Click navigation
+        document.querySelector('.presentation').addEventListener('click', (e) => {
+            if(e.target.closest('.flashcard')) return; // Allow clicking flashcards without navigating
+
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+
+            if (x < rect.width / 3) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        });
+
+        // Touch navigation
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            const diff = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) prevSlide();
+                else nextSlide();
+            }
+        });
     </script>
 </body>
+
 </html>
