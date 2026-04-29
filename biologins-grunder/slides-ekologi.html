@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samspel i Naturen</title>
+    <title>Samspel i naturen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,22 +16,22 @@
         }
 
         :root {
-            --bg: #000000;
-            --surface: #1a1a1a;
-            --card-bg: #2a2a2a;
-            --accent: #34d399; /* Grönt för biologi */
-            --accent-blue: #38bdf8;
-            --accent-red: #ef4444;
-            --text: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.7);
+            --bg-gradient: radial-gradient(circle at top right, #1e293b, #0f172a);
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --accent-pos: #10b981; /* Emerald */
+            --accent-neu: #0ea5e9; /* Sky */
+            --accent-neg: #f43f5e; /* Rose */
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg);
+            font-family: 'Outfit', system-ui, sans-serif;
+            background: var(--bg-gradient);
             color: var(--text);
             min-height: 100vh;
             overflow: hidden;
+            letter-spacing: 0.02em;
         }
 
         .presentation {
@@ -41,12 +44,12 @@
             display: none;
             width: 100%;
             height: 100%;
-            padding: 3rem;
+            padding: 4rem;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .slide.active {
@@ -56,138 +59,122 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(15px) scale(0.98);
             }
-
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
         h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+            background: linear-gradient(135deg, var(--accent-pos), var(--accent-neu));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.1;
         }
 
         h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
             font-weight: 600;
             margin-bottom: 2rem;
+            color: var(--text);
         }
 
         .subtitle {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
             color: var(--text-muted);
             margin-bottom: 2rem;
+            font-weight: 300;
         }
 
         .content-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1200px;
             width: 100%;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 1rem;
-            padding: 2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 1.2rem;
+            padding: 2.5rem;
             text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .card.pos-pos { border-left: 4px solid var(--accent); }
-        .card.pos-neu { border-left: 4px solid var(--accent-blue); }
-        .card.pos-neg { border-left: 4px solid var(--accent-red); }
+        .card.pos-pos { border-top: 4px solid var(--accent-pos); }
+        .card.pos-neu { border-top: 4px solid var(--accent-neu); }
+        .card.pos-neg { border-top: 4px solid var(--accent-neg); }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
         }
 
-        .card.pos-pos h3 { color: var(--accent); }
-        .card.pos-neu h3 { color: var(--accent-blue); }
-        .card.pos-neg h3 { color: var(--accent-red); }
+        .card.pos-pos h3 { color: var(--accent-pos); }
+        .card.pos-neu h3 { color: var(--accent-neu); }
+        .card.pos-neg h3 { color: var(--accent-neg); }
 
         .card ul {
             list-style: none;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text);
+        }
+
+        .card ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .card ul li::before {
             content: "•";
-            margin-right: 0.5rem;
+            position: absolute;
+            left: 0;
             color: var(--text-muted);
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(56, 189, 248, 0.2));
-            border: 2px solid var(--accent);
-            border-radius: 1rem;
-            padding: 2rem 3rem;
-            font-size: clamp(1.3rem, 3vw, 2rem);
+            background: rgba(16, 185, 129, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 1.2rem;
+            padding: 2.5rem 3.5rem;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
             max-width: 900px;
             margin: 2rem auto;
+            color: var(--text);
+            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
         }
 
         .warning-box {
-            background: rgba(239, 68, 68, 0.15);
-            border: 2px solid var(--accent-red);
-            border-radius: 1rem;
-            padding: 2rem 3rem;
-            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            background: rgba(244, 63, 94, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            border-radius: 1.2rem;
+            padding: 2.5rem 3.5rem;
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
             max-width: 900px;
             margin: 2rem auto;
-        }
-
-        .warning-box .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .shapes-container {
-            display: flex;
-            gap: 3rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .shape-item {
-            text-align: center;
-        }
-
-        .shape-item .shape {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .shape-item .label {
-            font-size: 1.2rem;
-            color: var(--accent);
-        }
-
-        .shape-item .example {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-style: italic;
+            color: var(--text);
+            box-shadow: 0 10px 30px -10px rgba(244, 63, 94, 0.2);
         }
 
         .image-container {
@@ -198,10 +185,11 @@
         }
 
         .image-container img {
-            max-height: 60vh;
-            border-radius: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+            max-height: 55vh;
+            border-radius: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
+            object-fit: cover;
         }
 
         /* Navigation */
@@ -211,65 +199,110 @@
             left: 50%;
             transform: translateX(-50%);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 1rem;
+            opacity: 0.5;
+            transition: opacity 0.3s;
         }
 
+        .nav-hint:hover { opacity: 1; }
+
         .nav-hint kbd {
-            background: var(--card-bg);
-            padding: 0.3rem 0.8rem;
-            border-radius: 0.3rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.4rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: inherit;
         }
 
         .progress {
             position: fixed;
             top: 0;
             left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
-            transition: width 0.3s ease;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-pos), var(--accent-neu));
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px var(--accent-neu);
         }
 
         .slide-counter {
             position: fixed;
-            top: 1.5rem;
-            right: 2rem;
-            font-size: 1rem;
+            top: 2rem;
+            right: 2.5rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            font-family: monospace;
+            font-weight: 600;
         }
 
         /* Flashcards */
-        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; width: 100%; max-width: 1200px; margin-top: 2rem; }
-        .flashcard { perspective: 1000px; width: 100%; height: 120px; cursor: pointer; }
-        .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border-radius: 12px; }
-        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
-        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 12px; padding: 20px; box-sizing: border-box; }
-        .flashcard-front { background: var(--card-bg); border: 2px solid rgba(255, 255, 255, 0.1); font-size: 1.5rem; font-weight: bold; color: var(--accent-blue); }
-        .flashcard-back { background: var(--accent-blue); color: var(--bg); transform: rotateY(180deg); font-size: 1.2rem; font-weight: 500; }
+        .glossary-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 1.5rem; 
+            width: 100%; 
+            max-width: 1200px; 
+            margin-top: 2rem; 
+            padding-bottom: 3rem;
+        }
+        .flashcard { 
+            perspective: 1000px; 
+            width: 100%; 
+            height: 180px; 
+            cursor: pointer; 
+        }
+        .flashcard-inner { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            text-align: center; 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+            transform-style: preserve-3d; 
+            border-radius: 1.2rem; 
+        }
+        .flashcard.flipped .flashcard-inner { 
+            transform: rotateY(180deg); 
+        }
+        .flashcard-front, .flashcard-back { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            backface-visibility: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 1.2rem; 
+            padding: 1.5rem; 
+            box-sizing: border-box; 
+        }
+        .flashcard-front { 
+            background: var(--card-bg); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            font-size: 1.6rem; 
+            font-weight: 600; 
+            color: var(--accent-neu); 
+            backdrop-filter: blur(10px);
+        }
+        .flashcard-back { 
+            background: var(--accent-neu); 
+            color: #0f172a; 
+            transform: rotateY(180deg); 
+            font-size: clamp(0.9rem, 1.5vw, 1.05rem); 
+            font-weight: 500; 
+            line-height: 1.5;
+            box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.4);
+            overflow-y: auto;
+            text-align: left;
+            align-items: flex-start;
+        }
 
         /* Mobile */
         @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .slide {
-                padding: 1.5rem;
-            }
-
-            .image-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .image-container img {
-                max-width: 90vw;
-                max-height: 40vh;
-            }
+            .content-grid { grid-template-columns: 1fr; }
+            .slide { padding: 2rem; }
+            .image-container { flex-direction: column; align-items: center; }
+            .image-container img { max-width: 90vw; max-height: 40vh; }
         }
     </style>
 </head>
@@ -281,13 +314,13 @@
 
         <!-- Slide 1: Title -->
         <div class="slide active" data-slide="1">
-            <h1>Samspel i Naturen</h1>
-            <p class="subtitle">Ekologi: Symbios, Konkurrens & Nischer</p>
+            <h1>Samspel i naturen</h1>
+            <p class="subtitle">Ekologi: symbios, konkurrens och nischer</p>
         </div>
 
         <!-- Slide 2: Vad är symbios -->
         <div class="slide" data-slide="2">
-            <h2 style="color: var(--text);">Vad är <span style="color: var(--accent-blue);">Symbios</span>?</h2>
+            <h2>Vad är <span style="color: var(--accent-neu);">symbios</span>?</h2>
             <p class="subtitle">Från grekiskans <em>syn</em> (tillsammans) och <em>bios</em> (liv)</p>
 
             <div class="highlight-box">
@@ -298,65 +331,65 @@
 
         <!-- Slide 3: Mutualism -->
         <div class="slide" data-slide="3">
-            <h2 style="color: var(--accent);">1. Mutualism <span style="font-size: 2rem;">(+/+)</span></h2>
+            <h2 style="color: var(--accent-pos);">1. Mutualism <span style="font-weight: 300; opacity: 0.8;">(+/+)</span></h2>
             <p class="subtitle">Båda parter gynnas av samarbetet.</p>
 
             <div class="image-container">
                 <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" alt="Mykorrhiza">
             </div>
-            <p class="subtitle" style="margin-top: 1rem; font-style: italic;">
-                Exempel: Mykorrhiza (Träd + Svamp) eller Lavar (Svamp + Alg)
+            <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
+                Exempel: mykorrhiza (träd och svamp) eller lavar (svamp och alg)
             </p>
         </div>
 
         <!-- Slide 4: Kommensalism -->
         <div class="slide" data-slide="4">
-            <h2 style="color: var(--accent-blue);">2. Kommensalism <span style="font-size: 2rem;">(+/0)</span></h2>
+            <h2 style="color: var(--accent-neu);">2. Kommensalism <span style="font-weight: 300; opacity: 0.8;">(+/0)</span></h2>
             <p class="subtitle">En part drar nytta, den andra påverkas varken positivt eller negativt.</p>
 
             <div class="image-container">
                 <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" alt="Havstulpaner på val">
             </div>
-            <p class="subtitle" style="margin-top: 1rem; font-style: italic;">
-                Exempel: Havstulpaner som får biologisk snålskjuts av valar.
+            <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
+                Exempel: havstulpaner som får biologisk snålskjuts av valar.
             </p>
         </div>
 
         <!-- Slide 5: Parasitism -->
         <div class="slide" data-slide="5">
-            <h2 style="color: var(--accent-red);">3. Parasitism <span style="font-size: 2rem;">(+/-)</span></h2>
+            <h2 style="color: var(--accent-neg);">3. Parasitism <span style="font-weight: 300; opacity: 0.8;">(+/-)</span></h2>
             <p class="subtitle">En part gynnas på den andres bekostnad.</p>
 
             <div class="image-container">
                 <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" alt="Fästing på hund">
             </div>
-            <p class="subtitle" style="margin-top: 1rem; font-style: italic;">
-                Exempel: Parasiten utvinner energi från värdorganismen.
+            <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
+                Exempel: fästingar suger blod för att utvinna energi från värdorganismen.
             </p>
         </div>
 
         <!-- Slide 6: Konkurrens -->
         <div class="slide" data-slide="6">
-            <h2 style="color: var(--accent-red);">Konkurrens <span style="font-size: 2rem;">(-/-)</span></h2>
+            <h2 style="color: var(--accent-neg);">Konkurrens <span style="font-weight: 300; opacity: 0.8;">(-/-)</span></h2>
             <p class="subtitle">När två arter utnyttjar exakt samma begränsade resurs.</p>
 
             <div class="warning-box">
-                Detta leder till konflikt.
-                Den direkta konkurrensen kostar energi för båda inblandade parter.
+                Detta leder till en biologisk konflikt.
+                Den direkta konkurrensen kostar livsviktig energi för båda parter.
             </div>
 
-            <div class="content-grid" style="margin-top: 2rem;">
+            <div class="content-grid" style="margin-top: 3rem;">
                 <div class="card pos-neg">
-                    <h3>Utgång 1: Utslagning</h3>
+                    <h3>Utgång 1: Konkurrensuteslutning</h3>
                     <ul>
                         <li>Den ena arten utkonkurrerar den andra</li>
                         <li>Den svagare arten försvinner lokalt</li>
                     </ul>
                 </div>
                 <div class="card pos-pos">
-                    <h3>Utgång 2: Uppdelning</h3>
+                    <h3>Utgång 2: Nischuppdelning</h3>
                     <ul>
-                        <li>Arterna anpassar sig till olika nischer</li>
+                        <li>Arterna anpassar sig för att undvika varandra</li>
                         <li>Den direkta konkurrensen minskar</li>
                     </ul>
                 </div>
@@ -365,104 +398,104 @@
 
         <!-- Slide 7: Ekologisk Nisch -->
         <div class="slide" data-slide="7">
-            <h2 style="color: var(--accent);">Ekologisk Nisch</h2>
-            <p class="subtitle">En arts specialisering eller "yrke" i ekosystemet.</p>
+            <h2 style="color: var(--accent-pos);">Ekologisk nisch</h2>
+            <p class="subtitle">En arts specialisering eller roll i ekosystemet.</p>
 
-            <div class="content-grid" style="margin: 2rem 0;">
+            <div class="content-grid" style="margin: 3rem 0;">
                 <div class="card pos-pos">
                     <h3>Talgoxen</h3>
                     <ul>
-                        <li>Tyngre kropp</li>
-                        <li>Födosöker på tjockare grenar och lägre ner i trädkronan</li>
+                        <li>Större och tyngre kropp</li>
+                        <li>Födosöker på tjockare grenar, ofta lägre ner i trädkronan</li>
                     </ul>
                 </div>
                 <div class="card pos-neu">
                     <h3>Blåmesen</h3>
                     <ul>
-                        <li>Lättare kropp</li>
-                        <li>Födosöker på tunna kvistar högt upp i trädkronan</li>
+                        <li>Mindre och lättare kropp</li>
+                        <li>Födosöker längst ut på tunna kvistar i trädkronan</li>
                     </ul>
                 </div>
             </div>
 
             <p class="subtitle" style="margin-top: 2rem;">
-                Resultat: De lever i samma skog, men undviker direkt konkurrens.
+                Resultat: de lever i samma skog, men har delat upp resurserna.
             </p>
         </div>
 
         <!-- Slide 8: Gloslista -->
         <div class="slide" data-slide="8" style="justify-content: flex-start; overflow-y: auto;">
-            <h2 style="color: var(--text); margin-bottom: 0;">Gloslista V.19</h2>
-            <p class="subtitle" style="margin-bottom: 2rem;">Klicka på korten för att visa definitionen</p>
+            <h2 style="margin-bottom: 0;">Gloslista V.19</h2>
+            <p class="subtitle" style="margin-bottom: 3rem;">Klicka på korten för att visa definitionen</p>
 
             <div class="glossary-grid">
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Biomassa</div>
-                        <div class="flashcard-back">Den sammanlagda vikten av allt levande i ett ekosystem.</div>
+                        <div class="flashcard-front">biomassa</div>
+                        <div class="flashcard-back">Den sammanlagda vikten av allt levande i ett ekosystem (t.ex. hur mycket alla växter och djur i en skog väger tillsammans).</div>
                     </div>
                 </div>
                 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Näringspyramid</div>
-                        <div class="flashcard-back">Visar att energin och biomassan minskar för varje steg upp i näringskedjan.</div>
+                        <div class="flashcard-front">näringspyramid</div>
+                        <div class="flashcard-back">En modell som visar att energin (och biomassan) minskar för varje steg i näringskedjan. (Eftersom bara ca 10 % av energin går vidare blir pyramiden smalare i toppen, vilket betyder att det finns färre toppkonsumenter).</div>
                     </div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Bioackumulation</div>
-                        <div class="flashcard-back">När miljögifter lagras och koncentreras högre upp i näringskedjan.</div>
+                        <div class="flashcard-front">bioackumulation</div>
+                        <div class="flashcard-back">När miljögifter lagras i kroppen eftersom de inte kan brytas ner. Koncentrationen (halten) ökar därför ju högre upp i näringskedjan man kommer.</div>
                     </div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Symbios</div>
-                        <div class="flashcard-back">Biologisk term för samlevnad mellan organismer av olika arter.</div>
+                        <div class="flashcard-front">symbios</div>
+                        <div class="flashcard-back">Ett samlingsnamn för när olika arter lever i ett tätt och långvarigt samspel med varandra.</div>
                     </div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Mutualism</div>
-                        <div class="flashcard-back">Symbios där båda parter gynnas (+/+).</div>
+                        <div class="flashcard-front">mutualism</div>
+                        <div class="flashcard-back">En typ av symbios där alla inblandade arter vinner på samarbetet (t.ex. mykorrhiza mellan träd och svamp).</div>
                     </div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Kommensalism</div>
-                        <div class="flashcard-back">Symbios där en part gynnas utan att den andra påverkas (+/0).</div>
+                        <div class="flashcard-front">kommensalism</div>
+                        <div class="flashcard-back">En typ av symbios där den ena arten vinner på det, medan den andra är helt opåverkad (t.ex. havstulpaner som får åka med på en val).</div>
                     </div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Parasitism</div>
-                        <div class="flashcard-back">Symbios där parasiten gynnas på värdorganismens bekostnad (+/-).</div>
+                        <div class="flashcard-front">parasitism</div>
+                        <div class="flashcard-back">En typ av symbios där den ena arten vinner, medan den andra utnyttjas och tar skada (t.ex. fästing och hund).</div>
                     </div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Konkurrens</div>
-                        <div class="flashcard-back">När organismer tävlar om samma begränsade resurs (-/-).</div>
+                        <div class="flashcard-front">konkurrens</div>
+                        <div class="flashcard-back">När organismer tävlar om samma begränsade resurser i naturen (t.ex. mat, vatten eller boplatser).</div>
                     </div>
                 </div>
 
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
-                        <div class="flashcard-front">Ekologisk nisch</div>
-                        <div class="flashcard-back">En arts specifika krav och roll i ekosystemet (dess "yrke").</div>
+                        <div class="flashcard-front">ekologisk nisch</div>
+                        <div class="flashcard-back">En arts "yrke" eller roll i ekosystemet (t.ex. vad den äter och hur den lever). Två arter kan inte ha exakt samma nisch på samma plats, för då konkurrerar de tills den ena slås ut.</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="nav-hint">
-            <kbd>←</kbd> <kbd>→</kbd> eller klicka (Mellanslag) för att navigera
+            <kbd>←</kbd> <kbd>→</kbd> eller klicka för att navigera
         </div>
     </div>
 
@@ -505,7 +538,7 @@
 
         // Click navigation
         document.querySelector('.presentation').addEventListener('click', (e) => {
-            if(e.target.closest('.flashcard')) return; // Allow clicking flashcards without navigating
+            if(e.target.closest('.flashcard')) return;
 
             const rect = e.currentTarget.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -516,21 +549,6 @@
                 nextSlide();
             }
         });
-
-        // Touch navigation
-        let touchStartX = 0;
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            const diff = e.changedTouches[0].clientX - touchStartX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) prevSlide();
-                else nextSlide();
-            }
-        });
     </script>
 </body>
-
 </html>
