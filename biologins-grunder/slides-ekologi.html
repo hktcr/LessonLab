@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Samspel i Naturen</title>
+    <style>
+        /* Modern dark theme slide CSS */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: -apple-system, system-ui, sans-serif; background: #0f172a; color: #f8fafc; overflow: hidden; }
+        .slides-container { display: flex; width: 100%; height: 100%; transition: transform 0.5s ease; }
+        .slide { min-width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box; }
+        
+        /* Typography */
+        h1 { font-size: 4rem; margin-bottom: 1rem; color: #38bdf8; text-align: center; }
+        h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #e2e8f0; }
+        p, li { font-size: 1.8rem; line-height: 1.5; max-width: 800px; color: #cbd5e1; text-align: center; }
+        ul { margin-top: 1rem; text-align: left; }
+        li { margin-bottom: 1rem; }
+        
+        /* Images */
+        .slide-img { max-height: 65vh; max-width: 90vw; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); margin-top: 2rem; }
+        
+        /* Navigation */
+        .controls { position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+        button { background: #1e293b; color: white; border: 1px solid #334155; padding: 12px 24px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #334155; }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+        
+        /* Badge */
+        .badge { background: #0ea5e9; color: white; padding: 4px 12px; border-radius: 99px; font-size: 1.2rem; vertical-align: middle; margin-left: 10px; font-weight: bold; }
+        
+        /* Glossary Grid */
+        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; max-width: 1200px; margin-top: 2rem; }
+        .flashcard { perspective: 1000px; width: 100%; height: 150px; cursor: pointer; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border-radius: 12px; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 12px; padding: 20px; box-sizing: border-box; }
+        .flashcard-front { background: #1e293b; border: 2px solid #334155; font-size: 2rem; font-weight: bold; color: #38bdf8; }
+        .flashcard-back { background: #38bdf8; color: #0f172a; transform: rotateY(180deg); font-size: 1.4rem; font-weight: 500; }
+        
+        /* Progress */
+        .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: #38bdf8; transition: width 0.3s; z-index: 100; }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progress"></div>
+    
+    <div class="slides-container" id="slides">
+        
+        <!-- Slide 1 -->
+        <div class="slide">
+            <h1>Samspel i Naturen 🌍</h1>
+            <p>Ekologi Del 2: Symbios, Konkurrens & Nischer</p>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <h2>Vad är Symbios?</h2>
+            <ul>
+                <li>Betyder <strong>"sam-liv"</strong> (att leva tillsammans).</li>
+                <li>Ett samlingsnamn för tätt samspel mellan två olika arter.</li>
+                <li>Det finns tre huvudtyper av symbios, beroende på vem som vinner och vem som förlorar.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <h2>1. Mutualism <span class="badge">+/+</span></h2>
+            <p><strong>Båda vinner!</strong> Ett samarbete där båda arterna drar nytta av varandra.</p>
+            <p style="font-size: 1.4rem; color: #94a3b8;">Exempel: Lavar (Svamp + Alg) eller Mykorrhiza (Träd + Svamp).</p>
+            <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" class="slide-img" alt="Mykorrhiza">
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <h2>2. Kommensalism <span class="badge">+/0</span></h2>
+            <p><strong>En vinner, den andra bryr sig inte.</strong> Gratis snålskjuts!</p>
+            <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" class="slide-img" alt="Havstulpaner på val">
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <h2>3. Parasitism <span class="badge">+/-</span></h2>
+            <p><strong>En vinner, den andra förlorar.</strong> Tjuven stjäl energi, men vill inte döda sitt "matbord".</p>
+            <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" class="slide-img" alt="Fästing på hund">
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <h1 style="color: #fbbf24;">Konkurrens <span class="badge" style="background:#ef4444;">-/-</span></h1>
+            <p>Vad händer när två arter vill ha <strong>exakt samma sak</strong>?</p>
+            <ul>
+                <li>Det blir krig om resurserna (mat, plats, ljus).</li>
+                <li><strong>Det kostar energi för båda!</strong></li>
+                <li>Slutar antingen med att en art dör ut (utkonkurreras)...</li>
+                <li>...eller att de hittar sin egen <strong>Ekologiska Nisch</strong>.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <h1 style="color: #34d399;">Ekologisk Nisch</h1>
+            <p>En arts <strong>"yrke"</strong> eller specialisering i ekosystemet.</p>
+            <div style="background: #1e293b; padding: 30px; border-radius: 12px; margin-top: 2rem; border-left: 6px solid #34d399; text-align: left;">
+                <h2 style="text-align: center;">Exemplet i skogen:</h2>
+                <p style="text-align: left;">🌳 <strong>Talgoxen:</strong> Letar tjocka insekter högst upp i trädtopparna.</p>
+                <p style="text-align: left;">🌿 <strong>Blåmesen:</strong> Letar småkryp längst ut på de tunnaste grenarna.</p>
+                <p style="color: #34d399; font-weight: bold; margin-top: 1rem; text-align: center;">Resultat: De bor i samma träd, men konkurrerar INTE!</p>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide" style="align-items: flex-start; justify-content: flex-start; padding-top: 60px; overflow-y: auto;">
+            <h1 style="align-self: center; margin-bottom: 0;">Gloslista V.19</h1>
+            <p style="align-self: center; font-size: 1.4rem;">Klicka på korten för att vända på dem!</p>
+            
+            <div class="glossary-grid">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Biomassa</div>
+                        <div class="flashcard-back">Den sammanlagda vikten av allt levande i ett ekosystem.</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Näringspyramid</div>
+                        <div class="flashcard-back">Visar att energin och biomassan minskar (10%-regeln) för varje steg upp i näringskedjan.</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Bioackumulation</div>
+                        <div class="flashcard-back">När miljögifter lagras och koncentreras högre upp i näringskedjan.</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Symbios</div>
+                        <div class="flashcard-back">Samlingsnamn för tätt samspel mellan två olika arter ("sam-liv").</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Mutualism</div>
+                        <div class="flashcard-back">Symbios där båda arterna vinner (+/+) (T.ex. Mykorrhiza).</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Kommensalism</div>
+                        <div class="flashcard-back">Symbios där en art drar nytta, och den andra inte bryr sig (+/0).</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Parasitism</div>
+                        <div class="flashcard-back">Symbios där en art vinner och den andra förlorar energi (+/-).</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Konkurrens</div>
+                        <div class="flashcard-back">När arter tävlar om samma resurs. Kostar energi för båda (-/-).</div>
+                    </div>
+                </div>
+
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Ekologisk nisch</div>
+                        <div class="flashcard-back">En arts specifika krav och roll i ekosystemet (dess "yrke").</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="moveSlide(-1)" disabled>Föregående</button>
+        <button id="nextBtn" onclick="moveSlide(1)">Nästa</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const container = document.getElementById('slides');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progress = document.getElementById('progress');
+
+        function updateUI() {
+            container.style.transform = `translateX(-${currentSlide * 100}%)`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            progress.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+        }
+
+        function moveSlide(dir) {
+            currentSlide += dir;
+            if(currentSlide < 0) currentSlide = 0;
+            if(currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            updateUI();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' || e.key === 'Space') {
+                if(currentSlide < totalSlides - 1) moveSlide(1);
+            } else if(e.key === 'ArrowLeft') {
+                if(currentSlide > 0) moveSlide(-1);
+            }
+        });
+
+        updateUI();
+    </script>
+</body>
+</html>
