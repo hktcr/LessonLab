@@ -420,7 +420,7 @@
             <p class="subtitle">Båda parter gynnas av samarbetet.</p>
 
             <div class="image-container">
-                <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" alt="Mykorrhiza">
+                <img src="../assets/ekologi/mutualism_mykorrhiza_1777449230838.png" alt="Mykorrhiza" style="cursor: pointer;" onclick="openImageModal(this.src, '../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png')">
             </div>
             <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                 Exempel: mykorrhiza (träd och svamp) eller lavar (svamp och alg)
@@ -433,7 +433,7 @@
             <p class="subtitle">En part drar nytta, den andra påverkas varken positivt eller negativt.</p>
 
             <div class="image-container">
-                <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" alt="Havstulpaner på val">
+                <img src="../assets/ekologi/kommensalism_whale_1777449245313.png" alt="Havstulpaner på val" style="cursor: pointer;" onclick="openImageModal(this.src, '../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png')">
             </div>
             <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                 Exempel: havstulpaner som får biologisk snålskjuts av valar.
@@ -446,7 +446,7 @@
             <p class="subtitle">En part gynnas på den andres bekostnad.</p>
 
             <div class="image-container">
-                <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" alt="Fästing på hund">
+                <img src="../assets/ekologi/parasitism_tick_1777449259247.png" alt="Fästing på hund" style="cursor: pointer;" onclick="openImageModal(this.src, '../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png')">
             </div>
             <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                 Exempel: fästingar suger blod för att utvinna energi från värdorganismen.
@@ -644,6 +644,19 @@
         </div>
     </div>
 
+
+    <div id="imageModal" class="modal" onclick="if(event.target === this) closeImageModal()">
+        <button class="modal-close" onclick="closeImageModal()">✕</button>
+        <div class="modal-content" style="max-width: 90vw; display: flex; flex-direction: column; align-items: center;">
+            <img id="modalImg" src="" style="max-width: 100%; max-height: 75vh; border-radius: 1.2rem; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6); object-fit: contain;">
+            <div style="margin-top: 1.5rem;">
+                <button id="toggleErrorBtn" class="fullscreen-btn" style="position: relative; right: auto; bottom: auto; margin: 0 auto; width: auto; padding: 0.8rem 1.5rem; font-family: inherit; font-size: 1.1rem; gap: 0.5rem; border-radius: 2rem;" onclick="toggleImageError()">
+                    <span>🔍 Granska AI-felen (Hypotesmaskin)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let currentSlide = 1;
         const totalSlides = 8;
@@ -707,6 +720,50 @@
             document.getElementById('flashcardModal').classList.add('active');
         }
 
+
+        let currentAnnotatedSrc = "";
+        let currentOriginalSrc = "";
+        let showingError = false;
+
+        function openImageModal(originalSrc, annotatedSrc) {
+            currentOriginalSrc = originalSrc;
+            currentAnnotatedSrc = annotatedSrc;
+            showingError = false;
+            
+            document.getElementById('modalImg').src = originalSrc;
+            document.getElementById('imageModal').classList.add('active');
+            
+            const btn = document.getElementById('toggleErrorBtn');
+            btn.innerHTML = '<span>🔍 Granska AI-felen (Hypotesmaskin)</span>';
+            btn.style.color = 'var(--text)';
+            btn.style.borderColor = 'rgba(255,255,255,0.2)';
+            btn.style.background = 'rgba(255, 255, 255, 0.1)';
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        function toggleImageError() {
+            showingError = !showingError;
+            const img = document.getElementById('modalImg');
+            const btn = document.getElementById('toggleErrorBtn');
+            
+            if (showingError) {
+                img.src = currentAnnotatedSrc;
+                btn.innerHTML = '<span>👁️ Dölj granskningsmarkeringar</span>';
+                btn.style.color = 'var(--accent-neg)';
+                btn.style.borderColor = 'var(--accent-neg)';
+                btn.style.background = 'rgba(244, 63, 94, 0.1)';
+            } else {
+                img.src = currentOriginalSrc;
+                btn.innerHTML = '<span>🔍 Granska AI-felen (Hypotesmaskin)</span>';
+                btn.style.color = 'var(--text)';
+                btn.style.borderColor = 'rgba(255,255,255,0.2)';
+                btn.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        }
+
         function closeModal() {
             document.getElementById('flashcardModal').classList.remove('active');
         }
@@ -714,6 +771,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeModal();
+                closeImageModal();
             }
         });
 
