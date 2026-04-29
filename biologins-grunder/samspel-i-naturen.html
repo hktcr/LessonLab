@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samspel i naturen — LessonLab</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus>
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🌍 Genomgångsmanus: Samspel i Naturen</h1>
+            <div class="lesson-meta">
+                <span>⏱️ 50 min</span>
+                <span>✏️ Projektor + Whiteboard</span>
+                <span>📖 Ekologi Lektion 5</span>
+            </div>
+            <div style="margin-top: 15px;">
+                <a href="slides-ekologi.html" target="_blank" style="background: #38bdf8; color: #0f172a; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none; display: inline-block;">📺 Öppna Elev-Slidedeck i ny flik</a>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-1">
+            <div class="section-header" onclick="toggleSection('sec-1')">
+                <span class="section-title">🌍 Del 1: Inledning & Återkoppling <span style="color: var(--text-muted); font-size: 0.85rem;">(5 min)</span></span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Okej hörni! Vi har byggt näringsvävar och vi har pratar om hur energin minskar i pyramiden. Idag ska vi titta på den sociala sidan av ekologin: Hur arter beter sig mot varandra."
+                    </div>
+                    <div class="pause-block">
+                        🗣 Fonologisk check: "Producent, konsument, nedbrytare — surra med grannen i 30 sekunder. Vem gör vad?"<br>
+                        <em>(Vänta. Lyssna in.)</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-2">
+            <div class="section-header" onclick="toggleSection('sec-2')">
+                <span class="section-title">🤝 Del 2: Symbios (Elev-Slidedeck) <span style="color: var(--text-muted); font-size: 0.85rem;">(15 min)</span></span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "I naturen kallas det täta samspelet mellan arter för <strong>Symbios</strong>. Det betyder bokstavligen 'sam-liv'."
+                    </div>
+                    
+                    <p><em>(Byt till Slide 3 i Elev-Slidedecket: Mutualism)</em></p>
+                    <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" style="width:100%; max-width:400px; border-radius:8px;">
+                    <div class="say-block">
+                        "Det första är <strong>Mutualism</strong>. Båda vinner! Titta på mykorrhizan under marken här. Trädet och svampen samarbetar. <br><br><strong>Källkritik-fråga:</strong> Den här bilden är AI-genererad för att visa principen. Men vad är det biologiska felet?"
+                    </div>
+                    <div class="pause-block">
+                        ⏸ Låt elever gissa felen. <em>(Svar: Svamptrådarna lyser inte, och de är oftast mikroskopiskt tunna.)</em>
+                    </div>
+
+                    <p><em>(Byt till Slide 4: Kommensalism)</em></p>
+                    <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" style="width:100%; max-width:400px; border-radius:8px;">
+                    <div class="say-block">
+                        "Nummer två är <strong>Kommensalism</strong>. En drar nytta, den andra bryr sig inte. Som havstulpaner på en val. De får gratis skjuts!<br><br><strong>Källkritik-fråga:</strong> Varför har AI:n gjort fel här? Varför sitter de utspridda?"
+                    </div>
+                    <div class="pause-block">
+                        ⏸ Låt elever gissa. <em>(Svar: I verkligheten sätter de sig i klungor längst fram på hakan/fenorna för att fånga plankton i vattenströmmen.)</em>
+                    </div>
+
+                    <p><em>(Byt till Slide 5: Parasitism)</em></p>
+                    <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" style="width:100%; max-width:400px; border-radius:8px;">
+                    <div class="say-block">
+                        "Sista är <strong>Parasitism</strong>. Tjuven! En vinner, en förlorar energi.<br><br><strong>Källkritik-fråga:</strong> Fästingar är spindeldjur. Vad är misstänkt med AI-bilden?"
+                    </div>
+                    <div class="pause-block">
+                        ⏸ Låt elever gissa. <em>(Svar: Svårt att se exakt 8 ben, och hullingarna (mundelarna) är inte nerborrade i huden som de ska vara.)</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-3">
+            <div class="section-header" onclick="toggleSection('sec-3')">
+                <span class="section-title">⚔️ Del 3: Konkurrens & Nisch <span style="color: var(--text-muted); font-size: 0.85rem;">(10 min)</span></span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><em>(Byt till Slide 6 & 7 i Elev-Slidedecket)</em></p>
+                    <div class="say-block">
+                        "Om två arter vill ha <strong>exakt samma mat</strong> på exakt samma plats blir det <strong>konkurrens</strong>. Det är ett krig som kostar energi för båda. <br><br>Hur löser fåglarna i skogen detta? Genom att hitta en egen <strong>Ekologisk Nisch</strong>. Sitt eget yrke."
+                    </div>
+                    
+                    <div class="draw-block">
+                        <p class="pen-color pen-black">⬛ Rita med Svart penna — Taveldisposition:</p>
+                        <p>Rita en snabb trädskiss. Skriv "Talgoxe" uppe i toppen. Skriv "Blåmes" ute på en tunn gren.</p>
+                    </div>
+
+                    <div class="say-block">
+                        "Talgoxen och blåmesen bor i samma träd, men de letar mat på helt olika grenar. De har delat upp spelplanen för att slippa slåss!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-4">
+            <div class="section-header" onclick="toggleSection('sec-4')">
+                <span class="section-title">📱 Del 4: Fältteknik-demo <span style="color: var(--text-muted); font-size: 0.85rem;">(15 min)</span></span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nästa vecka ska vi ut i fält. Vi ska ta reda på vem som bor på skolgården och vem som bor vid Söderåsen. Till vår hjälp har vi tekniken."
+                    </div>
+                    <ul class="checklist">
+                        <li>Visa <strong>Merlin Bird ID</strong> (Ljud-ID för fåglar).</li>
+                        <li>Visa <strong>Google Lens</strong> (Bild-ID för växter och insekter).</li>
+                    </ul>
+                    <div class="say-block">
+                        "Kom ihåg: Google Lens är en <strong>hypotesmaskin</strong>. Den ger er en kvalificerad gissning, men precis som vi just granskade AI-bilderna, måste ni använda hjärnan för att avgöra om appen har rätt."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
