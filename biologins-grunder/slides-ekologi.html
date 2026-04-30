@@ -394,16 +394,58 @@
 <body>
     <div class="presentation">
         <div class="progress" id="progress"></div>
-        <div class="slide-counter" id="slideCounter">1 / 8</div>
+        <div class="slide-counter" id="slideCounter">1 / 9</div>
 
-        <!-- Slide 1: Title -->
+        <!-- Slide 1: Repetition -->
         <div class="slide active" data-slide="1">
+            <h1>1. Repetition</h1>
+            <p class="subtitle">Nyckelbegrepp från i tisdags</p>
+            
+            <div class="glossary-grid" style="margin-top: 4rem;">
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">biomassa</div>
+                        <div class="flashcard-back">Den sammanlagda vikten av allt levande i ett ekosystem (t.ex. hur mycket alla växter och djur i en skog väger tillsammans).</div>
+                    </div>
+                </div>
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">näringspyramid</div>
+                        <div class="flashcard-back">En modell som visar att energin (och biomassan) minskar för varje steg i näringskedjan. (Eftersom bara ca 10 % av energin går vidare blir pyramiden smalare i toppen, vilket betyder att det finns färre toppkonsumenter).</div>
+                    </div>
+                </div>
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">bioackumulation</div>
+                        <div class="flashcard-back">När miljögifter lagras i kroppen eftersom de inte kan brytas ner. Koncentrationen (halten) ökar därför ju högre upp i näringskedjan man kommer.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Title -->
+        <div class="slide" data-slide="2">
             <h1>Samspel i naturen</h1>
             <p class="subtitle">Ekologi: symbios, konkurrens och nischer</p>
         </div>
 
-        <!-- Slide 2: Vad är symbios -->
-        <div class="slide" data-slide="2">
+        <!-- Slide 3: Vad är symbios -->
+        <div class="slide" data-slide="3">
             <h2>Vad är <span style="color: var(--accent-neu);">symbios</span>?</h2>
             <p class="subtitle">Från grekiskans <em>syn</em> (tillsammans) och <em>bios</em> (liv)</p>
 
@@ -411,10 +453,22 @@
                 En biologisk term för samlevnad mellan olika arter.
                 Konsekvenserna av detta samspel avgör vilken typ av symbios det handlar om.
             </div>
-        </div>
-
-        <!-- Slide 3: Mutualism -->
-        <div class="slide" data-slide="3">
+        
+            <div class="glossary-grid" style="margin-top: 3rem;">
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">symbios</div>
+                        <div class="flashcard-back">Ett samlingsnamn för när olika arter lever i ett tätt och långvarigt samspel med varandra.</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Slide 4: Mutualism -->
+        <div class="slide" data-slide="4">
             <h2 style="color: var(--accent-pos);">1. Mutualism <span style="font-weight: 300; opacity: 0.8;">(+/+)</span></h2>
             <p class="subtitle">Båda parter gynnas av samarbetet.</p>
 
@@ -424,10 +478,22 @@
             <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                 Exempel: mykorrhiza (träd och svamp) eller lavar (svamp och alg)
             </p>
-        </div>
-
-        <!-- Slide 4: Kommensalism -->
-        <div class="slide" data-slide="4">
+        
+            <div class="glossary-grid" style="margin-top: 3rem;">
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">mutualism</div>
+                        <div class="flashcard-back">En typ av symbios där alla inblandade arter vinner på samarbetet (t.ex. mykorrhiza mellan träd och svamp).</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Slide 5: Kommensalism -->
+        <div class="slide" data-slide="5">
             <h2 style="color: var(--accent-neu);">2. Kommensalism <span style="font-weight: 300; opacity: 0.8;">(+/0)</span></h2>
             <p class="subtitle">En part drar nytta, den andra påverkas varken positivt eller negativt.</p>
 
@@ -437,10 +503,22 @@
             <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                 Exempel: havstulpaner som får biologisk snålskjuts av valar.
             </p>
-        </div>
-
-        <!-- Slide 5: Parasitism -->
-        <div class="slide" data-slide="5">
+        
+            <div class="glossary-grid" style="margin-top: 3rem;">
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">kommensalism</div>
+                        <div class="flashcard-back">En typ av symbios där den ena arten vinner på det, medan den andra är helt opåverkad (t.ex. havstulpaner som får åka med på en val).</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Slide 6: Parasitism -->
+        <div class="slide" data-slide="6">
             <h2 style="color: var(--accent-neg);">3. Parasitism <span style="font-weight: 300; opacity: 0.8;">(+/-)</span></h2>
             <p class="subtitle">En part gynnas på den andres bekostnad.</p>
 
@@ -450,10 +528,22 @@
             <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                 Exempel: fästingar suger blod för att utvinna energi från värdorganismen.
             </p>
-        </div>
-
-        <!-- Slide 6: Konkurrens -->
-        <div class="slide" data-slide="6">
+        
+            <div class="glossary-grid" style="margin-top: 3rem;">
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">parasitism</div>
+                        <div class="flashcard-back">En typ av symbios där den ena arten vinner, medan den andra utnyttjas och tar skada (t.ex. fästing och hund).</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Slide 7: Konkurrens -->
+        <div class="slide" data-slide="7">
             <h2 style="color: var(--accent-neg);">Konkurrens <span style="font-weight: 300; opacity: 0.8;">(-/-)</span></h2>
             <p class="subtitle">När två arter utnyttjar exakt samma begränsade resurs.</p>
 
@@ -478,10 +568,22 @@
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <!-- Slide 7: Ekologisk Nisch -->
-        <div class="slide" data-slide="7">
+        
+            <div class="glossary-grid" style="margin-top: 3rem;">
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">konkurrens</div>
+                        <div class="flashcard-back">När organismer tävlar om samma begränsade resurser i naturen (t.ex. mat, vatten eller boplatser).</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Slide 8: Ekologisk Nisch -->
+        <div class="slide" data-slide="8">
             <h2 style="color: var(--accent-pos);">Ekologisk nisch</h2>
             <p class="subtitle">En arts specialisering eller roll i ekosystemet.</p>
 
@@ -505,10 +607,22 @@
             <p class="subtitle" style="margin-top: 2rem;">
                 Resultat: de lever i samma skog, men har delat upp resurserna.
             </p>
-        </div>
-
-        <!-- Slide 8: Gloslista -->
-        <div class="slide" data-slide="8" style="justify-content: flex-start; overflow-y: auto;">
+        
+            <div class="glossary-grid" style="margin-top: 3rem;">
+                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                    <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
+                    </button>
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">ekologisk nisch</div>
+                        <div class="flashcard-back">En arts "yrke" eller roll i ekosystemet (t.ex. vad den äter och hur den lever). Två arter kan inte ha exakt samma nisch på samma plats, för då konkurrerar de tills den ena slås ut.</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Slide 9: Gloslista -->
+        <div class="slide" data-slide="9" style="justify-content: flex-start; overflow-y: auto;">
             <h2 style="margin-bottom: 0;">Gloslista V.19</h2>
             <p class="subtitle" style="margin-bottom: 3rem;">Klicka på korten för att visa definitionen</p>
 
@@ -666,14 +780,15 @@
         <div class="modal-content" style="max-width: 900px; padding: 3rem; background: var(--card-bg); border-radius: 1.2rem; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px);">
             <h2 style="color: var(--text); margin-bottom: 2rem; text-align: left;">Slidesöversikt</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;">
-                <button class="card" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(1)"><strong>1.</strong> Samspel i naturen</button>
-                <button class="card" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(2)"><strong>2.</strong> Vad är symbios?</button>
-                <button class="card pos-pos" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(3)"><strong>3.</strong> Mutualism</button>
-                <button class="card pos-neu" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(4)"><strong>4.</strong> Kommensalism</button>
-                <button class="card pos-neg" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(5)"><strong>5.</strong> Parasitism</button>
-                <button class="card pos-neg" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(6)"><strong>6.</strong> Konkurrens</button>
-                <button class="card pos-pos" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(7)"><strong>7.</strong> Ekologisk nisch</button>
-                <button class="card" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3); border-top: 4px solid var(--accent-neu);" onclick="goToSlide(8)"><strong>8.</strong> Gloslista V.19</button>
+                <button class="card" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3); border-top: 4px solid var(--accent-pos);" onclick="goToSlide(1)"><strong>1.</strong> Repetition (Glosor)</button>
+                <button class="card" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(2)"><strong>2.</strong> Samspel i naturen</button>
+                <button class="card" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(3)"><strong>3.</strong> Vad är symbios?</button>
+                <button class="card pos-pos" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(4)"><strong>4.</strong> Mutualism</button>
+                <button class="card pos-neu" style="padding: 1.5rem; cursor: pointer; text it; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(5)"><strong>5.</strong> Kommensalism</button>
+                <button class="card pos-neg" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(6)"><strong>6.</strong> Parasitism</button>
+                <button class="card pos-neg" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(7)"><strong>7.</strong> Konkurrens</button>
+                <button class="card pos-pos" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3);" onclick="goToSlide(8)"><strong>8.</strong> Ekologisk nisch</button>
+                <button class="card" style="padding: 1.5rem; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); background: rgba(0,0,0,0.3); border-top: 4px solid var(--accent-neu);" onclick="goToSlide(9)"><strong>9.</strong> Gloslista V.19 (Alla)</button>
             </div>
         </div>
     </div>
@@ -706,7 +821,7 @@
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 8;
+        const totalSlides = 9;
 
         function showSlide(n) {
             if (n < 1) n = 1;
