@@ -848,7 +848,7 @@
 
         // Click navigation
         document.querySelector('.presentation').addEventListener('click', (e) => {
-            if(e.target.closest('.flashcard') || e.target.closest('.action-btn')) return;
+            if(e.target.closest('.flashcard') || e.target.closest('.action-btn') || e.target.closest('img') || e.target.closest('.card') || e.target.closest('.warning-box') || e.target.closest('.highlight-box') || e.target.closest('.glossary-link')) return;
 
             const rect = e.currentTarget.getBoundingClientRect();
             const x = e.clientX - rect.left;
