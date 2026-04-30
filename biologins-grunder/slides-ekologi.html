@@ -753,7 +753,7 @@
         <button class="modal-close" onclick="closeModal()">✕</button>
         <div class="modal-content" style="position: relative; padding-bottom: 5rem; min-width: 60vw;">
             <h2 id="modalWord" style="color: var(--accent-neu); font-size: 4rem; margin-bottom: 2rem; text-transform: capitalize; transition: font-size 0.2s;"></h2>
-            <p id="modalExplanation" style="font-size: 2.2rem; line-height: 1.6; color: var(--text); transition: font-size 0.2s;"></p>
+            <div id="modalExplanation" style="font-size: 2.2rem; line-height: 1.6; color: var(--text); transition: font-size 0.2s;"></div>
             
             <div style="position: absolute; bottom: 0; right: 0; display: flex; background: rgba(0,0,0,0.4); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.2); overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
                 <button class="action-btn" style="border-radius: 0; border: none; width: 50px; height: 50px; font-size: 1.2rem; font-weight: bold; background: transparent;" onclick="zoomModalText('out')" title="Minska text">A-</button>
@@ -870,11 +870,12 @@
             document.getElementById('modalExplanation').style.fontSize = (2.2 * modalZoom) + 'rem';
         }
 
-                        function openGenericModal(event, title, html) {
+        function openGenericModal(event, title, html) {
             event.stopPropagation();
             modalZoom = 1.0;
             document.getElementById('modalWord').style.fontSize = '4rem';
             document.getElementById('modalExplanation').style.fontSize = '2.2rem';
+            document.getElementById('modalExplanation').style.textAlign = 'left';
             document.getElementById('modalWord').innerHTML = title;
             document.getElementById('modalExplanation').innerHTML = html;
             document.getElementById('flashcardModal').classList.add('active');
@@ -885,6 +886,7 @@
             modalZoom = 1.0;
             document.getElementById('modalWord').style.fontSize = '4rem';
             document.getElementById('modalExplanation').style.fontSize = '2.2rem';
+            document.getElementById('modalExplanation').style.textAlign = 'center';
             document.getElementById('modalWord').textContent = element.getAttribute('data-word');
             document.getElementById('modalExplanation').textContent = element.getAttribute('data-explanation');
             document.getElementById('flashcardModal').classList.add('active');
@@ -897,6 +899,7 @@
             modalZoom = 1.0;
             document.getElementById('modalWord').style.fontSize = '4rem';
             document.getElementById('modalExplanation').style.fontSize = '2.2rem';
+            document.getElementById('modalExplanation').style.textAlign = 'center';
             
             const cardInner = btn.nextElementSibling;
             const word = cardInner.querySelector('.flashcard-front').textContent;
