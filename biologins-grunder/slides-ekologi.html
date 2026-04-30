@@ -435,6 +435,15 @@
         .glossary-link:hover {
             opacity: 0.8;
         }
+
+        .card, .highlight-box, .warning-box {
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+        }
+        .card:hover, .highlight-box:hover, .warning-box:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
 </style>
 </head>
 
@@ -496,7 +505,7 @@
             <h2>Vad är <span class="glossary-link" style="color: var(--accent-neu);" data-word="symbios" data-explanation="Ett samlingsnamn för när olika arter lever i ett tätt och långvarigt samspel med varandra." onclick="openDirectModal(event, this)">symbios</span>?</h2>
             <p class="subtitle">Från grekiskans <em>syn</em> (tillsammans) och <em>bios</em> (liv)</p>
 
-            <div class="highlight-box">
+            <div class="highlight-box" onclick="openGenericModal(event, 'Vad är symbios?', 'En biologisk term för samlevnad mellan olika arter.<br><br>Konsekvenserna av detta samspel avgör vilken typ av symbios det handlar om.')">
                 En biologisk term för samlevnad mellan olika arter.
                 Konsekvenserna av detta samspel avgör vilken typ av symbios det handlar om.
             </div>
@@ -552,20 +561,20 @@
             <h2 style="color: var(--accent-neg);"><span class="glossary-link" data-word="konkurrens" data-explanation="När organismer tävlar om samma begränsade resurser i naturen (t.ex. mat, vatten eller boplatser)." onclick="openDirectModal(event, this)">Konkurrens</span> <span style="font-weight: 300; opacity: 0.8;">(-/-)</span></h2>
             <p class="subtitle">När två arter utnyttjar exakt samma begränsade resurs.</p>
 
-            <div class="warning-box">
+            <div class="warning-box" onclick="openGenericModal(event, 'Biologisk konflikt', 'Detta leder till en biologisk konflikt.<br><br>Den direkta konkurrensen kostar livsviktig energi för båda parter.')">
                 Detta leder till en biologisk konflikt.
                 Den direkta konkurrensen kostar livsviktig energi för båda parter.
             </div>
 
             <div class="content-grid" style="margin-top: 3rem;">
-                <div class="card pos-neg">
+                <div class="card pos-neg" onclick="openGenericModal(event, this.querySelector('h3').innerHTML, this.querySelector('ul').outerHTML)">
                     <h3>Utgång 1: Konkurrensuteslutning</h3>
                     <ul>
                         <li>Den ena arten utkonkurrerar den andra</li>
                         <li>Den svagare arten försvinner lokalt</li>
                     </ul>
                 </div>
-                <div class="card pos-pos">
+                <div class="card pos-pos" onclick="openGenericModal(event, this.querySelector('h3').innerHTML, this.querySelector('ul').outerHTML)">
                     <h3>Utgång 2: Nischuppdelning</h3>
                     <ul>
                         <li>Arterna anpassar sig för att undvika varandra</li>
@@ -581,14 +590,14 @@
             <p class="subtitle">En arts specialisering eller roll i ekosystemet.</p>
 
             <div class="content-grid" style="margin: 3rem 0;">
-                <div class="card pos-pos">
+                <div class="card pos-pos" onclick="openGenericModal(event, this.querySelector('h3').innerHTML, this.querySelector('ul').outerHTML)">
                     <h3>Talgoxen</h3>
                     <ul>
                         <li>Större och tyngre kropp</li>
                         <li>Födosöker på tjockare grenar, ofta lägre ner i trädkronan</li>
                     </ul>
                 </div>
-                <div class="card pos-neu">
+                <div class="card pos-neu" onclick="openGenericModal(event, this.querySelector('h3').innerHTML, this.querySelector('ul').outerHTML)">
                     <h3>Blåmesen</h3>
                     <ul>
                         <li>Mindre och lättare kropp</li>
@@ -861,7 +870,17 @@
             document.getElementById('modalExplanation').style.fontSize = (2.2 * modalZoom) + 'rem';
         }
 
-                function openDirectModal(event, element) {
+                        function openGenericModal(event, title, html) {
+            event.stopPropagation();
+            modalZoom = 1.0;
+            document.getElementById('modalWord').style.fontSize = '4rem';
+            document.getElementById('modalExplanation').style.fontSize = '2.2rem';
+            document.getElementById('modalWord').innerHTML = title;
+            document.getElementById('modalExplanation').innerHTML = html;
+            document.getElementById('flashcardModal').classList.add('active');
+        }
+
+        function openDirectModal(event, element) {
             event.stopPropagation();
             modalZoom = 1.0;
             document.getElementById('modalWord').style.fontSize = '4rem';
