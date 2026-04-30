@@ -388,7 +388,27 @@
             .image-container { flex-direction: column; align-items: center; }
             .image-container img { max-width: 90vw; max-height: 40vh; }
         }
-    </style>
+    
+        .slide-split {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1300px;
+            margin-top: 1rem;
+        }
+        .slide-split > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flashcard-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+</style>
 </head>
 
 <body>
@@ -472,16 +492,17 @@
             <h2 style="color: var(--accent-pos);">1. Mutualism <span style="font-weight: 300; opacity: 0.8;">(+/+)</span></h2>
             <p class="subtitle">Båda parter gynnas av samarbetet.</p>
 
-            <div class="content-grid" style="align-items: center; margin-top: 2rem;">
+            <div class="slide-split">
                 <div>
-                    <div class="image-container" style="margin: 0 auto;">
-                        <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" alt="Mykorrhiza" style="max-height: 40vh; cursor: pointer;" onclick="openImageModal(this.src, '../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png')">
+                    <div class="image-container" style="margin: 0 auto; width: 100%;">
+                        <img src="../assets/ekologi/mutualism_mykorrhiza_notext_1777449752129_annotated.png" alt="Mykorrhiza" style="max-height: 48vh; cursor: pointer; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.src, ['Rötterna lyser konstlat som neonkablar i jorden', 'Svampar växer direkt ur tjocka rötter istället för att hyferna kopplar till rotspetsarna', 'Trädstammen har obegriplig AI-text/mönster inristat'])">
                     </div>
-                    <p class="subtitle" style="margin-top: 1rem; font-style: italic;">
+                    <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                         Exempel: mykorrhiza (träd och svamp) eller lavar (svamp och alg)
                     </p>
                 </div>
-                <div class="glossary-grid" style="margin-top: 0; width: 100%; max-width: 400px; justify-self: center;">
+                <div class="flashcard-wrapper">
+                    <div class="glossary-grid" style="margin-top: 0; width: 100%; max-width: 450px;">
                 <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
                     <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -494,22 +515,22 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div><!-- Slide 5: Kommensalism -->
         <div class="slide" data-slide="5">
             <h2 style="color: var(--accent-neu);">2. Kommensalism <span style="font-weight: 300; opacity: 0.8;">(+/0)</span></h2>
             <p class="subtitle">En part drar nytta, den andra påverkas varken positivt eller negativt.</p>
 
-            <div class="content-grid" style="align-items: center; margin-top: 2rem;">
+            <div class="slide-split">
                 <div>
-                    <div class="image-container" style="margin: 0 auto;">
-                        <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" alt="Havstulpaner på val" style="max-height: 40vh; cursor: pointer;" onclick="openImageModal(this.src, '../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png')">
+                    <div class="image-container" style="margin: 0 auto; width: 100%;">
+                        <img src="../assets/ekologi/kommensalism_whale_notext_1777449769035_annotated.png" alt="Havstulpaner på val" style="max-height: 48vh; cursor: pointer; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.src, ['Havstulpanerna ser ut som faktiska blommor/tulpaner istället för kräftdjur med kalkskal', 'De växer i ett för perfekt, symmetriskt mönster på valen'])">
                     </div>
-                    <p class="subtitle" style="margin-top: 1rem; font-style: italic;">
+                    <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                         Exempel: havstulpaner som får biologisk snålskjuts av valar.
                     </p>
                 </div>
-                <div class="glossary-grid" style="margin-top: 0; width: 100%; max-width: 400px; justify-self: center;">
+                <div class="flashcard-wrapper">
+                    <div class="glossary-grid" style="margin-top: 0; width: 100%; max-width: 450px;">
                 <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
                     <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -522,22 +543,22 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div><!-- Slide 6: Parasitism -->
         <div class="slide" data-slide="6">
             <h2 style="color: var(--accent-neg);">3. Parasitism <span style="font-weight: 300; opacity: 0.8;">(+/-)</span></h2>
             <p class="subtitle">En part gynnas på den andres bekostnad.</p>
 
-            <div class="content-grid" style="align-items: center; margin-top: 2rem;">
+            <div class="slide-split">
                 <div>
-                    <div class="image-container" style="margin: 0 auto;">
-                        <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" alt="Fästing på hund" style="max-height: 40vh; cursor: pointer;" onclick="openImageModal(this.src, '../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png')">
+                    <div class="image-container" style="margin: 0 auto; width: 100%;">
+                        <img src="../assets/ekologi/parasitism_tick_notext_1777449783386_annotated.png" alt="Fästing på hund" style="max-height: 48vh; cursor: pointer; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.src, ['Fästingen verkar ha fel antal ben eller felaktiga proportioner för ett spindeldjur', 'Kroppen är helt massiv och proportionerna mot hårstråna är ofta helt orimliga i AI-bilder'])">
                     </div>
-                    <p class="subtitle" style="margin-top: 1rem; font-style: italic;">
+                    <p class="subtitle" style="margin-top: 1.5rem; font-style: italic;">
                         Exempel: fästingar suger blod för att utvinna energi från värdorganismen.
                     </p>
                 </div>
-                <div class="glossary-grid" style="margin-top: 0; width: 100%; max-width: 400px; justify-self: center;">
+                <div class="flashcard-wrapper">
+                    <div class="glossary-grid" style="margin-top: 0; width: 100%; max-width: 450px;">
                 <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
                     <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -550,7 +571,6 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div><!-- Slide 7: Konkurrens -->
         <div class="slide" data-slide="7">
             <h2 style="color: var(--accent-neg);">Konkurrens <span style="font-weight: 300; opacity: 0.8;">(-/-)</span></h2>
@@ -561,7 +581,7 @@
                 Den direkta konkurrensen kostar livsviktig energi för båda parter.
             </div>
 
-            <div class="content-grid" style="margin-top: 3rem;">
+            <div class="content-grid" style="margin-top: 2rem; grid-template-columns: repeat(3, 1fr); align-items: start;">
                 <div class="card pos-neg">
                     <h3>Utgång 1: Konkurrensuteslutning</h3>
                     <ul>
@@ -576,8 +596,8 @@
                         <li>Den direkta konkurrensen minskar</li>
                     </ul>
                 </div>
-                <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
-                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                <div class="flashcard-wrapper" style="margin-top: 0; align-self: stretch;">
+                    <div class="flashcard" style="width: 100%;" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
                     <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
@@ -595,7 +615,7 @@
             <h2 style="color: var(--accent-pos);">Ekologisk nisch</h2>
             <p class="subtitle">En arts specialisering eller roll i ekosystemet.</p>
 
-            <div class="content-grid" style="margin: 3rem 0;">
+            <div class="content-grid" style="margin: 3rem 0; grid-template-columns: repeat(3, 1fr); align-items: start;">
                 <div class="card pos-pos">
                     <h3>Talgoxen</h3>
                     <ul>
@@ -610,8 +630,8 @@
                         <li>Födosöker längst ut på tunna kvistar i trädkronan</li>
                     </ul>
                 </div>
-                <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
-                <div class="flashcard" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
+                <div class="flashcard-wrapper" style="margin-top: 0; align-self: stretch;">
+                    <div class="flashcard" style="width: 100%;" onclick="if(!event.target.closest('.expand-btn')) this.classList.toggle('flipped')">
                     <button class="expand-btn" onclick="openModal(event, this)" title="Visa i helskärm">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
@@ -909,12 +929,32 @@
         let currentOriginalSrc = "";
         let showingError = false;
 
-        function openImageModal(originalSrc, annotatedSrc) {
+        function openImageModal(originalSrc, annotatedSrc, errorTexts) {
             currentOriginalSrc = originalSrc;
             currentAnnotatedSrc = annotatedSrc;
             showingError = false;
             
             document.getElementById('modalImg').src = originalSrc;
+            
+            const overlay = document.getElementById('aiErrorOverlay');
+            let listHtml = "";
+            if (errorTexts && errorTexts.length > 0) {
+                listHtml = '<ul style="font-size: 1.1rem; font-weight: normal; margin-top: 0.5rem; padding-left: 1.5rem;">';
+                errorTexts.forEach(t => {
+                    listHtml += `<li>${t}</li>`;
+                });
+                listHtml += '</ul>';
+            } else {
+                listHtml = '<ul style="font-size: 1.1rem; font-weight: normal; margin-top: 0.5rem; padding-left: 1.5rem;"><li>Biologiska fel</li></ul>';
+            }
+            
+            overlay.innerHTML = `
+                <div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-neg); color: white; padding: 1rem 2rem; border-radius: 0.5rem; font-weight: bold; font-size: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.5); max-width: 80%; text-align: left;">
+                    ⚠️ AI-hallucinationer upptäckta!
+                    ${listHtml}
+                </div>
+            `;
+            
             document.getElementById('imageModal').classList.add('active');
             
             const btn = document.getElementById('toggleErrorBtn');
