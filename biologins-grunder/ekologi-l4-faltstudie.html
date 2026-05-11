@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekologi L4: Systematisk Fältstudie — LessonLab</title>
+    <meta name="description" content="Genomgångsmanus för Fältstudie-blocket: Mångfaldens botten och topp">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🌲</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🌲 Fältstudie: Mångfaldens botten och topp</h1>
+            <div class="lesson-meta">
+                <span>⏱️ Block om 3 Lektioner</span>
+                <span>✏️ Fältprotokoll, Merlin, Lens, Kalkylblad</span>
+                <span>📖 Systematiska undersökningar (Lgr22)</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- INTRODUKTION TILL BLOCKET             -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">📋 Lektionsblockets Syfte & Struktur <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(Lärarfokus)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Didaktisk förankring:</strong> Detta block är designat för att undvika kognitiv överbelastning och låta den naturvetenskapliga processen styra. Istället för en kaotisk rast, tränas eleverna i datainsamling, replikerbarhet och källkritisk analys.</p>
+                    <ol>
+                        <li><strong>Lektion 1:</strong> Teknisk Onboarding & Torrkörning på skolgården.</li>
+                        <li><strong>Lektion 2:</strong> Datainsamling (Skolgård/Bokskog) enligt fältprotokoll.</li>
+                        <li><strong>Lektion 3:</strong> Data Literacy & Analys i klassrum (Kalkylblad vs. AI).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- LEKTION 1                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-l1">
+            <div class="section-header" onclick="toggleSection('sec-l1')">
+                <span class="section-title">📱 Lektion 1: Teknisk Onboarding <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(50 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Nu skiftar vi från teori till praktik. För att förstå ekosystem måste vi mäta dem. Men innan vi gör det skarpt ska vi lära oss våra verktyg."
+                    </div>
+                    
+                    <p><strong>Steg 1: Grupper och Roller (15 min)</strong></p>
+                    <ul>
+                        <li>Dela in klassen i grupper om 3.</li>
+                        <li>Dela ut roller: <strong>Ornitologen</strong> (ansvarig för fåglar/ljud), <strong>Botanikern</strong> (ansvarig för yta/växter), <strong>Analytikern</strong> (ansvarig för mätning och pappersprotokoll).</li>
+                        <li>Låt eleverna ladda ner apparna: Merlin Bird ID och Google Lens.</li>
+                    </ul>
+
+                    <p><strong>Steg 2: Torrkörning Utomhus (20 min)</strong></p>
+                    <div class="say-block">
+                        "Nu går vi ut. Ert enda uppdrag idag är att testa om tekniken funkar. Analytikern fäller ut tumstockarna till en kvadrat. Botanikern scannar det konstigaste lövet ni hittar. Ornitologen testar om appen reagerar på ljud."
+                    </div>
+
+                    <p><strong>Steg 3: Återsamling & Prediktion (15 min)</strong></p>
+                    <div class="write-block">
+                        Skriv prediktion: "Tror ni att vi hittar flest arter (högst biologisk mångfald) på asfalten, gräsmattan eller i bokskogen? Varför?"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- LEKTION 2                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-l2">
+            <div class="section-header" onclick="toggleSection('sec-l2')">
+                <span class="section-title">🌿 Lektion 2: Skarp Datainsamling <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(50 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Idag är det skarpt läge. Vi ska mäta energipyramidens botten (producenter) och topp (konsumenter). Ni har tre specifika uppdrag. Följ er checklista."
+                    </div>
+
+                    <p><strong>Moment A: Toppkonsumenter (Punktinventering)</strong></p>
+                    <ul>
+                        <li>Gruppen ställer sig på en plats och är <em>helt tysta</em> i 3 minuter.</li>
+                        <li>Ornitologen lyssnar och använder Merlin. Analytikern noterar antalet <em>olika</em> fågelarter (morfotyper eller specifika arter) de hör.</li>
+                    </ul>
+
+                    <p><strong>Moment B: Förna & Markfauna (Insamling)</strong></p>
+                    <div class="say-block">
+                        <a href="slides-falt.html" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: bold;">👉 Öppna Fält-Slides (Klicka fram till Slide 8)</a>
+                    </div>
+                    <ul>
+                        <li>Gruppen tar med sig <strong>två plastpåsar</strong> och en spade.</li>
+                        <li>De väljer ut två <strong>abiotiskt skilda miljöer</strong> på skolgården (ex. fuktig/skuggig buske vs. torr asfaltskant).</li>
+                        <li>Samla in <strong>förna</strong> (toppskiktet av döda växtdelar och jord) från båda platserna.</li>
+                        <li>Märk påsarna noga (A och B) inför morgondagens lektion!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- LEKTION 3                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-l3">
+            <div class="section-header" onclick="toggleSection('sec-l3')">
+                <span class="section-title">📊 Lektion 3: Laborativ analys (Förna) & Data Literacy <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(50 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Steg 1: Laboration — Markfauna (25 min)</strong></p>
+                    <div class="draw-block">
+                        <a href="slides-falt.html" target="_blank" style="color: #fbbf24; text-decoration: none; font-weight: bold;">👉 Lämna Slide 9 (Räkna-ben-nyckeln) rullande på storskärmen!</a>
+                    </div>
+                    <ul>
+                        <li>Häll ut förnaproven (A och B) på <strong>vitt A3-papper</strong>.</li>
+                        <li>Jämför: Vilken plats hade högst biodiversitet och varför? (Koppla direkt till <em>abiotiska faktorer</em>).</li>
+                        <li>Använd lupp/stereolupp för att sortera och identifiera nedbrytarna.</li>
+                        <li><strong>Morfologiskt uppdrag:</strong> Välj en art, räkna dess ben (använd nyckeln på tavlan) och rita av den noggrant på ett A4!</li>
+                    </ul>
+
+                    <p><strong>Steg 2: Kalkylblad vs. AI (20 min)</strong></p>
+                    <div class="say-block">
+                        "Låt oss se om AI förstår vår data bättre än vi."
+                    </div>
+                    <ul>
+                        <li>Kopiera all data till en chattbot (ex. ChatGPT) och be den: <em>"Analysera det här lokala ekosystemet och rita en näringsväv."</em></li>
+                        <li>Låt klassen granska: Hallucinerar boten? Drog den rätt slutsatser kring varför asfalten hade noll producenter men ändå fåglar (toppkonsumenter) i närheten?</li>
+                    </ul>
+                    
+                    <p><strong>Avslutning:</strong> Sammanfatta slutsatsen på baksidan av protokollet.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — Ekologi L4 (Fältstudie-blocket)
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
