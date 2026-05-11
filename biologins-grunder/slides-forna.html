@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekologi — Förna & Markfauna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0f1a;
+            --surface: #111827;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #22c55e;
+            --accent-glow: rgba(34,197,94,0.15);
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+            user-select: none;
+        }
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            z-index: 100;
+            font-variant-numeric: tabular-nums;
+        }
+        /* Typography */
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+        h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 32px;
+        }
+        .accent { color: var(--accent); }
+        .warning-text { color: var(--warning); }
+        .danger-text { color: var(--danger); }
+
+        /* Lists */
+        .big-list {
+            list-style: none;
+            width: 100%;
+            margin-top: 32px;
+        }
+        .big-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: var(--text);
+        }
+        .num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            border-radius: 50%;
+            font-weight: 800;
+            margin-right: 20px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation" id="presentation">
+
+        <!-- SLIDE 1: Titel -->
+        <div class="slide" data-slide="1">
+            <p class="subtitle">Ekologi · Biologins grunder · Årskurs 7</p>
+            <h1>Fältuppdrag:<br><span class="accent">Förna & Markfauna</span></h1>
+            <p style="font-size:1.1rem; color:var(--text-muted); margin-top:24px;">
+                Två lektioner. Insamling och laboration.
+            </p>
+        </div>
+
+        <!-- SLIDE 2: Förna & Markfauna -->
+        <div class="slide" data-slide="2">
+            <h2>🔬 Uppdrag: <span class="accent">Förna & Markfauna</span></h2>
+            <p class="subtitle">Mikroklimatets påverkan på den lokala biologiska mångfalden</p>
+            <div style="display:flex; gap:30px; width:100%; max-width:1100px;">
+                <div style="flex:1; background:rgba(0,0,0,0.2); padding:25px; border-radius:8px; border-left:4px solid var(--accent);">
+                    <h3 style="color:#cbd5e1; margin-bottom:15px; font-size:1.3rem;">Fas 1: Fältinsamling (Skolgården)</h3>
+                    <ul class="big-list" style="margin-top:0;">
+                        <li><span class="num">1</span><span>Ta <strong>två plastpåsar</strong> och en spade.</span></li>
+                        <li><span class="num">2</span><span>Välj ut två <strong>abiotiskt skilda miljöer</strong> på skolgården (ex. fuktig/skuggig vs torr/ljus).</span></li>
+                        <li><span class="num">3</span><span>Samla in <strong>förna</strong> (toppskiktet av döda växtdelar och jord). Märk A och B.</span></li>
+                    </ul>
+                </div>
+                <div style="flex:1; background:rgba(0,0,0,0.2); padding:25px; border-radius:8px; border-left:4px solid var(--accent);">
+                    <h3 style="color:#cbd5e1; margin-bottom:15px; font-size:1.3rem;">Fas 2: Laborativ analys</h3>
+                    <ul class="big-list" style="margin-top:0;">
+                        <li><span class="num">4</span><span>Häll ut proven på <strong>vitt A3-papper</strong>. Jämför: Vilken plats har högst biodiversitet?</span></li>
+                        <li><span class="num">5</span><span>Använd lupp för att sortera och identifiera markfaunan (nedbrytarna).</span></li>
+                        <li><span class="num">6</span><span><strong>Välj en art</strong> och rita av dess morfologi noggrant (antal ben, segment, antenner).</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Räkna-ben-nyckeln -->
+        <div class="slide" data-slide="3">
+            <h2>🐛 Vilket djur har du hittat?</h2>
+            <p class="subtitle">Steg 1: Räkna benen! &nbsp;&nbsp;|&nbsp;&nbsp; Steg 2: Sök på nätet</p>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; width:100%; max-width:1100px;">
+                <!-- Vänster -->
+                <div style="background:rgba(0,0,0,0.2); padding:30px; border-radius:8px; border-left:4px solid #3b82f6;">
+                    <div style="display:flex; align-items:center; margin-bottom:15px; font-size:1.2rem;">
+                        <span style="background:#3b82f6; color:white; font-weight:bold; padding:5px 15px; border-radius:20px; margin-right:15px; min-width:80px; text-align:center;">0 ben</span>
+                        <span>Daggmask, Snigel, Snäcka</span>
+                    </div>
+                    <div style="display:flex; align-items:center; margin-bottom:15px; font-size:1.2rem;">
+                        <span style="background:#3b82f6; color:white; font-weight:bold; padding:5px 15px; border-radius:20px; margin-right:15px; min-width:80px; text-align:center;">6 ben</span>
+                        <span>Insekter (Jordlöpare, myror, hoppstjärtar)</span>
+                    </div>
+                    <div style="display:flex; align-items:center; margin-bottom:15px; font-size:1.2rem;">
+                        <span style="background:#3b82f6; color:white; font-weight:bold; padding:5px 15px; border-radius:20px; margin-right:15px; min-width:80px; text-align:center;">8 ben</span>
+                        <span>Spindeldjur (Spindlar, lockespindlar)</span>
+                    </div>
+                    <div style="display:flex; align-items:center; margin-bottom:15px; font-size:1.2rem;">
+                        <span style="background:#3b82f6; color:white; font-weight:bold; padding:5px 15px; border-radius:20px; margin-right:15px; min-width:80px; text-align:center;">14 ben</span>
+                        <span>Gråsuggor (Kräftdjur!)</span>
+                    </div>
+                    <div style="display:flex; align-items:center; font-size:1.2rem;">
+                        <span style="background:#3b82f6; color:white; font-weight:bold; padding:5px 15px; border-radius:20px; margin-right:15px; min-width:80px; text-align:center;">Många</span>
+                        <span>Mångfotingar (Enkel/Dubbelfoting)</span>
+                    </div>
+                </div>
+                
+                <!-- Höger -->
+                <div style="background:rgba(0,0,0,0.2); padding:30px; border-radius:8px; border-left:4px solid #10b981; display:flex; flex-direction:column; justify-content:center; gap:20px;">
+                    <a href="https://www.nrm.se/fakta-om-naturen/djur/ryggradslosa-djur" target="_blank" style="display:block; background:var(--surface); border:1px solid rgba(255,255,255,0.06); padding:20px; border-radius:8px; text-decoration:none; color:var(--text);">
+                        <div style="color:#10b981; font-weight:bold; font-size:1.2rem; margin-bottom:5px;">Naturhistoriska Riksmuseet</div>
+                        <div style="font-size:0.95rem; color:var(--text-muted);">Läs om Gråsuggor, daggmaskar och sniglar.</div>
+                    </a>
+                    <a href="https://artfakta.se/" target="_blank" style="display:block; background:var(--surface); border:1px solid rgba(255,255,255,0.06); padding:20px; border-radius:8px; text-decoration:none; color:var(--text);">
+                        <div style="color:#10b981; font-weight:bold; font-size:1.2rem; margin-bottom:5px;">Artfakta (Artdatabanken)</div>
+                        <div style="font-size:0.95rem; color:var(--text-muted);">Sök på Sveriges artdatabas för detaljerade bilder.</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="slide-counter" id="slideCounter">1 / 3</div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let current = 0;
+        
+        // Läs in från URL-hash vid start (ex: #slide-2)
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#slide-')) {
+            const requestedIndex = parseInt(hash.replace('#slide-', '')) - 1;
+            if (!isNaN(requestedIndex) && requestedIndex >= 0 && requestedIndex < slides.length) {
+                current = requestedIndex;
+            }
+        }
+        
+        // Aktivera start-sliden
+        slides[current].classList.add('active');
+        document.getElementById('slideCounter').textContent = `${current+1} / ${slides.length}`;
+
+        function goTo(n) {
+            if (n < 0 || n >= slides.length) return;
+            slides[current].classList.remove('active');
+            current = n;
+            slides[current].classList.add('active');
+            document.getElementById('slideCounter').textContent = `${current+1} / ${slides.length}`;
+            history.replaceState(null, null, `#slide-${current+1}`);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+            if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+            if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+        });
+
+        // Click navigation (ignore links)
+        document.querySelector('.presentation').addEventListener('click', (e) => {
+            if (e.target.closest('a') || e.target.closest('.pdf-link')) return;
+            const x = e.clientX;
+            if (x > window.innerWidth * 0.3) goTo(current + 1);
+            else goTo(current - 1);
+        });
+    </script>
+</body>
+</html>
