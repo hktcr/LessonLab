@@ -227,7 +227,7 @@
     <div class="presentation" id="presentation">
 
         <!-- SLIDE 1: Titel -->
-        <div class="slide active" data-slide="1">
+        <div class="slide" data-slide="1">
             <p class="subtitle">Ekologi · Biologins grunder · Årskurs 7</p>
             <h1>Fältuppdrag:<br><span class="accent">Undersök ert ekosystem</span></h1>
             <p style="font-size:1.1rem; color:var(--text-muted); margin-top:24px;">
@@ -440,6 +440,19 @@
     <script>
         const slides = document.querySelectorAll('.slide');
         let current = 0;
+        
+        // Läs in från URL-hash vid start (ex: #slide-8)
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#slide-')) {
+            const requestedIndex = parseInt(hash.replace('#slide-', '')) - 1;
+            if (!isNaN(requestedIndex) && requestedIndex >= 0 && requestedIndex < slides.length) {
+                current = requestedIndex;
+            }
+        }
+        
+        // Aktivera start-sliden
+        slides[current].classList.add('active');
+        document.getElementById('slideCounter').textContent = `${current+1} / ${slides.length}`;
 
         function goTo(n) {
             if (n < 0 || n >= slides.length) return;
@@ -447,6 +460,8 @@
             current = n;
             slides[current].classList.add('active');
             document.getElementById('slideCounter').textContent = `${current+1} / ${slides.length}`;
+            // Uppdatera URL utan att ladda om sidan
+            history.replaceState(null, null, `#slide-${current+1}`);
         }
 
         // Keyboard navigation
