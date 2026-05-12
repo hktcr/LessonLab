@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LessonLab — Genomgångsmanus</title>
+    <title>LessonLab — Årshjul</title>
     <meta name="description" content="Lösenordsskyddad samling av genomgångsmanus för klassrummet.">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,118 +25,242 @@
         </div>
     </div>
 
-    <!-- ===== MAIN APP ===== -->
-    <div class="app" id="mainApp">
-        <header class="app-header">
-            <div class="app-logo">🧪</div>
-            <h1 class="app-title">LessonLab</h1>
-            <p class="app-subtitle">Genomgångsmanus — organiserat per arbetsområde</p>
+    <!-- ===== MAIN APP (ORBITAL ÅRSHJUL) ===== -->
+    <div class="orbital-app" id="mainApp">
+        
+        <header class="orbital-header">
+            <h1 class="app-title" style="font-size: 2.5rem; margin-bottom: 0;">LessonLab</h1>
+            <p class="app-subtitle" style="margin-bottom: 0;">Årshjul · Den röda tråden</p>
+            
+            <div class="year-tabs" id="yearTabs">
+                <button class="year-tab active" onclick="setYear(7)">Årskurs 7</button>
+                <button class="year-tab" onclick="setYear(8)">Årskurs 8</button>
+                <button class="year-tab" onclick="setYear(9)">Årskurs 9</button>
+            </div>
         </header>
 
-        <div class="area-grid">
-            <!-- Biologins grunder -->
-            <div class="area-card">
-                <span class="area-icon">🧬</span>
-                <h2 class="area-title">Biologins grunder</h2>
-                <p class="area-description">Vad är liv → Ekologi · Åk 7</p>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/cellritning.html" class="lesson-link">Cellritning på tavlan</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/fotosyntes.html" class="lesson-link">Fotosyntes + Cellandning</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/bakterier-virus.html" class="lesson-link">Bakterier & Virus (v1 —
-                            NP-hook)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/bakterier-virus-v2.html" class="lesson-link">Bakterier & Virus (v2 —
-                            Tabelljämförelse)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/gruppchallenge.html" class="lesson-link">Gruppchallenge — Repetition inför prov</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/ekologi-l1-spelplanen.html" class="lesson-link">🌿 Ekologi L1: Spelplanen</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/ekologi-l2-mekaniken.html" class="lesson-link">Ekologi L2: Mekaniken (Biokemin)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/ekologi-l3-pusslet.html" class="lesson-link">Ekologi L3: Pusslet (Näringsvävar & Kretslopp)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/samspel-i-naturen.html" class="lesson-link">Samspel i Naturen (Manus + Slides)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/ekologi-l4-faltstudie.html" class="lesson-link">🌲 Ekologi L4: Systematisk Fältstudie (Förna & Labb)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="biologins-grunder/ekologi-l5-bokskog.html" class="lesson-link">🌳 Ekologi L5: Fältstudie (Bokskog vs Gräsmark)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                </ul>
+        <main class="orbital-main">
+            <!-- THE ARCH (Timeline) -->
+            <div class="arch-container">
+                <div class="arch-line"></div>
+                <div class="arch-season-labels">
+                    <span>Hösttermin</span>
+                    <span>Vårtermin</span>
+                </div>
+                <div id="archNodes">
+                    <!-- Nodes injected via JS -->
+                </div>
             </div>
 
-            <!-- Kemi -->
-            <div class="area-card">
-                <span class="area-icon">⚗️</span>
-                <h2 class="area-title">Kemi</h2>
-                <p class="area-description">Syror, baser & pH · Åk 6/7</p>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <a href="kemins-grunder/syror-baser.html" class="lesson-link">Dag 1: Syror, baser & pH (Vatten till vin)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="kemins-grunder/ph-fordjupning.html" class="lesson-link">Dag 2: pH-fördjupning & Eget arbete</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="kemins-grunder/ph-skalan.html" class="lesson-link">🎮 pH-skalan — Interaktivt verktyg</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                    <li class="lesson-item">
-                        <a href="kemins-grunder/btb-labb.html" class="lesson-link">🧪 BTB-labb med kolsyra (Halvklass)</a>
-                        <span class="lesson-badge badge-ready">Klar</span>
-                    </li>
-                </ul>
+            <!-- THE CONTENT PANEL -->
+            <div class="orbital-content" id="contentPanel">
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <div class="subject-icon" id="panelIcon">🧬</div>
+                        <div style="flex: 1;">
+                            <div style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;" id="panelSeason">Vårtermin</div>
+                            <h2 class="subject-title" id="panelTitle">Biologins grunder</h2>
+                        </div>
+                    </div>
+                    <ul class="lesson-list" id="panelLessons">
+                        <!-- Lessons injected via JS -->
+                    </ul>
+                </div>
             </div>
 
-            <!-- Placeholder: Fysik -->
-            <div class="area-card" style="opacity: 0.5;">
-                <span class="area-icon">⚡</span>
-                <h2 class="area-title">Fysik</h2>
-                <p class="area-description">Kommande arbetsområden</p>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <span class="lesson-link" style="color: var(--text-muted);">Inga manus ännu</span>
-                        <span class="lesson-badge badge-planned">Planerat</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        </main>
 
-        <footer class="app-footer">
-            LessonLab v1.0 — Del av GAIA Klassrumsverktyg ·
+        <footer class="app-footer" style="margin-top: auto; padding-top: 1rem;">
+            LessonLab v2.0 (Orbital UI) — Del av GAIA Klassrumsverktyg ·
             <button class="logout-btn" onclick="doLogout()">Logga ut</button>
         </footer>
     </div>
 
     <script src="auth.js"></script>
-    <script src="auth.js"></script>
-    <script src="script.js"></script>
-</body>
+    <script>
+        // Data Structure based on NO_ARSHJUL.md
+        const yearData = {
+            7: [
+                { id: '7-1', title: 'Materia & Kemi', icon: '⚗️', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '7-2', title: 'Energi', icon: '⚡', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '7-3', title: 'Rymden', icon: '🚀', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '7-4', title: 'Biologins grunder', icon: '🧬', status: 'ready', season: 'Vårtermin', lessons: [
+                    { title: 'Cellritning på tavlan', url: 'biologins-grunder/cellritning.html', status: 'ready' },
+                    { title: 'Fotosyntes + Cellandning', url: 'biologins-grunder/fotosyntes.html', status: 'ready' },
+                    { title: 'Bakterier & Virus (v1 — NP-hook)', url: 'biologins-grunder/bakterier-virus.html', status: 'ready' },
+                    { title: 'Bakterier & Virus (v2 — Tabelljämförelse)', url: 'biologins-grunder/bakterier-virus-v2.html', status: 'ready' },
+                    { title: 'Gruppchallenge — Repetition', url: 'biologins-grunder/gruppchallenge.html', status: 'ready' },
+                    { title: '🌿 Ekologi L1: Spelplanen', url: 'biologins-grunder/ekologi-l1-spelplanen.html', status: 'ready' },
+                    { title: 'Ekologi L2: Mekaniken', url: 'biologins-grunder/ekologi-l2-mekaniken.html', status: 'ready' },
+                    { title: 'Ekologi L3: Pusslet', url: 'biologins-grunder/ekologi-l3-pusslet.html', status: 'ready' },
+                    { title: 'Samspel i Naturen (Manus+Slides)', url: 'biologins-grunder/samspel-i-naturen.html', status: 'ready' },
+                    { title: '🌲 Ekologi L4: Systematisk Fältstudie', url: 'biologins-grunder/ekologi-l4-faltstudie.html', status: 'ready' },
+                    { title: '🌳 Ekologi L5: Fältstudie (Bokskog vs Gräsmark)', url: 'biologins-grunder/ekologi-l5-bokskog.html', status: 'ready' }
+                ]},
+                { id: '7-5', title: 'Syror & Baser', icon: '🧪', status: 'ready', season: 'Vårtermin', lessons: [
+                    { title: 'Dag 1: Syror, baser & pH', url: 'kemins-grunder/syror-baser.html', status: 'ready' },
+                    { title: 'Dag 2: pH-fördjupning & Eget arbete', url: 'kemins-grunder/ph-fordjupning.html', status: 'ready' },
+                    { title: '🎮 pH-skalan — Interaktivt verktyg', url: 'kemins-grunder/ph-skalan.html', status: 'ready' },
+                    { title: '🧪 BTB-labb med kolsyra', url: 'kemins-grunder/btb-labb.html', status: 'ready' }
+                ]}
+            ],
+            8: [
+                { id: '8-1', title: 'Näringsämnen', icon: '🥩', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-2', title: 'Människokroppen', icon: '🫀', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-3', title: 'Ellära & Magnetism', icon: '🧲', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-4', title: 'Kol & Organisk', icon: '💎', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '8-5', title: 'Våglära', icon: '🌊', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '8-6', title: 'Hälsa & Sex', icon: '❤️', status: 'planned', season: 'Vårtermin', lessons: [] }
+            ],
+            9: [
+                { id: '9-1', title: 'Genetik', icon: '🧬', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-2', title: 'Atom- & Kärnfysik', icon: '☢️', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-3', title: 'Evolution', icon: '🦍', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-4', title: 'Mekanik', icon: '⚙️', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '9-5', title: 'Miljövetenskap', icon: '🌍', status: 'planned', season: 'Vårtermin', lessons: [] }
+            ]
+        };
 
+        let currentYear = 7;
+        let activeNodeId = null;
+
+        // Auth handling
+        if (LESSON_LAB_AUTH.isAuthenticated()) {
+            showApp();
+        }
+
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+
+        function doLogout() {
+            LESSON_LAB_AUTH.logout();
+        }
+
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+            setYear(7); // Default to year 7
+        }
+
+        function setYear(year) {
+            currentYear = year;
+            
+            // Update tabs
+            document.querySelectorAll('.year-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.textContent.includes(year)) tab.classList.add('active');
+            });
+
+            renderArch();
+        }
+
+        function renderArch() {
+            const container = document.getElementById('archNodes');
+            container.innerHTML = '';
+            
+            const nodes = yearData[currentYear];
+            const numNodes = nodes.length;
+            
+            // Distribute angles between -70deg and 70deg
+            const range = 140;
+            const step = numNodes > 1 ? range / (numNodes - 1) : 0;
+            const startAngle = numNodes > 1 ? -70 : 0;
+
+            let firstReadyNodeId = null;
+
+            nodes.forEach((node, index) => {
+                const angle = startAngle + (index * step);
+                
+                if (node.status === 'ready' && !firstReadyNodeId) {
+                    firstReadyNodeId = node.id;
+                }
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'arch-node-wrapper';
+                wrapper.style.setProperty('--angle', `${angle}deg`);
+                
+                const nodeEl = document.createElement('div');
+                nodeEl.className = `arch-node ${node.id === activeNodeId ? 'active' : ''}`;
+                nodeEl.onclick = () => selectNode(node.id);
+                nodeEl.innerHTML = `
+                    ${node.icon}
+                    <div class="node-status ${node.status}"></div>
+                    <div class="arch-node-label">${node.title}</div>
+                `;
+                
+                wrapper.appendChild(nodeEl);
+                container.appendChild(wrapper);
+            });
+
+            // Auto-select the first ready node (or the first overall if none are ready)
+            if (!activeNodeId || !nodes.find(n => n.id === activeNodeId)) {
+                selectNode(firstReadyNodeId || nodes[0].id);
+            }
+        }
+
+        function selectNode(nodeId) {
+            activeNodeId = nodeId;
+            
+            // Update UI nodes
+            document.querySelectorAll('.arch-node').forEach(el => el.classList.remove('active'));
+            const activeEl = event ? event.currentTarget : document.querySelector(`.arch-node[onclick="selectNode('${nodeId}')"]`);
+            if (activeEl) activeEl.classList.add('active');
+
+            // Find data
+            const nodes = yearData[currentYear];
+            const nodeData = nodes.find(n => n.id === nodeId);
+            
+            if (nodeData) renderContent(nodeData);
+        }
+
+        function renderContent(data) {
+            const panel = document.getElementById('contentPanel');
+            const icon = document.getElementById('panelIcon');
+            const title = document.getElementById('panelTitle');
+            const season = document.getElementById('panelSeason');
+            const lessonList = document.getElementById('panelLessons');
+
+            // Fade out
+            panel.classList.remove('visible');
+
+            setTimeout(() => {
+                icon.textContent = data.icon;
+                title.textContent = data.title;
+                season.textContent = data.season;
+                
+                lessonList.innerHTML = '';
+                
+                if (data.lessons.length === 0) {
+                    lessonList.innerHTML = `
+                        <li class="lesson-item" style="justify-content: center; padding: 2rem 0; color: var(--text-muted);">
+                            <i>Inga manus tillgängliga ännu.</i>
+                        </li>
+                    `;
+                } else {
+                    data.lessons.forEach(lesson => {
+                        const badgeClass = lesson.status === 'ready' ? 'badge-ready' : 'badge-planned';
+                        const badgeText = lesson.status === 'ready' ? 'Klar' : 'Planerat';
+                        
+                        lessonList.innerHTML += `
+                            <li class="lesson-item">
+                                <a href="${lesson.url}" class="lesson-link">${lesson.title}</a>
+                                <span class="lesson-badge ${badgeClass}">${badgeText}</span>
+                            </li>
+                        `;
+                    });
+                }
+
+                // Fade in
+                panel.classList.add('visible');
+            }, 300); // Wait for fade out transition
+        }
+    </script>
+</body>
 </html>

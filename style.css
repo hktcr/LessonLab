@@ -1013,3 +1013,245 @@ body {
     color: var(--text-secondary);
     font-size: 0.95rem;
 }
+
+/* ── Orbital Årshjul UI ── */
+.orbital-app {
+    display: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    height: 100vh;
+    flex-direction: column;
+    animation: fadeInUp 0.5s ease;
+}
+.orbital-app.visible {
+    display: flex;
+}
+
+.orbital-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.year-tabs {
+    display: inline-flex;
+    background: var(--bg-card);
+    padding: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-glass);
+    gap: 0.5rem;
+    margin-top: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.year-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.year-tab:hover {
+    color: var(--text-primary);
+}
+
+.year-tab.active {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 0 15px var(--accent-blue-glow);
+}
+
+.orbital-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.arch-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+    margin-top: 2rem;
+    flex-shrink: 0;
+}
+
+.arch-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255,255,255,0.08);
+    pointer-events: none;
+}
+
+.arch-season-labels {
+    position: absolute;
+    bottom: -15px;
+    width: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.arch-node-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: rotate(var(--angle));
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.arch-node {
+    position: absolute;
+    bottom: 300px; /* Radius */
+    left: 0;
+    transform: translate(-50%, 50%) rotate(calc(-1 * var(--angle)));
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.arch-node::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.arch-node:hover {
+    transform: translate(-50%, 50%) rotate(calc(-1 * var(--angle))) scale(1.1);
+    background: var(--bg-card-hover);
+    border-color: var(--text-secondary);
+}
+
+.arch-node.active {
+    transform: translate(-50%, 50%) rotate(calc(-1 * var(--angle))) scale(1.2);
+    border-color: var(--accent-blue);
+    background: var(--bg-card);
+    box-shadow: 0 0 25px var(--accent-blue-glow);
+}
+
+.arch-node.active::before {
+    border-color: var(--accent-blue);
+    animation: orbitPulse 2s infinite;
+}
+
+.arch-node-label {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.3s;
+    pointer-events: none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.arch-node:hover .arch-node-label {
+    color: var(--text-primary);
+}
+
+.arch-node.active .arch-node-label {
+    color: var(--text-primary);
+    font-size: 1rem;
+    top: calc(100% + 20px);
+}
+
+/* ── Status Indicator for Nodes ── */
+.node-status {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid var(--bg-primary);
+}
+.node-status.ready { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green-glow); }
+.node-status.planned { background: var(--text-muted); }
+
+/* ── Content Panel (The active subject) ── */
+.orbital-content {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.orbital-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.subject-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-hover);
+    border-top: 3px solid var(--accent-blue);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.subject-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.subject-icon {
+    font-size: 3rem;
+}
+
+.subject-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+@keyframes orbitPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.3); opacity: 0; }
+}
