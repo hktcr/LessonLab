@@ -25,99 +25,129 @@
         </div>
     </div>
 
-    <!-- ===== MAIN APP (ORBITAL ÅRSHJUL) ===== -->
-    <div class="orbital-app" id="mainApp">
+    <!-- ===== MAIN APP (PREMIUM DONUT UI) ===== -->
+    <div class="donut-app" id="mainApp">
         
-        <header class="orbital-header">
-            <h1 class="app-title" style="font-size: 2.5rem; margin-bottom: 0;">LessonLab</h1>
-            <p class="app-subtitle" style="margin-bottom: 0;">Årshjul · Den röda tråden</p>
-            
+        <div class="donut-left">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h1 class="app-title" style="font-size: 2.5rem; margin-bottom: 0;">LessonLab</h1>
+                <p class="app-subtitle" style="margin-bottom: 0;">Interaktivt Årshjul</p>
+            </div>
+
             <div class="year-tabs" id="yearTabs">
                 <button class="year-tab active" onclick="setYear(7)">Årskurs 7</button>
                 <button class="year-tab" onclick="setYear(8)">Årskurs 8</button>
                 <button class="year-tab" onclick="setYear(9)">Årskurs 9</button>
             </div>
-        </header>
 
-        <main class="orbital-main">
-            <!-- THE ARCH (Timeline) -->
-            <div class="arch-container">
-                <div class="arch-line"></div>
-                <div class="arch-season-labels">
-                    <span>Hösttermin</span>
-                    <span>Vårtermin</span>
-                </div>
-                <div id="archNodes">
-                    <!-- Nodes injected via JS -->
+            <!-- THE WHEEL -->
+            <div class="wheel-container">
+                <svg class="wheel-svg" viewBox="0 0 600 600" id="donutSvg">
+                    <defs>
+                        <!-- Gradients for subjects -->
+                        <linearGradient id="grad-kemi" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f59e0b" />
+                            <stop offset="100%" stop-color="#ea580c" />
+                        </linearGradient>
+                        <linearGradient id="grad-fysik" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3b82f6" />
+                            <stop offset="100%" stop-color="#4f46e5" />
+                        </linearGradient>
+                        <linearGradient id="grad-biologi" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#10b981" />
+                            <stop offset="100%" stop-color="#059669" />
+                        </linearGradient>
+                        <linearGradient id="grad-kroppen" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f43f5e" />
+                            <stop offset="100%" stop-color="#e11d48" />
+                        </linearGradient>
+                        <linearGradient id="grad-neutral" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#64748b" />
+                            <stop offset="100%" stop-color="#334155" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Slices injected via JS -->
+                    <g id="donutGroup"></g>
+                </svg>
+
+                <!-- CENTER VIEWPORT -->
+                <div class="wheel-center">
+                    <div class="center-bg" id="centerBg"></div>
+                    <div class="wheel-center-content">
+                        <div class="center-season" id="centerSeason">Välj Område</div>
+                        <h2 class="center-title" id="centerTitle">Årshjul</h2>
+                    </div>
                 </div>
             </div>
+            
+            <footer class="app-footer" style="margin-top: 2rem; border-top: none; padding-top: 0;">
+                LessonLab v3.0 (Årshjul UI) ·
+                <button class="logout-btn" onclick="doLogout()">Logga ut</button>
+            </footer>
+        </div>
 
-            <!-- THE CONTENT PANEL -->
+        <!-- CONTENT PANEL -->
+        <div class="donut-right">
             <div class="orbital-content" id="contentPanel">
                 <div class="subject-card">
                     <div class="subject-header">
-                        <div class="subject-icon" id="panelIcon">🧬</div>
-                        <div style="flex: 1;">
-                            <div style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;" id="panelSeason">Vårtermin</div>
-                            <h2 class="subject-title" id="panelTitle">Biologins grunder</h2>
-                        </div>
+                        <h2 class="subject-title" id="panelTitle" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Lektioner & Manus</h2>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;" id="panelSubtitle">Välj ett område i hjulet</div>
                     </div>
-                    <ul class="lesson-list" id="panelLessons">
-                        <!-- Lessons injected via JS -->
-                    </ul>
+                    <div class="lesson-list-container">
+                        <ul class="lesson-list" id="panelLessons">
+                            <!-- Lessons injected via JS -->
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </div>
 
-        </main>
-
-        <footer class="app-footer" style="margin-top: auto; padding-top: 1rem;">
-            LessonLab v2.0 (Orbital UI) — Del av GAIA Klassrumsverktyg ·
-            <button class="logout-btn" onclick="doLogout()">Logga ut</button>
-        </footer>
     </div>
 
     <script src="auth.js"></script>
     <script>
         // Data Structure based on NO_ARSHJUL.md
+        // Gradients: grad-kemi, grad-fysik, grad-biologi, grad-kroppen, grad-neutral
         const yearData = {
             7: [
-                { id: '7-1', title: 'Materia & Kemi', icon: '⚗️', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '7-2', title: 'Energi', icon: '⚡', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '7-3', title: 'Rymden', icon: '🚀', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '7-4', title: 'Biologins grunder', icon: '🧬', status: 'ready', season: 'Vårtermin', lessons: [
+                { id: '7-1', title: 'Materia & Kemi', grad: 'url(#grad-kemi)', bg: 'linear-gradient(45deg, #451a03, #78350f)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '7-2', title: 'Energi', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #1e1b4b, #312e81)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '7-3', title: 'Rymden', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #020617, #0f172a)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '7-4', title: 'Biologins grunder', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'ready', season: 'Vårtermin', lessons: [
                     { title: 'Cellritning på tavlan', url: 'biologins-grunder/cellritning.html', status: 'ready' },
                     { title: 'Fotosyntes + Cellandning', url: 'biologins-grunder/fotosyntes.html', status: 'ready' },
-                    { title: 'Bakterier & Virus (v1 — NP-hook)', url: 'biologins-grunder/bakterier-virus.html', status: 'ready' },
-                    { title: 'Bakterier & Virus (v2 — Tabelljämförelse)', url: 'biologins-grunder/bakterier-virus-v2.html', status: 'ready' },
-                    { title: 'Gruppchallenge — Repetition', url: 'biologins-grunder/gruppchallenge.html', status: 'ready' },
+                    { title: 'Bakterier & Virus (v1)', url: 'biologins-grunder/bakterier-virus.html', status: 'ready' },
+                    { title: 'Bakterier & Virus (v2)', url: 'biologins-grunder/bakterier-virus-v2.html', status: 'ready' },
+                    { title: 'Gruppchallenge — Rep', url: 'biologins-grunder/gruppchallenge.html', status: 'ready' },
                     { title: '🌿 Ekologi L1: Spelplanen', url: 'biologins-grunder/ekologi-l1-spelplanen.html', status: 'ready' },
                     { title: 'Ekologi L2: Mekaniken', url: 'biologins-grunder/ekologi-l2-mekaniken.html', status: 'ready' },
                     { title: 'Ekologi L3: Pusslet', url: 'biologins-grunder/ekologi-l3-pusslet.html', status: 'ready' },
-                    { title: 'Samspel i Naturen (Manus+Slides)', url: 'biologins-grunder/samspel-i-naturen.html', status: 'ready' },
-                    { title: '🌲 Ekologi L4: Systematisk Fältstudie', url: 'biologins-grunder/ekologi-l4-faltstudie.html', status: 'ready' },
-                    { title: '🌳 Ekologi L5: Fältstudie (Bokskog vs Gräsmark)', url: 'biologins-grunder/ekologi-l5-bokskog.html', status: 'ready' }
+                    { title: 'Samspel i Naturen', url: 'biologins-grunder/samspel-i-naturen.html', status: 'ready' },
+                    { title: '🌲 L4: Systematisk Fältstudie', url: 'biologins-grunder/ekologi-l4-faltstudie.html', status: 'ready' },
+                    { title: '🌳 L5: Fältstudie Bokskog', url: 'biologins-grunder/ekologi-l5-bokskog.html', status: 'ready' }
                 ]},
-                { id: '7-5', title: 'Syror & Baser', icon: '🧪', status: 'ready', season: 'Vårtermin', lessons: [
+                { id: '7-5', title: 'Syror & Baser', grad: 'url(#grad-kemi)', bg: 'linear-gradient(45deg, #451a03, #b45309)', status: 'ready', season: 'Vårtermin', lessons: [
                     { title: 'Dag 1: Syror, baser & pH', url: 'kemins-grunder/syror-baser.html', status: 'ready' },
-                    { title: 'Dag 2: pH-fördjupning & Eget arbete', url: 'kemins-grunder/ph-fordjupning.html', status: 'ready' },
-                    { title: '🎮 pH-skalan — Interaktivt verktyg', url: 'kemins-grunder/ph-skalan.html', status: 'ready' },
+                    { title: 'Dag 2: pH-fördjupning', url: 'kemins-grunder/ph-fordjupning.html', status: 'ready' },
+                    { title: '🎮 pH-skalan — Interaktivt', url: 'kemins-grunder/ph-skalan.html', status: 'ready' },
                     { title: '🧪 BTB-labb med kolsyra', url: 'kemins-grunder/btb-labb.html', status: 'ready' }
                 ]}
             ],
             8: [
-                { id: '8-1', title: 'Näringsämnen', icon: '🥩', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-2', title: 'Människokroppen', icon: '🫀', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-3', title: 'Ellära & Magnetism', icon: '🧲', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-4', title: 'Kol & Organisk', icon: '💎', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '8-5', title: 'Våglära', icon: '🌊', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '8-6', title: 'Hälsa & Sex', icon: '❤️', status: 'planned', season: 'Vårtermin', lessons: [] }
+                { id: '8-1', title: 'Näringsämnen', grad: 'url(#grad-kroppen)', bg: 'linear-gradient(45deg, #4c0519, #881337)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-2', title: 'Människokroppen', grad: 'url(#grad-kroppen)', bg: 'linear-gradient(45deg, #4c0519, #be123c)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-3', title: 'Ellära', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #1e1b4b, #4338ca)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-4', title: 'Kol & Organisk', grad: 'url(#grad-kemi)', bg: 'linear-gradient(45deg, #451a03, #92400e)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '8-5', title: 'Våglära', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #020617, #1e293b)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '8-6', title: 'Hälsa & Sex', grad: 'url(#grad-kroppen)', bg: 'linear-gradient(45deg, #4a044e, #86198f)', status: 'planned', season: 'Vårtermin', lessons: [] }
             ],
             9: [
-                { id: '9-1', title: 'Genetik', icon: '🧬', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-2', title: 'Atom- & Kärnfysik', icon: '☢️', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-3', title: 'Evolution', icon: '🦍', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-4', title: 'Mekanik', icon: '⚙️', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '9-5', title: 'Miljövetenskap', icon: '🌍', status: 'planned', season: 'Vårtermin', lessons: [] }
+                { id: '9-1', title: 'Genetik', grad: 'url(#grad-biologi)', bg: 'linear-gradient(45deg, #022c22, #065f46)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-2', title: 'Atom- & Kärnfysik', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #020617, #334155)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-3', title: 'Evolution', grad: 'url(#grad-biologi)', bg: 'linear-gradient(45deg, #14532d, #166534)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-4', title: 'Mekanik', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #0f172a, #475569)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '9-5', title: 'Miljövetenskap', grad: 'url(#grad-biologi)', bg: 'linear-gradient(45deg, #064e3b, #047857)', status: 'planned', season: 'Vårtermin', lessons: [] }
             ]
         };
 
@@ -146,60 +176,84 @@
         function showApp() {
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('mainApp').classList.add('visible');
-            setYear(7); // Default to year 7
+            setYear(7);
         }
 
         function setYear(year) {
             currentYear = year;
             
-            // Update tabs
             document.querySelectorAll('.year-tab').forEach(tab => {
                 tab.classList.remove('active');
                 if (tab.textContent.includes(year)) tab.classList.add('active');
             });
 
-            renderArch();
+            renderDonut();
         }
 
-        function renderArch() {
-            const container = document.getElementById('archNodes');
-            container.innerHTML = '';
+        // Math for SVG arcs
+        function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+            var angleInRadians = (angleInDegrees) * Math.PI / 180.0;
+            return {
+                x: centerX + (radius * Math.cos(angleInRadians)),
+                y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        }
+
+        function describeDonutArc(x, y, innerRadius, outerRadius, startAngle, endAngle) {
+            var startOuter = polarToCartesian(x, y, outerRadius, endAngle);
+            var endOuter   = polarToCartesian(x, y, outerRadius, startAngle);
+            var startInner = polarToCartesian(x, y, innerRadius, endAngle);
+            var endInner   = polarToCartesian(x, y, innerRadius, startAngle);
+            var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+            return [
+                "M", startOuter.x, startOuter.y,
+                "A", outerRadius, outerRadius, 0, largeArcFlag, 0, endOuter.x, endOuter.y,
+                "L", endInner.x, endInner.y,
+                "A", innerRadius, innerRadius, 0, largeArcFlag, 1, startInner.x, startInner.y,
+                "Z"
+            ].join(" ");
+        }
+
+        function renderDonut() {
+            const group = document.getElementById('donutGroup');
+            group.innerHTML = '';
             
             const nodes = yearData[currentYear];
             const numNodes = nodes.length;
             
-            // Distribute angles between -70deg and 70deg
-            const range = 140;
-            const step = numNodes > 1 ? range / (numNodes - 1) : 0;
-            const startAngle = numNodes > 1 ? -70 : 0;
-
+            // 360 degrees circle. Leave 2 degrees gap between slices.
+            const gap = 2;
+            const totalGap = numNodes * gap;
+            const sliceAngle = (360 - totalGap) / numNodes;
+            
+            let currentAngle = 0;
             let firstReadyNodeId = null;
 
             nodes.forEach((node, index) => {
-                const angle = startAngle + (index * step);
-                
                 if (node.status === 'ready' && !firstReadyNodeId) {
                     firstReadyNodeId = node.id;
                 }
 
-                const wrapper = document.createElement('div');
-                wrapper.className = 'arch-node-wrapper';
-                wrapper.style.setProperty('--angle', `${angle}deg`);
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 
-                const nodeEl = document.createElement('div');
-                nodeEl.className = `arch-node ${node.id === activeNodeId ? 'active' : ''}`;
-                nodeEl.onclick = () => selectNode(node.id);
-                nodeEl.innerHTML = `
-                    ${node.icon}
-                    <div class="node-status ${node.status}"></div>
-                    <div class="arch-node-label">${node.title}</div>
-                `;
+                // Calculate arc coordinates
+                const startAngle = currentAngle;
+                const endAngle = currentAngle + sliceAngle;
+                const d = describeDonutArc(300, 300, 205, 290, startAngle, endAngle);
                 
-                wrapper.appendChild(nodeEl);
-                container.appendChild(wrapper);
+                path.setAttribute("d", d);
+                path.setAttribute("fill", node.grad);
+                path.setAttribute("stroke", "transparent");
+                path.setAttribute("stroke-width", "4");
+                path.setAttribute("class", `wheel-slice ${node.id === activeNodeId ? 'active' : ''}`);
+                path.setAttribute("data-id", node.id);
+                path.onclick = () => selectNode(node.id);
+                
+                group.appendChild(path);
+                
+                currentAngle = endAngle + gap;
             });
 
-            // Auto-select the first ready node (or the first overall if none are ready)
             if (!activeNodeId || !nodes.find(n => n.id === activeNodeId)) {
                 selectNode(firstReadyNodeId || nodes[0].id);
             }
@@ -208,9 +262,9 @@
         function selectNode(nodeId) {
             activeNodeId = nodeId;
             
-            // Update UI nodes
-            document.querySelectorAll('.arch-node').forEach(el => el.classList.remove('active'));
-            const activeEl = event ? event.currentTarget : document.querySelector(`.arch-node[onclick="selectNode('${nodeId}')"]`);
+            // Update SVG
+            document.querySelectorAll('.wheel-slice').forEach(el => el.classList.remove('active'));
+            const activeEl = document.querySelector(`.wheel-slice[data-id="${nodeId}"]`);
             if (activeEl) activeEl.classList.add('active');
 
             // Find data
@@ -221,20 +275,38 @@
         }
 
         function renderContent(data) {
+            // Update Viewport (Center of Donut)
+            const centerBg = document.getElementById('centerBg');
+            const centerTitle = document.getElementById('centerTitle');
+            const centerSeason = document.getElementById('centerSeason');
+            
+            centerBg.classList.remove('active');
+            setTimeout(() => {
+                centerBg.style.background = data.bg;
+                if (data.bg.includes('url')) centerBg.style.backgroundSize = 'cover';
+                centerTitle.textContent = data.title;
+                centerSeason.textContent = data.season;
+                centerBg.classList.add('active');
+                // Color the border of the viewport to match the subject
+                const rootGradColor = data.grad.includes('biologi') ? 'rgba(16, 185, 129, 0.4)' :
+                                      data.grad.includes('kemi') ? 'rgba(245, 158, 11, 0.4)' :
+                                      data.grad.includes('fysik') ? 'rgba(59, 130, 246, 0.4)' :
+                                      data.grad.includes('kroppen') ? 'rgba(244, 63, 94, 0.4)' : 'rgba(255,255,255,0.1)';
+                document.querySelector('.wheel-center').style.borderColor = rootGradColor;
+                document.querySelector('.wheel-center').style.boxShadow = `inset 0 0 50px rgba(0,0,0,0.8), 0 0 40px ${rootGradColor}`;
+            }, 300);
+
+            // Update Panel
             const panel = document.getElementById('contentPanel');
-            const icon = document.getElementById('panelIcon');
-            const title = document.getElementById('panelTitle');
-            const season = document.getElementById('panelSeason');
+            const panelTitle = document.getElementById('panelTitle');
+            const panelSubtitle = document.getElementById('panelSubtitle');
             const lessonList = document.getElementById('panelLessons');
 
-            // Fade out
             panel.classList.remove('visible');
 
             setTimeout(() => {
-                icon.textContent = data.icon;
-                title.textContent = data.title;
-                season.textContent = data.season;
-                
+                panelTitle.textContent = data.title;
+                panelSubtitle.textContent = `${data.season} · Årskurs ${currentYear}`;
                 lessonList.innerHTML = '';
                 
                 if (data.lessons.length === 0) {
@@ -256,10 +328,8 @@
                         `;
                     });
                 }
-
-                // Fade in
                 panel.classList.add('visible');
-            }, 300); // Wait for fade out transition
+            }, 300);
         }
     </script>
 </body>
