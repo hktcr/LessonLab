@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekologi L5: Bokskog vs Gräsmark — LessonLab</title>
+    <meta name="description" content="Genomgångsmanus för fältstudie i bokskog. Kvantitativ vegetationsanalys och abiotiska faktorer.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🌳</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>🌳 Fältstudie: Bokskog vs Gräsmark</h1>
+            <div class="lesson-meta">
+                <span>⏱️ Utomhuslektion + Inomhusuppföljning</span>
+                <span>✏️ Snörbit, mobiltelefon, fältstövlar</span>
+                <span>📖 Abiotiska och biotiska faktorer (Lgr22)</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- INTRODUKTION TILL BLOCKET             -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">📋 Den Pedagogiska Bryggan & Syfte <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(Lärarfokus)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Didaktisk förankring (§63):</strong> Denna fältstudie är en direkt förlängning av den tidigare "Förna & Markfauna"-studien. Istället för att räkna <em>djur</em> på mikronivå, räknar vi nu <em>växter</em> på makronivå. Mönstret (biotisk påverkan av abiotiska faktorer) är detsamma.</p>
+                    <p><strong>NO som självförsvar (§49):</strong> Förmågan att genomföra standardiserade jämförelser och identifiera felkällor (logistik, mätmetoder, yta) tränar kritiskt tänkande. Att kunna se skillnad på en rättvis och en orättvis mätning är att skydda sig mot vilseledande statistik.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- LEKTION 1                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-l1">
+            <div class="section-header" onclick="toggleSection('sec-l1')">
+                <span class="section-title">🌿 Fältmomentet: Kvantitativ Vegetationsanalys <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(Klassrum + Utomhus)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        <a href="slides-bokskog.html#slide-2" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: bold;">👉 Öppna Slides (Snörbit-metoden)</a>
+                    </div>
+                    <p><strong>Steg 1: Genomgång & Brygga (Klassrum, 10 min)</strong></p>
+                    <div class="say-block">
+                        "Förra gången letade vi smådjur och märkte hur enorm skillnad det var mellan rabatten och förnan under buskarna. Idag ska vi undersöka om samma mönster gäller för växter ute i landskapet. Vi ska jämföra den ljusa gräsmarken med den mörka bokskogen."
+                    </div>
+                    <ul>
+                        <li>Dela in i grupper.</li>
+                        <li>Dela ut material: <strong>Varje grupp får en snörbit (ca 1 meter).</strong></li>
+                    </ul>
+
+                    <p><strong>Steg 2: Gräsmarken (Makadamen, 15 min)</strong></p>
+                    <div class="say-block">
+                        <a href="slides-bokskog.html#slide-3" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: bold;">👉 Slides: Plats 1 - Gräsmarken</a>
+                    </div>
+                    <ul>
+                        <li>Gå till det öppna fältet. Låt grupperna kasta/lägga ut sin snörbit i en ring.</li>
+                        <li><strong>Uppdrag:</strong> Räkna hur många <em>olika växtarter</em> ni hittar i ringen. Anteckna i telefonen. (Bygger framgång: De kommer garanterat hitta många arter).</li>
+                    </ul>
+
+                    <p><strong>Steg 3: Bokskogen (20 min)</strong></p>
+                    <div class="say-block">
+                        <a href="slides-bokskog.html#slide-4" target="_blank" style="color: #fbbf24; text-decoration: none; font-weight: bold;">👉 Slides: Plats 2 - Bokskogen (Gula kortet)</a>
+                    </div>
+                    <ul>
+                        <li>Gå in under bokskogens slutna krontak. Upprepa metoden.</li>
+                        <li><strong>Kontrasten:</strong> Eleverna kommer att notera bristen på växter.</li>
+                        <li><strong>Insekts-pivoten (Gula kortet på sliden):</strong> "Hittar ni inga växter? Vänd på löven!" Låt dem upptäcka att även om växtligheten är låg, kryllar det av nedbrytare, precis som i förra försöket.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- LEKTION 2                              -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-l2">
+            <div class="section-header" onclick="toggleSection('sec-l2')">
+                <span class="section-title">📊 Uppföljning: Analys & NP-fokus <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(Inomhus)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Steg 1: Sammanställning (15 min)</strong></p>
+                    <div class="say-block">
+                        <a href="slides-bokskog.html#slide-5" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: bold;">👉 Slides: Den Stora Frågan (Jämförelse)</a>
+                    </div>
+                    <ul>
+                        <li>Låt grupperna redovisa sina siffror. Skriv upp på tavlan.</li>
+                        <li>Knyt cliffhangern ("Varför är skillnaden så stor?"): Ljus vs Mörker, Värme vs Kyla (Abiotiska faktorer).</li>
+                    </ul>
+
+                    <p><strong>Steg 2: Felkällor & Förbättringsförslag — NP Träning (25 min)</strong></p>
+                    <div class="write-block">
+                        <strong>Diskussions/skrivuppgift (NP-format):</strong><br>
+                        "Ni använde en snörbit och era egna ögon för att mäta biologisk mångfald.<br>
+                        1. Nämn två felkällor (saker som kan ha gjort att grupperna fick orättvisa resultat).<br>
+                        2. Ge ett konkret förbättringsförslag på hur vi kan göra metoden mer standardiserad nästa gång."
+                    </div>
+                    <ul>
+                        <li><em>Möjliga elevsvar att styra mot:</em> Snörbiten var inte exakt lika stor överallt (rutnät av metall vore bättre). Vi kunde inte identifiera alla växter. Vissa räknade individer istället för arter.</li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — Ekologi L5 (Fältstudie: Bokskog)
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
