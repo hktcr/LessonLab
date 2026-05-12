@@ -42,6 +42,9 @@
 
             <!-- THE WHEEL -->
             <div class="wheel-container">
+                <div class="wheel-semester-label label-ht">Hösttermin</div>
+                <div class="wheel-semester-label label-vt">Vårtermin</div>
+                
                 <svg class="wheel-svg" viewBox="0 0 600 600" id="donutSvg">
                     <defs>
                         <!-- Gradients for subjects -->
@@ -68,6 +71,10 @@
                     </defs>
                     <!-- Slices injected via JS -->
                     <g id="donutGroup"></g>
+                    
+                    <!-- Semester Dividers (Top and Bottom lines) -->
+                    <line x1="300" y1="310" x2="300" y2="290" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                    <line x1="300" y1="10" x2="300" y2="-10" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
                 </svg>
 
                 <!-- CENTER VIEWPORT -->
@@ -108,12 +115,11 @@
     <script src="auth.js"></script>
     <script>
         // Data Structure based on NO_ARSHJUL.md
-        // Gradients: grad-kemi, grad-fysik, grad-biologi, grad-kroppen, grad-neutral
         const yearData = {
             7: [
-                { id: '7-1', title: 'Materia & Kemi', grad: 'url(#grad-kemi)', bg: 'linear-gradient(45deg, #451a03, #78350f)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '7-2', title: 'Energi', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #1e1b4b, #312e81)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '7-3', title: 'Rymden', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #020617, #0f172a)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '7-1', title: 'Materia & Kemi', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '7-2', title: 'Energi', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '7-3', title: 'Rymden', grad: 'url(#grad-fysik)', bg: 'url(assets/images/rymden-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
                 { id: '7-4', title: 'Biologins grunder', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'ready', season: 'Vårtermin', lessons: [
                     { title: 'Cellritning på tavlan', url: 'biologins-grunder/cellritning.html', status: 'ready' },
                     { title: 'Fotosyntes + Cellandning', url: 'biologins-grunder/fotosyntes.html', status: 'ready' },
@@ -127,7 +133,7 @@
                     { title: '🌲 L4: Systematisk Fältstudie', url: 'biologins-grunder/ekologi-l4-faltstudie.html', status: 'ready' },
                     { title: '🌳 L5: Fältstudie Bokskog', url: 'biologins-grunder/ekologi-l5-bokskog.html', status: 'ready' }
                 ]},
-                { id: '7-5', title: 'Syror & Baser', grad: 'url(#grad-kemi)', bg: 'linear-gradient(45deg, #451a03, #b45309)', status: 'ready', season: 'Vårtermin', lessons: [
+                { id: '7-5', title: 'Syror & Baser', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'ready', season: 'Vårtermin', lessons: [
                     { title: 'Dag 1: Syror, baser & pH', url: 'kemins-grunder/syror-baser.html', status: 'ready' },
                     { title: 'Dag 2: pH-fördjupning', url: 'kemins-grunder/ph-fordjupning.html', status: 'ready' },
                     { title: '🎮 pH-skalan — Interaktivt', url: 'kemins-grunder/ph-skalan.html', status: 'ready' },
@@ -135,43 +141,29 @@
                 ]}
             ],
             8: [
-                { id: '8-1', title: 'Näringsämnen', grad: 'url(#grad-kroppen)', bg: 'linear-gradient(45deg, #4c0519, #881337)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-2', title: 'Människokroppen', grad: 'url(#grad-kroppen)', bg: 'linear-gradient(45deg, #4c0519, #be123c)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-3', title: 'Ellära', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #1e1b4b, #4338ca)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-4', title: 'Kol & Organisk', grad: 'url(#grad-kemi)', bg: 'linear-gradient(45deg, #451a03, #92400e)', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '8-5', title: 'Våglära', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #020617, #1e293b)', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '8-6', title: 'Hälsa & Sex', grad: 'url(#grad-kroppen)', bg: 'linear-gradient(45deg, #4a044e, #86198f)', status: 'planned', season: 'Vårtermin', lessons: [] }
+                { id: '8-1', title: 'Näringsämnen', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-2', title: 'Människokroppen', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-3', title: 'Ellära', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '8-4', title: 'Kol & Organisk', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '8-5', title: 'Våglära', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '8-6', title: 'Hälsa & Sex', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] }
             ],
             9: [
-                { id: '9-1', title: 'Genetik', grad: 'url(#grad-biologi)', bg: 'linear-gradient(45deg, #022c22, #065f46)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-2', title: 'Atom- & Kärnfysik', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #020617, #334155)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-3', title: 'Evolution', grad: 'url(#grad-biologi)', bg: 'linear-gradient(45deg, #14532d, #166534)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-4', title: 'Mekanik', grad: 'url(#grad-fysik)', bg: 'linear-gradient(45deg, #0f172a, #475569)', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '9-5', title: 'Miljövetenskap', grad: 'url(#grad-biologi)', bg: 'linear-gradient(45deg, #064e3b, #047857)', status: 'planned', season: 'Vårtermin', lessons: [] }
+                { id: '9-1', title: 'Genetik', grad: 'url(#grad-biologi)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-2', title: 'Atom- & Kärnfysik', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-3', title: 'Evolution', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
+                { id: '9-4', title: 'Mekanik', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
+                { id: '9-5', title: 'Miljövetenskap', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] }
             ]
         };
 
         let currentYear = 7;
         let activeNodeId = null;
 
-        // Auth handling
-        if (LESSON_LAB_AUTH.isAuthenticated()) {
-            showApp();
-        }
-
-        async function doLogin() {
-            const input = document.getElementById('passwordInput');
-            const error = document.getElementById('loginError');
-            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
-        }
-
-        function doLogout() {
-            LESSON_LAB_AUTH.logout();
-        }
-
-        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') doLogin();
-        });
+        if (LESSON_LAB_AUTH.isAuthenticated()) showApp();
+        async function doLogin() { await LESSON_LAB_AUTH.handleLogin(document.getElementById('passwordInput'), document.getElementById('loginError'), showApp); }
+        function doLogout() { LESSON_LAB_AUTH.logout(); }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
 
         function showApp() {
             document.getElementById('loginScreen').classList.add('hidden');
@@ -181,16 +173,13 @@
 
         function setYear(year) {
             currentYear = year;
-            
             document.querySelectorAll('.year-tab').forEach(tab => {
                 tab.classList.remove('active');
                 if (tab.textContent.includes(year)) tab.classList.add('active');
             });
-
             renderDonut();
         }
 
-        // Math for SVG arcs
         function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
             var angleInRadians = (angleInDegrees) * Math.PI / 180.0;
             return {
@@ -219,40 +208,47 @@
             group.innerHTML = '';
             
             const nodes = yearData[currentYear];
-            const numNodes = nodes.length;
+            const htNodes = nodes.filter(n => n.season === 'Hösttermin');
+            const vtNodes = nodes.filter(n => n.season === 'Vårtermin');
             
-            // 360 degrees circle. Leave 2 degrees gap between slices.
-            const gap = 2;
-            const totalGap = numNodes * gap;
-            const sliceAngle = (360 - totalGap) / numNodes;
-            
-            let currentAngle = 0;
+            const gap = 2; // Degrees gap between slices
             let firstReadyNodeId = null;
 
-            nodes.forEach((node, index) => {
-                if (node.status === 'ready' && !firstReadyNodeId) {
-                    firstReadyNodeId = node.id;
-                }
+            function renderHalf(halfNodes, startAngleRange, endAngleRange) {
+                if(halfNodes.length === 0) return;
+                
+                // Add a small 4-degree padding at the top/bottom edges so the halves don't touch
+                const actualStart = startAngleRange + 4;
+                const actualEnd = endAngleRange - 4;
+                
+                const totalAvailable = (actualEnd - actualStart) - (halfNodes.length * gap);
+                const sliceAngle = totalAvailable / halfNodes.length;
+                
+                let currentAngle = actualStart;
+                
+                halfNodes.forEach(node => {
+                    if (node.status === 'ready' && !firstReadyNodeId) {
+                        firstReadyNodeId = node.id;
+                    }
+                    const endAngle = currentAngle + sliceAngle;
+                    const d = describeDonutArc(300, 300, 205, 290, currentAngle, endAngle);
+                    
+                    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    path.setAttribute("d", d);
+                    path.setAttribute("fill", node.grad);
+                    path.setAttribute("stroke", "transparent");
+                    path.setAttribute("class", `wheel-slice ${node.id === activeNodeId ? 'active' : ''}`);
+                    path.setAttribute("data-id", node.id);
+                    path.onclick = () => selectNode(node.id);
+                    
+                    group.appendChild(path);
+                    currentAngle = endAngle + gap;
+                });
+            }
 
-                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                
-                // Calculate arc coordinates
-                const startAngle = currentAngle;
-                const endAngle = currentAngle + sliceAngle;
-                const d = describeDonutArc(300, 300, 205, 290, startAngle, endAngle);
-                
-                path.setAttribute("d", d);
-                path.setAttribute("fill", node.grad);
-                path.setAttribute("stroke", "transparent");
-                path.setAttribute("stroke-width", "4");
-                path.setAttribute("class", `wheel-slice ${node.id === activeNodeId ? 'active' : ''}`);
-                path.setAttribute("data-id", node.id);
-                path.onclick = () => selectNode(node.id);
-                
-                group.appendChild(path);
-                
-                currentAngle = endAngle + gap;
-            });
+            // SVG is rotated -90deg in CSS, so 0deg is Top (August), 90deg is Right, 180deg is Bottom (January).
+            renderHalf(htNodes, 0, 180); // Right side
+            renderHalf(vtNodes, 180, 360); // Left side
 
             if (!activeNodeId || !nodes.find(n => n.id === activeNodeId)) {
                 selectNode(firstReadyNodeId || nodes[0].id);
