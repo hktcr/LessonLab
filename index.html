@@ -117,10 +117,10 @@
         // Data Structure based on NO_ARSHJUL.md
         const yearData = {
             7: [
-                { id: '7-1', title: 'Materia & Kemi', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '7-2', title: 'Energi', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '7-3', title: 'Rymden', grad: 'url(#grad-fysik)', bg: 'url(assets/images/rymden-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '7-4', title: 'Biologins grunder', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'ready', season: 'Vårtermin', lessons: [
+                { id: '7-1', title: 'Materia & Kemi', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 11, lessons: [] },
+                { id: '7-2', title: 'Energi', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 5, lessons: [] },
+                { id: '7-3', title: 'Rymden', grad: 'url(#grad-fysik)', bg: 'url(assets/images/rymden-bg.png)', status: 'planned', season: 'Vårtermin', weeks: 3, lessons: [] },
+                { id: '7-4', title: 'Biologins grunder', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'ready', season: 'Vårtermin', weeks: 11, lessons: [
                     { title: 'Cellritning på tavlan', url: 'biologins-grunder/cellritning.html', status: 'ready' },
                     { title: 'Fotosyntes + Cellandning', url: 'biologins-grunder/fotosyntes.html', status: 'ready' },
                     { title: 'Bakterier & Virus (v1)', url: 'biologins-grunder/bakterier-virus.html', status: 'ready' },
@@ -133,7 +133,7 @@
                     { title: '🌲 L4: Systematisk Fältstudie', url: 'biologins-grunder/ekologi-l4-faltstudie.html', status: 'ready' },
                     { title: '🌳 L5: Fältstudie Bokskog', url: 'biologins-grunder/ekologi-l5-bokskog.html', status: 'ready' }
                 ]},
-                { id: '7-5', title: 'Syror & Baser', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'ready', season: 'Vårtermin', lessons: [
+                { id: '7-5', title: 'Syror & Baser', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'ready', season: 'Vårtermin', weeks: 6, lessons: [
                     { title: 'Dag 1: Syror, baser & pH', url: 'kemins-grunder/syror-baser.html', status: 'ready' },
                     { title: 'Dag 2: pH-fördjupning', url: 'kemins-grunder/ph-fordjupning.html', status: 'ready' },
                     { title: '🎮 pH-skalan — Interaktivt', url: 'kemins-grunder/ph-skalan.html', status: 'ready' },
@@ -141,19 +141,19 @@
                 ]}
             ],
             8: [
-                { id: '8-1', title: 'Näringsämnen', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-2', title: 'Människokroppen', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-3', title: 'Ellära', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '8-4', title: 'Kol & Organisk', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '8-5', title: 'Våglära', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '8-6', title: 'Hälsa & Sex', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] }
+                { id: '8-1', title: 'Näringsämnen', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 2, lessons: [] },
+                { id: '8-2', title: 'Människokroppen', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 9, lessons: [] },
+                { id: '8-3', title: 'Ellära', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 6, lessons: [] },
+                { id: '8-4', title: 'Kol & Organisk', grad: 'url(#grad-kemi)', bg: 'url(assets/images/kemi-bg.png)', status: 'planned', season: 'Vårtermin', weeks: 10, lessons: [] },
+                { id: '8-5', title: 'Våglära', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Vårtermin', weeks: 6, lessons: [] },
+                { id: '8-6', title: 'Hälsa & Sex', grad: 'url(#grad-kroppen)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Vårtermin', weeks: 4, lessons: [] }
             ],
             9: [
-                { id: '9-1', title: 'Genetik', grad: 'url(#grad-biologi)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-2', title: 'Atom- & Kärnfysik', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-3', title: 'Evolution', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'planned', season: 'Hösttermin', lessons: [] },
-                { id: '9-4', title: 'Mekanik', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] },
-                { id: '9-5', title: 'Miljövetenskap', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'planned', season: 'Vårtermin', lessons: [] }
+                { id: '9-1', title: 'Genetik', grad: 'url(#grad-biologi)', bg: 'url(assets/images/kroppen-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 6, lessons: [] },
+                { id: '9-2', title: 'Atom- & Kärnfysik', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 6, lessons: [] },
+                { id: '9-3', title: 'Evolution', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'planned', season: 'Hösttermin', weeks: 5, lessons: [] },
+                { id: '9-4', title: 'Mekanik', grad: 'url(#grad-fysik)', bg: 'url(assets/images/fysik-bg.png)', status: 'planned', season: 'Vårtermin', weeks: 6, lessons: [] },
+                { id: '9-5', title: 'Miljövetenskap', grad: 'url(#grad-biologi)', bg: 'url(biologins-grunder/beech-bg.png)', status: 'planned', season: 'Vårtermin', weeks: 10, lessons: [] }
             ]
         };
 
@@ -221,8 +221,8 @@
                 const actualStart = startAngleRange + 4;
                 const actualEnd = endAngleRange - 4;
                 
-                const totalAvailable = (actualEnd - actualStart) - (halfNodes.length * gap);
-                const sliceAngle = totalAvailable / halfNodes.length;
+                const totalAvailableAngle = (actualEnd - actualStart) - (halfNodes.length * gap);
+                const totalWeeks = halfNodes.reduce((sum, n) => sum + (n.weeks || 10), 0);
                 
                 let currentAngle = actualStart;
                 
@@ -230,6 +230,10 @@
                     if (node.status === 'ready' && !firstReadyNodeId) {
                         firstReadyNodeId = node.id;
                     }
+                    
+                    // Calculate slice width proportionally based on weeks
+                    const sliceAngle = (node.weeks / totalWeeks) * totalAvailableAngle;
+                    
                     const endAngle = currentAngle + sliceAngle;
                     const d = describeDonutArc(300, 300, 205, 290, currentAngle, endAngle);
                     
