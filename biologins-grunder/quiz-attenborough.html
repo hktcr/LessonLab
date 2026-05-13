@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: A Life on Our Planet</title>
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --bg-dark: #0f172a;
+            --surface: rgba(30, 41, 59, 0.8);
+            --surface-hover: rgba(51, 65, 85, 0.9);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --correct: #10b981; /* Emerald */
+            --incorrect: #ef4444; /* Red */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            background-image: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .quiz-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 800px;
+            margin: 3rem 1rem;
+            padding: clamp(2rem, 5vw, 4rem);
+            background: rgba(10, 15, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .question-card.correct-card {
+            border-color: var(--correct);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .question-card.incorrect-card {
+            border-color: var(--incorrect);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .question-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.5;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .option-label:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 1rem;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        /* Results styling applied after grading */
+        .option-label.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--correct);
+            color: #fff;
+        }
+
+        .option-label.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--incorrect);
+            opacity: 0.8;
+        }
+
+        .feedback-text {
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            display: none;
+        }
+        .correct-card .feedback-text { color: var(--correct); display: block; }
+        .incorrect-card .feedback-text { color: #fca5a5; display: block; }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            background: var(--primary);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        #result-summary {
+            display: none;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+        }
+
+        #result-summary h2 {
+            margin: 0 0 1rem 0;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        #result-summary p {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="quiz-container">
+        <div class="header">
+            <div class="subtitle">Ekologi & Klimat</div>
+            <h1>A Life on Our Planet - Del 1</h1>
+        </div>
+
+        <form id="quizForm">
+            <!-- Fråga 1 -->
+            <div class="question-card" id="q1-card">
+                <h3 class="question-title">1. Vad kallar David Attenborough den extremt stabila geologiska tidsålder (de senaste 10 000 åren) som gjort det möjligt för mänskligheten att utveckla jordbruk och civilisation?</h3>
+                <div class="options-list">
+                    <label class="option-label" id="q1-a"><input type="radio" name="q1" value="A"> A) Antropocen</label>
+                    <label class="option-label" id="q1-b"><input type="radio" name="q1" value="B"> B) Holocen</label>
+                    <label class="option-label" id="q1-c"><input type="radio" name="q1" value="C"> C) Krita</label>
+                    <label class="option-label" id="q1-d"><input type="radio" name="q1" value="D"> D) Jura</label>
+                </div>
+                <div class="feedback-text" id="q1-feedback">Rätt svar: Holocen. Det är denna stabila 10 000-årsperiod vi kallar vår "Garden of Eden".</div>
+            </div>
+
+            <!-- Fråga 2 -->
+            <div class="question-card" id="q2-card">
+                <h3 class="question-title">2. I filmen besöker David regnskogen på Borneo. Varför är apor som orangutanger så livsviktiga för hela regnskogens ekosystem (och därmed för trädens mångfald)?</h3>
+                <div class="options-list">
+                    <label class="option-label" id="q2-a"><input type="radio" name="q2" value="A"> A) De äter skadedjur som annars förstör träden.</label>
+                    <label class="option-label" id="q2-b"><input type="radio" name="q2" value="B"> B) De bygger enorma bon som skyddar marken mot solljus.</label>
+                    <label class="option-label" id="q2-c"><input type="radio" name="q2" value="C"> C) De sprider frön över stora ytor när de rör sig och bajsar, vilket krävs för att träden ska föröka sig.</label>
+                    <label class="option-label" id="q2-d"><input type="radio" name="q2" value="D"> D) De jagar mindre rovdjur för att hålla balansen.</label>
+                </div>
+                <div class="feedback-text" id="q2-feedback">Rätt svar: C. Orangutangerna spenderar 10 år med att lära sina ungar vilka frukter de kan äta, vilket gör dem till regnskogens trädgårdsmästare.</div>
+            </div>
+
+            <!-- Fråga 3 -->
+            <div class="question-card" id="q3-card">
+                <h3 class="question-title">3. Vad har hänt med enorma delar av Borneos regnskog sedan 1950-talet när David var där för första gången?</h3>
+                <div class="options-list">
+                    <label class="option-label" id="q3-a"><input type="radio" name="q3" value="A"> A) De har omvandlats till stora, friska naturreservat.</label>
+                    <label class="option-label" id="q3-b"><input type="radio" name="q3" value="B"> B) Den har frusit på grund av klimatförändringar.</label>
+                    <label class="option-label" id="q3-c"><input type="radio" name="q3" value="C"> C) Den har huggits ner för att ersättas med vidsträckta oljepalms-plantager (en artfattig monokultur).</label>
+                    <label class="option-label" id="q3-d"><input type="radio" name="q3" value="D"> D) Djuren har ätit upp skogen eftersom deras rovdjur försvunnit.</label>
+                </div>
+                <div class="feedback-text" id="q3-feedback">Rätt svar: C. En biologiskt urik skog har bytts ut mot en monokultur (oljepalm) som nästan saknar biologisk mångfald.</div>
+            </div>
+
+            <!-- Fråga 4 -->
+            <div class="question-card" id="q4-card">
+                <h3 class="question-title">4. Vad händer med näringscykeln i havet om de stora industrifartygen fiskar ut alla stora rovfiskar (top-predators)?</h3>
+                <div class="options-list">
+                    <label class="option-label" id="q4-a"><input type="radio" name="q4" value="A"> A) Näringscykeln stannar av; näringen faller till mörkret på botten istället för att stanna i det solbelysta ytvattnet, och haven dör.</label>
+                    <label class="option-label" id="q4-b"><input type="radio" name="q4" value="B"> B) Mindre fiskar får mer plats och hela havet blir mer levande än tidigare.</label>
+                    <label class="option-label" id="q4-c"><input type="radio" name="q4" value="C"> C) Ingenting, rovfiskarna spelar ingen roll för havet i stort.</label>
+                    <label class="option-label" id="q4-d"><input type="radio" name="q4" value="D"> D) Det blir lättare för koraller att växa överallt.</label>
+                </div>
+                <div class="feedback-text" id="q4-feedback">Rätt svar: A. De stora rovdjuren behövs för att "röra om" och hålla kvar näringen i de ljusa zonerna där plankton kan utnyttja den.</div>
+            </div>
+
+            <!-- Fråga 5 -->
+            <div class="question-card" id="q5-card">
+                <h3 class="question-title">5. Vi undersökte en torkad korall i klassrummet. Vad är "korallblekning" (som David bevittnade 1998) ett tecken på?</h3>
+                <div class="options-list">
+                    <label class="option-label" id="q5-a"><input type="radio" name="q5" value="A"> A) Att korallen rengör sig själv för att växa snabbare.</label>
+                    <label class="option-label" id="q5-b"><input type="radio" name="q5" value="B"> B) Att fiskarna har ätit upp algerna på korallens yta.</label>
+                    <label class="option-label" id="q5-c"><input type="radio" name="q5" value="C"> C) Att det är för mycket salt i havsvattnet.</label>
+                    <label class="option-label" id="q5-d"><input type="radio" name="q5" value="D"> D) Att havsvattnet blivit för varmt och att korallen därför stöter bort de livsviktiga algerna den lever i symbios med.</label>
+                </div>
+                <div class="feedback-text" id="q5-feedback">Rätt svar: D. När vattnet blir för varmt dör symbiosen och kvar blir bara det vita "kalkskelettet".</div>
+            </div>
+
+            <!-- Fråga 6 -->
+            <div class="question-card" id="q6-card">
+                <h3 class="question-title">6. När vi tittade på polerna på Google Earth pratade vi om Albedo-effekten. Vad innebär minskad is för jordens temperatur?</h3>
+                <div class="options-list">
+                    <label class="option-label" id="q6-a"><input type="radio" name="q6" value="A"> A) Vitt is täcke kyler, medan mörkt havsvatten absorberar (suger åt sig) solens värme. Mindre is leder till snabbare uppvärmning (ond cirkel).</label>
+                    <label class="option-label" id="q6-b"><input type="radio" name="q6" value="B"> B) Mörkt havsvatten reflekterar bort solljuset bättre än is, så haven kyler faktiskt jorden när isen smälter.</label>
+                    <label class="option-label" id="q6-c"><input type="radio" name="q6" value="C"> C) Smältvattnet är iskallt och kyler ner hela jorden som en gigantisk AC.</label>
+                    <label class="option-label" id="q6-d"><input type="radio" name="q6" value="D"> D) Det påverkar bara djuren på plats, inte det globala klimatsystemet.</label>
+                </div>
+                <div class="feedback-text" id="q6-feedback">Rätt svar: A. Detta är en positiv feedback-loop där uppvärmning leder till mindre is, som absorberar mer värme, vilket ger mer uppvärmning.</div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="gradeQuiz()">Rätta Quizet</button>
+        </form>
+
+        <div id="result-summary">
+            <h2 id="result-title">Bra jobbat!</h2>
+            <p id="result-text">Du fick X av Y rätt.</p>
+        </div>
+    </div>
+
+    <script>
+        // Correct answers map
+        const answers = {
+            q1: 'B',
+            q2: 'C',
+            q3: 'C',
+            q4: 'A',
+            q5: 'D',
+            q6: 'A'
+        };
+
+        function gradeQuiz() {
+            let score = 0;
+            const total = Object.keys(answers).length;
+
+            for (const [qName, correctAnswer] of Object.entries(answers)) {
+                // Get selected radio
+                const selected = document.querySelector(`input[name="${qName}"]:checked`);
+                const card = document.getElementById(`${qName}-card`);
+                
+                // Reset styling
+                card.classList.remove('correct-card', 'incorrect-card');
+                ['a','b','c','d'].forEach(letter => {
+                    document.getElementById(`${qName}-${letter}`).classList.remove('correct', 'incorrect');
+                });
+
+                if (selected) {
+                    const selectedVal = selected.value;
+                    const selectedLabel = document.getElementById(`${qName}-${selectedVal.toLowerCase()}`);
+                    const correctLabel = document.getElementById(`${qName}-${correctAnswer.toLowerCase()}`);
+
+                    if (selectedVal === correctAnswer) {
+                        score++;
+                        card.classList.add('correct-card');
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        card.classList.add('incorrect-card');
+                        selectedLabel.classList.add('incorrect');
+                        correctLabel.classList.add('correct'); // Show the right one
+                    }
+                } else {
+                    // Answered nothing
+                    card.classList.add('incorrect-card');
+                    const correctLabel = document.getElementById(`${qName}-${correctAnswer.toLowerCase()}`);
+                    correctLabel.classList.add('correct');
+                }
+            }
+
+            // Show results
+            const resultBox = document.getElementById('result-summary');
+            const resultTitle = document.getElementById('result-title');
+            const resultText = document.getElementById('result-text');
+            
+            resultBox.style.display = 'block';
+            resultText.innerText = `Du fick ${score} av ${total} poäng.`;
+            
+            if(score === total) {
+                resultTitle.innerText = "Full pott! Strålande!";
+                resultBox.style.borderColor = "#10b981";
+                resultBox.style.background = "rgba(16, 185, 129, 0.1)";
+                resultTitle.style.color = "#10b981";
+            } else if(score >= total/2) {
+                resultTitle.innerText = "Bra jobbat!";
+                resultBox.style.borderColor = "#f59e0b";
+                resultBox.style.background = "rgba(245, 158, 11, 0.1)";
+                resultTitle.style.color = "#f59e0b";
+            } else {
+                resultTitle.innerText = "Dags att repetera!";
+                resultBox.style.borderColor = "#ef4444";
+                resultBox.style.background = "rgba(239, 68, 68, 0.1)";
+                resultTitle.style.color = "#ef4444";
+            }
+
+            // Scroll to bottom smoothly
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'bottom' });
+        }
+    </script>
+</body>
+</html>
