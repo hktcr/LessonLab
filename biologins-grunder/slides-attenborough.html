@@ -28,6 +28,22 @@
             z-index: 1;
         }
 
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .content {
             position: relative;
             z-index: 2;
@@ -71,6 +87,30 @@
             font-weight: 700;
         }
 
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+        }
+
+        .info-list li {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .info-list li::before {
+            content: "•";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 2rem;
+            line-height: 1;
+        }
+
         .questions-box {
             border-left: 4px solid #10b981;
             padding-left: 2rem;
@@ -99,24 +139,79 @@
             color: #10b981;
             font-weight: bold;
         }
+
+        .controls-hint {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 1rem;
+            z-index: 10;
+        }
     </style>
 </head>
 
 <body>
-    <div class="slide-container">
+    <div class="slide-container" onclick="nextSlide()">
         <div class="overlay"></div>
-        <div class="content">
-            <div class="subtitle">Ett unikt vittnesmål</div>
-            <h1 class="title">A Life on Our Planet</h1>
-            <div class="person">Sir David Attenborough <span class="highlight">(Född 1926 — nybliven 100-åring)</span></div>
+        
+        <!-- SLIDE 1: Introduction -->
+        <div class="slide active" id="slide-1">
+            <div class="content">
+                <div class="subtitle">Världens mest kända naturröst</div>
+                <h1 class="title">Sir David Attenborough</h1>
+                <div class="person"><span class="highlight">Nybliven 100-åring</span> (Född 8 maj 1926)</div>
 
-            <div class="questions-box">
-                <div class="questions-title">Att fundera på under filmen:</div>
-                <div class="question">Vilken är den största förändringen David har sett med egna ögon under sitt 100-åriga liv?</div>
-                <div class="question">Varför menar han att den biologiska mångfalden är "vårt eget säkerhetsnät"?</div>
-                <div class="question">Vilka tre lösningar presenterar han för att vi ska kunna "lära oss att leva med naturen, snarare än mot den"?</div>
+                <ul class="info-list">
+                    <li>Brittisk biolog, TV-producent och naturberättare.</li>
+                    <li>Har rest över hela vår planet under en mer än 70 år lång karriär.</li>
+                    <li>Har personligen besökt fler unika ekosystem och sett mer av jordens djurliv än <strong>någon annan människa i historien</strong>.</li>
+                    <li>När han föddes var jordens befolkning 2 miljarder. Idag är den över 8 miljarder.</li>
+                </ul>
             </div>
         </div>
+
+        <!-- SLIDE 2: Questions -->
+        <div class="slide" id="slide-2">
+            <div class="content">
+                <div class="subtitle">Ett unikt vittnesmål</div>
+                <h1 class="title">A Life on Our Planet</h1>
+                
+                <div class="questions-box">
+                    <div class="questions-title">Att fundera på under filmen:</div>
+                    <div class="question">Vilken är den största förändringen David har sett med egna ögon under sitt 100-åriga liv?</div>
+                    <div class="question">Varför menar han att den biologiska mångfalden är "vårt eget säkerhetsnät"?</div>
+                    <div class="question">Vilka tre lösningar presenterar han för att vi ska kunna "lära oss att leva med naturen, snarare än mot den"?</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls-hint">Klicka eller använd piltangenterna för att byta bild</div>
     </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 2;
+
+        function nextSlide() {
+            document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+            currentSlide = currentSlide < totalSlides ? currentSlide + 1 : 1;
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+        }
+
+        function prevSlide() {
+            document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+            currentSlide = currentSlide > 1 ? currentSlide - 1 : totalSlides;
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+    </script>
 </body>
 </html>
