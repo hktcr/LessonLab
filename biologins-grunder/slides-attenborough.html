@@ -50,36 +50,38 @@
             color: white;
             max-width: 1200px;
             width: 90%;
-            padding: 4rem;
-            background: rgba(10, 15, 10, 0.6);
+            padding: clamp(2rem, 5vw, 4rem);
+            background: rgba(10, 15, 10, 0.75); /* Increased opacity for better contrast */
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 30px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            overflow-y: auto;
+            max-height: 90vh;
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.5rem);
             text-transform: uppercase;
             letter-spacing: 5px;
             color: #10b981;
             margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .title {
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 900;
             margin: 0 0 0.5rem 0;
             line-height: 1.1;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
 
         .person {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 3rem;
-            color: #e2e8f0;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 400;
+            margin-bottom: clamp(1.5rem, 4vw, 3rem);
+            color: #f8fafc;
         }
 
         .highlight {
@@ -96,9 +98,9 @@
 
         .info-list li {
             position: relative;
-            font-size: 1.6rem;
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
             margin-bottom: 1.5rem;
-            color: #cbd5e1;
+            color: #e2e8f0;
             line-height: 1.5;
             padding-left: 2.5rem;
         }
@@ -117,21 +119,21 @@
         .questions-box {
             border-left: 4px solid #10b981;
             padding-left: 2rem;
-            margin-top: 3rem;
+            margin-top: clamp(1.5rem, 4vw, 3rem);
         }
 
         .questions-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
             font-weight: 700;
             margin-bottom: 1.5rem;
-            color: #f8fafc;
+            color: #ffffff;
         }
 
         .question {
             position: relative;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #cbd5e1;
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            margin-bottom: 1.2rem;
+            color: #e2e8f0;
             line-height: 1.5;
             padding-left: 2rem;
         }
@@ -149,7 +151,7 @@
             position: absolute;
             bottom: 2rem;
             right: 2rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.6);
             font-size: 1rem;
             z-index: 10;
         }
@@ -185,7 +187,7 @@
         /* SVG Chart Styles */
         .chart-container {
             width: 100%;
-            height: 400px;
+            height: clamp(300px, 45vh, 450px);
             margin-top: 2rem;
         }
         
@@ -197,7 +199,7 @@
 
         .chart-line {
             stroke: #10b981;
-            stroke-width: 5;
+            stroke-width: 6;
             fill: none;
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
@@ -213,7 +215,7 @@
             opacity: 0;
             transform: translateY(15px);
             transition: all 0.5s ease-out;
-            transition-delay: 0.6s; /* Wait for line to finish drawing */
+            transition-delay: 0.6s;
         }
 
         .chart-point.active {
@@ -221,24 +223,23 @@
             transform: translateY(0);
         }
 
-        /* First point shows immediately */
         #pt-0 {
             transition-delay: 0s;
         }
         
         .chart-label {
-            font-size: 16px;
-            fill: #cbd5e1;
+            font-size: 20px;
+            fill: #e2e8f0;
             font-family: inherit;
         }
         .chart-val {
-            font-size: 18px;
+            font-size: 28px;
             fill: #10b981;
-            font-weight: bold;
+            font-weight: 800;
             font-family: inherit;
         }
         .chart-event {
-            font-size: 14px;
+            font-size: 18px;
             fill: white;
             font-family: inherit;
         }
@@ -274,10 +275,10 @@
         <div class="slide" id="slide-2">
             <div class="content" style="max-width: 1300px;">
                 <div class="subtitle">Ett liv under extrem förändring</div>
-                <h1 class="title" style="font-size: 3.5rem;">Global Befolkningstillväxt</h1>
+                <h1 class="title" style="font-size: clamp(2rem, 5vw, 4rem);">Global Befolkningstillväxt</h1>
                 
                 <div class="chart-container">
-                    <svg class="chart-svg" viewBox="0 0 1000 400">
+                    <svg class="chart-svg" viewBox="0 -20 1000 480" preserveAspectRatio="xMidYMid meet">
                         <defs>
                             <mask id="projMask">
                                 <path id="seg-5" d="M 785 91 L 950 49" stroke="white" stroke-width="20" fill="none" stroke-dasharray="1000" stroke-dashoffset="1000" class="chart-line" />
@@ -285,14 +286,14 @@
                         </defs>
 
                         <!-- Grid Lines -->
-                        <line x1="100" y1="340" x2="950" y2="340" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
-                        <line x1="100" y1="190" x2="950" y2="190" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                        <line x1="100" y1="40" x2="950" y2="40" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <line x1="100" y1="340" x2="950" y2="340" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+                        <line x1="100" y1="190" x2="950" y2="190" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                        <line x1="100" y1="40" x2="950" y2="40" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
                         
                         <!-- Y-axis -->
-                        <text x="80" y="345" class="chart-label" text-anchor="end">0</text>
-                        <text x="80" y="195" class="chart-label" text-anchor="end">5 miljarder</text>
-                        <text x="80" y="45" class="chart-label" text-anchor="end">10 miljarder</text>
+                        <text x="80" y="348" class="chart-label" text-anchor="end" style="font-size: 22px;">0</text>
+                        <text x="80" y="198" class="chart-label" text-anchor="end" style="font-size: 22px;">5 miljarder</text>
+                        <text x="80" y="48" class="chart-label" text-anchor="end" style="font-size: 22px;">10 miljarder</text>
                         
                         <!-- Connecting Lines (Paths) -->
                         <path id="seg-1" d="M 100 280 L 333 250" class="chart-line" />
@@ -301,51 +302,51 @@
                         <path id="seg-4" d="M 682 130 L 785 91" class="chart-line" />
                         
                         <!-- Projection Line -->
-                        <path d="M 785 91 L 950 49" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="10, 10" fill="none" mask="url(#projMask)" />
+                        <path d="M 785 91 L 950 49" stroke="#cbd5e1" stroke-width="5" stroke-dasharray="12, 12" fill="none" mask="url(#projMask)" />
                         
                         <!-- Point 0: 1926 -->
                         <g class="chart-point active" id="pt-0">
-                            <circle cx="100" cy="280" r="8" fill="#10b981"/>
-                            <text x="100" y="375" class="chart-label" text-anchor="middle" font-weight="bold">1926</text>
-                            <text x="100" y="260" class="chart-val" text-anchor="middle">2.0</text>
-                            <text x="100" y="400" class="chart-event" text-anchor="middle">David föds</text>
+                            <circle cx="100" cy="280" r="10" fill="#10b981"/>
+                            <text x="100" y="380" class="chart-label" text-anchor="middle" font-weight="bold">1926</text>
+                            <text x="100" y="250" class="chart-val" text-anchor="middle">2.0</text>
+                            <text x="100" y="410" class="chart-event" text-anchor="middle">David föds</text>
                         </g>
 
                         <!-- Point 1: 1960 -->
                         <g class="chart-point" id="pt-1">
-                            <circle cx="333" cy="250" r="8" fill="#10b981"/>
-                            <text x="333" y="375" class="chart-label" text-anchor="middle" font-weight="bold">1960</text>
-                            <text x="333" y="230" class="chart-val" text-anchor="middle">3.0</text>
+                            <circle cx="333" cy="250" r="10" fill="#10b981"/>
+                            <text x="333" y="380" class="chart-label" text-anchor="middle" font-weight="bold">1960</text>
+                            <text x="333" y="220" class="chart-val" text-anchor="middle">3.0</text>
                         </g>
 
                         <!-- Point 2: 1987 -->
                         <g class="chart-point" id="pt-2">
-                            <circle cx="518" cy="190" r="8" fill="#10b981"/>
-                            <text x="518" y="375" class="chart-label" text-anchor="middle" font-weight="bold">1987</text>
-                            <text x="518" y="170" class="chart-val" text-anchor="middle">5.0</text>
+                            <circle cx="518" cy="190" r="10" fill="#10b981"/>
+                            <text x="518" y="380" class="chart-label" text-anchor="middle" font-weight="bold">1987</text>
+                            <text x="518" y="160" class="chart-val" text-anchor="middle">5.0</text>
                         </g>
 
                         <!-- Point 3: 2011 -->
                         <g class="chart-point" id="pt-3">
-                            <circle cx="682" cy="130" r="8" fill="#10b981"/>
-                            <text x="682" y="375" class="chart-label" text-anchor="middle" font-weight="bold">2011</text>
-                            <text x="682" y="110" class="chart-val" text-anchor="middle">7.0</text>
+                            <circle cx="682" cy="130" r="10" fill="#10b981"/>
+                            <text x="682" y="380" class="chart-label" text-anchor="middle" font-weight="bold">2011</text>
+                            <text x="682" y="100" class="chart-val" text-anchor="middle">7.0</text>
                         </g>
 
                         <!-- Point 4: 2026 -->
                         <g class="chart-point" id="pt-4">
-                            <circle cx="785" cy="91" r="10" fill="#f43f5e"/>
-                            <text x="785" y="375" class="chart-label" text-anchor="middle" font-weight="bold" fill="#f43f5e">2026</text>
-                            <text x="785" y="68" class="chart-val" text-anchor="middle" fill="#f43f5e">8.3</text>
-                            <text x="785" y="400" class="chart-event" text-anchor="middle" fill="#f43f5e">David 100 år</text>
+                            <circle cx="785" cy="91" r="12" fill="#f43f5e"/>
+                            <text x="785" y="380" class="chart-label" text-anchor="middle" font-weight="bold" fill="#f43f5e">2026</text>
+                            <text x="785" y="61" class="chart-val" text-anchor="middle" fill="#f43f5e">8.3</text>
+                            <text x="785" y="410" class="chart-event" text-anchor="middle" fill="#f43f5e">David 100 år</text>
                         </g>
 
                         <!-- Point 5: 2050 Projection -->
                         <g class="chart-point" id="pt-5">
-                            <circle cx="950" cy="49" r="8" fill="#cbd5e1"/>
-                            <text x="950" y="375" class="chart-label" text-anchor="middle" font-weight="bold" fill="#cbd5e1">2050</text>
-                            <text x="950" y="30" class="chart-val" text-anchor="middle" fill="#cbd5e1">9.7</text>
-                            <text x="950" y="400" class="chart-event" text-anchor="middle" fill="#cbd5e1">(Prognos FN)</text>
+                            <circle cx="950" cy="49" r="10" fill="#cbd5e1"/>
+                            <text x="950" y="380" class="chart-label" text-anchor="middle" font-weight="bold" fill="#cbd5e1">2050</text>
+                            <text x="950" y="20" class="chart-val" text-anchor="middle" fill="#cbd5e1">9.7</text>
+                            <text x="950" y="410" class="chart-event" text-anchor="middle" fill="#cbd5e1">(Prognos FN)</text>
                         </g>
                     </svg>
                 </div>
