@@ -62,7 +62,7 @@
             font-size: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 5px;
-            color: #10b981; /* Emerald green */
+            color: #10b981;
             margin-bottom: 1rem;
             font-weight: 700;
         }
@@ -87,6 +87,7 @@
             font-weight: 700;
         }
 
+        /* Fixed list styling */
         .info-list {
             list-style: none;
             padding: 0;
@@ -94,20 +95,22 @@
         }
 
         .info-list li {
+            position: relative;
             font-size: 1.6rem;
             margin-bottom: 1.5rem;
             color: #cbd5e1;
             line-height: 1.5;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+            padding-left: 2.5rem;
         }
         
         .info-list li::before {
             content: "•";
+            position: absolute;
+            left: 0;
+            top: -0.2rem;
             color: #10b981;
             font-weight: bold;
-            font-size: 2rem;
+            font-size: 2.5rem;
             line-height: 1;
         }
 
@@ -125,17 +128,19 @@
         }
 
         .question {
+            position: relative;
             font-size: 1.4rem;
             margin-bottom: 1rem;
             color: #cbd5e1;
             line-height: 1.5;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+            padding-left: 2rem;
         }
 
         .question::before {
             content: "→";
+            position: absolute;
+            left: 0;
+            top: 0;
             color: #10b981;
             font-weight: bold;
         }
@@ -148,11 +153,72 @@
             font-size: 1rem;
             z-index: 10;
         }
+
+        /* SVG Chart Styles */
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 2rem;
+        }
+        
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .chart-line {
+            stroke: #10b981;
+            stroke-width: 5;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.8));
+        }
+
+        .chart-line.drawn {
+            stroke-dashoffset: 0;
+        }
+
+        .chart-point {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s ease-out;
+            transition-delay: 0.6s; /* Wait for line to finish drawing */
+        }
+
+        .chart-point.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* First point shows immediately */
+        #pt-0 {
+            transition-delay: 0s;
+        }
+        
+        .chart-label {
+            font-size: 16px;
+            fill: #cbd5e1;
+            font-family: inherit;
+        }
+        .chart-val {
+            font-size: 18px;
+            fill: #10b981;
+            font-weight: bold;
+            font-family: inherit;
+        }
+        .chart-event {
+            font-size: 14px;
+            fill: white;
+            font-family: inherit;
+        }
     </style>
 </head>
 
 <body>
-    <div class="slide-container" onclick="nextSlide()">
+    <div class="slide-container" onclick="nextAction()">
         <div class="overlay"></div>
         
         <!-- SLIDE 1: Introduction -->
@@ -166,13 +232,79 @@
                     <li>Brittisk biolog, TV-producent och naturberättare.</li>
                     <li>Har rest över hela vår planet under en mer än 70 år lång karriär.</li>
                     <li>Har personligen besökt fler unika ekosystem och sett mer av jordens djurliv än <strong>någon annan människa i historien</strong>.</li>
-                    <li>När han föddes var jordens befolkning 2 miljarder. Idag är den över 8 miljarder.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- SLIDE 2: Questions -->
+        <!-- SLIDE 2: Population Chart -->
         <div class="slide" id="slide-2">
+            <div class="content" style="max-width: 1300px;">
+                <div class="subtitle">Ett liv under extrem förändring</div>
+                <h1 class="title" style="font-size: 3.5rem;">Global Befolkningstillväxt</h1>
+                
+                <div class="chart-container">
+                    <svg class="chart-svg" viewBox="0 0 1000 400">
+                        <!-- Grid Lines -->
+                        <line x1="100" y1="320" x2="950" y2="320" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                        <line x1="100" y1="226" x2="950" y2="226" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <line x1="100" y1="133" x2="950" y2="133" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <line x1="100" y1="40" x2="950" y2="40" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        
+                        <!-- Y-axis -->
+                        <text x="80" y="325" class="chart-label" text-anchor="end">0</text>
+                        <text x="80" y="231" class="chart-label" text-anchor="end">3 miljarder</text>
+                        <text x="80" y="138" class="chart-label" text-anchor="end">6 miljarder</text>
+                        <text x="80" y="45" class="chart-label" text-anchor="end">9 miljarder</text>
+                        
+                        <!-- Connecting Lines (Paths) -->
+                        <path id="seg-1" d="M 100 258 L 372 227" class="chart-line" />
+                        <path id="seg-2" d="M 372 227 L 588 164" class="chart-line" />
+                        <path id="seg-3" d="M 588 164 L 780 102" class="chart-line" />
+                        <path id="seg-4" d="M 780 102 L 900 68" class="chart-line" />
+                        
+                        <!-- Point 0: 1926 -->
+                        <g class="chart-point active" id="pt-0">
+                            <circle cx="100" cy="258" r="8" fill="#10b981"/>
+                            <text x="100" y="355" class="chart-label" text-anchor="middle" font-weight="bold">1926</text>
+                            <text x="100" y="240" class="chart-val" text-anchor="middle">2.0</text>
+                            <text x="100" y="380" class="chart-event" text-anchor="middle">David föds</text>
+                        </g>
+
+                        <!-- Point 1: 1960 -->
+                        <g class="chart-point" id="pt-1">
+                            <circle cx="372" cy="227" r="8" fill="#10b981"/>
+                            <text x="372" y="355" class="chart-label" text-anchor="middle" font-weight="bold">1960</text>
+                            <text x="372" y="209" class="chart-val" text-anchor="middle">3.0</text>
+                        </g>
+
+                        <!-- Point 2: 1987 -->
+                        <g class="chart-point" id="pt-2">
+                            <circle cx="588" cy="164" r="8" fill="#10b981"/>
+                            <text x="588" y="355" class="chart-label" text-anchor="middle" font-weight="bold">1987</text>
+                            <text x="588" y="146" class="chart-val" text-anchor="middle">5.0</text>
+                        </g>
+
+                        <!-- Point 3: 2011 -->
+                        <g class="chart-point" id="pt-3">
+                            <circle cx="780" cy="102" r="8" fill="#10b981"/>
+                            <text x="780" y="355" class="chart-label" text-anchor="middle" font-weight="bold">2011</text>
+                            <text x="780" y="84" class="chart-val" text-anchor="middle">7.0</text>
+                        </g>
+
+                        <!-- Point 4: 2026 -->
+                        <g class="chart-point" id="pt-4">
+                            <circle cx="900" cy="68" r="10" fill="#f43f5e"/>
+                            <text x="900" y="355" class="chart-label" text-anchor="middle" font-weight="bold" fill="#f43f5e">2026</text>
+                            <text x="900" y="45" class="chart-val" text-anchor="middle" fill="#f43f5e">8.1</text>
+                            <text x="900" y="380" class="chart-event" text-anchor="middle" fill="#f43f5e">David 100 år</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Questions -->
+        <div class="slide" id="slide-3">
             <div class="content">
                 <div class="subtitle">Ett unikt vittnesmål</div>
                 <h1 class="title">A Life on Our Planet</h1>
@@ -186,29 +318,48 @@
             </div>
         </div>
         
-        <div class="controls-hint">Klicka eller använd piltangenterna för att byta bild</div>
+        <div class="controls-hint">Space / Klick för nästa</div>
     </div>
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 2;
+        const totalSlides = 3;
+        
+        // Chart Animation State
+        let chartStep = 0;
+        const maxChartSteps = 4;
+
+        function nextAction() {
+            // If on the chart slide, advance the chart steps first
+            if (currentSlide === 2 && chartStep < maxChartSteps) {
+                chartStep++;
+                document.getElementById(`seg-${chartStep}`).classList.add('drawn');
+                document.getElementById(`pt-${chartStep}`).classList.add('active');
+            } else {
+                nextSlide();
+            }
+        }
 
         function nextSlide() {
+            if (currentSlide >= totalSlides) return;
             document.getElementById(`slide-${currentSlide}`).classList.remove('active');
-            currentSlide = currentSlide < totalSlides ? currentSlide + 1 : 1;
+            currentSlide++;
             document.getElementById(`slide-${currentSlide}`).classList.add('active');
         }
 
         function prevSlide() {
+            if (currentSlide <= 1) return;
             document.getElementById(`slide-${currentSlide}`).classList.remove('active');
-            currentSlide = currentSlide > 1 ? currentSlide - 1 : totalSlides;
+            currentSlide--;
             document.getElementById(`slide-${currentSlide}`).classList.add('active');
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'Enter') {
-                nextSlide();
+            if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault(); // Prevent scrolling on space
+                nextAction();
             } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
                 prevSlide();
             }
         });
