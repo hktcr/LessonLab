@@ -261,6 +261,9 @@
     </div>
 
     <script>
+    const APP_KEY = "HakanLessonLabSync2026";
+    const BASE_URL = "https://keyvalue.immanuel.co/api/KeyVal";
+
     const questions = [
         {
             num: 1,
@@ -342,13 +345,39 @@
         }
     ];
 
-    let currentQ = -1; // -1 = intro
+    let currentQ = -1; 
     let answers = {};
+    let isSyncMode = false;
+    let syncInterval = null;
 
     const card = document.getElementById('card');
     const progressBar = document.getElementById('progressBar');
     const stepIndicator = document.getElementById('stepIndicator');
     const stepCurrent = document.getElementById('stepCurrent');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTeacher = urlParams.get('mode') === 'teacher';
+
+    // === API HELPERS ===
+    async function setGlobalQ(qIndex) {
+        await fetch(`${BASE_URL}/UpdateValue/${APP_KEY}/activeQ/${qIndex}`, { method: 'POST', headers: { 'Content-Length': '0' } });
+    }
+    async function getGlobalQ() {
+        try {
+            const res = await fetch(`${BASE_URL}/GetValue/${APP_KEY}/activeQ`);
+            const text = await res.text();
+            return parseInt(text.replace(/"/g, ''));
+        } catch (e) {
+            return -1;
+        }
+    }
+
+    // === INIT ===
+    if (isTeacher) {
+        renderTeacherPanel();
+    } else {
+        renderIntro();
+    }
 
     function renderIntro() {
         stepIndicator.style.display = 'none';
@@ -358,20 +387,56 @@
                 <div class="badge">Ekologi & Klimat</div>
                 <h1>A Life on Our Planet</h1>
                 <p class="sub">Frågor om filmens första del och det vi diskuterat om koraller, ekosystem och klimat.</p>
-                <div class="meta">
-                    <div class="meta-item"><strong>6</strong> frågor</div>
-                    <div class="meta-item"><strong>Flerval</strong>, en i taget</div>
-                    <div class="meta-item"><strong>Direkt</strong> feedback</div>
+                <div class="meta" style="flex-direction: column; align-items: center; gap: 1rem;">
+                    <button class="start-btn" onclick="startSyncMode()">🔗 Gå med i Lärar-Synk (Live)</button>
+                    <button class="retry-btn" style="margin-top:0;" onclick="startSoloMode()">Öva i egen takt</button>
                 </div>
-                <button class="start-btn" onclick="startQuiz()">Starta Quizet</button>
             </div>
         `;
     }
 
-    function startQuiz() {
+    function startSoloMode() {
+        isSyncMode = false;
         currentQ = 0;
         answers = {};
         showQuestion(0);
+    }
+
+    async function startSyncMode() {
+        isSyncMode = true;
+        currentQ = -1;
+        answers = {};
+        
+        card.innerHTML = `
+            <div class="intro">
+                <div class="emoji" style="font-size:4rem; margin-bottom:1rem;">🍿</div>
+                <h2>Väntar på Håkan...</h2>
+                <p class="sub">Luta dig tillbaka och titta på filmen. Frågorna kommer att dyka upp här automatiskt när det är dags!</p>
+            </div>
+        `;
+
+        // Start polling
+        syncInterval = setInterval(async () => {
+            const globalQ = await getGlobalQ();
+            if (globalQ > currentQ && globalQ < questions.length) {
+                currentQ = globalQ;
+                showQuestion(currentQ);
+            } else if (globalQ === questions.length && currentQ !== questions.length) {
+                currentQ = questions.length;
+                showResults();
+            } else if (globalQ === -1 && currentQ !== -1) {
+                // Teacher reset the quiz
+                currentQ = -1;
+                answers = {};
+                card.innerHTML = `
+                    <div class="intro">
+                        <div class="emoji" style="font-size:4rem; margin-bottom:1rem;">🍿</div>
+                        <h2>Väntar på Håkan...</h2>
+                        <p class="sub">Quizet har återställts. Frågorna dyker upp här snart!</p>
+                    </div>
+                `;
+            }
+        }, 3000);
     }
 
     function showQuestion(idx) {
@@ -398,9 +463,15 @@
                     `).join('')}
                 </div>
                 <div class="feedback" id="fb"></div>
-                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
-                    ${idx < questions.length - 1 ? 'Nästa Fråga →' : 'Visa Resultat →'}
-                </button>
+                ${!isSyncMode ? `
+                    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+                        ${idx < questions.length - 1 ? 'Nästa Fråga →' : 'Visa Resultat →'}
+                    </button>
+                ` : `
+                    <div id="syncWaitMsg" style="display:none; text-align:center; margin-top:2rem; color:var(--text-muted); font-weight:600;">
+                        Svar registrerat! ⏳ Väntar på att filmen ska fortsätta...
+                    </div>
+                `}
             `;
 
             requestAnimationFrame(() => {
@@ -412,13 +483,12 @@
     }
 
     function selectOption(el, val) {
-        if (answers[currentQ] !== undefined) return; // Already answered
+        if (answers[currentQ] !== undefined) return;
 
         answers[currentQ] = val;
         const q = questions[currentQ];
         const isCorrect = val === q.correct;
 
-        // Style all options
         document.querySelectorAll('.opt').forEach(o => {
             const v = o.dataset.val;
             o.style.cursor = 'default';
@@ -431,15 +501,15 @@
             }
         });
 
-        // Show feedback
         const fb = document.getElementById('fb');
         fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'nok');
-        fb.innerHTML = isCorrect
-            ? '✓ ' + q.feedbackOk
-            : '✗ ' + q.feedbackNok;
+        fb.innerHTML = isCorrect ? '✓ ' + q.feedbackOk : '✗ ' + q.feedbackNok;
 
-        // Show next button
-        document.getElementById('nextBtn').classList.add('show');
+        if (!isSyncMode) {
+            document.getElementById('nextBtn').classList.add('show');
+        } else {
+            document.getElementById('syncWaitMsg').style.display = 'block';
+        }
     }
 
     function nextQuestion() {
@@ -452,6 +522,7 @@
     }
 
     function showResults() {
+        if(syncInterval) clearInterval(syncInterval);
         progressBar.style.width = '100%';
         stepIndicator.style.display = 'none';
 
@@ -483,7 +554,7 @@
                             <span>Fråga ${q.num}: ${ok ? 'Rätt!' : 'Fel — rätt svar: ' + q.correct}</span>
                         </div>`;
                     }).join('')}
-                    <button class="retry-btn" onclick="retry()">Försök igen</button>
+                    ${!isSyncMode ? `<button class="retry-btn" onclick="retry()">Försök igen</button>` : ''}
                 </div>
             `;
 
@@ -501,9 +572,53 @@
         renderIntro();
     }
 
-    // Keyboard support
+    // === TEACHER PANEL ===
+    async function renderTeacherPanel() {
+        stepIndicator.style.display = 'none';
+        progressBar.style.display = 'none';
+        
+        // Reset DB on load
+        await setGlobalQ(-1);
+
+        card.innerHTML = `
+            <div class="intro" style="text-align:left;">
+                <div class="badge">Lärarpanel</div>
+                <h1 style="color:var(--primary); text-align:left; font-size:2rem;">Live-Synk Kontroll</h1>
+                <p class="sub" style="text-align:left; margin-bottom:1.5rem;">När du klickar på en fråga kommer den automatiskt att dyka upp på alla elevers skärmar i realtid.</p>
+                <div class="options" id="teacherOpts">
+                    <div class="opt" onclick="pushQuestion(-1)" style="border-color:var(--primary); background:rgba(16,185,129,0.1);">
+                        <span class="letter">⏸️</span>
+                        <span>Paus (Eleverna ser: "Väntar på Håkan...")</span>
+                    </div>
+                    ${questions.map((q, i) => `
+                        <div class="opt" onclick="pushQuestion(${i})">
+                            <span class="letter">${q.num}</span>
+                            <span>Lås upp: ${q.text.substring(0, 45)}...</span>
+                        </div>
+                    `).join('')}
+                    <div class="opt" onclick="pushQuestion(${questions.length})">
+                        <span class="letter">🏁</span>
+                        <span>Avsluta och tvinga Resultat för alla</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    window.pushQuestion = async function(idx) {
+        await setGlobalQ(idx);
+        document.querySelectorAll('#teacherOpts .opt').forEach(o => {
+            o.style.borderColor = 'rgba(255,255,255,0.08)';
+            o.style.background = 'rgba(255,255,255,0.04)';
+        });
+        const clicked = event.currentTarget;
+        clicked.style.borderColor = 'var(--primary)';
+        clicked.style.background = 'rgba(16,185,129,0.1)';
+    }
+
+    // Keyboard support for solo mode
     document.addEventListener('keydown', e => {
-        if (currentQ < 0) return;
+        if (currentQ < 0 || isSyncMode || isTeacher) return;
         const map = { 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', '1': 'A', '2': 'B', '3': 'C', '4': 'D' };
         const val = map[e.key.toLowerCase()];
         if (val && answers[currentQ] === undefined) {
@@ -515,9 +630,6 @@
             nextQuestion();
         }
     });
-
-    // Init
-    renderIntro();
     </script>
 </body>
 </html>
