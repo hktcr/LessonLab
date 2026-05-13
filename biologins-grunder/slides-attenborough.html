@@ -184,39 +184,6 @@
             fill: currentColor;
         }
 
-        /* Portrait Grid Layout */
-        .slide-1-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .portrait-img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            border: 2px solid rgba(16, 185, 129, 0.3);
-            margin: 0 auto;
-            display: block;
-            background: #0a0f0a; /* Fallback for transparency */
-        }
-
-        @media (max-width: 1024px) {
-            .slide-1-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            .info-list li {
-                text-align: left; /* Keep bullets aligned on small screens */
-            }
-            .portrait-img {
-                max-width: 250px;
-            }
-        }
-
         /* SVG Chart Styles */
         .chart-container {
             width: 100%;
@@ -292,22 +259,15 @@
         <!-- SLIDE 1: Introduction -->
         <div class="slide active" id="slide-1">
             <div class="content">
-                <div class="slide-1-grid">
-                    <div class="text-content">
-                        <div class="subtitle">Världens mest kända naturröst</div>
-                        <h1 class="title">Sir David Attenborough</h1>
-                        <div class="person"><span class="highlight">Nybliven 100-åring</span> (Född 8 maj 1926)</div>
+                <div class="subtitle">Världens mest kända naturröst</div>
+                <h1 class="title">Sir David Attenborough</h1>
+                <div class="person"><span class="highlight">Nybliven 100-åring</span> (Född 8 maj 1926)</div>
 
-                        <ul class="info-list">
-                            <li>Brittisk biolog, TV-producent och naturberättare.</li>
-                            <li>Har rest över hela vår planet under en mer än 70 år lång karriär.</li>
-                            <li>Har personligen besökt fler unika ekosystem och sett mer av jordens djurliv än <strong>någon annan människa i historien</strong>.</li>
-                        </ul>
-                    </div>
-                    <div class="image-content">
-                        <img src="portrait.png" alt="Stylized portrait of Sir David Attenborough" class="portrait-img">
-                    </div>
-                </div>
+                <ul class="info-list">
+                    <li>Brittisk biolog, TV-producent och naturberättare.</li>
+                    <li>Har rest över hela vår planet under en mer än 70 år lång karriär.</li>
+                    <li>Har personligen besökt fler unika ekosystem och sett mer av jordens djurliv än <strong>någon annan människa i historien</strong>.</li>
+                </ul>
             </div>
         </div>
 
