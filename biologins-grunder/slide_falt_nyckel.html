@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Bestämningsnyckel: Markkryp</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent: #3b82f6;
+            --accent-green: #10b981;
+            --card-bg: #1e293b;
+            --border: #334155;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .slide-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .key-section {
+            background: rgba(0,0,0,0.2);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        .link-section {
+            background: rgba(0,0,0,0.2);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+        .leg-count {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .badge {
+            background-color: var(--accent);
+            color: white;
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-right: 15px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .link-card {
+            display: block;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .link-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-green);
+        }
+        .link-title {
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .link-desc {
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <h1>🐛 Vilket djur har du hittat?</h1>
+    
+    <div class="content-grid">
+        <!-- Vänster kolumn: Räkna ben -->
+        <div class="key-section">
+            <h2>Steg 1: Räkna benen!</h2>
+            
+            <div class="leg-count">
+                <span class="badge">0 ben</span>
+                <span>Daggmask, Snigel, Snäcka</span>
+            </div>
+            
+            <div class="leg-count">
+                <span class="badge">6 ben</span>
+                <span>Insekter (Jordlöpare, myror, hoppstjärtar)</span>
+            </div>
+            
+            <div class="leg-count">
+                <span class="badge">8 ben</span>
+                <span>Spindeldjur (Spindlar, kvalster, lockespindlar)</span>
+            </div>
+            
+            <div class="leg-count">
+                <span class="badge">14 ben</span>
+                <span>Gråsuggor (Kräftdjur!)</span>
+            </div>
+            
+            <div class="leg-count">
+                <span class="badge">Många</span>
+                <span>Mångfotingar (Enkelfoting / Dubbelfoting)</span>
+            </div>
+        </div>
+        
+        <!-- Höger kolumn: Digitala nycklar -->
+        <div class="link-section">
+            <h2>Steg 2: Digital Artbestämning</h2>
+            
+            <a href="https://www.nrm.se/fakta-om-naturen/djur/ryggradslosa-djur" target="_blank" class="link-card">
+                <div class="link-title">Naturhistoriska Riksmuseet (Kräftdjur)</div>
+                <div class="link-desc">Läs om Gråsuggor, daggmaskar och sniglar.</div>
+            </a>
+            
+            <a href="https://www.nrm.se/fakta-om-naturen/djur/insekter-och-spindeldjur" target="_blank" class="link-card">
+                <div class="link-title">Naturhistoriska Riksmuseet (Insekter)</div>
+                <div class="link-desc">Hitta fakta om spindlar, hoppstjärtar och jordlöpare.</div>
+            </a>
+            
+            <a href="https://artfakta.se/" target="_blank" class="link-card">
+                <div class="link-title">Artfakta (Artdatabanken)</div>
+                <div class="link-desc">Sök på den svenska artdatabasen för detaljerade bilder om du vet vilken grupp djuret tillhör.</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

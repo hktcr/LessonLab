@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manus: A Life on Our Planet</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../auth.js"></script>
+</head>
+
+<body class="manus-page">
+    <nav class="top-nav">
+        <a href="../index.html" class="back-link">← Tillbaka till Årshjulet</a>
+        <div class="nav-title">Biologins grunder</div>
+        <button class="logout-btn" onclick="LESSON_LAB_AUTH.logout()">Logga ut</button>
+    </nav>
+
+    <main class="manus-content">
+        <header class="manus-header">
+            <span class="manus-badge">Film & Syntes</span>
+            <h1 class="manus-title">A Life on Our Planet</h1>
+            <p class="manus-meta"><strong>Åk 7</strong> · Ekologi · Längd: 83 minuter</p>
+            <div class="manus-actions">
+                <a href="slides-attenborough.html" target="_blank" class="btn btn-primary">Öppna Slide</a>
+                <a href="https://www.netflix.com/title/80204321" target="_blank" class="btn btn-secondary">Öppna Netflix</a>
+            </div>
+        </header>
+
+        <div class="content-body">
+            
+            <div class="pedagogical-bridge">
+                <h3>§63 Pedagogisk brygga</h3>
+                <p><strong>Varifrån kommer vi?</strong> Vi har nyss varit ute i naturen och "rotat i förnan". Vi har tittat på livet i miniatyr och förstått de små nedbrytarnas roll i ett ekosystem. Idag regnar det, så vi tar en paus från fältet.</p>
+                <p><strong>Vart ska vi?</strong> Vi ska zooma ut maximalt. Från en gråsugga under ett löv, till hela planetens biosfär. Idag fyller dessutom (eller har nyligen fyllt) Sir David Attenborough 100 år. Ingen människa i historien har rest mer, sett fler ekosystem, eller blivit vittne till en så drastisk minskning av biologisk mångfald som han.</p>
+                <p><strong>Budskapet till eleverna:</strong> "Ni letade efter biologisk mångfald i lövhögen i skogen. David Attenborough har letat efter den på hela jorden i 100 år. Idag ska vi få höra hans vittnesmål."</p>
+            </div>
+
+            <section class="manus-section">
+                <h2>1. Introduktion (5 min)</h2>
+                <ul>
+                    <li>Visa <strong>Slide 1</strong> på tavlan (släck ner lite i rummet för biokänsla).</li>
+                    <li>Säg: "Sir David Attenborough föddes den 8 maj 1926. Det betyder att han fyllt 100 år! Tänk er att vara född 1926 och ha haft som jobb hela livet att resa runt och filma naturen. Vilka förändringar tror ni man har hunnit se?"</li>
+                    <li>Gå igenom de tre instuderingsfrågorna som står på sliden. Berätta att de inte behöver skriva medan de tittar, men att de ska ha dem i bakhuvudet för diskussionen efteråt.</li>
+                </ul>
+            </section>
+
+            <section class="manus-section">
+                <h2>2. Visning av filmen (83 min)</h2>
+                <ul>
+                    <li>Starta filmen på Netflix. (Den kan delas upp på två lektioner vid behov, t.ex. bryt efter ca 40 minuter när filmen går över från "vittnesmålet" till "lösningarna").</li>
+                    <li>Säkerställ att svensk undertext är på.</li>
+                </ul>
+            </section>
+
+            <section class="manus-section">
+                <h2>3. Eftersnack (10 min)</h2>
+                <ul>
+                    <li>Tänd ljuset långsamt. Låt det sjunka in en stund, filmen är ofta ganska tung emotionellt.</li>
+                    <li><strong>Diskussionsfrågor att bolla öppet i klassen:</strong></li>
+                    <li><em>"Vilken scen eller information i filmen stannade kvar hos er starkast?"</em></li>
+                    <li><em>"Återkoppla till förnan: Om vi förlorar arterna i förnan (nedbrytarna), vad händer då med hela det stora 'säkerhetsnät' som David pratar om?"</em></li>
+                    <li>Sammanfatta: Filmen handlar inte bara om undergång, den handlar om "Rewilding" (återförvildning). Vi måste ge naturen utrymme att återhämta sig.</li>
+                </ul>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        if (!LESSON_LAB_AUTH.isAuthenticated()) {
+            window.location.href = '../index.html';
+        }
+    </script>
+</body>
+</html>
