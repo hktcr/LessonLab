@@ -4,99 +4,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manus: A Life on Our Planet</title>
+    <title>Manus: A Life on Our Planet — LessonLab</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="../auth.js"></script>
+    <style>
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            filter: brightness(1.2);
+        }
+    </style>
 </head>
 
-<body class="manus-page">
-    <nav class="top-nav">
-        <a href="../index.html" class="back-link">← Tillbaka till Årshjulet</a>
-        <div class="nav-title">Biologins grunder</div>
-        <button class="logout-btn" onclick="LESSON_LAB_AUTH.logout()">Logga ut</button>
-    </nav>
-
-    <main class="manus-content">
-        <header class="manus-header">
-            <span class="manus-badge">Film & Syntes</span>
-            <h1 class="manus-title">A Life on Our Planet</h1>
-            <p class="manus-meta"><strong>Åk 7</strong> · Ekologi · Längd: 83 minuter</p>
-            <div class="manus-actions" style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
-                <a href="slides-attenborough.html" target="_blank" class="btn btn-primary">Öppna Slide</a>
-                <a href="https://hktcr.github.io/q/attenborough.html" target="_blank" class="btn btn-primary" style="background:#10b981; border-color:#10b981;">👨‍🎓 Elev-länk (Dela)</a>
-                <a href="https://hktcr.github.io/q/attenborough.html?mode=teacher" target="_blank" class="btn btn-primary" style="background:#8b5cf6; border-color:#8b5cf6;">👩‍🏫 Lärarpanel (Din skärm)</a>
-                <a href="https://www.netflix.com/title/80216393" target="_blank" class="btn btn-secondary">Öppna Netflix</a>
-                <a href="attenborough-transcript.md" target="_blank" class="btn btn-secondary">Läs Transkriptet</a>
+<body>
+    <!-- Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🎬</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus
+                    autocomplete="current-password">
             </div>
-        </header>
-
-        <div class="content-body">
-            
-            <div class="pedagogical-bridge">
-                <h3>§63 Pedagogisk brygga</h3>
-                <p><strong>Varifrån kommer vi?</strong> Vi har nyss varit ute i naturen och "rotat i förnan". Vi har tittat på livet i miniatyr och förstått de små nedbrytarnas roll i ett ekosystem. Idag regnar det, så vi tar en paus från fältet.</p>
-                <p><strong>Vart ska vi?</strong> Vi ska zooma ut maximalt. Från en gråsugga under ett löv, till hela planetens biosfär. Idag fyller dessutom (eller har nyligen fyllt) Sir David Attenborough 100 år. Ingen människa i historien har rest mer, sett fler ekosystem, eller blivit vittne till en så drastisk minskning av biologisk mångfald som han.</p>
-                <p><strong>Budskapet till eleverna:</strong> "Ni letade efter biologisk mångfald i lövhögen i skogen. David Attenborough har letat efter den på hela jorden i 100 år. Idag ska vi få höra hans vittnesmål."</p>
-            </div>
-
-            <section class="manus-section">
-                <h2>1. Introduktion (5 min)</h2>
-                <ul>
-                    <li>Visa <strong>Slide 1 & 2</strong> på tavlan (släck ner lite i rummet för biokänsla).</li>
-                    <li>Säg: "Sir David Attenborough föddes den 8 maj 1926. Klicka fram grafen som illustrerar hur enormt jordens befolkning växt under just hans livstid (från 2 till över 8 miljarder). Tänk er att ha haft som jobb hela livet att resa runt och filma naturen under denna extrema förändring. Vilka förändringar tror ni man har hunnit se?"</li>
-                    <li>Gå igenom de tre instuderingsfrågorna (Slide 3). Berätta att de inte behöver skriva medan de tittar, men att de ska ha dem i bakhuvudet för diskussionen efteråt.</li>
-                </ul>
-            </section>
-
-            <section class="manus-section">
-                <h2>2. Visning av filmen (T.ex. upp till 45:00)</h2>
-                <ul>
-                    <li>Starta filmen på Netflix. (Den kan med fördel delas upp på två lektioner. Vid visning för BJKA1-25 stannade vi vid ca 45:00 på grund av krock med NP i matematik, vilket visade sig vara ett utmärkt brytpunkt).</li>
-                    <li>Säkerställ att svensk undertext är på.</li>
-                </ul>
-            </section>
-
-            <section class="manus-section highlight-box" style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0;">
-                <h2>📱 Interaktivt Quiz under filmen</h2>
-                <p><strong>Förberedelser:</strong> Låt eleverna klicka på Elev-länken innan filmen startar (den ligger t.ex. i deras Google Classroom). Öppna din egen <strong>Lärarpanel</strong> på din iPad eller en egen skärm.</p>
-                <ul>
-                    <li><strong>Manuell styrning är bäst:</strong> Följ med i Frågebanken i Lärarpanelen och klicka på "Puscha till elever" direkt efter att David pratat om ett ämne. Detta håller eleverna alerta och på tårna.</li>
-                    <li><strong>Klassrumsstyrning (Live-Meddelanden):</strong> Om fokus brister under filmen kan du använda Live-Meddelanden i Lärarpanelen ("Var Tysta!" eller "Fokusera på filmen"). Detta blockerar omedelbart alla elevers skärmar. Meddelandet försvinner automatiskt så fort du pushar nästa fråga.</li>
-                    <li><strong>Rättvis resultatsida:</strong> När det är dags att bryta (t.ex. vid 45 minuter), klickar du bara på "🏁 Avsluta Lektion" längst ner i panelen. Elevernas resultat räknas då enbart ut på de frågor du faktiskt hunnit aktivera under just detta pass.</li>
-                </ul>
-            </section>
-
-            <section class="manus-section highlight-box" style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0;">
-                <h2>⚡ Spontan Didaktik: Fallet med korallen (Case BJKA1-25)</h2>
-                <p><em>En mycket framgångsrik lektionsförlängning som uppstod spontant och bör bevaras som standardpraktik.</em></p>
-                <ul>
-                    <li><strong>Fysisk förankring ("The Hand-Drawn"):</strong> Plocka fram den torkade/döda korallen som finns i NO-salen. Skicka runt den i klassen.</li>
-                    <li><strong>Begreppskedja:</strong> Låt eleverna känna på korallen och bygg kedjan tillsammans:
-                        <br><code>Algsymbios (zooxantheller) ➔ Uppvärmt vatten ➔ Korallen stöter bort algerna ➔ Korallblekning ➔ Ekosystemkollaps (avsaknad av skydd och mat).</code>
-                    </li>
-                    <li><strong>Makroperspektiv via Google Earth:</strong> Öppna Google Earth på storskärm. Zooma in på polerna.</li>
-                    <li><strong>Albedo-effekten:</strong> Diskutera vad som händer med jordens klimat när mängden vit snö och is minskar. Förklara reflektionsprincipen (albedo) — mörkare havsvatten absorberar mer solljus än vit is, vilket leder till en ond cirkel av uppvärmning (positiv feedback-loop).</li>
-                </ul>
-            </section>
-
-            <section class="manus-section">
-                <h2>3. Eftersnack & Syntes</h2>
-                <ul>
-                    <li>Tänd ljuset långsamt. Låt det sjunka in en stund, filmen är ofta ganska tung emotionellt.</li>
-                    <li><strong>Diskussionsfrågor att bolla öppet i klassen:</strong></li>
-                    <li><em>"Vilken scen eller information i filmen stannade kvar hos er starkast?"</em></li>
-                    <li><em>"Återkoppla till förnan: Om vi förlorar arterna i förnan (nedbrytarna), vad händer då med hela det stora 'säkerhetsnät' som David pratar om?"</em></li>
-                    <li>Sammanfatta: Filmen handlar inte bara om undergång, den handlar om "Rewilding" (återförvildning). Vi måste ge naturen utrymme att återhämta sig.</li>
-                </ul>
-            </section>
-
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
         </div>
-    </main>
+    </div>
 
+    <!-- Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- Main lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>A Life on Our Planet</h1>
+            <div class="lesson-meta">
+                <span>⏱️ Längd: 83 minuter</span>
+                <span>📋 Åk 7 · Ekologi</span>
+                <span>🎬 Film & Syntes</span>
+            </div>
+            
+            <!-- Actions -->
+            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                <a href="slides-attenborough.html" target="_blank" class="action-btn" style="background:var(--bg-card); color:var(--text-primary); border:1px solid var(--border-glass); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">Öppna Slide</a>
+                <a href="https://hktcr.github.io/q/attenborough.html" target="_blank" class="action-btn" style="background:rgba(16, 185, 129, 0.1); color:#10b981; border:1px solid rgba(16, 185, 129, 0.3); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">👨‍🎓 Elev-länk (Dela)</a>
+                <a href="https://hktcr.github.io/q/attenborough.html?mode=teacher" target="_blank" class="action-btn" style="background:rgba(139, 92, 246, 0.1); color:#8b5cf6; border:1px solid rgba(139, 92, 246, 0.3); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">👩‍🏫 Lärarpanel (Din skärm)</a>
+                <a href="https://www.netflix.com/title/80216393" target="_blank" class="action-btn" style="background:var(--bg-card); color:var(--text-primary); border:1px solid var(--border-glass); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">Öppna Netflix</a>
+                <a href="attenborough-transcript.md" target="_blank" class="action-btn" style="background:var(--bg-card); color:var(--text-primary); border:1px solid var(--border-glass); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">Läs Transkriptet</a>
+            </div>
+        </div>
+
+        <div class="vep-principle">
+            <strong>§63 Pedagogisk brygga:</strong><br>
+            <strong>Varifrån kommer vi?</strong> Vi har nyss varit ute i naturen och "rotat i förnan". Vi har tittat på livet i miniatyr och förstått de små nedbrytarnas roll i ett ekosystem. Idag regnar det, så vi tar en paus från fältet.<br><br>
+            <strong>Vart ska vi?</strong> Vi ska zooma ut maximalt. Från en gråsugga under ett löv, till hela planetens biosfär. Idag fyller dessutom (eller har nyligen fyllt) Sir David Attenborough 100 år. Ingen människa i historien har rest mer, sett fler ekosystem, eller blivit vittne till en så drastisk minskning av biologisk mångfald som han.<br><br>
+            <strong>Budskapet till eleverna:</strong> "Ni letade efter biologisk mångfald i lövhögen i skogen. David Attenborough har letat efter den på hela jorden i 100 år. Idag ska vi få höra hans vittnesmål."
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 1 -->
+        <!-- ============================================================ -->
+        <div class="lesson-section" id="section-1">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 1</span>
+                    <h2>1. Introduktion (5 min)</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Visa <strong>Slide 1 & 2</strong> på tavlan (släck ner lite i rummet för biokänsla).</li>
+                    </ul>
+                    <div class="say-block">
+                        "Sir David Attenborough föddes den 8 maj 1926. [Klicka fram grafen som illustrerar hur enormt jordens befolkning växt under just hans livstid — från 2 till över 8 miljarder]. Tänk er att ha haft som jobb hela livet att resa runt och filma naturen under denna extrema förändring. Vilka förändringar tror ni man har hunnit se?"
+                    </div>
+                    <ul class="checklist">
+                        <li>Gå igenom de tre instuderingsfrågorna (Slide 3). Berätta att de inte behöver skriva medan de tittar, men att de ska ha dem i bakhuvudet för diskussionen efteråt.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 2 -->
+        <!-- ============================================================ -->
+        <div class="lesson-section" id="section-2">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 2</span>
+                    <h2>2. Visning av filmen (T.ex. upp till 45:00)</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Starta filmen på Netflix. (Den kan med fördel delas upp på två lektioner. Vid visning för BJKA1-25 stannade vi vid ca 45:00 på grund av krock med NP i matematik, vilket visade sig vara ett utmärkt brytpunkt).</li>
+                        <li>Säkerställ att svensk undertext är på.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 3 -->
+        <!-- ============================================================ -->
+        <div class="lesson-section open" id="section-3" style="border-color: #8b5cf6;">
+            <div class="section-header" onclick="toggleSection(this)" style="background: rgba(139, 92, 246, 0.05);">
+                <div>
+                    <span class="section-number" style="color: #8b5cf6;">Verktyg</span>
+                    <h2 style="color: #8b5cf6;">📱 Interaktivt Quiz under filmen</h2>
+                </div>
+                <span class="toggle-icon" style="color: #8b5cf6;">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Förberedelser:</strong> Låt eleverna klicka på Elev-länken innan filmen startar (den ligger t.ex. i deras Google Classroom). Öppna din egen <strong>Lärarpanel</strong> på din iPad eller en egen skärm.</p>
+                    <ul class="checklist" style="margin-top: 1rem;">
+                        <li><strong>Manuell styrning är bäst:</strong> Följ med i Frågebanken i Lärarpanelen och klicka på "Puscha till elever" direkt efter att David pratat om ett ämne. Detta håller eleverna alerta och på tårna.</li>
+                        <li><strong>Klassrumsstyrning (Live-Meddelanden):</strong> Om fokus brister under filmen kan du använda Live-Meddelanden i Lärarpanelen ("Var Tysta!" eller "Fokusera på filmen"). Detta blockerar omedelbart alla elevers skärmar. Meddelandet försvinner automatiskt så fort du pushar nästa fråga.</li>
+                        <li><strong>Rättvis resultatsida:</strong> När det är dags att bryta (t.ex. vid 45 minuter), klickar du bara på "🏁 Avsluta Lektion" längst ner i panelen. Elevernas resultat räknas då enbart ut på de frågor du faktiskt hunnit aktivera under just detta pass.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 4 -->
+        <!-- ============================================================ -->
+        <div class="lesson-section" id="section-4" style="border-color: #10b981;">
+            <div class="section-header" onclick="toggleSection(this)" style="background: rgba(16, 185, 129, 0.05);">
+                <div>
+                    <span class="section-number" style="color: #10b981;">Didaktik</span>
+                    <h2 style="color: #10b981;">⚡ Spontan Didaktik: Fallet med korallen</h2>
+                </div>
+                <span class="toggle-icon" style="color: #10b981;">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p style="color:var(--text-secondary); margin-bottom:1rem;"><em>En mycket framgångsrik lektionsförlängning som uppstod spontant och bör bevaras som standardpraktik.</em></p>
+                    <ul class="checklist">
+                        <li><strong>Fysisk förankring ("The Hand-Drawn"):</strong> Plocka fram den torkade/döda korallen som finns i NO-salen. Skicka runt den i klassen.</li>
+                        <li><strong>Begreppskedja:</strong> Låt eleverna känna på korallen och bygg kedjan tillsammans:
+                            <br><br><code style="background:var(--bg-glass); padding:0.5rem; border-radius:4px; display:block;">Algsymbios (zooxantheller) ➔ Uppvärmt vatten ➔ Korallen stöter bort algerna ➔ Korallblekning ➔ Ekosystemkollaps (avsaknad av skydd och mat).</code><br>
+                        </li>
+                        <li><strong>Makroperspektiv via Google Earth:</strong> Öppna Google Earth på storskärm. Zooma in på polerna.</li>
+                        <li><strong>Albedo-effekten:</strong> Diskutera vad som händer med jordens klimat när mängden vit snö och is minskar. Förklara reflektionsprincipen (albedo) — mörkare havsvatten absorberar mer solljus än vit is, vilket leder till en ond cirkel av uppvärmning (positiv feedback-loop).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEL 5 -->
+        <!-- ============================================================ -->
+        <div class="lesson-section" id="section-5">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div>
+                    <span class="section-number">Del 3</span>
+                    <h2>3. Eftersnack & Syntes</h2>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Tänd ljuset långsamt. Låt det sjunka in en stund, filmen är ofta ganska tung emotionellt.</li>
+                    </ul>
+                    <p style="margin-top:1rem; margin-bottom:0.5rem;"><strong>Diskussionsfrågor att bolla öppet i klassen:</strong></p>
+                    <div class="say-block">
+                        "Vilken scen eller information i filmen stannade kvar hos er starkast?"
+                    </div>
+                    <div class="say-block">
+                        "Återkoppla till förnan: Om vi förlorar arterna i förnan (nedbrytarna), vad händer då med hela det stora 'säkerhetsnät' som David pratar om?"
+                    </div>
+                    <ul class="checklist" style="margin-top:1rem;">
+                        <li>Sammanfatta: Filmen handlar inte bara om undergång, den handlar om "Rewilding" (återförvildning). Vi måste ge naturen utrymme att återhämta sig.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../auth.js"></script>
     <script>
-        if (!LESSON_LAB_AUTH.isAuthenticated()) {
-            window.location.href = '../index.html';
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
         }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(el) {
+            el.closest('.lesson-section').classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
     </script>
 </body>
 </html>
