@@ -573,48 +573,133 @@
     }
 
     // === TEACHER PANEL ===
+    let teacherTime = 0; // in seconds
+    let teacherPlaying = false;
+    let teacherTimer = null;
+
+    // Estimated timestamps for the questions (in seconds)
+    const qTimestamps = [
+        8 * 60,   // Q1: Holocen (~08:00)
+        18 * 60,  // Q2: Orangutanger (~18:00)
+        22 * 60,  // Q3: Monokultur (~22:00)
+        29 * 60,  // Q4: Havet (~29:00)
+        34 * 60,  // Q5: Korallblekning (~34:00)
+        42 * 60   // Q6: Albedo (~42:00)
+    ];
+
     async function renderTeacherPanel() {
         stepIndicator.style.display = 'none';
         progressBar.style.display = 'none';
         
-        // Reset DB on load
-        await setGlobalQ(-1);
+        await setGlobalQ(-1); // Reset on load
 
         card.innerHTML = `
             <div class="intro" style="text-align:left;">
                 <div class="badge">Lärarpanel</div>
-                <h1 style="color:var(--primary); text-align:left; font-size:2rem;">Live-Synk Kontroll</h1>
-                <p class="sub" style="text-align:left; margin-bottom:1.5rem;">När du klickar på en fråga kommer den automatiskt att dyka upp på alla elevers skärmar i realtid.</p>
-                <div class="options" id="teacherOpts">
-                    <div class="opt" onclick="pushQuestion(-1)" style="border-color:var(--primary); background:rgba(16,185,129,0.1);">
-                        <span class="letter">⏸️</span>
-                        <span>Paus (Eleverna ser: "Väntar på Håkan...")</span>
+                <h1 style="color:var(--primary); text-align:left; font-size:2rem;">🎬 Timeline-Synk</h1>
+                <p class="sub" style="text-align:left; margin-bottom:1rem; font-size:1rem;">
+                    Klicka på Play när filmen rullar. Systemet låser automatiskt upp frågorna vid rätt tidsstämpel. Du kan justera tiden manuellt om ni pausat.
+                </p>
+
+                <div style="background:rgba(255,255,255,0.05); padding:1.5rem; border-radius:14px; margin-bottom:2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <div style="font-size:2.5rem; font-weight:900; font-variant-numeric: tabular-nums;" id="timeDisplay">00:00</div>
+                        <div>
+                            <button id="playBtn" onclick="togglePlay()" style="background:var(--primary); color:#fff; border:none; padding:0.8rem 1.5rem; border-radius:8px; font-weight:bold; cursor:pointer; font-size:1.1rem;">▶️ Play</button>
+                        </div>
                     </div>
+                    <div style="display:flex; gap:1rem; align-items:center;">
+                        <input type="range" id="timeSlider" min="0" max="2700" value="0" style="flex-grow:1; cursor:pointer;" oninput="sliderMove(this.value)">
+                        <button onclick="adjustTime(-30)" style="background:rgba(255,255,255,0.1); border:none; color:#fff; padding:0.5rem; border-radius:6px; cursor:pointer;">-30s</button>
+                        <button onclick="adjustTime(30)" style="background:rgba(255,255,255,0.1); border:none; color:#fff; padding:0.5rem; border-radius:6px; cursor:pointer;">+30s</button>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom:1rem; color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; letter-spacing:2px;">Automatiska Triggers</h3>
+                <div class="options" id="teacherOpts">
                     ${questions.map((q, i) => `
-                        <div class="opt" onclick="pushQuestion(${i})">
-                            <span class="letter">${q.num}</span>
-                            <span>Lås upp: ${q.text.substring(0, 45)}...</span>
+                        <div class="opt" id="t-opt-${i}" style="opacity:0.6; pointer-events:none;">
+                            <span class="letter">${formatTime(qTimestamps[i])}</span>
+                            <span>${q.num}. ${q.text.substring(0, 35)}...</span>
                         </div>
                     `).join('')}
-                    <div class="opt" onclick="pushQuestion(${questions.length})">
-                        <span class="letter">🏁</span>
-                        <span>Avsluta och tvinga Resultat för alla</span>
+                    <div class="opt" onclick="pushQuestion(${questions.length})" style="margin-top:1.5rem; border-color:var(--incorrect); justify-content:center;">
+                        <span>🏁 Tvinga Avslut (Visa Resultat för alla)</span>
                     </div>
                 </div>
             </div>
         `;
     }
 
+    function formatTime(sec) {
+        const m = Math.floor(sec / 60).toString().padStart(2, '0');
+        const s = (sec % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    function updateTimeDisplay() {
+        document.getElementById('timeDisplay').textContent = formatTime(teacherTime);
+        document.getElementById('timeSlider').value = teacherTime;
+
+        // Check triggers
+        let activeIndex = -1;
+        for (let i = 0; i < qTimestamps.length; i++) {
+            if (teacherTime >= qTimestamps[i]) {
+                activeIndex = i;
+            }
+        }
+
+        // Visual update
+        for (let i = 0; i < questions.length; i++) {
+            const el = document.getElementById(`t-opt-${i}`);
+            if (i <= activeIndex) {
+                el.style.opacity = '1';
+                el.style.borderColor = 'var(--primary)';
+                el.style.background = 'rgba(16,185,129,0.1)';
+            } else {
+                el.style.opacity = '0.4';
+                el.style.borderColor = 'rgba(255,255,255,0.08)';
+                el.style.background = 'transparent';
+            }
+        }
+
+        // Push to server if changed
+        if (window._lastPushedIndex !== activeIndex) {
+            pushQuestion(activeIndex);
+            window._lastPushedIndex = activeIndex;
+        }
+    }
+
+    window.togglePlay = function() {
+        teacherPlaying = !teacherPlaying;
+        const btn = document.getElementById('playBtn');
+        if (teacherPlaying) {
+            btn.innerHTML = '⏸️ Paus';
+            btn.style.background = 'rgba(255,255,255,0.2)';
+            teacherTimer = setInterval(() => {
+                teacherTime++;
+                updateTimeDisplay();
+            }, 1000);
+        } else {
+            btn.innerHTML = '▶️ Play';
+            btn.style.background = 'var(--primary)';
+            clearInterval(teacherTimer);
+        }
+    };
+
+    window.sliderMove = function(val) {
+        teacherTime = parseInt(val);
+        updateTimeDisplay();
+    };
+
+    window.adjustTime = function(delta) {
+        teacherTime = Math.max(0, teacherTime + delta);
+        updateTimeDisplay();
+    };
+
     window.pushQuestion = async function(idx) {
         await setGlobalQ(idx);
-        document.querySelectorAll('#teacherOpts .opt').forEach(o => {
-            o.style.borderColor = 'rgba(255,255,255,0.08)';
-            o.style.background = 'rgba(255,255,255,0.04)';
-        });
-        const clicked = event.currentTarget;
-        clicked.style.borderColor = 'var(--primary)';
-        clicked.style.background = 'rgba(16,185,129,0.1)';
-    }
+    };
 
     // Keyboard support for solo mode
     document.addEventListener('keydown', e => {
