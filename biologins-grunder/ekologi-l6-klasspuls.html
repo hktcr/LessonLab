@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekologi L6: KlassPuls Glosförhör — LessonLab</title>
+    <meta name="description" content="Genomgångsmanus för Ekologi Lektion 6: KlassPuls Glosförhör">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- 1. Login gate -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- 2. Progress bar -->
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <!-- 3. Lesson content -->
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+
+        <div class="lesson-header">
+            <h1>⚡ Genomgångsmanus: Ekologi L6 — KlassPuls Glosförhör</h1>
+            <div class="lesson-meta">
+                <span>⏱️ ~45 min</span>
+                <span>✏️ Elevdatorer, KlassPuls</span>
+                <span>📖 Biologins grunder Del 2</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 0: INTRO & FÖRBEREDELSE            -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">📋 Del 0: Förberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(före lektion)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Syfte och lärandemål:</strong></p>
+                    <ol>
+                        <li>Aktiv, formativ repetition av de 22 ekologiska grundbegreppen.</li>
+                        <li>Säkra att eleverna kan koppla begreppen direkt till rätt sida i sitt studiehäfte.</li>
+                    </ol>
+
+                    <ul class="checklist">
+                        <li>Öppna <a href="https://hktcr.github.io/q/klasspuls_glosor.html?mode=teacher" target="_blank" style="color:var(--text-primary); font-weight:bold; text-decoration:underline;">KlassPuls Lärarpanel</a> i en ny flik.</li>
+                        <li>Skriv upp elevlänken stort på tavlan: <strong>hktcr.github.io/q/klasspuls_glosor.html</strong></li>
+                        <li>Se till att eleverna har sina häften uppslagna på bänkarna.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 1: UPPSTART OCH INLOGG             -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-uppstart">
+            <div class="section-header" onclick="toggleSection('sec-uppstart')">
+                <span class="section-title">🚀 Del 1: Uppstart och Synkronisering <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        "Idag ska vi testa en helt ny grej. Vi ska köra ett synkat glosförhör via KlassPuls. Ni knappar in länken på tavlan i era webbläsare."
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Paus. Låt eleverna navigera till sidan. I din lärarpanel, se till att systemet är "Pausat" (svart skärm för dem).
+                    </div>
+
+                    <div class="say-block">
+                        "När jag trycker på en knapp här framme så kommer frågan upp på allas skärmar exakt samtidigt. Svara, så ser ni direkt om ni hade rätt. Om ni har fel, läs feedbacken – den berättar exakt vilken sida i häftet ni ska kolla på!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 2: GENOMFÖRANDE                    -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-genomforande">
+            <div class="section-header" onclick="toggleSection('sec-genomforande')">
+                <span class="section-title">🕹️ Del 2: Genomförande av KlassPuls <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(30 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p>Använd Lärarpanelen för att styra flödet. Skicka frågorna en och en.</p>
+
+                    <div class="say-block">
+                        "Nu kör vi fråga 1." (Tryck 'Skicka fråga 1' i Lärarpanelen)
+                    </div>
+
+                    <p><strong>Under testet:</strong></p>
+                    <ul class="checklist">
+                        <li>Låt dem tänka – använd "🗣️ EPA (60s)" knappen om de behöver diskutera med bänkkamraten innan de svarar.</li>
+                        <li>Fånga upp frågor där många har fel (använd stat-knapparna eller handuppräckning) och pausa för en kort förklaring.</li>
+                        <li>Använd "Skicka Svart skärm"-knappen om du behöver ta hela klassens uppmärksamhet.</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- DEL 3: AVSLUT                          -->
+        <!-- ═══════════════════════════════════════ -->
+        <div class="lesson-section open" id="sec-avslut">
+            <div class="section-header" onclick="toggleSection('sec-avslut')">
+                <span class="section-title">🏁 Del 3: Avslut och Resultat <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p>När alla 22 frågor är genomförda:</p>
+                    
+                    <div class="say-block">
+                        "Okej, då har vi gått igenom alla 22 begrepp. Jag skickar ut resultatsidan till er nu." (Tryck "Visa Resultatskärm för Elever")
+                    </div>
+
+                    <div class="pause-block">
+                        ⏸ Låt eleverna titta på sina stjärnor och fundera på vilka begrepp de behöver repetera mer i häftet.
+                    </div>
+
+                    <div class="say-block">
+                        "De begrepp ni inte satte idag markerar ni i häftet direkt. Det är ert fokus inför provet."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v3.0 — gAIa 🌲 — 2026-05-20
+        </footer>
+    </div>
+
+    <!-- 4. Script -->
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
