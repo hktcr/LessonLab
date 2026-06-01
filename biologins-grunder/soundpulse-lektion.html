@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundPulse -- Sammetsjattingen — LessonLab</title>
+    <meta name="description" content="Genomgangsmanus for SoundPulse-lektionen om sammetsjattingen">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">⬢</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgangsmanus for klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange losenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+        <div class="lesson-header">
+            <h1>♫ Genomgangsmanus: SoundPulse -- Sammetsjattingen</h1>
+            <div class="lesson-meta">
+                <span>~60 min</span>
+                <span>Projektor, elevdatorer, SoundPulse</span>
+                <span>Biologins grunder -- Ekologi</span>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 0 ==================== -->
+        <div class="lesson-section open" id="sec-forberedelse">
+            <div class="section-header" onclick="toggleSection('sec-forberedelse')">
+                <span class="section-title">◆ Del 0: Forberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(fore lektion)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Syfte:</strong> Eleven ska kunna forklara vad invasiva arter ar, identifiera ekosystemtjanster som hotas av minskade bipopulationer, och beskriva kaskadeffekter i naringsvavet.</p>
+                    <ul class="checklist">
+                        <li>Oppna lararvyn pa hktcr.github.io/soundpulse (valj Larare)</li>
+                        <li>Skriv elevlanken pa tavlan</li>
+                        <li>Testa att ljudet fungerar</li>
+                        <li>Ha config-filen med 24 fragor redo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 1 ==================== -->
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">▶ Del 1: Intro <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">"Idag lyssnar vi pa ett program fran Dagens Eko om ett av de storsta hoten mot svenska bin. Det handlar om sammetsjattingen -- varldens storsta geting. Ni ska lyssna aktivt, for jag kommer skicka ut fragor under programmets gang."</div>
+
+                    <div class="write-block">
+                        <div class="whiteboard-preview">
+                            Elevlank: hktcr.github.io/soundpulse
+                        </div>
+                    </div>
+
+                    <div class="say-block">"Ga in pa lanken, skriv ert fornamn, och valj 'Live-lage'. Da synkas ni med min uppspelning."</div>
+
+                    <div class="pause-block">Lat alla ansluta. Kontrollera i lararpanelen att alla syns.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 2 ==================== -->
+        <div class="lesson-section open" id="sec-lyssning">
+            <div class="section-header" onclick="toggleSection('sec-lyssning')">
+                <span class="section-title">◎ Del 2: Lyssning med live-fragor <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(40 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">"Nu startar jag programmet. Lyssna noga -- fragor kommer dyka upp pa era skarmar."</div>
+
+                    <p><strong>Instruktioner for lararen:</strong></p>
+                    <ul class="checklist">
+                        <li>Starta uppspelning -- programmet pausar automatiskt vid fragor</li>
+                        <li>Ge 1--2 min svarstid per fraga</li>
+                        <li>Kommentera svarsfordelningen i lararpanelen</li>
+                        <li>Varannan fraga: "Diskutera med din bankkamrat innan ni svarar."</li>
+                    </ul>
+
+                    <div class="say-block">"Halvtid! Hur manga fragor har ni svarat pa? Kolla er poang."</div>
+
+                    <ul class="checklist">
+                        <li>Haller tempot?</li>
+                        <li>Behover nagon extra tid?</li>
+                        <li>Funkar tekniken?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 3 ==================== -->
+        <div class="lesson-section open" id="sec-varmeboll">
+            <div class="section-header" onclick="toggleSection('sec-varmeboll')">
+                <span class="section-title">⌖ Del 3: Varmebolls-spelet <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(10 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">"Nu testar vi det forsvar som japanska bin anvander mot jattegetingar. Ni ar honungsbin, och jag styr sammetsjattingen! Om ni haller ihop -- bildar en klump -- kan ni besegra getingen."</div>
+
+                    <p><strong>Starta spelet fran lararvyn.</strong></p>
+
+                    <div class="pause-block">Lat dem spela 2--3 rundor.</div>
+
+                    <div class="say-block">"Varfor fungerar det har forsvaret? Och varfor har inte europeiska bin lart sig samma trick?"</div>
+
+                    <div class="vocab-list">
+                        <div class="vocab-item"><strong>Naturligt urval</strong> -- Individer med fordelaktiga egenskaper overlever och fortplantar sig i hogre grad.</div>
+                        <div class="vocab-item"><strong>Selektionstryck</strong> -- En miljopaverkan som gynnar vissa egenskaper framfor andra.</div>
+                        <div class="vocab-item"><strong>Ko-evolution</strong> -- Tva arter som utvecklas som svar pa varandra over tid.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 4 ==================== -->
+        <div class="lesson-section open" id="sec-avslutning">
+            <div class="section-header" onclick="toggleSection('sec-avslutning')">
+                <span class="section-title">■ Del 4: Avslutning <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">"Oppna ovningslaget i SoundPulse och gor resterande fragor sjalva."</div>
+
+                    <div class="say-block">"Exit ticket: Skriv pa en lapp -- namn en ekosystemtjanst som hotas om bina forsvinner."</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v3.0 -- gAIa -- 2026-06-01
+        </footer>
+    </div>
+
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>

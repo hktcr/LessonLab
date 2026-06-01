@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollinatorsjakt pa skolgarden — LessonLab</title>
+    <meta name="description" content="Genomgangsmanus for utomhuslektionen Pollinatorsjakt pa skolgarden">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">⬢</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgangsmanus for klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput"
+                    placeholder="Ange losenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+        <div class="lesson-header">
+            <h1>◎ Genomgangsmanus: Pollinatorsjakt pa skolgarden</h1>
+            <div class="lesson-meta">
+                <span>~60 min</span>
+                <span>Mobilkamera, papper+penna, luppar</span>
+                <span>Biologins grunder -- Ekologi (utomhuslektion)</span>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 0 ==================== -->
+        <div class="lesson-section open" id="sec-forberedelse">
+            <div class="section-header" onclick="toggleSection('sec-forberedelse')">
+                <span class="section-title">◆ Del 0: Forberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(fore lektion)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Syfte:</strong> Eleven ska kunna identifiera vanliga pollinatorer, genomfora en enkel faltinventering med transektmetoden, och koppla pollinering till ekosystemtjanster.</p>
+                    <ul class="checklist">
+                        <li>Kolla vadret -- passar det for utomhuslektion?</li>
+                        <li>Forbered transektomraden (markera med pinnar eller beskriv)</li>
+                        <li>Ta med luppar om det finns</li>
+                    </ul>
+                    <p><strong>OBS:</strong> Denna lektion anvands vid fint vader istallet for inomhuslektionen.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 1 ==================== -->
+        <div class="lesson-section open" id="sec-uppstart">
+            <div class="section-header" onclick="toggleSection('sec-uppstart')">
+                <span class="section-title">▶ Del 1: Uppstart i klassrummet <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(8 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">"Forra gangen larde vi oss att pollinatorer ar livsviktiga for ekosystemen. Idag gar vi ut och letar! Hur manga olika arter av pollinatorer tror ni att vi hittar pa skolgarden?"</div>
+
+                    <div class="pause-block">Varje elev skriver en gissning pa ett papper. Samla in gissningarna -- visa efter lektionen.</div>
+
+                    <div class="write-block">
+                        <div class="whiteboard-preview">
+                            Pollinatorer = bin, humlor, blomflugor, fjarilar, skalbaggar, nattfjarilar
+                        </div>
+                    </div>
+
+                    <div class="say-block">"Vad ar skillnaden pa ett bi och en blomfluga? Flugan har bara TVA vingar och inga gaddar -- den fejkar!"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 2 ==================== -->
+        <div class="lesson-section open" id="sec-utomhus">
+            <div class="section-header" onclick="toggleSection('sec-utomhus')">
+                <span class="section-title">⌖ Del 2: Utomhus -- Transektinventering <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(35 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">"Varje par far en 10-meters stracka langs en blomkant. Ga sakta, rakna alla insekter ni ser pa blommor."</div>
+
+                    <div class="write-block">
+                        <div class="whiteboard-preview">
+                            Steg 1 (5 min): Ga langs transekten, rakna allt<br>
+                            Steg 2 (15 min): Stall er vid EN blomma, vanta, fotografera besokare<br>
+                            Steg 3 (5 min): Anteckna art, blomma, beteende<br>
+                            Steg 4 (10 min): Fri soktid -- under stenar, i gras, pa bark
+                        </div>
+                    </div>
+
+                    <p><strong>Bonusutmaningar:</strong></p>
+                    <ul class="checklist">
+                        <li>Fotografera en insekt INNE i en blomma</li>
+                        <li>Hitta en blomfluga (lurfattning)</li>
+                        <li>Hitta tre OLIKA farger pa pollinatorer</li>
+                        <li>Hitta ett bi med pollenkorg (gula klumpar pa bakbenen)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 3 ==================== -->
+        <div class="lesson-section open" id="sec-atersamling">
+            <div class="section-header" onclick="toggleSection('sec-atersamling')">
+                <span class="section-title">◎ Del 3: Atersamling under tradet <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(12 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">"Samlas har under tradet. Varje par -- visa ert basta foto och beratta vad ni hittade."</div>
+
+                    <div class="pause-block">Lat alla par redovisa (ca 30 sek var).</div>
+
+                    <div class="say-block">"Hur manga unika arter hittade vi totalt? Nagra overraskningar?"</div>
+
+                    <div class="say-block">"Om sammetsjattingen etablerade sig har -- vilka av de har insekterna skulle paverkas forst?"</div>
+
+                    <div class="say-block">"Vilken ekosystemtjanst utfor de har djuren precis nu, framfor era ogon?"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DEL 4 ==================== -->
+        <div class="lesson-section open" id="sec-avslutning">
+            <div class="section-header" onclick="toggleSection('sec-avslutning')">
+                <span class="section-title">■ Del 4: Avslutning <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><em>Tillbaka i klassrummet.</em></p>
+
+                    <div class="say-block">"Skriv i en mening: Vad overraskade dig mest idag?"</div>
+
+                    <div class="say-block">"Nasta gang tittar vi klart pa Attenborough-filmen."</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v3.0 -- gAIa -- 2026-06-01
+        </footer>
+    </div>
+
+    <script src="../auth.js"></script>
+    <script>
+        if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+        async function doLogin() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+        }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>

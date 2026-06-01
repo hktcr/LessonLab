@@ -1,0 +1,13 @@
+# macOS systemfiler
+.DS_Store
+
+# Python-kompileringsfiler och cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Editor- och IDE-specifika filer (VS Code etc.)
+.vscode/
+.idea/
+*.swp
