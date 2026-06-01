@@ -1,5 +1,5 @@
 /* ============================================
-   LessonLab — Lesson Script Portal
+   LessonLab v4.0 — Dashboard UI
    Premium dark theme, glassmorphism, Inter font
    ============================================ */
 
@@ -28,6 +28,16 @@
     --accent-red-glow: rgba(248, 113, 113, 0.3);
     --accent-purple: #a78bfa;
     --accent-yellow: #fbbf24;
+
+    /* Subject accent colors */
+    --subject-kemi: #f59e0b;
+    --subject-kemi-glow: rgba(245, 158, 11, 0.15);
+    --subject-fysik: #3b82f6;
+    --subject-fysik-glow: rgba(59, 130, 246, 0.15);
+    --subject-biologi: #10b981;
+    --subject-biologi-glow: rgba(16, 185, 129, 0.15);
+    --subject-kroppen: #f43f5e;
+    --subject-kroppen-glow: rgba(244, 63, 94, 0.15);
 
     /* Cell colors matching the lesson script */
     --cell-blue: #60a5fa;
@@ -78,7 +88,17 @@ body {
     justify-content: center;
     background: var(--bg-primary);
     z-index: 1000;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.login-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 600px 400px at 30% 40%, rgba(59, 130, 246, 0.08), transparent),
+        radial-gradient(ellipse 500px 300px at 70% 60%, rgba(16, 185, 129, 0.06), transparent);
+    pointer-events: none;
 }
 
 .login-screen.hidden {
@@ -97,17 +117,49 @@ body {
     backdrop-filter: blur(20px);
     box-shadow: var(--shadow-lg), var(--shadow-glow);
     animation: fadeInUp 0.6s ease;
+    position: relative;
 }
 
-.login-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: block;
+.login-logo {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.login-logo-icon {
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: var(--radius-lg);
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.login-logo-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
+    border-radius: 50%;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
 
 .login-title {
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 800;
     margin-bottom: 0.25rem;
     background: linear-gradient(135deg, var(--text-primary), var(--accent-blue));
     -webkit-background-clip: text;
@@ -160,6 +212,10 @@ body {
     font-family: inherit;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .login-btn:hover {
@@ -169,6 +225,14 @@ body {
 
 .login-btn:active {
     transform: translateY(0);
+}
+
+.login-btn-arrow {
+    transition: transform 0.2s;
+}
+
+.login-btn:hover .login-btn-arrow {
+    transform: translateX(4px);
 }
 
 .login-error {
@@ -183,7 +247,677 @@ body {
     opacity: 1;
 }
 
-/* ── Main App ── */
+
+/* ════════════════════════════════════════════
+   DASHBOARD LAYOUT
+   ════════════════════════════════════════════ */
+
+.dashboard {
+    display: none;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2.5rem);
+    min-height: 100vh;
+    animation: fadeInUp 0.5s ease;
+}
+
+.dashboard.visible {
+    display: block;
+}
+
+/* ── Header ── */
+.dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-glass);
+    flex-wrap: wrap;
+}
+
+.dash-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dash-logo {
+    font-size: 1rem;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-md);
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    flex-shrink: 0;
+}
+
+.dash-title {
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.dash-tagline {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+}
+
+.dash-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* ── Wheel Button ── */
+.wheel-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.25s;
+    backdrop-filter: blur(10px);
+}
+
+.wheel-btn:hover {
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.wheel-btn svg {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.wheel-btn:hover svg {
+    opacity: 1;
+}
+
+/* ── Stat SVG ── */
+.stat-svg {
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+/* ── Year Wheel Modal ── */
+.wheel-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 23, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wheel-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wheel-modal {
+    background: rgba(17, 24, 39, 0.95);
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-xl);
+    width: min(720px, 94vw);
+    max-height: 94vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-lg), 0 0 60px rgba(59, 130, 246, 0.08);
+    transform: scale(0.92) translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.wheel-overlay.open .wheel-modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.wheel-modal-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.wheel-modal-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.wheel-modal-title svg {
+    color: var(--accent-blue);
+    opacity: 0.7;
+}
+
+.wheel-modal-tabs {
+    display: flex;
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 999px;
+    padding: 3px;
+    border: 1px solid var(--border-glass);
+}
+
+.wm-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.wm-tab:hover {
+    color: var(--text-primary);
+}
+
+.wm-tab.active {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 0 8px var(--accent-blue-glow);
+}
+
+.wheel-modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+    transition: color 0.2s;
+    border-radius: var(--radius-sm);
+}
+
+.wheel-modal-close:hover {
+    color: var(--accent-red);
+    background: rgba(248, 113, 113, 0.1);
+}
+
+.wheel-modal-body {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.wheel-svg-element {
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+}
+
+.wheel-modal-legend {
+    padding: 0.75rem 1.5rem 1.25rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border-glass);
+}
+
+.wheel-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.wheel-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ── Year Tabs ── */
+.year-tabs {
+    display: inline-flex;
+    background: var(--bg-card);
+    padding: 4px;
+    border-radius: 999px;
+    border: 1px solid var(--border-glass);
+    gap: 2px;
+    backdrop-filter: blur(10px);
+}
+
+.year-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+}
+
+.year-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.year-tab.active {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 0 12px var(--accent-blue-glow);
+}
+
+/* ── Stats Bar ── */
+.stats-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    flex-wrap: wrap;
+}
+
+.stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.stat-chip:hover {
+    border-color: var(--border-hover);
+}
+
+.stat-icon {
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+    color: var(--text-muted);
+}
+
+.stat-ready .stat-value {
+    color: var(--accent-green);
+}
+
+
+/* ── Semester Sections ── */
+.semester-section {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.semester-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-left: 2px;
+}
+
+.semester-title {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+
+.semester-period {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* ── Cards Grid ── */
+.cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* ── Area Card ── */
+.area-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+/* Subject gradient accent — left border */
+.area-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    transition: width 0.3s;
+}
+
+.subject-kemi::before { background: linear-gradient(180deg, #f59e0b, #ea580c); }
+.subject-fysik::before { background: linear-gradient(180deg, #3b82f6, #6366f1); }
+.subject-biologi::before { background: linear-gradient(180deg, #10b981, #059669); }
+.subject-kroppen::before { background: linear-gradient(180deg, #f43f5e, #e11d48); }
+
+.area-card.clickable {
+    cursor: pointer;
+}
+
+.area-card.clickable .card-top {
+    cursor: pointer;
+}
+
+.area-card:hover {
+    border-color: var(--border-hover);
+    transform: translateX(3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.area-card.expanded {
+    transform: none;
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.area-card.expanded::before {
+    width: 4px;
+}
+
+/* Subject hover glows */
+.subject-kemi:hover, .subject-kemi.expanded { background: var(--subject-kemi-glow); }
+.subject-fysik:hover, .subject-fysik.expanded { background: var(--subject-fysik-glow); }
+.subject-biologi:hover, .subject-biologi.expanded { background: var(--subject-biologi-glow); }
+.subject-kroppen:hover, .subject-kroppen.expanded { background: var(--subject-kroppen-glow); }
+
+/* Card Top Row */
+.card-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: clamp(0.875rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.5rem);
+}
+
+.card-icon {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    font-family: 'Inter', var(--font-mono), sans-serif;
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+}
+
+.card-icon-kemi { color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); background: rgba(245, 158, 11, 0.08); }
+.card-icon-fysik { color: #3b82f6; border-color: rgba(59, 130, 246, 0.2); background: rgba(59, 130, 246, 0.08); }
+.card-icon-biologi { color: #10b981; border-color: rgba(16, 185, 129, 0.2); background: rgba(16, 185, 129, 0.08); }
+.card-icon-kroppen { color: #f43f5e; border-color: rgba(244, 63, 94, 0.2); background: rgba(244, 63, 94, 0.08); }
+
+.card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-title {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.card-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.card-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Status Badges */
+.card-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.badge-ready {
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--accent-green);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.badge-planned {
+    background: rgba(148, 163, 184, 0.1);
+    color: var(--text-muted);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.badge-draft {
+    background: rgba(251, 191, 36, 0.15);
+    color: var(--accent-yellow);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Expand Icon */
+.card-expand-icon {
+    color: var(--text-muted);
+    font-size: 1rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
+    display: inline-block;
+}
+
+.card-expand-icon.rotated {
+    transform: rotate(180deg);
+    color: var(--accent-blue);
+}
+
+/* ── Lesson List (expandable) ── */
+.card-lessons {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-lessons.open {
+    max-height: 2000px;
+    transition: max-height 0.5s ease-in;
+}
+
+.lesson-list {
+    list-style: none;
+    padding: 0 clamp(1rem, 2vw, 1.5rem) clamp(0.75rem, 2vw, 1.25rem);
+    border-top: 1px solid var(--border-glass);
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0.75rem;
+    margin-bottom: 2px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInLesson 0.3s ease both;
+}
+
+@keyframes slideInLesson {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lesson-item:first-child {
+    margin-top: 0.75rem;
+}
+
+.lesson-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+}
+
+.lesson-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: color 0.2s;
+    min-width: 0;
+}
+
+.lesson-link:hover {
+    color: var(--accent-blue);
+}
+
+/* Stop propagation on lesson links */
+.lesson-link {
+    position: relative;
+    z-index: 2;
+}
+
+.lesson-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.6;
+    width: 1.5rem;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.lesson-title-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lesson-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+/* ── Footer ── */
+.dash-footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-sep {
+    opacity: 0.4;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    transition: color 0.2s;
+}
+
+.logout-btn:hover {
+    color: var(--accent-red);
+}
+
+
+/* ════════════════════════════════════════════
+   LESSON PAGE STYLES (preserved from v3)
+   ════════════════════════════════════════════ */
+
 .app {
     display: none;
     max-width: 1100px;
@@ -253,167 +987,6 @@ body {
     color: var(--accent-blue);
 }
 
-/* ── Work Area Cards ── */
-.area-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.area-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-glass);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.area-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-}
-
-.area-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md), var(--shadow-glow);
-}
-
-.area-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-    display: block;
-}
-
-.area-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-}
-
-.area-description {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    margin-bottom: 1.25rem;
-}
-
-/* ── Lesson List inside cards ── */
-.lesson-list {
-    list-style: none;
-}
-
-.lesson-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.9rem 1.25rem;
-    margin-bottom: 0.6rem;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-md);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.lesson-item:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateX(6px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.lesson-link {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.2s;
-}
-
-.lesson-link:hover {
-    color: var(--accent-blue);
-}
-
-.lesson-link::before {
-    content: '▶';
-    font-size: 0.7rem;
-    color: var(--accent-blue);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.25s ease;
-}
-
-.lesson-item:hover .lesson-link::before {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.lesson-badge {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 999px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.badge-ready {
-    background: rgba(52, 211, 153, 0.15);
-    color: var(--accent-green);
-    border: 1px solid rgba(52, 211, 153, 0.3);
-}
-
-.badge-draft {
-    background: rgba(251, 191, 36, 0.15);
-    color: var(--accent-yellow);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-}
-
-.badge-planned {
-    background: rgba(148, 163, 184, 0.15);
-    color: var(--text-secondary);
-    border: 1px solid rgba(148, 163, 184, 0.3);
-}
-
-/* ── Footer ── */
-.app-footer {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-glass);
-}
-
-.logout-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-decoration: underline;
-    font-family: inherit;
-    margin-left: 0.5rem;
-}
-
-.logout-btn:hover {
-    color: var(--accent-red);
-}
-
 /* ── Lesson Page Styles ── */
 .lesson-page {
     max-width: 860px;
@@ -472,7 +1045,6 @@ body {
     border: 1px solid var(--border-glass);
     border-radius: var(--radius-lg);
     margin-bottom: 0.5rem;
-    /* Tighter spacing for outline */
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -480,17 +1052,13 @@ body {
 .lesson-section:hover {
     border-color: var(--border-hover);
     transform: translateX(4px);
-    /* Hint at interactivity */
     background: var(--bg-card-hover);
 }
 
 .lesson-section.open {
     margin-bottom: 2rem;
-    /* Restore spacing when open */
     transform: none;
-    /* No hover move when open */
     background: var(--bg-card);
-    /* Reset bg */
     box-shadow: var(--shadow-md);
     border-color: var(--accent-blue-glow);
 }
@@ -511,19 +1079,16 @@ body {
 
 .lesson-section.open .section-header {
     background: rgba(59, 130, 246, 0.05);
-    /* Subtle highlight for active header */
     border-bottom: 1px solid var(--border-glass);
 }
 
 .section-title {
     font-size: 1.05rem;
     font-weight: 600;
-    /* Slightly lighter for outline */
     display: flex;
     align-items: center;
     gap: 0.75rem;
     color: var(--text-secondary);
-    /* Muted by default */
     transition: color 0.2s;
 }
 
@@ -533,7 +1098,6 @@ body {
 
 .lesson-section.open .section-title {
     color: var(--accent-blue);
-    /* Active color */
     font-weight: 700;
 }
 
@@ -558,19 +1122,16 @@ body {
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
-    /* Fade in content */
 }
 
 .lesson-section.open .section-body {
     max-height: 8000px;
-    /* Allow for long content */
     opacity: 1;
     transition: max-height 0.5s ease-in, opacity 0.3s ease-in 0.1s;
 }
 
 .section-content {
     padding: 1.5rem 1.25rem;
-    /* More padding when open */
 }
 
 /* ── Teacher Speech Blocks ── */
@@ -606,21 +1167,10 @@ body {
     margin-bottom: 0.25rem;
 }
 
-.pen-blue {
-    color: var(--cell-blue);
-}
-
-.pen-red {
-    color: var(--cell-red);
-}
-
-.pen-green {
-    color: var(--cell-green);
-}
-
-.pen-black {
-    color: var(--cell-black);
-}
+.pen-blue { color: var(--cell-blue); }
+.pen-red { color: var(--cell-red); }
+.pen-green { color: var(--cell-green); }
+.pen-black { color: var(--cell-black); }
 
 /* ── Write Instructions ── */
 .write-block {
@@ -690,15 +1240,8 @@ body {
     color: var(--text-primary);
 }
 
-.check {
-    color: var(--accent-green);
-    font-weight: 700;
-}
-
-.cross {
-    color: var(--accent-red);
-    opacity: 0.5;
-}
+.check { color: var(--accent-green); font-weight: 700; }
+.cross { color: var(--accent-red); opacity: 0.5; }
 
 /* ── Vocabulary List ── */
 .vocab-list {
@@ -796,111 +1339,6 @@ body {
 .continue-marker h2 {
     color: var(--accent-green);
     font-size: 1.1rem;
-}
-
-/* ── Animations ── */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    20%,
-    60% {
-        transform: translateX(-6px);
-    }
-
-    40%,
-    80% {
-        transform: translateX(6px);
-    }
-}
-
-.shake {
-    animation: shake 0.4s ease;
-}
-
-/* ── Responsive ── */
-@media (max-width: 600px) {
-    .login-card {
-        padding: 2rem 1.5rem;
-    }
-
-    .app-title {
-        font-size: 1.5rem;
-    }
-
-    .area-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .lesson-header h1 {
-        font-size: 1.4rem;
-    }
-
-    .lesson-meta {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .vocab-list {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ── Print Styles ── */
-@media print {
-    body {
-        background: white;
-        color: #1a1a1a;
-    }
-
-    .login-screen,
-    .lesson-progress,
-    .lesson-back,
-    .app-footer,
-    .section-chevron {
-        display: none !important;
-    }
-
-    .lesson-section {
-        border: 1px solid #ddd;
-        break-inside: avoid;
-    }
-
-    .section-body {
-        max-height: none !important;
-    }
-
-    .say-block {
-        background: #f0f7ff;
-        border-left-color: #3b82f6;
-        color: #1a1a1a;
-    }
-
-    .draw-block {
-        background: #f0fff4;
-        border-left-color: #34d399;
-    }
-
-    .pause-block {
-        background: #fffbeb;
-        border-left-color: #fbbf24;
-        color: #92400e;
-    }
 }
 
 /* ── Floating Action Button (FAB) ── */
@@ -1012,7 +1450,6 @@ body {
     overflow-y: auto;
 }
 
-/* Reuse vocab styles but simplified for modal */
 .modal-list {
     display: flex;
     flex-direction: column;
@@ -1039,227 +1476,155 @@ body {
     font-size: 0.95rem;
 }
 
-/* ── Premium Donut Wheel UI ── */
-.donut-app {
-    display: none;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    height: 100vh;
-    animation: fadeInUp 0.5s ease;
+
+/* ════════════════════════════════════════════
+   ANIMATIONS
+   ════════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.donut-app.visible {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
 }
 
-.donut-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+.shake {
+    animation: shake 0.4s ease;
 }
 
-.year-tabs {
-    display: inline-flex;
-    background: var(--bg-card);
-    padding: 0.5rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-glass);
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    backdrop-filter: blur(10px);
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .dash-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .dash-controls {
+        width: 100%;
+    }
+
+    .year-tabs {
+        width: 100%;
+        display: flex;
+    }
+
+    .year-tab {
+        flex: 1;
+        text-align: center;
+        padding: 0.6rem 0.5rem;
+    }
+
+    .stats-bar {
+        gap: 0.5rem;
+    }
+
+    .stat-chip {
+        flex: 1;
+        justify-content: center;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .card-top {
+        gap: 0.75rem;
+    }
+
+    .card-icon {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.2rem;
+    }
+
+    .lesson-item {
+        padding: 0.6rem 0.5rem;
+    }
+
+    .lesson-number {
+        display: none;
+    }
+
+    .lesson-badge {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.4rem;
+    }
 }
 
-.year-tab {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    padding: 0.6rem 1.5rem;
-    border-radius: 999px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
+@media (max-width: 480px) {
+    .login-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .card-badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .lesson-link {
+        font-size: 0.85rem;
+    }
 }
 
-.year-tab:hover {
-    color: var(--text-primary);
+/* ── Print Styles ── */
+@media print {
+    body {
+        background: white;
+        color: #1a1a1a;
+    }
+
+    .login-screen,
+    .lesson-progress,
+    .lesson-back,
+    .dash-footer,
+    .app-footer,
+    .section-chevron,
+    .stats-bar,
+    .fab-btn {
+        display: none !important;
+    }
+
+    .lesson-section {
+        border: 1px solid #ddd;
+        break-inside: avoid;
+    }
+
+    .section-body {
+        max-height: none !important;
+    }
+
+    .say-block {
+        background: #f0f7ff;
+        border-left-color: #3b82f6;
+        color: #1a1a1a;
+    }
+
+    .draw-block {
+        background: #f0fff4;
+        border-left-color: #34d399;
+    }
+
+    .pause-block {
+        background: #fffbeb;
+        border-left-color: #fbbf24;
+        color: #92400e;
+    }
 }
 
-.year-tab.active {
-    background: var(--accent-blue);
-    color: white;
-    box-shadow: 0 0 15px var(--accent-blue-glow);
-}
-
-/* The SVG Wheel */
-.wheel-container {
-    position: relative;
-    width: 600px;
-    height: 600px;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
-}
-
-.wheel-svg {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg); /* Start at top (12 o'clock) */
-}
-
-.wheel-slice {
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    cursor: pointer;
-    transform-origin: 300px 300px;
-}
-
-.wheel-slice:hover {
-    transform: scale(1.03);
-    filter: brightness(1.2);
-}
-
-.wheel-slice.active {
-    transform: scale(1.05);
-    filter: brightness(1.3);
-    stroke: white;
-    stroke-width: 2px;
-}
-
-/* Center Viewport */
-.wheel-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 380px;
-    height: 380px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 4px solid var(--border-hover);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
-    transition: border-color 0.4s ease;
-}
-
-.center-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    z-index: 1;
-}
-
-.center-bg.active {
-    opacity: 0.6; /* Keep text readable */
-}
-
-.wheel-center-content {
-    position: relative;
-    z-index: 2;
-}
-
-.center-season {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-    transition: color 0.3s;
-}
-
-.center-title {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.1;
-    color: var(--text-primary);
-    text-shadow: 0 4px 10px rgba(0,0,0,0.8);
-}
-
-.wheel-semester-label {
-    position: absolute;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    opacity: 0.7;
-    pointer-events: none;
-    transition: color 0.3s;
-}
-.label-ht {
-    top: 50%;
-    right: -40px;
-    transform: translateY(-50%);
-}
-.label-vt {
-    top: 50%;
-    left: -40px;
-    transform: translateY(-50%);
-}
-
-/* Gradients definition via CSS for slices if needed, but we'll use SVG defs */
-
-/* Content Panel */
-.donut-right {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-}
-
-.orbital-content {
-    opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.orbital-content.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.subject-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--border-hover);
-    border-radius: var(--radius-xl);
-    padding: 2.5rem;
-    box-shadow: var(--shadow-lg), var(--shadow-glow);
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
-}
-
-.subject-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-glass);
-}
-
-.lesson-list-container {
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-/* Scrollbar for lesson list */
-.lesson-list-container::-webkit-scrollbar { width: 6px; }
-.lesson-list-container::-webkit-scrollbar-track { background: transparent; }
-.lesson-list-container::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 10px; }
-
+/* Scrollbar styling */
+.lesson-list::-webkit-scrollbar { width: 6px; }
+.lesson-list::-webkit-scrollbar-track { background: transparent; }
+.lesson-list::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 10px; }
