@@ -577,7 +577,7 @@
     let teacherPlaying = false;
     let teacherTimer = null;
 
-    // Estimated timestamps for the questions (in seconds)
+    // Estimated timestamps för the questions (in seconds)
     const qTimestamps = [
         8 * 60,   // Q1: Holocen (~08:00)
         18 * 60,  // Q2: Orangutanger (~18:00)
@@ -643,14 +643,14 @@
 
         // Check triggers
         let activeIndex = -1;
-        for (let i = 0; i < qTimestamps.length; i++) {
+        för (let i = 0; i < qTimestamps.length; i++) {
             if (teacherTime >= qTimestamps[i]) {
                 activeIndex = i;
             }
         }
 
         // Visual update
-        for (let i = 0; i < questions.length; i++) {
+        för (let i = 0; i < questions.length; i++) {
             const el = document.getElementById(`t-opt-${i}`);
             if (i <= activeIndex) {
                 el.style.opacity = '1';
@@ -701,7 +701,7 @@
         await setGlobalQ(idx);
     };
 
-    // Keyboard support for solo mode
+    // Keyboard support för solo mode
     document.addEventListener('keydown', e => {
         if (currentQ < 0 || isSyncMode || isTeacher) return;
         const map = { 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', '1': 'A', '2': 'B', '3': 'C', '4': 'D' };
