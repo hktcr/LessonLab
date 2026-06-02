@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Life on Our Planet -- Del 2 — LessonLab</title>
-    <meta name="description" content="Genomgangsmanus for A Life on Our Planet del 2 -- synteslektion">
+    <title>A Life on Our Planet — Del 2 — LessonLab</title>
+    <meta name="description" content="Genomgångsmanus för A Life on Our Planet del 2 — synteslektion">
     <link rel="stylesheet" href="../style.css">
+    <style>
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            filter: brightness(1.2);
+        }
+    </style>
 </head>
 <body>
     <div class="login-screen" id="loginScreen">
         <div class="login-card">
-            <span class="login-icon">⬢</span>
+            <span class="login-icon">🎬</span>
             <h1 class="login-title">LessonLab</h1>
-            <p class="login-subtitle">Genomgangsmanus for klassrummet</p>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
             <div class="login-input-group">
                 <input type="password" class="login-input" id="passwordInput"
-                    placeholder="Ange losenord..." autofocus autocomplete="current-password">
+                    placeholder="Ange lösenord..." autofocus autocomplete="current-password">
             </div>
             <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
             <p class="login-error" id="loginError"></p>
@@ -27,30 +34,38 @@
     <div class="app lesson-page" id="mainApp">
         <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
         <div class="lesson-header">
-            <h1>▶ Genomgangsmanus: A Life on Our Planet -- Del 2</h1>
+            <h1>▶ Genomgångsmanus: A Life on Our Planet — Del 2</h1>
             <div class="lesson-meta">
                 <span>~60 min</span>
                 <span>Netflix, projektor, quiz (hktcr.github.io/q/attenborough.html)</span>
-                <span>Biologins grunder -- Ekologi (syntes)</span>
+                <span>Biologins grunder — Ekologi (syntes)</span>
+            </div>
+
+            <!-- Actions -->
+            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                <a href="slides-attenborough.html" target="_blank" class="action-btn" style="background:var(--bg-card); color:var(--text-primary); border:1px solid var(--border-glass); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">Öppna Slide</a>
+                <a href="https://hktcr.github.io/q/attenborough.html" target="_blank" class="action-btn" style="background:rgba(16, 185, 129, 0.1); color:#10b981; border:1px solid rgba(16, 185, 129, 0.3); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">👨‍🎓 Elev-länk (Dela)</a>
+                <a href="https://hktcr.github.io/q/attenborough.html?mode=teacher" target="_blank" class="action-btn" style="background:rgba(139, 92, 246, 0.1); color:#8b5cf6; border:1px solid rgba(139, 92, 246, 0.3); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">👩‍🏫 Lärarpanel (Din skärm)</a>
+                <a href="https://www.netflix.com/title/80216393" target="_blank" class="action-btn" style="background:var(--bg-card); color:var(--text-primary); border:1px solid var(--border-glass); padding:0.6rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:all 0.2s;">Öppna Netflix</a>
             </div>
         </div>
 
         <!-- ==================== DEL 0 ==================== -->
         <div class="lesson-section open" id="sec-forberedelse">
             <div class="section-header" onclick="toggleSection('sec-forberedelse')">
-                <span class="section-title">◆ Del 0: Forberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(fore lektion)</span></span>
+                <span class="section-title">◆ Del 0: Förberedelse <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(före lektion)</span></span>
                 <span class="section-chevron">▼</span>
             </div>
             <div class="section-body">
                 <div class="section-content">
-                    <p><strong>Syfte:</strong> Eleven ska kunna beskriva globala miljoforandringar och koppla dem till lokala ekologiska processer, samt reflektera over mojliga losningar.</p>
+                    <p><strong>Syfte:</strong> Eleven ska kunna beskriva globala miljöförändringar och koppla dem till lokala ekologiska processer, samt reflektera över möjliga lösningar.</p>
                     <ul class="checklist">
-                        <li>Logga in pa Netflix (konto)</li>
-                        <li>Oppna filmen vid 45:00</li>
-                        <li>Ha quiz-lanken redo: hktcr.github.io/q/attenborough.html</li>
-                        <li>Projicera slide 3 med studiefragar</li>
+                        <li>Logga in på Netflix (konto)</li>
+                        <li>Öppna filmen vid 45:00</li>
+                        <li>Ha quiz-länken redo: hktcr.github.io/q/attenborough.html</li>
+                        <li>Projicera slide 3 med studiefrågor</li>
                     </ul>
-                    <p><strong>Forutsattning:</strong> Filmen visad till ~45:00 foregaende lektion.</p>
+                    <p><strong>Förutsättning:</strong> Filmen visad till ~45:00 föregående lektion.</p>
                 </div>
             </div>
         </div>
@@ -58,22 +73,22 @@
         <!-- ==================== DEL 1 ==================== -->
         <div class="lesson-section open" id="sec-aterknytning">
             <div class="section-header" onclick="toggleSection('sec-aterknytning')">
-                <span class="section-title">▶ Del 1: Aterknytning <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
+                <span class="section-title">▶ Del 1: Återknytning <span style="color: var(--text-muted); font-weight: 400; font-size: 0.85rem;">(5 min)</span></span>
                 <span class="section-chevron">▼</span>
             </div>
             <div class="section-body">
                 <div class="section-content">
-                    <div class="say-block">"Forra gangen stannade vi vid den punkt dar Attenborough visar hur korallreven dor. Vi sag att havets temperatur okat och att det leder till korallblekning."</div>
+                    <div class="say-block">"Förra gången stannade vi vid den punkt där Attenborough visar hur korallreven dör. Vi såg att havets temperatur ökat och att det leder till korallblekning."</div>
 
                     <div class="write-block">
                         <div class="whiteboard-preview">
-                            De tre studiefraga (projicera slides-attenborough.html slide 3)
+                            De tre studiefrågorna (projicera slides-attenborough.html slide 3)
                         </div>
                     </div>
 
-                    <div class="say-block">"Kan nagon sammanfatta det vi sett hittills med ETT ord?"</div>
+                    <div class="say-block">"Kan någon sammanfatta det vi sett hittills med ETT ord?"</div>
 
-                    <div class="pause-block">Lat nagra elever svara.</div>
+                    <div class="pause-block">Låt några elever svara.</div>
                 </div>
             </div>
         </div>
@@ -86,17 +101,17 @@
             </div>
             <div class="section-body">
                 <div class="section-content">
-                    <div class="say-block">"Nu fortsatter vi. Vi har ungefar 38 minuter kvar. Lyssna noga pa de losningar Attenborough foreslir."</div>
+                    <div class="say-block">"Nu fortsätter vi. Vi har ungefär 38 minuter kvar. Lyssna noga på de lösningar Attenborough föreslår."</div>
 
                     <p><strong>Starta Netflix vid 45:00</strong> (svenska undertexter).</p>
 
-                    <div class="pause-block">Pausa vid ~58:00 (Attenborough talar om att halva jordens regnskogar ar borta).</div>
+                    <div class="pause-block">Pausa vid ~58:00 (Attenborough talar om att halva jordens regnskogar är borta).</div>
 
-                    <div class="say-block">"Vand er till den ni sitter bredvid. En minut: Hur kanns det att hora det har?"</div>
+                    <div class="say-block">"Vänd er till den ni sitter bredvid. En minut: Hur känns det att höra det här?"</div>
 
                     <div class="pause-block">1 minut pardiskussion.</div>
 
-                    <p><strong>Fortsatt film till slut</strong> (~83 min).</p>
+                    <p><strong>Fortsätt film till slut</strong> (~83 min).</p>
                 </div>
             </div>
         </div>
@@ -109,19 +124,19 @@
             </div>
             <div class="section-body">
                 <div class="section-content">
-                    <div class="say-block">"Nu nar vi sett allt -- lat oss prata om det."</div>
+                    <div class="say-block">"Nu när vi sett allt — låt oss prata om det."</div>
 
-                    <p><strong>Diskussionsfragor (helklass, handupprackning):</strong></p>
+                    <p><strong>Diskussionsfrågor (helklass, handuppräckning):</strong></p>
 
-                    <div class="say-block">"Fraga 1: Attenborough sager att det ar mojligt att aterstalla. Tror ni pa det?"</div>
+                    <div class="say-block">"Fråga 1: Attenborough säger att det är möjligt att återställa. Tror ni på det?"</div>
 
-                    <div class="pause-block">Lat 3--4 elever svara.</div>
+                    <div class="pause-block">Låt 3–4 elever svara.</div>
 
-                    <div class="say-block">"Fraga 2: Vi sag pollinatorer pa skolgarden, vi larde oss om sammetsjattingen. Hur hanger det ihop med det Attenborough berattar?"</div>
+                    <div class="say-block">"Fråga 2: Vi såg pollinatörer på skolgården, vi lärde oss om sammetsjättingen. Hur hänger det ihop med det Attenborough berättar?"</div>
 
                     <div class="pause-block">Pardiskussion 1 min, sedan helklass.</div>
 
-                    <div class="say-block">"Fraga 3: Om ni fick valja EN sak att forandra -- vad skulle det vara?"</div>
+                    <div class="say-block">"Fråga 3: Om ni fick välja EN sak att förändra — vad skulle det vara?"</div>
                 </div>
             </div>
         </div>
@@ -134,15 +149,15 @@
             </div>
             <div class="section-body">
                 <div class="section-content">
-                    <div class="say-block">"Skriv tre saker ni lart er under hela ekologiblocket -- fran naringskedjor till Attenborough."</div>
+                    <div class="say-block">"Skriv tre saker ni lärt er under hela ekologiblocket — från näringskedjor till Attenborough."</div>
 
-                    <div class="say-block">"Nasta vecka: glosforhoret pa alla ekologibegrepp via KlassPuls. Repetition med studiehaftet!"</div>
+                    <div class="say-block">"Nästa vecka: glosförhöret på alla ekologibegrepp via KlassPuls. Repetition med studiehäftet!"</div>
                 </div>
             </div>
         </div>
 
         <footer class="app-footer" style="margin-top: 2rem;">
-            LessonLab v3.0 -- gAIa -- 2026-06-01
+            LessonLab v3.0 — gAIa — 2026-06-01
         </footer>
     </div>
 
