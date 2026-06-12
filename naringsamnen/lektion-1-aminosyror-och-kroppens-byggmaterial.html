@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion 1: Aminosyror och Kroppens byggmaterial</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <div class="login-icon">🔒</div>
+            <h2>Lärarinloggning</h2>
+            <p>Ange lösenord för att komma åt lektionsmanuset.</p>
+            <input type="password" id="passwordInput" placeholder="Lösenord..." autofocus>
+            <p id="loginError" class="login-error hidden">Fel lösenord, försök igen.</p>
+            <button id="loginBtn">Lås upp</button>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden by default) -->
+    <div id="mainContent" class="main-content hidden">
+        <div class="nav-header">
+            <a href="../index.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Tillbaka till översikten
+            </a>
+            <button id="logoutBtn" class="logout-btn">Logga ut</button>
+        </div>
+
+        <article class="lesson-manuscript">
+            <header class="lesson-header">
+                <h1>Lektion 1: Aminosyror och Kroppens byggmaterial</h1>
+            </header>
+
+            <div class="lesson-content">
+<ul><li>**Mål:** Känna till aminosyror (byggstenarna) och proteinets roll för muskler och immunförsvar.</li>
+<li>**Aktivitet (EPA):** Vad händer om man äter för lite protein?</li></ul>
+<p>*   **Enskilt:** Lista tre funktioner i kroppen som kan påverkas.</p>
+<p>*   **Par:** Diskutera hur kroppen prioriterar sina funktioner vid svält.</p>
+<p>*   **Alla:** Genomgång av essentiella vs icke-essentiella aminosyror.</p>
+            </div>
+        </article>
+    </div>
+
+    <script src="../auth.js"></script>
+    <script>
+        // Init auth
+        if (LESSON_LAB_AUTH.isAuthenticated()) {
+            showApp();
+        }
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', async () => {
+            await LESSON_LAB_AUTH.handleLogin(
+                document.getElementById('passwordInput'),
+                document.getElementById('loginError'),
+                showApp
+            );
+        });
+
+        document.getElementById('passwordInput').addEventListener('keydown', async (e) => {
+            if (e.key === 'Enter') {
+                await LESSON_LAB_AUTH.handleLogin(
+                    document.getElementById('passwordInput'),
+                    document.getElementById('loginError'),
+                    showApp
+                );
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            LESSON_LAB_AUTH.logout();
+            location.reload();
+        });
+    </script>
+</body>
+</html>
