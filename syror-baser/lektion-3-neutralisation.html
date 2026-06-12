@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion 3: Neutralisation — LessonLab</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+        <div class="lesson-header">
+            <h1>Lektion 3: Neutralisation</h1>
+        </div>
+
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">🎬 Innan du börjar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Mål:</strong> Veta vad som händer om man blandar en syra och en bas.</p>
+                    <p><strong>Fokus:</strong> Orsak och verkan.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-0">
+            <div class="section-header" onclick="toggleSection('sec-step-0')">
+                <span class="section-title">📚 Start (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        Du har fått frätande syra på handen. Vad gör du? (Svar: Sköljer med mängder av VATTEN! Inte bas. Varför? Fortsätt lektionen).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-1">
+            <div class="section-header" onclick="toggleSection('sec-step-1')">
+                <span class="section-title">📚 Genomgång (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <strong>Neutralisation:</strong> Syra + Bas → Vatten + ett salt.<br>Mikronivå (förenklat): Syran har ett överskott av &quot;sura partiklar&quot; och basen har &quot;basiska partiklar&quot;. När de kramar varandra bildar de vatten.
+                    </div>
+                    <div class="say-block">
+                        Man får dock aldrig hälla stark bas på syra på huden pga extrem värmeutveckling.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-2">
+            <div class="section-header" onclick="toggleSection('sec-step-2')">
+                <span class="section-title">📚 Praktisk modellering (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="draw-block">
+                        Använd pH-skalan på väggen. Om vi har en vätska på pH 2, och droppar i en vätska på pH 12, var rör sig mätaren? (Mot 7).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-3">
+            <div class="section-header" onclick="toggleSection('sec-step-3')">
+                <span class="section-title">📚 Exit Ticket (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        Vad kallas det när en syra och bas tar ut varandra?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026
+        </footer>
+    </div>
+    <script src="../auth.js"></script>
+    <script>
+        if (typeof LESSON_LAB_AUTH !== 'undefined') {
+            if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+            async function doLogin() {
+                const input = document.getElementById('passwordInput');
+                const error = document.getElementById('loginError');
+                await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+            }
+            document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') doLogin();
+            });
+        } else {
+            showApp();
+        }
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>

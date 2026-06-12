@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion 1: Surt och Basiskt — LessonLab</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+        <div class="lesson-header">
+            <h1>Lektion 1: Surt och Basiskt</h1>
+        </div>
+
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">🎬 Innan du börjar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Mål:</strong> Kunna ge tre exempel på sura ämnen och förstå vad en indikator är.</p>
+                    <p><strong>Fokus:</strong> Vardagskemi och säkerhet (SIV-regeln).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-0">
+            <div class="section-header" onclick="toggleSection('sec-step-0')">
+                <span class="section-title">📚 Start (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="draw-block">
+                        Smaktest! Dela ut en droppe citron och en minimal nypa bikarbonat.
+                    </div>
+                    <div class="say-block">
+                        Hur smakar det? Surt vs strävt/beskt. (Nämn att man ALDRIG smakar kemikalier i labbet, bara mat).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-1">
+            <div class="section-header" onclick="toggleSection('sec-step-1')">
+                <span class="section-title">📚 Genomgång (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        Egenskaper: Syror är sura och kan fräta. Baser känns &quot;tvåliga&quot; (löser upp fett) och är också frätande i hög koncentration.<br><strong>SIV-regeln</strong> (Syra I Vatten, inte tvärtom).
+                    </div>
+                    <div class="say-block">
+                        Indikatorer: Ett ämne som byter färg för att &quot;skvallra&quot; om vätskan är sur eller basisk.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-2">
+            <div class="section-header" onclick="toggleSection('sec-step-2')">
+                <span class="section-title">📚 EPA: Hitta syrorna! (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="pause-block">
+                        ⏸ <em>Enskilt:</em> Tänk på ditt kök och badrum hemma. Skriv ner två syror och två baser.
+                    </div>
+                    <div class="pause-block">
+                        ⏸ <em>Par:</em> Jämför listorna. Ledtråd: Rengöringsmedel är nästan alltid basiska, mat/dryck är ofta sur.
+                    </div>
+                    <div class="write-block">
+                        <em>Alla:</em> Vi samlar exemplen på tavlan (Läsk, ättika, fil = surt. Maskindisk, tvål, propplösare = basiskt).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-3">
+            <div class="section-header" onclick="toggleSection('sec-step-3')">
+                <span class="section-title">📚 Formativ koll (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        Vad händer om jag häller vatten i en stark syra? (Svar: SIV-regeln).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026
+        </footer>
+    </div>
+    <script src="../auth.js"></script>
+    <script>
+        if (typeof LESSON_LAB_AUTH !== 'undefined') {
+            if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+            async function doLogin() {
+                const input = document.getElementById('passwordInput');
+                const error = document.getElementById('loginError');
+                await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+            }
+            document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') doLogin();
+            });
+        } else {
+            showApp();
+        }
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>

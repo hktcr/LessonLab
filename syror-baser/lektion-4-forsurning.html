@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion 4: Försurning och Miljö — LessonLab</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+        <div class="lesson-header">
+            <h1>Lektion 4: Försurning och Miljö</h1>
+        </div>
+
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">🎬 Innan du börjar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Mål:</strong> Beskriva hur samhällets utsläpp leder till försurade sjöar och hur det drabbar ekologin.</p>
+                    <p><strong>Fokus:</strong> Ämnesövergripande systemförståelse (NP).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-0">
+            <div class="section-header" onclick="toggleSection('sec-step-0')">
+                <span class="section-title">📚 Återkoppling (5 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        &quot;Naturligt regn har pH 5,6. Men i vissa delar av Sverige har det varit pH 4,0. Varför?&quot;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-1">
+            <div class="section-header" onclick="toggleSection('sec-step-1')">
+                <span class="section-title">📚 Genomgång (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        Avgaser (från kol och olja) bildar kväve- och svaveloxider. Dessa reagerar med vattnet i molnen → <strong>Surt regn</strong>.
+                    </div>
+                    <div class="say-block">
+                        Ekologiska konsekvenser: Fiskägg dör, aluminium löses ut i marken och förgiftar trädens rötter.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-2">
+            <div class="section-header" onclick="toggleSection('sec-step-2')">
+                <span class="section-title">📚 EPA: Lösningen? (20 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="pause-block">
+                        ⏸ <em>Enskilt:</em> Hur &quot;botar&quot; vi en försurad sjö rent kemiskt?
+                    </div>
+                    <div class="pause-block">
+                        ⏸ <em>Par:</em> Diskutera. (Koppla till Lektion 3).
+                    </div>
+                    <div class="say-block">
+                        <em>Alla:</em> Vi kalkar sjöarna! Kalk är basiskt och <em>neutraliserar</em> syran. Men det botar bara symptomen, inte grundorsaken (avgaserna).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-3">
+            <div class="section-header" onclick="toggleSection('sec-step-3')">
+                <span class="section-title">📚 Formativ koll (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        Vilken pH-förändring sker när man kalkar en försurad sjö? (T.ex. från 4 till 7).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026
+        </footer>
+    </div>
+    <script src="../auth.js"></script>
+    <script>
+        if (typeof LESSON_LAB_AUTH !== 'undefined') {
+            if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+            async function doLogin() {
+                const input = document.getElementById('passwordInput');
+                const error = document.getElementById('loginError');
+                await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+            }
+            document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') doLogin();
+            });
+        } else {
+            showApp();
+        }
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>

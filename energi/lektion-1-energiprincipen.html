@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion 1: Energiprincipen — LessonLab</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+        <div class="lesson-header">
+            <h1>Lektion 1: Energiprincipen</h1>
+        </div>
+
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">🎬 Innan du börjar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Mål:</strong> Kunna förklara energiprincipen och ge exempel på minst tre olika energiformer.</p>
+                    <p><strong>Fokus:</strong> Konkretisering av ett abstrakt begrepp.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-0">
+            <div class="section-header" onclick="toggleSection('sec-step-0')">
+                <span class="section-title">📚 Start (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        <strong>Vad är energi?</strong> Ordet används i vardagen (energidryck, &apos;jag har ingen energi&apos;), men vad är det i fysiken? Det är förmågan att utföra ett arbete eller skapa en förändring.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-1">
+            <div class="section-header" onclick="toggleSection('sec-step-1')">
+                <span class="section-title">📚 Genomgång (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        <strong>Energiprincipen:</strong> Energi kan inte skapas, inte förstöras, bara omvandlas. (Skriv STORT på tavlan).
+                    </div>
+                    <div class="say-block">
+                        De viktigaste energiformerna: Rörelseenergi, lägesenergi, värmeenergi, elektrisk energi, kemisk energi, strålningsenergi.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-2">
+            <div class="section-header" onclick="toggleSection('sec-step-2')">
+                <span class="section-title">📚 EPA: Energiomvandlingar (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="pause-block">
+                        ⏸ <em>Enskilt:</em> Tänk ut en sak i klassrummet som använder energi (t.ex. en lampa, en människa, en mobil). Vilka energiformer är inblandade?
+                    </div>
+                    <div class="draw-block">
+                        <em>Par:</em> Rita lådor med pilar emellan (t.ex. Kemisk energi → Elektrisk energi → Strålningsenergi + Värme).
+                    </div>
+                    <div class="write-block">
+                        <em>Alla:</em> Frivilliga par får rita sina flöden på tavlan. Vi fyller i tillsammans.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-3">
+            <div class="section-header" onclick="toggleSection('sec-step-3')">
+                <span class="section-title">📚 Formativ avstämning (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="say-block">
+                        En snabb &quot;Tumme upp/ner&quot; – är värmeenergi alltid slutstationen i en omvandling? (Svar: Ja, &quot;spillvärme&quot;).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026
+        </footer>
+    </div>
+    <script src="../auth.js"></script>
+    <script>
+        if (typeof LESSON_LAB_AUTH !== 'undefined') {
+            if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+            async function doLogin() {
+                const input = document.getElementById('passwordInput');
+                const error = document.getElementById('loginError');
+                await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+            }
+            document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') doLogin();
+            });
+        } else {
+            showApp();
+        }
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>

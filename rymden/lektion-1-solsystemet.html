@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektion 1: Solsystemet & Jordens Rörelser — LessonLab</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <span class="login-icon">🧪</span>
+            <h1 class="login-title">LessonLab</h1>
+            <p class="login-subtitle">Genomgångsmanus för klassrummet</p>
+            <div class="login-input-group">
+                <input type="password" class="login-input" id="passwordInput" placeholder="Ange lösenord..." autofocus autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn" onclick="doLogin()">Logga in</button>
+            <p class="login-error" id="loginError"></p>
+        </div>
+    </div>
+    <div class="lesson-progress" id="progressBar" style="width: 0%;"></div>
+    <div class="app lesson-page" id="mainApp">
+        <a href="../index.html" class="lesson-back">← Tillbaka till LessonLab</a>
+        <div class="lesson-header">
+            <h1>Lektion 1: Solsystemet & Jordens Rörelser</h1>
+        </div>
+
+        <div class="lesson-section open" id="sec-intro">
+            <div class="section-header" onclick="toggleSection('sec-intro')">
+                <span class="section-title">🎬 Innan du börjar</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <p><strong>Mål:</strong> Kunna förklara varför vi har natt, dag, ett år och olika årstider med hjälp av jordaxeln.</p>
+                    <p><strong>Fokus:</strong> Visuell förståelse av rotation och omloppsbana.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-0">
+            <div class="section-header" onclick="toggleSection('sec-step-0')">
+                <span class="section-title">📚 Start (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="draw-block">
+                        <em>Gör:</em> Släck ljuset i salen. Tänd en stark lampa (Solen) i mitten och håll upp en jordglob.
+                    </div>
+                    <div class="say-block">
+                        <strong>Vad är ett dygn? Vad är ett år?</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-1">
+            <div class="section-header" onclick="toggleSection('sec-step-1')">
+                <span class="section-title">📚 Genomgång (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="write-block">
+                        Jordens rotation kring sin egen axel (dygn).<br>Jordens omloppsbana runt solen (år).
+                    </div>
+                    <div class="say-block">
+                        <strong>Årstiderna:</strong> Förklara att jordaxeln &quot;lutar&quot; (23,5°). Det är <em>lutningen</em>, inte avståndet till solen, som skapar sommar och vinter!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-2">
+            <div class="section-header" onclick="toggleSection('sec-step-2')">
+                <span class="section-title">📚 EPA: Årstids-kuggfrågan (15 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="pause-block">
+                        ⏸ <em>Enskilt:</em> Om jorden är som närmast solen i januari (vilket den är!), varför är det då vinter i Sverige?
+                    </div>
+                    <div class="pause-block">
+                        ⏸ <em>Par:</em> Diskutera. Använd jordgloben framme i klassrummet om ni behöver.
+                    </div>
+                    <div class="say-block">
+                        <em>Alla:</em> Vi reder ut att norra halvklotet lutar <em>bort</em> från solen i januari.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section open" id="sec-step-3">
+            <div class="section-header" onclick="toggleSection('sec-step-3')">
+                <span class="section-title">📚 Formativ koll (10 min)</span>
+                <span class="section-chevron">▼</span>
+            </div>
+            <div class="section-body">
+                <div class="section-content">
+                    <div class="draw-block">
+                        Rita av solen och jorden. Rita ut jordaxeln och markera var det är sommar.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer" style="margin-top: 2rem;">
+            LessonLab v1.0 — gAIa 🌲 — 2026
+        </footer>
+    </div>
+    <script src="../auth.js"></script>
+    <script>
+        if (typeof LESSON_LAB_AUTH !== 'undefined') {
+            if (LESSON_LAB_AUTH.isAuthenticated()) { showApp(); }
+            async function doLogin() {
+                const input = document.getElementById('passwordInput');
+                const error = document.getElementById('loginError');
+                await LESSON_LAB_AUTH.handleLogin(input, error, showApp);
+            }
+            document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') doLogin();
+            });
+        } else {
+            showApp();
+        }
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+        }
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+        });
+    </script>
+</body>
+</html>
