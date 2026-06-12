@@ -95,29 +95,23 @@
         </footer>
     </div>
 
-    <!-- ===== YEAR WHEEL MODAL ===== -->
-    <div class="wheel-overlay" id="wheelOverlay" onclick="if(event.target===this)closeWheel()">
-        <div class="wheel-modal">
-            <div class="wheel-modal-header">
-                <div class="wheel-modal-title">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
-                    Årshjul — <span id="wheelYearLabel">Årskurs 7</span>
-                </div>
-                <div class="wheel-modal-tabs">
-                    <button class="wm-tab active" data-year="7" onclick="setWheelYear(7)">Åk 7</button>
-                    <button class="wm-tab" data-year="8" onclick="setWheelYear(8)">Åk 8</button>
-                    <button class="wm-tab" data-year="9" onclick="setWheelYear(9)">Åk 9</button>
+    <!-- ===== TIMELINE MODAL ===== -->
+    <div class="wheel-overlay timeline-overlay" id="wheelOverlay" onclick="if(event.target===this)closeWheel()">
+        <div class="timeline-modal">
+            <div class="timeline-modal-header">
+                <div class="timeline-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                    NO:s Årshjul 7-9
                 </div>
                 <button class="wheel-modal-close" onclick="closeWheel()">&times;</button>
             </div>
-            <div class="wheel-modal-body">
-                <svg id="wheelSvg" viewBox="0 0 700 700" class="wheel-svg-element"></svg>
+            <div class="timeline-modal-body" id="timelineGrid">
+                <!-- Dynamically rendered -->
             </div>
-            <div class="wheel-modal-legend" id="wheelLegend"></div>
         </div>
     </div>
 
-    <script src="auth.js"></script>
+    <script src="auth.js?v=2"></script>
     <script>
         // ── Data ──
         const yearData = {
@@ -230,6 +224,9 @@
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('mainApp').classList.add('visible');
             setYear(7);
+            
+            // Auto-öppna Årshjulet (Timeline Grid) så att användaren ser det direkt
+            setTimeout(() => openWheel(), 100);
         }
 
         // ── Year Switching ──
@@ -365,217 +362,97 @@
             const LABEL_R = 275;
             const NS = 'http://www.w3.org/2000/svg';
 
-            // School year months: Aug(0) → Jun(10)
-            const MONTHS = ['Aug','Sep','Okt','Nov','Dec','Jan','Feb','Mar','Apr','Maj','Jun'];
-            const MONTH_ANGLES = MONTHS.map((_, i) => (i / MONTHS.length) * 360);
+        // ══════════════════════════════════════
+        // TIMELINE GRID (Replaces Year Wheel)
+        // ══════════════════════════════════════
+        const TIMELINE = (() => {
+            function render() {
+                const grid = document.getElementById('timelineGrid');
+                if (!grid) return;
+                
+                let html = '<div class="timeline-grid">';
+                
+                // Header Row
+                html += `
+                    <div class="timeline-header-row">
+                        <div class="timeline-header-cell empty"></div>
+                        <div class="timeline-header-cell">HÖSTTERMIN</div>
+                        <div class="timeline-header-cell">VÅRTERMIN</div>
+                    </div>
+                `;
 
-            // Subject color map
-            const COLORS = {
-                kemi:    { fill: 'url(#wg-kemi)',    solid: '#f59e0b', light: 'rgba(245,158,11,0.15)' },
-                fysik:   { fill: 'url(#wg-fysik)',   solid: '#3b82f6', light: 'rgba(59,130,246,0.15)' },
-                biologi: { fill: 'url(#wg-biologi)', solid: '#10b981', light: 'rgba(16,185,129,0.15)' },
-                kroppen: { fill: 'url(#wg-kroppen)', solid: '#f43f5e', light: 'rgba(244,63,94,0.15)' }
-            };
+                // Years 7, 8, 9
+                [7, 8, 9].forEach(year => {
+                    const nodes = yearData[year] || [];
+                    const htNodes = nodes.filter(n => n.season === 'Hösttermin');
+                    const vtNodes = nodes.filter(n => n.season === 'Vårtermin');
 
-            function polar(cx, cy, r, deg) {
-                const rad = (deg - 90) * Math.PI / 180;
-                return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+                    html += `<div class="timeline-row">`;
+                    // Year Label
+                    html += `<div class="timeline-year-label">ÅK ${year}</div>`;
+                    
+                    // HT Cell
+                    html += `<div class="timeline-term-cell">`;
+                    htNodes.forEach(node => html += createBox(node, year));
+                    html += `</div>`;
+
+                    // VT Cell
+                    html += `<div class="timeline-term-cell">`;
+                    vtNodes.forEach(node => html += createBox(node, year));
+                    html += `</div>`;
+                    
+                    html += `</div>`; // End row
+                });
+
+                html += '</div>';
+                grid.innerHTML = html;
             }
 
-            function arcPath(cx, cy, r1, r2, startDeg, endDeg) {
-                const s1 = polar(cx, cy, r2, startDeg);
-                const e1 = polar(cx, cy, r2, endDeg);
-                const s2 = polar(cx, cy, r1, endDeg);
-                const e2 = polar(cx, cy, r1, startDeg);
-                const large = (endDeg - startDeg) > 180 ? 1 : 0;
-                return `M${s1.x},${s1.y} A${r2},${r2},0,${large},1,${e1.x},${e1.y} L${s2.x},${s2.y} A${r1},${r1},0,${large},0,${e2.x},${e2.y} Z`;
-            }
-
-            function render(year) {
-                const svg = document.getElementById('wheelSvg');
-                const legend = document.getElementById('wheelLegend');
-                const nodes = yearData[year];
-                document.getElementById('wheelYearLabel').textContent = `Årskurs ${year}`;
-
-                // Sync tab highlight
-                document.querySelectorAll('.wm-tab').forEach(t => {
-                    t.classList.toggle('active', parseInt(t.dataset.year) === year);
-                });
-
-                // Build SVG
-                let svgContent = '';
-
-                // Defs: gradients
-                svgContent += `<defs>
-                    <linearGradient id="wg-kemi" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ea580c"/>
-                    </linearGradient>
-                    <linearGradient id="wg-fysik" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#6366f1"/>
-                    </linearGradient>
-                    <linearGradient id="wg-biologi" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/>
-                    </linearGradient>
-                    <linearGradient id="wg-kroppen" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#e11d48"/>
-                    </linearGradient>
-                    <filter id="wglow">
-                        <feGaussianBlur stdDeviation="3" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                </defs>`;
-
-                // ── Month ring (outer ticks + labels) ──
-                svgContent += `<circle cx="${CX}" cy="${CY}" r="${MONTH_R}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
-                MONTHS.forEach((m, i) => {
-                    const angle = MONTH_ANGLES[i];
-                    const t1 = polar(CX, CY, OUTER_R + 5, angle);
-                    const t2 = polar(CX, CY, MONTH_R, angle);
-                    const lp = polar(CX, CY, MONTH_LABEL_R + 8, angle);
-                    svgContent += `<line x1="${t1.x}" y1="${t1.y}" x2="${t2.x}" y2="${t2.y}" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>`;
-                    svgContent += `<text x="${lp.x}" y="${lp.y}" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.35)" font-size="11" font-weight="600" font-family="Inter,sans-serif">${m}</text>`;
-                });
-
-                // ── Semester divider labels ──
-                const htLabel = polar(CX, CY, INNER_R - 30, 90);
-                const vtLabel = polar(CX, CY, INNER_R - 30, 270);
-                svgContent += `<text x="${htLabel.x}" y="${htLabel.y}" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.12)" font-size="12" font-weight="800" letter-spacing="3" font-family="Inter,sans-serif">HT</text>`;
-                svgContent += `<text x="${vtLabel.x}" y="${vtLabel.y}" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.12)" font-size="12" font-weight="800" letter-spacing="3" font-family="Inter,sans-serif">VT</text>`;
-
-                // ── Subject arcs ──
-                const GAP = 2;
-                const htNodes = nodes.filter(n => n.season === 'Hösttermin');
-                const vtNodes = nodes.filter(n => n.season === 'Vårtermin');
-
-                function renderHalf(halfNodes, startDeg, endDeg) {
-                    if (!halfNodes.length) return;
-                    const pad = 4;
-                    const s = startDeg + pad;
-                    const e = endDeg - pad;
-                    const total = (e - s) - (halfNodes.length * GAP);
-                    const totalWeeks = halfNodes.reduce((sum, n) => sum + n.weeks, 0);
-                    let angle = s;
-
-                    halfNodes.forEach(node => {
-                        const sweep = (node.weeks / totalWeeks) * total;
-                        const endAngle = angle + sweep;
-                        const midAngle = angle + sweep / 2;
-                        const colors = COLORS[node.subject] || COLORS.kemi;
-                        const hasContent = node.lessons.length > 0;
-
-                        // Arc segment
-                        const path = arcPath(CX, CY, INNER_R, OUTER_R, angle, endAngle);
-                        const opacity = hasContent ? '1' : '0.4';
-                        svgContent += `<path d="${path}" fill="${colors.fill}" opacity="${opacity}" class="wheel-arc" data-id="${node.id}" style="cursor:pointer" />`;
-
-                        // Subject label inside arc segment
-                        if (hasContent) {
-                            const abbr = {kemi:'Ke',fysik:'Fy',biologi:'Bi',kroppen:'Kr'}[node.subject] || '';
-                            const checkPos = polar(CX, CY, (INNER_R + OUTER_R) / 2 - 10, midAngle);
-                            svgContent += `<text x="${checkPos.x}" y="${checkPos.y}" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="white" opacity="0.8" font-family="Inter,sans-serif" style="pointer-events:none">${abbr}</text>`;
-                        }
-
-                        // Lesson count inside arc
-                        if (node.lessons.length > 0) {
-                            const countPos = polar(CX, CY, (INNER_R + OUTER_R) / 2 + 12, midAngle);
-                            svgContent += `<text x="${countPos.x}" y="${countPos.y}" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="white" opacity="0.8" font-family="Inter,sans-serif" style="pointer-events:none">${node.lessons.length}</text>`;
-                        }
-
-                        // External label with leader line
-                        const arcEdge = polar(CX, CY, OUTER_R + 3, midAngle);
-                        const labelPos = polar(CX, CY, LABEL_R + 18, midAngle);
-
-                        // Determine text-anchor based on position
-                        const normAngle = ((midAngle % 360) + 360) % 360;
-                        let anchor = 'middle';
-                        let dx = 0;
-                        if (normAngle > 20 && normAngle < 160) { anchor = 'start'; dx = 4; }
-                        else if (normAngle > 200 && normAngle < 340) { anchor = 'end'; dx = -4; }
-
-                        svgContent += `<line x1="${arcEdge.x}" y1="${arcEdge.y}" x2="${labelPos.x}" y2="${labelPos.y}" stroke="${colors.solid}" stroke-width="1" opacity="0.3"/>`;
-                        svgContent += `<text x="${labelPos.x + dx}" y="${labelPos.y}" text-anchor="${anchor}" dominant-baseline="central" fill="${colors.solid}" font-size="11.5" font-weight="600" font-family="Inter,sans-serif" class="wheel-label" data-id="${node.id}" style="cursor:pointer">${node.title}</text>`;
-
-                        // Weeks tag
-                        svgContent += `<text x="${labelPos.x + dx}" y="${labelPos.y + 14}" text-anchor="${anchor}" dominant-baseline="central" fill="rgba(255,255,255,0.3)" font-size="9" font-family="Inter,sans-serif" style="pointer-events:none">${node.weeks} v · ${hasContent ? node.lessons.length + ' manus' : 'planerat'}</text>`;
-
-                        angle = endAngle + GAP;
-                    });
-                }
-
-                // HT = top-right (0° → 180°), VT = bottom-left (180° → 360°)
-                renderHalf(htNodes, 0, 180);
-                renderHalf(vtNodes, 180, 360);
-
-                // ── Center circle ──
-                svgContent += `<circle cx="${CX}" cy="${CY}" r="${INNER_R - 8}" fill="rgba(10,14,23,0.9)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
-                svgContent += `<text x="${CX}" y="${CY - 18}" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="11" font-weight="700" letter-spacing="3" font-family="Inter,sans-serif">ÅRSKURS</text>`;
-                svgContent += `<text x="${CX}" y="${CY + 14}" text-anchor="middle" fill="var(--text-primary)" font-size="42" font-weight="800" font-family="Inter,sans-serif">${year}</text>`;
-
-                // ── Semester divider lines ──
-                const topLine = polar(CX, CY, OUTER_R + 5, 0);
-                const bottomLine = polar(CX, CY, OUTER_R + 5, 180);
-                svgContent += `<line x1="${CX}" y1="${CY - INNER_R + 8}" x2="${topLine.x}" y2="${topLine.y}" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>`;
-                svgContent += `<line x1="${CX}" y1="${CY + INNER_R - 8}" x2="${bottomLine.x}" y2="${bottomLine.y}" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>`;
-
-                svg.innerHTML = svgContent;
-
-                // ── Event Listeners ──
-                svg.querySelectorAll('.wheel-arc, .wheel-label').forEach(el => {
-                    el.addEventListener('click', (e) => {
-                        const id = e.target.dataset.id;
-                        if (id) {
-                            closeWheel();
-                            // Find which year this belongs to and switch if needed
-                            setYear(year);
-                            setTimeout(() => {
-                                expandedCardId = id;
-                                toggleCard(id);
-                                const card = document.querySelector(`[data-card-id="${id}"]`);
-                                if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }, 350);
-                        }
-                    });
-                    // Hover highlight
-                    el.addEventListener('mouseenter', () => {
-                        const id = el.dataset.id;
-                        svg.querySelectorAll(`[data-id="${id}"]`).forEach(s => s.style.filter = 'brightness(1.3)');
-                    });
-                    el.addEventListener('mouseleave', () => {
-                        const id = el.dataset.id;
-                        svg.querySelectorAll(`[data-id="${id}"]`).forEach(s => s.style.filter = '');
-                    });
-                });
-
-                // ── Legend ──
-                const subjects = [...new Set(nodes.map(n => n.subject))];
-                legend.innerHTML = subjects.map(s => {
-                    const c = COLORS[s];
-                    const name = { kemi: 'Kemi', fysik: 'Fysik', biologi: 'Biologi', kroppen: 'Kroppen' }[s];
-                    return `<span class="wheel-legend-item"><span class="wheel-legend-dot" style="background:${c.solid}"></span>${name}</span>`;
-                }).join('');
+            function createBox(node, year) {
+                const abbr = {kemi:'Ke',fysik:'Fy',biologi:'Bi',kroppen:'Kr'}[node.subject] || '';
+                const isReady = node.lessons.length > 0;
+                const statusText = isReady ? `${node.lessons.length} manus` : `Planerat`;
+                
+                return `
+                    <div class="timeline-box subj-${node.subject}" onclick="jumpToModule(${year}, '${node.id}')">
+                        <div class="tb-icon">${abbr}</div>
+                        <div class="tb-content">
+                            <div class="tb-title">${node.title}</div>
+                            <div class="tb-meta">${node.weeks} veckor · ${statusText}</div>
+                        </div>
+                    </div>
+                `;
             }
 
             return { render };
         })();
 
-        let wheelYear = 7;
+        // Global jump function from timeline modal to specific card
+        function jumpToModule(year, id) {
+            closeWheel(); // actually close timeline modal
+            setYear(year);
+            setTimeout(() => {
+                if (expandedCardId !== id) {
+                    toggleCard(id); // expands it if not already expanded
+                }
+                const card = document.querySelector(\`[data-card-id="\${id}"]\`);
+                if (card) {
+                    // Small delay to allow the CSS expansion transition to start so it scrolls smoothly
+                    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50);
+                }
+            }, 350); // wait for modal fade out
+        }
 
         function openWheel() {
-            wheelYear = currentYear;
             document.getElementById('wheelOverlay').classList.add('open');
-            WHEEL.render(wheelYear);
+            TIMELINE.render();
         }
 
         function closeWheel() {
             document.getElementById('wheelOverlay').classList.remove('open');
         }
 
-        function setWheelYear(y) {
-            wheelYear = y;
-            WHEEL.render(y);
-        }
-
-        // ESC to close wheel
+        // ESC to close modal
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') closeWheel();
         });

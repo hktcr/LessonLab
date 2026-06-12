@@ -85,3 +85,27 @@
 *Signatur: gAIa 🌲 2026-06-04*
 
 ---
+
+### 2026-06-12 | Mass-Deploy NO 7-9 (LessonLab Swarm)
+
+**Bakgrund & Syfte:**
+- Behov av att synkronisera den nya strukturen från "NO 7-9 - En röd tråd" till klassrumsgränssnittet LessonLab. 19 arbetsområden med dussintals lektioner i markdown-format behövde översättas till färgkodad, interaktiv HTML.
+
+**Process & Arbetsdelning:**
+- Vi etablerade en "Kedjad Svärm-isolering" där en VEP-orkestrator (`vep_lessonlab_deployer`) släpptes lös sekventiellt för Åk 7, sedan Åk 8, sedan Åk 9.
+- Maskineriet klyvde varje `LEKTIONER.md` i enskilda filer (Designbeslut B), anonymiserade elevdata, applicerade `say/draw/write/pause`-block och mappade upp allt i `index.html`.
+
+**Beslut & "The Day One Advice":**
+- *Enskilda filer per lektion > Långa scrolldokument.* Håkan valde att separera lektionerna vilket ger en mycket renare telepromptervy för läraren i klassrummet.
+- *Swarm-isolering.* Genom att döda subagenten efter varje årskurs och starta en ny, undveks token-limits och minnesläckor.
+- *Live Viewer-fällan:* Glöm aldrig att exekvera terminalkommandot för att starta Python-servern INNAN svärmen drar igång. Checklista räcker inte, kommandot MÅSTE köras.
+
+**"The Fallout" & Öppna Frågor:**
+- Över 120 nya interaktiva HTML-filer ligger nu i repot. De är pushade till main-branchen.
+- [ ] Bör vi skapa ett script som validerar länkarna i `index.html` mot filstrukturen för att garantera att ingen lektion blivit "orphaned"?
+
+📡 Satelliter: RESUME ✅ | PI — | Trackers — | TC —
+
+*Signatur: gAIa 🌲 2026-06-12*
+
+---
