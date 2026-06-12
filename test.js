@@ -1,0 +1,335 @@
+
+        // ── Data ──
+        const yearData = {
+            7: [
+                {
+                    id: '7-1', title: 'Materia & Kemi', subject: 'kemi',
+                    status: 'planned', season: 'Hösttermin', weeks: 11, lessons: [
+                        { title: 'Lektion 1: Kemins grunder', url: 'materia/lektion-1-kemins-grunder.html', status: 'ready' },
+                        { title: 'Lektion 2: Vad är materia?', url: 'materia/lektion-2-vad-ar-materia.html', status: 'ready' },
+                        { title: 'Lektion 3: Fasövergångar', url: 'materia/lektion-3-fasovergangar.html', status: 'ready' },
+                        { title: 'Lektion 4: Volym, massa och densitet', url: 'materia/lektion-4-densitet.html', status: 'ready' }
+                    ]
+                },
+                {
+                    id: '7-2', title: 'Energi', subject: 'fysik',
+                    status: 'planned', season: 'Hösttermin', weeks: 5, lessons: [
+                        { title: 'Lektion 1: Energiprincipen', url: 'energi/lektion-1-energiprincipen.html', status: 'ready' },
+                        { title: 'Lektion 2: Värme och Temperatur', url: 'energi/lektion-2-varme-och-temperatur.html', status: 'ready' },
+                        { title: 'Lektion 3: Energikällor & Samhället', url: 'energi/lektion-3-energikallor.html', status: 'ready' }
+                    ]
+                },
+                {
+                    id: '7-3', title: 'Rymden', subject: 'fysik',
+                    status: 'planned', season: 'Vårtermin', weeks: 3, lessons: [
+                        { title: 'Lektion 1: Solsystemet', url: 'rymden/lektion-1-solsystemet.html', status: 'ready' },
+                        { title: 'Lektion 2: Månen & Tidvatten', url: 'rymden/lektion-2-manen.html', status: 'ready' },
+                        { title: 'Lektion 3: Stjärnornas Liv och Död', url: 'rymden/lektion-3-stjarnor.html', status: 'ready' },
+                        { title: 'Lektion 4: Rymdfart och Vårt Samhälle', url: 'rymden/lektion-4-rymdfart.html', status: 'ready' }
+                    ]
+                },
+                {
+                    id: '7-4', title: 'Biologins grunder', subject: 'biologi',
+                    status: 'ready', season: 'Vårtermin', weeks: 11, lessons: [
+                        { title: 'Cellritning på tavlan', url: 'biologins-grunder/cellritning.html', status: 'ready' },
+                        { title: 'Fotosyntes + Cellandning', url: 'biologins-grunder/fotosyntes.html', status: 'ready' },
+                        { title: 'Bakterier & Virus (v1)', url: 'biologins-grunder/bakterier-virus.html', status: 'ready' },
+                        { title: 'Bakterier & Virus (v2)', url: 'biologins-grunder/bakterier-virus-v2.html', status: 'ready' },
+                        { title: 'Gruppchallenge — Rep', url: 'biologins-grunder/gruppchallenge.html', status: 'ready' },
+                        { title: 'Ekologi L1: Spelplanen', url: 'biologins-grunder/ekologi-l1-spelplanen.html', status: 'ready' },
+                        { title: 'Ekologi L2: Mekaniken', url: 'biologins-grunder/ekologi-l2-mekaniken.html', status: 'ready' },
+                        { title: 'Ekologi L3: Pusslet', url: 'biologins-grunder/ekologi-l3-pusslet.html', status: 'ready' },
+                        { title: 'Samspel i Naturen', url: 'biologins-grunder/samspel-i-naturen.html', status: 'ready' },
+                        { title: 'L4: Systematisk Fältstudie', url: 'biologins-grunder/ekologi-l4-faltstudie.html', status: 'ready' },
+                        { title: 'L5: Fältstudie Bokskog', url: 'biologins-grunder/ekologi-l5-bokskog.html', status: 'ready' },
+                        { title: 'A Life on Our Planet (Syntes)', url: 'biologins-grunder/attenborough-film.html', status: 'ready' },
+                        { title: 'A Life on Our Planet — Del 2', url: 'biologins-grunder/attenborough-film-del2.html', status: 'ready' },
+                        { title: 'SoundPulse: Varning för sammetsgetingen', url: 'biologins-grunder/soundpulse-lektion.html', status: 'ready' },
+                        { title: 'Pollinatorsjakt (utomhus)', url: 'biologins-grunder/pollinatorsjakt.html', status: 'ready' },
+                        { title: 'L6: KlassPuls Glosförhör', url: 'biologins-grunder/ekologi-l6-klasspuls.html', status: 'ready' },
+                        { title: 'Lektion 1: Ekosystemet', url: 'biologins-grunder/lektion-1-ekosystemet.html', status: 'ready' },
+                        { title: 'Lektion 2: Livets kemi', url: 'biologins-grunder/lektion-2-livets-kemi.html', status: 'ready' },
+                        { title: 'Lektion 3: Näringsvävar', url: 'biologins-grunder/lektion-3-naringsvavar.html', status: 'ready' },
+                        { title: 'Lektion 4: Kretslopp', url: 'biologins-grunder/lektion-4-kretslopp.html', status: 'ready' }
+                    ]
+                },
+                {
+                    id: '7-5', title: 'Syror & Baser', subject: 'kemi',
+                    status: 'ready', season: 'Vårtermin', weeks: 6, lessons: [
+                        { title: 'Dag 1: Syror, baser & pH', url: 'kemins-grunder/syror-baser.html', status: 'ready' },
+                        { title: 'Dag 2: pH-fördjupning', url: 'kemins-grunder/ph-fordjupning.html', status: 'ready' },
+                        { title: 'pH-skalan — Interaktivt', url: 'kemins-grunder/ph-skalan.html', status: 'ready' },
+                        { title: 'BTB-labb med kolsyra', url: 'kemins-grunder/btb-labb.html', status: 'ready' },
+                        { title: 'Lektion 1: Surt och Basiskt', url: 'syror-baser/lektion-1-surt-basiskt.html', status: 'ready' },
+                        { title: 'Lektion 2: pH-skalan', url: 'syror-baser/lektion-2-ph-skalan.html', status: 'ready' },
+                        { title: 'Lektion 3: Neutralisation', url: 'syror-baser/lektion-3-neutralisation.html', status: 'ready' },
+                        { title: 'Lektion 4: Försurning och Miljö', url: 'syror-baser/lektion-4-forsurning.html', status: 'ready' }
+                    ]
+                }
+            ],
+            8: [
+                { id: '8-1', title: 'Näringsämnen', subject: 'kemi', status: 'ready', season: 'Hösttermin', weeks: 3, lessons: [{"title": "Lektion 1: Monosackarider och Glukos", "url": "naringsamnen/lektion-1-monosackarider-och-glukos.html", "status": "ready"}, {"title": "Lektion 2: Disackarider och Polysackarider", "url": "naringsamnen/lektion-2-disackarider-och-polysackarider.html", "status": "ready"}, {"title": "Lektion 1: Fettets kemiska uppbyggnad", "url": "naringsamnen/lektion-1-fettets-kemiska-uppbyggnad.html", "status": "ready"}, {"title": "Lektion 2: Mättade vs Omättade fetter", "url": "naringsamnen/lektion-2-mattade-vs-omattade-fetter.html", "status": "ready"}, {"title": "Lektion 1: Aminosyror och Kroppens byggmaterial", "url": "naringsamnen/lektion-1-aminosyror-och-kroppens-byggmaterial.html", "status": "ready"}, {"title": "Lektion 2: Denaturering", "url": "naringsamnen/lektion-2-denaturering.html", "status": "ready"}, {"title": "Lektion 1: Syntes och Uppsamling", "url": "naringsamnen/lektion-1-syntes-och-uppsamling.html", "status": "ready"}, {"title": "Lektion 2: Examination (Analyscase)", "url": "naringsamnen/lektion-2-examination-analyscase.html", "status": "ready"}] },
+                { id: '8-2', title: 'Människokroppen', subject: 'kroppen', status: 'ready', season: 'Hösttermin', weeks: 9, lessons: [{"title": "Lektion 1: Hjärta och blodomlopp", "url": "kroppen/lektion-1-hjarta-och-blodomlopp.html", "status": "ready"}, {"title": "Lektion 2: Andningsorganen", "url": "kroppen/lektion-2-andningsorganen.html", "status": "ready"}, {"title": "Lektion 3: Puls, Tryck och Praktik (Demonstration/Lab)", "url": "kroppen/lektion-3-puls-tryck-och-praktik-demonstrationlab.html", "status": "ready"}, {"title": "Lektion 1: Matspjälkningen", "url": "kroppen/lektion-1-matspjalkningen.html", "status": "ready"}, {"title": "Lektion 2: Utsöndringen (Reningsverket)", "url": "kroppen/lektion-2-utsondringen-reningsverket.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 1 (Fakta)", "url": "kroppen/lektion-3-examination-del-1-fakta.html", "status": "ready"}, {"title": "Lektion 1: Immunförsvaret", "url": "kroppen/lektion-1-immunforsvaret.html", "status": "ready"}, {"title": "Lektion 2: Samverkan (Hur hänger allt ihop?)", "url": "kroppen/lektion-2-samverkan-hur-hanger-allt-ihop.html", "status": "ready"}, {"title": "Lektion 3: Hälsofokus (Livsstil)", "url": "kroppen/lektion-3-halsofokus-livsstil.html", "status": "ready"}, {"title": "Lektion 1-2: Caseträning (Förberedelse för Del 2)", "url": "kroppen/lektion-1-2-casetraning-forberedelse-for-del-2.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 2 (Analys)", "url": "kroppen/lektion-3-examination-del-2-analys.html", "status": "ready"}] },
+                { id: '8-3', title: 'Ellära', subject: 'fysik', status: 'ready', season: 'Hösttermin', weeks: 6, lessons: [{"title": "Lektion 1: Vattenmodellen (Spänning & Ström)", "url": "ellara/lektion-1-vattenmodellen-spanning-strom.html", "status": "ready"}, {"title": "Lektion 2: Kopplingsscheman och Symboler", "url": "ellara/lektion-2-kopplingsscheman-och-symboler.html", "status": "ready"}, {"title": "Lektion 3: Praktik - \"Få lampan att lysa\" (Lab)", "url": "ellara/lektion-3-praktik---fa-lampan-att-lysa-lab.html", "status": "ready"}, {"title": "Lektion 1: Serie- och Parallellkoppling", "url": "ellara/lektion-1-serie--och-parallellkoppling.html", "status": "ready"}, {"title": "Lektion 2: Resistans", "url": "ellara/lektion-2-resistans.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 1 (Fakta)", "url": "ellara/lektion-3-examination-del-1-fakta.html", "status": "ready"}, {"title": "Lektion 1: Ohms Lag (U = R * I)", "url": "ellara/lektion-1-ohms-lag-u-r-i.html", "status": "ready"}, {"title": "Lektion 2: Multimetern (Mät-lab)", "url": "ellara/lektion-2-multimetern-mat-lab.html", "status": "ready"}, {"title": "Lektion 3: Problemlösning (EPA)", "url": "ellara/lektion-3-problemlosning-epa.html", "status": "ready"}, {"title": "Lektion 1: Effekt och Energi (Kostnad)", "url": "ellara/lektion-1-effekt-och-energi-kostnad.html", "status": "ready"}, {"title": "Lektion 2: Elsäkerhet i Hemmet", "url": "ellara/lektion-2-elsakerhet-i-hemmet.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 2 (Analys)", "url": "ellara/lektion-3-examination-del-2-analys.html", "status": "ready"}] },
+                { id: '8-4', title: 'Kol & Organisk kemi', subject: 'kemi', status: 'ready', season: 'Vårtermin', weeks: 10, lessons: [{"title": "Lektion 1: Kolets former och egenskaper", "url": "kol-organisk-kemi/lektion-1-kolets-former-och-egenskaper.html", "status": "ready"}, {"title": "Lektion 2: Metanserien (Prefix-nötning)", "url": "kol-organisk-kemi/lektion-2-metanserien-prefix-notning.html", "status": "ready"}, {"title": "Lektion 3: Molekylbyggar-verkstad", "url": "kol-organisk-kemi/lektion-3-molekylbyggar-verkstad.html", "status": "ready"}, {"title": "Lektion 1: Dubbelbindningar (Alkener och Alkyner)", "url": "kol-organisk-kemi/lektion-1-dubbelbindningar-alkener-och-alkyner.html", "status": "ready"}, {"title": "Lektion 2: Alkoholer (OH-gruppen)", "url": "kol-organisk-kemi/lektion-2-alkoholer-oh-gruppen.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 1 (Fakta)", "url": "kol-organisk-kemi/lektion-3-examination-del-1-fakta.html", "status": "ready"}, {"title": "Lektion 1: När det brinner (Kemiska reaktioner)", "url": "kol-organisk-kemi/lektion-1-nar-det-brinner-kemiska-reaktioner.html", "status": "ready"}, {"title": "Lektion 2: Råolja och Fraktionerad Destillation", "url": "kol-organisk-kemi/lektion-2-raolja-och-fraktionerad-destillation.html", "status": "ready"}, {"title": "Lektion 3: Plaster och Polymerer", "url": "kol-organisk-kemi/lektion-3-plaster-och-polymerer.html", "status": "ready"}, {"title": "Lektion 1: Det snabba och det långsamma kretsloppet", "url": "kol-organisk-kemi/lektion-1-det-snabba-och-det-langsamma-kretsloppet.html", "status": "ready"}, {"title": "Lektion 2: Fossilt vs. Biobränsle (Analysverkstad)", "url": "kol-organisk-kemi/lektion-2-fossilt-vs-biobransle-analysverkstad.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 2 (Analys och Klimat)", "url": "kol-organisk-kemi/lektion-3-examination-del-2-analys-och-klimat.html", "status": "ready"}] },
+                { id: '8-5', title: 'Våglära', subject: 'fysik', status: 'ready', season: 'Vårtermin', weeks: 6, lessons: [{"title": "Lektion 1: Vad är en våg?", "url": "vaglara/lektion-1-vad-ar-en-vag.html", "status": "ready"}, {"title": "Lektion 2: Högt/Lågt (Hz) vs Starkt/Svagt (dB)", "url": "vaglara/lektion-2-hogtlagt-hz-vs-starktsvagt-db.html", "status": "ready"}, {"title": "Lektion 3: Resonans och Instrument", "url": "vaglara/lektion-3-resonans-och-instrument.html", "status": "ready"}, {"title": "Lektion 1: Örats anatomi och hörselskador", "url": "vaglara/lektion-1-orats-anatomi-och-horselskador.html", "status": "ready"}, {"title": "Lektion 2: Eko och Dopplereffekten", "url": "vaglara/lektion-2-eko-och-dopplereffekten.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 1a (Ljudfakta)", "url": "vaglara/lektion-3-examination-del-1a-ljudfakta.html", "status": "ready"}, {"title": "Lektion 1: Ljusets hastighet och skuggor", "url": "vaglara/lektion-1-ljusets-hastighet-och-skuggor.html", "status": "ready"}, {"title": "Lektion 2: Reflektion och Speglar", "url": "vaglara/lektion-2-reflektion-och-speglar.html", "status": "ready"}, {"title": "Lektion 3: Brytning och Totalreflektion", "url": "vaglara/lektion-3-brytning-och-totalreflektion.html", "status": "ready"}, {"title": "Lektion 1: Linser", "url": "vaglara/lektion-1-linser.html", "status": "ready"}, {"title": "Lektion 2: Ögat och Färger", "url": "vaglara/lektion-2-ogat-och-farger.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 1b & 2", "url": "vaglara/lektion-3-examination-del-1b-2.html", "status": "ready"}] },
+                { id: '8-6', title: 'Hälsa & Sex', subject: 'kroppen', status: 'ready', season: 'Vårtermin', weeks: 4, lessons: [{"title": "Lektion 1: Autonoma Nervsystemet (Gas och Broms)", "url": "halsa-sex/lektion-1-autonoma-nervsystemet-gas-och-broms.html", "status": "ready"}, {"title": "Lektion 2: Amygdala-kapningen", "url": "halsa-sex/lektion-2-amygdala-kapningen.html", "status": "ready"}, {"title": "Lektion 3: Hormonernas makt", "url": "halsa-sex/lektion-3-hormonernas-makt.html", "status": "ready"}, {"title": "Lektion 1: Reproduktionsorganen och Befruktning", "url": "halsa-sex/lektion-1-reproduktionsorganen-och-befruktning.html", "status": "ready"}, {"title": "Lektion 2: Preventivmedel och STI", "url": "halsa-sex/lektion-2-preventivmedel-och-sti.html", "status": "ready"}, {"title": "Lektion 3: Examination Del 1 (Fakta)", "url": "halsa-sex/lektion-3-examination-del-1-fakta.html", "status": "ready"}, {"title": "Lektion 1: FRIES och Samtyckeslagen", "url": "halsa-sex/lektion-1-fries-och-samtyckeslagen.html", "status": "ready"}, {"title": "Lektion 2: Case - \"Alex och Kim\" (Del 1)", "url": "halsa-sex/lektion-2-case---alex-och-kim-del-1.html", "status": "ready"}, {"title": "Lektion 3: Case, Normer och Porr (Del 2)", "url": "halsa-sex/lektion-3-case-normer-och-porr-del-2.html", "status": "ready"}, {"title": "Lektion 1: Frågelådan och Sammanfattning", "url": "halsa-sex/lektion-1-frageladan-och-sammanfattning.html", "status": "ready"}, {"title": "Lektion 2-3: Examination Del 2 (Analys-case)", "url": "halsa-sex/lektion-2-3-examination-del-2-analys-case.html", "status": "ready"}] }
+            ],
+            9: [
+                { id: '9-1', title: 'Genetik', subject: 'biologi', status: 'ready', season: 'Hösttermin', weeks: 6, lessons: [{"title": "Lektion 1: Vem är du? (Arv och miljö)", "url": "genetik/lektion-1-vem-ar-du-arv-och-miljo.html", "status": "ready"}, {"title": "Lektion 2: Cellen, DNA och kromosomer (Spacing)", "url": "genetik/lektion-2-cellen-dna-och-kromosomer-spacing.html", "status": "ready"}, {"title": "Lektion 3: Mitos och Meios (Celldelning)", "url": "genetik/lektion-3-mitos-och-meios-celldelning.html", "status": "ready"}, {"title": "Lektion 4: Dominant och Recessivt", "url": "genetik/lektion-4-dominant-och-recessivt.html", "status": "ready"}, {"title": "Lektion 5 & 6: Korsningsscheman (Tragglande)", "url": "genetik/lektion-5-6-korsningsscheman-tragglande.html", "status": "ready"}, {"title": "Lektion 7: Mutationer och Cancer", "url": "genetik/lektion-7-mutationer-och-cancer.html", "status": "ready"}, {"title": "Lektion 8: Avel och Växtförädling", "url": "genetik/lektion-8-avel-och-vaxtforadling.html", "status": "ready"}, {"title": "Lektion 9: Genteknik och CRISPR", "url": "genetik/lektion-9-genteknik-och-crispr.html", "status": "ready"}, {"title": "Lektion 10: Etiska dilemman i genetik", "url": "genetik/lektion-10-etiska-dilemman-i-genetik.html", "status": "ready"}, {"title": "Lektion 11: Repetition", "url": "genetik/lektion-11-repetition.html", "status": "ready"}, {"title": "Lektion 12: Examination", "url": "genetik/lektion-12-examination.html", "status": "ready"}] },
+                { id: '9-2', title: 'Atom- & Kärnfysik', subject: 'fysik', status: 'ready', season: 'Hösttermin', weeks: 6, lessons: [{"title": "Lektion 1: Vad är allting gjort av?", "url": "atomfysik/lektion-1-vad-ar-allting-gjort-av.html", "status": "ready"}, {"title": "Lektion 2: Atomnummer, masstal och Isotoper", "url": "atomfysik/lektion-2-atomnummer-masstal-och-isotoper.html", "status": "ready"}, {"title": "Lektion 3: Radioaktivitet och Strålningstyper", "url": "atomfysik/lektion-3-radioaktivitet-och-stralningstyper.html", "status": "ready"}, {"title": "Lektion 4 & 5: Halveringstid (Fredad Zon)", "url": "atomfysik/lektion-4-5-halveringstid-fredad-zon.html", "status": "ready"}, {"title": "Lektion 6: Fission och Kärnkraftverk", "url": "atomfysik/lektion-6-fission-och-karnkraftverk.html", "status": "ready"}, {"title": "Lektion 7: Fusion och Kärnvapen", "url": "atomfysik/lektion-7-fusion-och-karnvapen.html", "status": "ready"}, {"title": "Lektion 8: Strålning i vår vardag & Olyckor", "url": "atomfysik/lektion-8-stralning-i-var-vardag-olyckor.html", "status": "ready"}, {"title": "Lektion 9: Repetition och Begrepps-Quiz", "url": "atomfysik/lektion-9-repetition-och-begrepps-quiz.html", "status": "ready"}, {"title": "Lektion 10 & 11: Examination", "url": "atomfysik/lektion-10-11-examination.html", "status": "ready"}] },
+                { id: '9-3', title: 'Evolution', subject: 'biologi', status: 'ready', season: 'Hösttermin', weeks: 5, lessons: [{"title": "Lektion 1: Från DNA till Ursoppa (Spacing)", "url": "evolution/lektion-1-fran-dna-till-ursoppa-spacing.html", "status": "ready"}, {"title": "Lektion 2: Darwin och Det Naturliga Urvalet", "url": "evolution/lektion-2-darwin-och-det-naturliga-urvalet.html", "status": "ready"}, {"title": "Lektion 3: Fågelnäbbs-laborationen (Fredad Zon)", "url": "evolution/lektion-3-fagelnabbs-laborationen-fredad-zon.html", "status": "ready"}, {"title": "Lektion 4: Sexuellt urval och Samevolution", "url": "evolution/lektion-4-sexuellt-urval-och-samevolution.html", "status": "ready"}, {"title": "Lektion 5: \"Out of Africa\" och vårt ursprung", "url": "evolution/lektion-5-out-of-africa-och-vart-ursprung.html", "status": "ready"}, {"title": "Lektion 6: Examination (Resonerande Uppgift)", "url": "evolution/lektion-6-examination-resonerande-uppgift.html", "status": "ready"}] },
+                { id: '9-4', title: 'Mekanik', subject: 'fysik', status: 'ready', season: 'Vårtermin', weeks: 6, lessons: [{"title": "Lektion 1: Massa och Tyngd – Vad är skillnaden?", "url": "mekanik/lektion-1-massa-och-tyngd-vad-ar-skillnaden.html", "status": "ready"}, {"title": "Lektion 2: Friktion och Normalkraft", "url": "mekanik/lektion-2-friktion-och-normalkraft.html", "status": "ready"}, {"title": "Lektion 3: Fart och Hastighet på skolgården", "url": "mekanik/lektion-3-fart-och-hastighet-pa-skolgarden.html", "status": "ready"}, {"title": "Lektion 4: Acceleration, Fritt fall och Tröghetslagen", "url": "mekanik/lektion-4-acceleration-fritt-fall-och-troghetslagen.html", "status": "ready"}, {"title": "Lektion 5 & 6: Mekanikens Gyllene Regel", "url": "mekanik/lektion-5-6-mekanikens-gyllene-regel.html", "status": "ready"}, {"title": "Lektion 7: Trafiksäkerhet och Fysik", "url": "mekanik/lektion-7-trafiksakerhet-och-fysik.html", "status": "ready"}, {"title": "Lektion 8: Repetition och Begrepps-Quiz", "url": "mekanik/lektion-8-repetition-och-begrepps-quiz.html", "status": "ready"}, {"title": "Lektion 9: Examination", "url": "mekanik/lektion-9-examination.html", "status": "ready"}] },
+                { id: '9-5', title: 'Miljövetenskap', subject: 'biologi', status: 'ready', season: 'Vårtermin', weeks: 10, lessons: [{"title": "Lektion 1: Växthuseffekten (Kemi/Fysik)", "url": "miljo-np/lektion-1-vaxthuseffekten-kemifysik.html", "status": "ready"}, {"title": "Lektion 2: Försurning och Övergödning (Biologi/Kemi)", "url": "miljo-np/lektion-2-forsurning-och-overgodning-biologikemi.html", "status": "ready"}, {"title": "Lektion 3: Factfulness – Världen blir bättre!", "url": "miljo-np/lektion-3-factfulness-varlden-blir-battre.html", "status": "ready"}, {"title": "Lektion 4: Ekologiskt Fotavtryck", "url": "miljo-np/lektion-4-ekologiskt-fotavtryck.html", "status": "ready"}, {"title": "Lektion 5 & 6: NP-Bootcamp", "url": "miljo-np/lektion-5-6-np-bootcamp.html", "status": "ready"}, {"title": "Lektion 7 & 8: Systemanalys (Utredande uppgift)", "url": "miljo-np/lektion-7-8-systemanalys-utredande-uppgift.html", "status": "ready"}, {"title": "Lektion 9: Sista peppen inför NP", "url": "miljo-np/lektion-9-sista-peppen-infor-np.html", "status": "ready"}] }
+            ]
+        };
+
+        let currentYear = 7;
+        let expandedCardId = null;
+
+        // Subject labels (no emoji, no inline SVG)
+        const SUBJECT_LABELS = {
+            kemi: 'Ke', fysik: 'Fy', biologi: 'Bi', kroppen: 'Kr'
+        };
+
+        // ── Auth ──
+        if (LESSON_LAB_AUTH.isAuthenticated()) showApp();
+        async function doLogin() {
+            await LESSON_LAB_AUTH.handleLogin(
+                document.getElementById('passwordInput'),
+                document.getElementById('loginError'),
+                showApp
+            );
+        }
+        function doLogout() { LESSON_LAB_AUTH.logout(); location.reload(); }
+        document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.add('visible');
+            setYear(7);
+            
+            // Auto-öppna Årshjulet (Timeline Grid) så att användaren ser det direkt
+            setTimeout(() => openWheel(), 100);
+        }
+
+        // ── Year Switching ──
+        function setYear(year) {
+            currentYear = year;
+            expandedCardId = null;
+            document.querySelectorAll('.year-tab').forEach(tab => {
+                tab.classList.toggle('active', parseInt(tab.dataset.year) === year);
+            });
+            renderDashboard();
+        }
+
+        // ── Dashboard Render ──
+        function renderDashboard() {
+            const content = document.getElementById('dashContent');
+            const nodes = yearData[currentYear];
+
+            // Stats
+            const totalAreas = nodes.length;
+            const totalLessons = nodes.reduce((s, n) => s + n.lessons.length, 0);
+            const readyLessons = nodes.reduce((s, n) => s + n.lessons.filter(l => l.status === 'ready').length, 0);
+            document.getElementById('statAreas').textContent = totalAreas;
+            document.getElementById('statLessons').textContent = totalLessons;
+            document.getElementById('statReady').textContent = readyLessons;
+
+            // Group by semester
+            const htNodes = nodes.filter(n => n.season === 'H\u00f6sttermin');
+            const vtNodes = nodes.filter(n => n.season === 'V\u00e5rtermin');
+
+            content.innerHTML = '';
+
+            if (htNodes.length) content.innerHTML += renderSemester('H\u00f6sttermin', 'aug \u2013 dec', htNodes);
+            if (vtNodes.length) content.innerHTML += renderSemester('V\u00e5rtermin', 'jan \u2013 jun', vtNodes);
+
+            // Auto-expand first card with lessons
+            const firstReady = nodes.find(n => n.lessons.length > 0);
+            if (firstReady && !expandedCardId) {
+                expandedCardId = firstReady.id;
+                const el = document.querySelector(`[data-card-id="${firstReady.id}"]`);
+                if (el) el.classList.add('expanded');
+            }
+        }
+
+        function renderSemester(name, period, nodes) {
+            const cardsHtml = nodes.map(n => renderCard(n)).join('');
+            return `
+                <section class="semester-section">
+                    <div class="semester-header">
+                        <h2 class="semester-title">${name}</h2>
+                        <span class="semester-period">${period}</span>
+                    </div>
+                    <div class="cards-grid">
+                        ${cardsHtml}
+                    </div>
+                </section>
+            `;
+        }
+
+
+        function renderCard(node) {
+            const isExpanded = expandedCardId === node.id;
+            const hasLessons = node.lessons.length > 0;
+            const lessonsReady = node.lessons.filter(l => l.status === 'ready').length;
+
+            const statusBadge = hasLessons
+                ? `<span class="card-badge badge-ready">${lessonsReady} manus</span>`
+                : `<span class="card-badge badge-planned">Planerat</span>`;
+
+            const lessonsHtml = hasLessons ? `
+                <div class="card-lessons ${isExpanded ? 'open' : ''}">
+                    <ul class="lesson-list">
+                        ${node.lessons.map((l, i) => `
+                            <li class="lesson-item" style="animation-delay: ${i * 0.04}s">
+                                <a href="${l.url}" class="lesson-link">
+                                    <span class="lesson-number">${String(i + 1).padStart(2, '0')}</span>
+                                    <span class="lesson-title-text">${l.title}</span>
+                                </a>
+                                <span class="lesson-badge ${l.status === 'ready' ? 'badge-ready' : 'badge-planned'}">${l.status === 'ready' ? 'Klar' : 'Planerat'}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            ` : '';
+
+            const expandIcon = hasLessons
+                ? `<span class="card-expand-icon ${isExpanded ? 'rotated' : ''}">&#9662;</span>`
+                : '';
+
+            return `
+                <div class="area-card subject-${node.subject} ${isExpanded ? 'expanded' : ''} ${hasLessons ? 'clickable' : ''}"
+                     data-card-id="${node.id}">
+                    <div class="card-top" ${hasLessons ? `onclick="toggleCard('${node.id}')"` : ''}>
+                        <span class="card-icon card-icon-${node.subject}">${SUBJECT_LABELS[node.subject] || '?'}</span>
+                        <div class="card-info">
+                            <h3 class="card-title">${node.title}</h3>
+                            <span class="card-meta">${node.weeks} veckor</span>
+                        </div>
+                        <div class="card-right">
+                            ${statusBadge}
+                            ${expandIcon}
+                        </div>
+                    </div>
+                    ${lessonsHtml}
+                </div>
+            `;
+        }
+
+        function toggleCard(cardId) {
+            const wasExpanded = expandedCardId === cardId;
+            expandedCardId = wasExpanded ? null : cardId;
+
+            // Update all cards
+            document.querySelectorAll('.area-card').forEach(card => {
+                const id = card.dataset.cardId;
+                const isNowExpanded = id === expandedCardId;
+                card.classList.toggle('expanded', isNowExpanded);
+
+                const lessons = card.querySelector('.card-lessons');
+                if (lessons) lessons.classList.toggle('open', isNowExpanded);
+
+                const icon = card.querySelector('.card-expand-icon');
+                if (icon) icon.classList.toggle('rotated', isNowExpanded);
+            });
+        }
+
+        // ══════════════════════════════════════
+        // TIMELINE GRID (Replaces Year Wheel)
+        // ══════════════════════════════════════
+        const TIMELINE = (() => {
+            function render() {
+                const grid = document.getElementById('timelineGrid');
+                if (!grid) return;
+                
+                let html = '<div class="timeline-grid">';
+                
+                // Header Row
+                html += `
+                    <div class="timeline-header-row">
+                        <div class="timeline-header-cell empty"></div>
+                        <div class="timeline-header-cell">HÖSTTERMIN</div>
+                        <div class="timeline-header-cell">VÅRTERMIN</div>
+                    </div>
+                `;
+
+                // Years 7, 8, 9
+                [7, 8, 9].forEach(year => {
+                    const nodes = yearData[year] || [];
+                    const htNodes = nodes.filter(n => n.season === 'Hösttermin');
+                    const vtNodes = nodes.filter(n => n.season === 'Vårtermin');
+
+                    html += `<div class="timeline-row">`;
+                    // Year Label
+                    html += `<div class="timeline-year-label">ÅK ${year}</div>`;
+                    
+                    // HT Cell
+                    html += `<div class="timeline-term-cell">`;
+                    htNodes.forEach(node => html += createBox(node, year));
+                    html += `</div>`;
+
+                    // VT Cell
+                    html += `<div class="timeline-term-cell">`;
+                    vtNodes.forEach(node => html += createBox(node, year));
+                    html += `</div>`;
+                    
+                    html += `</div>`; // End row
+                });
+
+                html += '</div>';
+                grid.innerHTML = html;
+            }
+
+            function createBox(node, year) {
+                const abbr = {kemi:'Ke',fysik:'Fy',biologi:'Bi',kroppen:'Kr'}[node.subject] || '';
+                const isReady = node.lessons.length > 0;
+                const statusText = isReady ? `${node.lessons.length} manus` : `Planerat`;
+                
+                return `
+                    <div class="timeline-box subj-${node.subject}" onclick="jumpToModule(${year}, '${node.id}')">
+                        <div class="tb-icon">${abbr}</div>
+                        <div class="tb-content">
+                            <div class="tb-title">${node.title}</div>
+                            <div class="tb-meta">${node.weeks} veckor · ${statusText}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return { render };
+        })();
+
+        // Global jump function from timeline modal to specific card
+        function jumpToModule(year, id) {
+            closeWheel(); // actually close timeline modal
+            setYear(year);
+            setTimeout(() => {
+                if (expandedCardId !== id) {
+                    toggleCard(id); // expands it if not already expanded
+                }
+                const card = document.querySelector(`[data-card-id="${id}"]`);
+                if (card) {
+                    // Small delay to allow the CSS expansion transition to start so it scrolls smoothly
+                    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50);
+                }
+            }, 350); // wait for modal fade out
+        }
+
+        function openWheel() {
+            document.getElementById('wheelOverlay').classList.add('open');
+            TIMELINE.render();
+        }
+
+        function closeWheel() {
+            document.getElementById('wheelOverlay').classList.remove('open');
+        }
+
+        // ESC to close modal
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeWheel();
+        });
+    
