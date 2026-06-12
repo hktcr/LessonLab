@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LessonLab - Lektion 3: Factfulness – Världen blir bättre!</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-flask logo-icon"></i>
+                <h2>LessonLab</h2>
+                <p>Verktyget för episk NO-undervisning</p>
+            </div>
+            <div class="login-content">
+                <p class="instruction">Ange lösenordet för att låsa upp lektionen</p>
+                <div class="input-group">
+                    <input type="password" id="password-input" placeholder="Lösenord..." autofocus>
+                    <button id="login-btn"><i class="fas fa-unlock"></i> Lås upp</button>
+                </div>
+                <p id="error-msg" class="error-msg">Fel lösenord, försök igen!</p>
+            </div>
+            <div class="login-footer">
+                <p>By Håkan Karlsson</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="lesson-content" class="lesson-container hidden">
+        <header class="lesson-header">
+            <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Tillbaka till översikten</a>
+            <h1>Lektion 3: Factfulness – Världen blir bättre!</h1>
+            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+        </header>
+
+        <main class="lesson-main">
+
+            <div class="say-block">
+                <div class="block-header">
+                    <i class="fas fa-comment"></i>
+                    <h3>Uppstart / Mål</h3>
+                </div>
+                <div class="block-content">
+                    <p> Mål: Motverka klimatångest genom Hans Roslings metoder för en faktabaserad världsbild.</p>
+                </div>
+            </div>
+
+            <div class="say-block">
+                <div class="block-header">
+                    <i class="fas fa-comment"></i>
+                    <h3>Uppstart / Mål</h3>
+                </div>
+                <div class="block-content">
+                    <p> Uppstart (10 min): Gapminder-testet! Läraren ställer 3 frågor om världens utveckling (fattigdom, livslängd, vaccinationer). Nästan alla svarar fel (pessimistiskt). Chimpanserna vinner!</p>
+                </div>
+            </div>
+
+            <div class="draw-block">
+                <div class="block-header">
+                    <i class="fas fa-chalkboard"></i>
+                    <h3>Genomgång</h3>
+                </div>
+                <div class="block-content">
+                    <p> Genomgång (15 min): Varför tror vi att allt blir sämre? (Medias dramainstinkt). Visar statistik på att fattigdomen halverats och förnybar energi exploderar i tillväxt.</p>
+                </div>
+            </div>
+
+            <div class="write-block">
+                <div class="block-header">
+                    <i class="fas fa-pencil-alt"></i>
+                    <h3>Aktivitet</h3>
+                </div>
+                <div class="block-content">
+                    <p> Aktivitet (15 min): Diskutera i smågrupper: Vilka tre innovationer tror ni kommer rädda klimatet? (t.ex. Kärnkraft, CCS-teknik, elbilar, labbodlat kött).</p>
+                </div>
+            </div>
+        </main>
+
+        <div class="celebration-container">
+            <button id="finish-lesson-btn" class="finish-btn"><i class="fas fa-star"></i> Avsluta Lektionen</button>
+        </div>
+    </div>
+
+    <script type="module" src="../auth.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
