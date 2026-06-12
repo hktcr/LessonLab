@@ -353,16 +353,6 @@
         }
 
         // ══════════════════════════════════════
-        // YEAR WHEEL
-        // ══════════════════════════════════════
-        const WHEEL = (() => {
-            const CX = 350, CY = 350;
-            const INNER_R = 140, OUTER_R = 220;
-            const MONTH_R = 240, MONTH_LABEL_R = 260;
-            const LABEL_R = 275;
-            const NS = 'http://www.w3.org/2000/svg';
-
-        // ══════════════════════════════════════
         // TIMELINE GRID (Replaces Year Wheel)
         // ══════════════════════════════════════
         const TIMELINE = (() => {
@@ -435,7 +425,7 @@
                 if (expandedCardId !== id) {
                     toggleCard(id); // expands it if not already expanded
                 }
-                const card = document.querySelector(\`[data-card-id="\${id}"]\`);
+                const card = document.querySelector(`[data-card-id="${id}"]`);
                 if (card) {
                     // Small delay to allow the CSS expansion transition to start so it scrolls smoothly
                     setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50);
